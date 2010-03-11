@@ -1,4 +1,4 @@
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<xsd:schema  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 
 <xsd:complexType name="messageType">
 	<xsd:sequence>
