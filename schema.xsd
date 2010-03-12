@@ -39,5 +39,14 @@
 	</xsd:sequence>
  </xsd:complexType>
 
+ <xsd:element name="forum">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name ="forumName" type="xsd:string"/>
+		<xsd:element name ="members" type="memberType" maxOccurs="unbounded"/>
+        <xsd:element name ="messages" type="messageType" maxOccurs="unbounded"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
   
 </xsd:schema>
