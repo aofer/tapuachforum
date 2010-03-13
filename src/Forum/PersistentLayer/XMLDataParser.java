@@ -24,6 +24,7 @@ public class XMLDataParser implements dataParser {
 
     private ObjectFactory of;
     private JAXBContext jc;
+    private Forum f;
     private String fileName;
 
     public XMLDataParser(String fileName) {
@@ -34,6 +35,7 @@ public class XMLDataParser implements dataParser {
             Logger.getLogger(XMLDataParser.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.fileName = fileName;
+        this.f = ReadFromXML();
     }
 
 
