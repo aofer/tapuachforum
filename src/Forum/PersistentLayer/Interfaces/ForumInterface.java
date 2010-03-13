@@ -27,6 +27,18 @@ public interface ForumInterface {
 	public String userExist (String username);
 	
 	/**
+     * check if the nickname exists
+     * @param nickname 
+     * @return true if the nickname already exists */
+	public boolean checkNickname (String nickname);
+	
+	/**
+     * check if the password  exists
+     * @param password 
+     * @return true if the password already exists */
+	public boolean checkPassword (String password);
+	
+	/**
      * set the status of the user to be online
      * @param username, password */
 	public void login (String username);
