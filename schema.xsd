@@ -13,7 +13,8 @@
 	</xsd:element> 
 	<xsd:element name="body" type="xsd:string"/>
 	<xsd:element name="createdBy" type="xsd:string"/>
-	<xsd:element name="dateJoined" type="xsd:dateTime"/>
+	<xsd:element name="dateAdded" type="xsd:dateTime"/>
+	<xsd:element name="modifiedDate"   type="xsd:dateTime"/>
 	</xsd:sequence>
  </xsd:complexType>  
 
@@ -39,10 +40,11 @@
 	</xsd:sequence>
  </xsd:complexType>
 
- <xsd:element name="forum">
+ <xsd:element name="forumType">
     <xsd:complexType>
       <xsd:sequence>
         <xsd:element name ="forumName" type="xsd:string"/>
+        <xsd:element name ="messageCounter" type="xsd:integer"/>
 		<xsd:element name ="members" type="memberType" maxOccurs="unbounded"/>
         <xsd:element name ="messages" type="messageType" maxOccurs="unbounded"/>
       </xsd:sequence>
