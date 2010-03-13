@@ -13,6 +13,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -71,6 +72,15 @@ public class main {
                         m1.setDateJoined(xgcal);
                         m1.setDateOfBirth(xgcal);
 
+                        MessageType e = factory.createMessageType();
+                        e.setParentId(BigInteger.valueOf(0));
+                        e.setMessageId(BigInteger.valueOf(1));
+                        e.setCreatedBy("nir");
+                        e.setSubject("hello forum");
+                        e.setBody("hello everyone...");
+                        e.setDateJoined(xgcal);
+                        m1.getMessage().add(e);
+                        f.getMessages().add(e);
                         
                         f.getMembers().add(m1);
 

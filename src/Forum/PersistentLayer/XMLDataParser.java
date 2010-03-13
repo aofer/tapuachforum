@@ -1,3 +1,5 @@
+
+/*
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -24,6 +26,7 @@ public class XMLDataParser implements dataParser {
 
     private ObjectFactory of;
     private JAXBContext jc;
+    private Forum f;
     private String fileName;
 
     public XMLDataParser(String fileName) {
@@ -34,6 +37,7 @@ public class XMLDataParser implements dataParser {
             Logger.getLogger(XMLDataParser.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.fileName = fileName;
+        this.f = ReadFromXML();
     }
 
 
@@ -55,7 +59,12 @@ public class XMLDataParser implements dataParser {
     }
 
     public MessageType getMessage(int id) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        List<MessageType> lm = f.getMessages();
+        for(MessageType m : lm){
+            if(m.getMessageId().intValue() == id)
+                return m;
+        }
+        return null;
     }
 
     public List<MessageType> getParentMessages() {
