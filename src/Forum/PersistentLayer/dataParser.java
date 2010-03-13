@@ -14,7 +14,7 @@ import java.util.NoSuchElementException;
  *
  * @author Arseny
  */
-public interface dataParser {
+public interface DataParser {
     // receives a member object and parses it into xml compatible class
     /**
      * add a new memer to the forum
