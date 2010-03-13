@@ -17,9 +17,21 @@ public class Guest implements GuestInterface {
 
     private Forum _forum;
 
+    /**
+     *
+     * @param forum
+     */
     public Guest(Forum forum){
         this._forum = forum;
 
+    }
+
+    /**
+     * 
+     * @return
+     */
+    public Forum getForum() {
+        return _forum;
     }
 
     public void readMessage(int messageId) {
@@ -33,7 +45,7 @@ public class Guest implements GuestInterface {
     }
 
     public void logIn(String username, String password) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this._forum.login(username,password);
     }
 
     

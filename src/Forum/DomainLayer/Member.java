@@ -5,13 +5,14 @@
 
 package Forum.DomainLayer;
 
+import Forum.DomainLayer.Interfaces.MemberInterface;
 import java.util.Date;
 
 /**
  *
  * @author Amit Ofer
  */
-public class Member  extends Guest{
+public class Member  extends Guest implements MemberInterface{
     private String _userName;
 private String _nickName;
 private String _password;
@@ -33,4 +34,17 @@ public Member(Forum forum,String userName,String nickName,String password,String
     this._dateOfBirth = dateOfBirth;
     this._dateJoined = new Date();
 }
+
+    public void logOut() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void writeMessage(String subject, String body) {
+        this.getForum().addMessage(this._nickName,subject,body);
+    }
+
+    public void editMessage(int messageId, String subject, String body) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
 }
