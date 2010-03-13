@@ -15,4 +15,7 @@ import Forum.DomainLayer.Message;
 public interface ForumInterface {
     public Message getMessage(int messageId);
     public void register(Member newMember);
+    public void login(String username,String password);
+    public void logout();
+    public void addMessage(String nickname,String Subject,String body);
 }
