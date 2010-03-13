@@ -1,6 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Interface for the member class
  */
 
 package Forum.DomainLayer.Interfaces;
@@ -11,7 +10,22 @@ package Forum.DomainLayer.Interfaces;
  */
 public interface MemberInterface extends GuestInterface {
 
+    /**
+     *logs out of the forum, turns the member back into a guest
+     */
     public void logOut();
-    public void writeMessage(String nickName,String subject,String body);
+    /**
+     *writes a new message in the forum with the given nickname (taken from the member),subject and body
+     * @param subject
+     * @param body
+     */
+    public void writeMessage(String subject,String body);
+    /**
+     *edits the message that has the given message ID
+     * a member can only edit his messages
+     * @param messageId
+     * @param subject
+     * @param body
+     */
     public  void editMessage(int messageId,String subject,String body);
 }

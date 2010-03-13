@@ -21,4 +21,16 @@ private String _email;
 private Date _dateJoined;
 private Date _dateOfBirth;
 
+public Member(Forum forum,String userName,String nickName,String password,String firstName,String lastName,String email,
+       Date dateOfBirth){
+    super(forum);
+    this._userName = userName;
+    this._nickName = nickName;
+    this._password = password;
+    this._firstName = firstName;
+    this._lastName = lastName;
+    this._email = email;
+    this._dateOfBirth = dateOfBirth;
+    this._dateJoined = new Date();
+}
 }
