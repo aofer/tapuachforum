@@ -101,7 +101,7 @@ public class XMLDataParserTest {
         System.out.println("getMessage");
         int id = 1;
         XMLDataParser instance = new XMLDataParser("tapuachforum.xml");
-        Forum f = instance.ReadFromXML();
+        //Forum f = instance.ReadFromXML();
         MessageType expResult = null;
         MessageType result = instance.getMessage(id);
         assertNotNull(result);
