@@ -1,12 +1,6 @@
 package Forum.PersistentLayer.Interfaces;
 
-import java.math.BigInteger;
 import java.util.Date;
-
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.datatype.XMLGregorianCalendar;
-
 
 /**
 *
