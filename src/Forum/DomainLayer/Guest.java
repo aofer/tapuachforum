@@ -6,10 +6,7 @@
 package Forum.DomainLayer;
 
 import Forum.DomainLayer.Interfaces.DomainGuestInterface;
-import Forum.Exceptions.BadPasswordException;
-import Forum.Exceptions.MessageNotFoundException;
-import Forum.Exceptions.NicknameExistsException;
-import Forum.Exceptions.UserExistsException;
+import Forum.Exceptions.*;
 import java.util.Date;
 
 /**
@@ -47,7 +44,7 @@ public class Guest implements DomainGuestInterface {
         this._forum.register(tMember) ;
     }
 
-    public void logIn(String username, String password) {
+    public void logIn(String username, String password) throws NoSuchUserException,WrongPasswordException {
         this._forum.login(username,password);
     }
 

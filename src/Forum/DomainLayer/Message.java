@@ -36,6 +36,14 @@ public class Message {
      this._writeDate = new Date();
      this._modifiedDate = new Date();
  }
+  public Message(String nickname,String subject,String body,Vector<Message> replies,Date WriteDate,Date ModifiedDate){
+     this._nickname = nickname;
+     this._subject = subject;
+     this._body = body;
+     this._replies  = new Vector<Message>();
+     this._writeDate = new Date();
+     this._modifiedDate = new Date();
+ }
 
 
  /**

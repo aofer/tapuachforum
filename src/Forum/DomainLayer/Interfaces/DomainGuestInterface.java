@@ -5,10 +5,8 @@
 
 package Forum.DomainLayer.Interfaces;
 
-import Forum.Exceptions.BadPasswordException;
-import Forum.Exceptions.MessageNotFoundException;
-import Forum.Exceptions.NicknameExistsException;
-import Forum.Exceptions.UserExistsException;
+import Forum.Exceptions.WrongPasswordException;
+import Forum.Exceptions.*;
 import java.util.Date;
 
 /**
@@ -40,7 +38,7 @@ public interface DomainGuestInterface {
      * @param username
      * @param password
      */
-    public void logIn(String username,String password);
+    public void logIn(String username,String password) throws NoSuchUserException,WrongPasswordException;
     
 
 }

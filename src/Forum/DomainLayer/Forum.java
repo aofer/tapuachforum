@@ -4,7 +4,6 @@
  */
 
 package Forum.DomainLayer;
-import Forum.Exceptions.BadPasswordException;
 import Forum.Exceptions.*;
 import Forum.DomainLayer.Interfaces.DomainForumInterface;
 import Forum.PersistentLayer.ForumHandler;
@@ -13,7 +12,6 @@ import Forum.PersistentLayer.MemberHandler;
 import Forum.PersistentLayer.XMLMessageHandler;
 import java.util.Date;
 import java.util.Vector;
-import org.omg.CORBA.UserException;
 /**
  *
  * @author amit
@@ -64,21 +62,47 @@ public class Forum implements DomainForumInterface{
 
     }
 
-    public void login(String username, String password) {
-        throw new UnsupportedOperationException("Not yet implemented");
+    public void login(String username, String password) throws NoSuchUserException,WrongPasswordException {
+        String tPassword = this._XmlForum.userExists(username);
+        if (tPassword == null)
+            throw new NoSuchUserException(username);
+        else if (!tPassword.equals(password))
+            throw new WrongPasswordException();
+        else{
+            String tNickname = this._XmlMember.getNickName(username);
+            String tFirstName = this._XmlMember.getFirstName(username);
+            String tLastName = this._XmlMember.getLastName(username);
+            String tEmail = this._XmlMember.getEMail(username);
+            Date tDateOfBirth = this._XmlMember.getDateofBirth(username);
+            Date tDateJoined = this._XmlMember.getDateJoined(username);
+            Member tMember = new Member(this, username, tNickname, password, tFirstName, tLastName, tEmail, tDateOfBirth);
+            this.addMember(tMember);
+        }
+
     }
 
     public void addMessage(String _nickName, String subject, String body) {
-        throw new UnsupportedOperationException("Not yet implemented");
+        Date tDate = new Date();
+        this._XmlForum.addMessage(0, body, subject, body, tDate, tDate);
     }
 
-    public void logout(String _userName) {
-        throw new UnsupportedOperationException("Not yet implemented");
+    public void logout(String username) {
+        for (int i=0;i < this._onlineMembers.size();i++){
+            if (this._onlineMembers.elementAt(i).getUserName().equals(username)){
+                this._onlineMembers.removeElementAt(i);
+                break;
+            }
+        }
     }
 
     public boolean checkPasswordPolicy(String password) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return password.length() >= 8;
     }
+
+    public void addMember(Member member) {
+        this._onlineMembers.add(member);
+    }
+
 
 
 
