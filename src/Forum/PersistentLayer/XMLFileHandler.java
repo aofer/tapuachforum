@@ -61,7 +61,7 @@ public class XMLFileHandler {
             try {
                 Marshaller m = jc.createMarshaller();
                 m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-                out = new FileOutputStream("tapuachforum.xml");
+                out = new FileOutputStream(fileName);
                 m.marshal(f, out);
                 out.close();
             } catch (IOException ex) {
