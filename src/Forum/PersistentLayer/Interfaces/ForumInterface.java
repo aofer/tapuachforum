@@ -59,4 +59,5 @@ public interface ForumInterface {
      * @param parentId, createdBy, subject,body */
 	public void addMessage ( int parentId, String createdBy, String subject,String body, Date DateAdded, Date modifyDate);
 
+        public void editMessage(int messageId,String newSubject,String newBody,Date dateModified);
 }
