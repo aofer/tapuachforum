@@ -1,4 +1,4 @@
-package Exceptions;
+package Forum.Exceptions;
 public abstract class ForumException extends Exception{
     private  String message;
     public ForumException(String message) {

@@ -5,14 +5,14 @@
 
 package Forum.DomainLayer;
 
-import Forum.DomainLayer.Interfaces.MemberInterface;
+import Forum.DomainLayer.Interfaces.DomainMemberInterface;
 import java.util.Date;
 
 /**
  *
  * @author Amit Ofer
  */
-public class Member  extends Guest implements MemberInterface{
+public class Member  extends Guest implements DomainMemberInterface{
 private String _userName;
 private String _nickName;
 private String _password;
@@ -34,6 +34,43 @@ public Member(Forum forum,String userName,String nickName,String password,String
     this._dateOfBirth = dateOfBirth;
     this._dateJoined = new Date();
 }
+
+    public String getUserName() {
+        return _userName;
+    }
+
+    public String getPassword() {
+        return _password;
+    }
+
+    public String getNickName() {
+        return _nickName;
+    }
+
+    public String getLastName() {
+        return _lastName;
+    }
+
+    @Override
+    public Forum getForum() {
+        return super.getForum();
+    }
+
+    public String getFirstName() {
+        return _firstName;
+    }
+
+    public String getEmail() {
+        return _email;
+    }
+
+    public Date getDateOfBirth() {
+        return _dateOfBirth;
+    }
+
+    public Date getDateJoined() {
+        return _dateJoined;
+    }
 
     public void logOut() {
         this.getForum().logout(this._userName);

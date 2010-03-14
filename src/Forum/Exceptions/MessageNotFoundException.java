@@ -3,15 +3,15 @@
  * and open the template in the editor.
  */
 
-package Exceptions;
+package Forum.Exceptions;
 
 /**
  *
  * @author Yura
  */
-public class RequiredMessageWasntFoundException extends ForumException{
+public class MessageNotFoundException extends ForumException{
 
-    public RequiredMessageWasntFoundException(String message) {
+    public MessageNotFoundException(String message) {
         super(message);
     }
     

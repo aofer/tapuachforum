@@ -5,7 +5,7 @@
 
 package Forum.PersistentLayer;
 
-import Exceptions.RequiredMessageWasntFoundException;
+import Forum.Exceptions.MessageNotFoundException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -54,7 +54,7 @@ public class XMLMessageHandlerTest {
             int expResult = 0;
             int result = instance.getParentId(1);
             assertEquals(expResult, result);
-        } catch (RequiredMessageWasntFoundException ex) {
+        } catch (MessageNotFoundException ex) {
             Logger.getLogger(XMLMessageHandlerTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -70,7 +70,7 @@ public class XMLMessageHandlerTest {
             XMLMessageHandler instance = new XMLMessageHandler(xf);
             String result = instance.getSubject(messageID);
             assertNotNull(result);
-        } catch (RequiredMessageWasntFoundException ex) {
+        } catch (MessageNotFoundException ex) {
             Logger.getLogger(XMLMessageHandlerTest.class.getName()).log(Level.SEVERE, null, ex);
         }
         
@@ -87,7 +87,7 @@ public class XMLMessageHandlerTest {
             XMLMessageHandler instance = new XMLMessageHandler(xf);
             String result = instance.getContent(messageID);
             assertNotNull(result);
-        } catch (RequiredMessageWasntFoundException ex) {
+        } catch (MessageNotFoundException ex) {
             Logger.getLogger(XMLMessageHandlerTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -103,7 +103,7 @@ public class XMLMessageHandlerTest {
             XMLMessageHandler instance = new XMLMessageHandler(xf);
             String result = instance.getUsername(messageID);
             assertNotNull(result);
-        } catch (RequiredMessageWasntFoundException ex) {
+        } catch (MessageNotFoundException ex) {
             Logger.getLogger(XMLMessageHandlerTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -121,7 +121,7 @@ public class XMLMessageHandlerTest {
             assertNotNull(result);
             // TODO review the generated test code and remove the default call to fail.
             fail("The test case is a prototype.");
-        } catch (RequiredMessageWasntFoundException ex) {
+        } catch (MessageNotFoundException ex) {
             Logger.getLogger(XMLMessageHandlerTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -138,7 +138,7 @@ public class XMLMessageHandlerTest {
             XMLMessageHandler instance = new XMLMessageHandler(xf);
             instance.setSubject(messageID, newSubject);
             assertTrue(true);
-        } catch (RequiredMessageWasntFoundException ex) {
+        } catch (MessageNotFoundException ex) {
             Logger.getLogger(XMLMessageHandlerTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -155,7 +155,7 @@ public class XMLMessageHandlerTest {
             XMLMessageHandler instance = new XMLMessageHandler(xf);
             instance.setContent(messageID, newContent);
             assertTrue(true);
-        } catch (RequiredMessageWasntFoundException ex) {
+        } catch (MessageNotFoundException ex) {
             Logger.getLogger(XMLMessageHandlerTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
