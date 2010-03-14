@@ -33,79 +33,6 @@ public class ForumHandler  implements ForumInterface{
     public ForumHandler(XMLFileHandler xf) {
         this.xf = xf;
     }
-
-        /**
-         *
-         * @param username
-         * @param filedToUse
-         * @return
-         */
-        public Object getObject(String username, int filedToUse){
-            Object tempToSave;
-            String usernameTemp;
-            int index, size;
-            boolean foundName;
-            tempToSave = null;
-            foundName = false;
-            index = 0;
-            List< MemberType>  membersList =  this.xf.getForum().getMembers();
-            size = membersList.size();
-            while ((index < size) & !foundName){
-                  usernameTemp  = membersList.get(index).getNickName();
-                  foundName = usernameTemp.equals(username);
-                  index = index +1;
-            }
-          if (! foundName)
-               return null;
-          else
-               switch (filedToUse) {
-                      case 1:  tempToSave = membersList.get(index-1).getNickName(); break;
-                      case 2:  tempToSave = membersList.get(index-1).getPassword(); break;
-                      case 3:  tempToSave = membersList.get(index-1).getEMail(); break;
-                      case 4:  tempToSave = membersList.get(index-1).getDateJoined(); break;
-                      case 5:  tempToSave = membersList.get(index-1).getFirstName(); break;
-                      case 6:  tempToSave = membersList.get(index-1).getLastName(); break;
-                      case 7:  tempToSave = membersList.get(index-1).getDateOfBirth(); break;
-                      case 8:  tempToSave = membersList.get(index-1).isStatus(); break;
-                   default:  tempToSave =  null; break;
-        }
-       System.out.println(tempToSave.toString());
-     return (tempToSave);
-      };
-
-      /**
-       *
-       * @param username
-       * @param tempToSave
-       * @param filedToUse
-       */
-      public void setObject(String username, Object tempToSave, int filedToUse ){
-            String usernameTemp;
-            int index, size;
-            boolean foundName;
-            tempToSave = null;
-            foundName = false;
-            index = 0;
-            List< MemberType>  membersList =  this.xf.getForum().getMembers();
-            size = membersList.size();
-            while ((index < size) & !foundName){
-                  usernameTemp  = membersList.get(index).getNickName();
-                  foundName = usernameTemp.equals(username);
-                  index = index +1;
-                  if (foundName)
-                    switch (filedToUse) {
-                      case 1:   membersList.get(index-1).setNickName((String) tempToSave) ; break;
-                      case 2:   membersList.get(index-1).setPassword((String) tempToSave); break;
-                      case 3:   membersList.get(index-1).setEMail((String) tempToSave); break;
-                      case 4:   membersList.get(index-1).setDateJoined((XMLGregorianCalendar) tempToSave); break;
-                      case 5:   membersList.get(index-1).setFirstName((String) tempToSave); break;
-                      case 6:   membersList.get(index-1).setLastName((String) tempToSave); break;
-                      case 7:   membersList.get(index-1).setDateOfBirth((XMLGregorianCalendar) tempToSave); break;
-                      case 8:   membersList.get(index-1).setStatus(tempToSave.equals(true)); break;
-                   default:   System.out.println("user name is not here");; break;
-        }
-            }
-}
       	/**
      * set the status of the user to be online
      * @param username, password */
@@ -127,6 +54,12 @@ public class ForumHandler  implements ForumInterface{
        }
     }
 
+    private int getCounter(){
+        int ans = this.xf.getForum().getMessageCounter().intValue();
+        int tmp = ans +1;
+        this.xf.getForum().setMessageCounter(BigInteger.valueOf(tmp));
+        return ans;
+    }
    	/**
      * check if the username already exist 
      * @param username 
@@ -138,9 +71,49 @@ public class ForumHandler  implements ForumInterface{
             }
         }
           return null;
-        };
-       
+        }
 
+        private MemberType findMember(String username){
+                         for (MemberType m : this.xf.getForum().getMembers()) {
+            if (m.getUserName().equals(username)) {
+                return m;
+            }
+        }
+          return null;
+        }
+
+             private MessageType findMessage(int messageID) {
+                         for (MessageType m : this.xf.getForum().getMessages()) {
+              if(m.getMessageId().intValue() == messageID){
+                return m;
+            }
+        }
+          return null;
+        }
+
+             private MessageType findMessageOfUser(int messageID, String usernme) {
+                  MemberType memb = findMember(usernme);
+                 for (MessageType m :    memb.getMessage()) {
+              if(m.getMessageId().intValue() == messageID){
+                return m;
+            }
+        }
+          return null;
+        }
+        /**
+     * check if the username already exist 
+     * @param username 
+     * @return username password if exists or NULL if not*/
+       
+        public String getSubject(int messageID)  {
+        for(MessageType m : this.xf.getForum().getMessages()){
+            if(m.getMessageId().intValue() == messageID){
+
+                return m.getSubject();
+            }
+        }
+        return null;
+        }
     	/**
      * add a new member to the forum
      * @param username ,  nickName, password, eMail, firstName, lastName, dateOfBirth */
@@ -162,6 +135,8 @@ public class ForumHandler  implements ForumInterface{
             newMember.setDateOfBirth(xgcal);
             //    newMember.setDateOfBirth(null);
             this.xf.getForum().getMembers().add(newMember);
+
+
         } catch (DatatypeConfigurationException ex) {
             Logger.getLogger(ForumHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -184,8 +159,14 @@ public class ForumHandler  implements ForumInterface{
             XMLGregorianCalendar xgcal;
             xgcal = DatatypeFactory.newInstance().newXMLGregorianCalendar(gcal);
             newMessage.setDateAdded(xgcal);
-            //newessage.setDateAdded(null);
+            newMessage.setModifiedDate(xgcal);
+            newMessage.setMessageId(BigInteger.valueOf(getCounter()));
             this.xf.getForum().getMessages().add(newMessage);
+
+            MemberType userWriter = findMember(createdBy);
+            userWriter.getMessage().add(newMessage);
+
+            xf.WriteToXML();
         } catch (DatatypeConfigurationException ex) {
             Logger.getLogger(ForumHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -228,17 +209,60 @@ public class ForumHandler  implements ForumInterface{
             gcal.setTime(modifyDate);
              xgcal2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(gcal);
             newMessage.setModifiedDate(xgcal2);
+               newMessage.setMessageId(BigInteger.valueOf(getCounter()));
+               this.xf.getForum().getMessages().add(newMessage);
+
+                 MemberType userWriter = findMember(createdBy);
+            userWriter.getMessage().add(newMessage);
+                   xf.WriteToXML();
         } catch (DatatypeConfigurationException ex) {
             Logger.getLogger(ForumHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public String userExists(String username) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+                               for (MemberType m : this.xf.getForum().getMembers()) {
+            if (m.getUserName().equals(username)) {
+                return m.getPassword();
+            }
+        }
+          return null;
+        };
+   
+    
 
     public boolean checkUsername(String username) {
-        throw new UnsupportedOperationException("Not supported yet.");
+                                  for (MemberType m : this.xf.getForum().getMembers()) {
+            if (m.getUserName().equals(username)) {
+                return true;
+            }
+        }
+          return false;
+        }
+
+    public void editMessage(int messageId, String newSubject, String newBody, Date dateModified) {
+        try {
+            MessageType msg = findMessage(messageId);
+            msg.setSubject(newSubject);
+            msg.setBody(newBody);
+
+            GregorianCalendar gcal = new GregorianCalendar();
+            gcal.setTime(dateModified);
+            XMLGregorianCalendar xgcal;
+            xgcal = DatatypeFactory.newInstance().newXMLGregorianCalendar(gcal);
+            msg.setModifiedDate(xgcal);
+
+
+            MessageType msg2 = findMessageOfUser(messageId, msg.getCreatedBy());
+            msg2.setSubject(newSubject);
+            msg2.setBody(newBody);
+              msg2.setModifiedDate(xgcal);
+
+            xf.WriteToXML();
+      
+        } catch (DatatypeConfigurationException ex) {
+            Logger.getLogger(ForumHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

@@ -88,7 +88,7 @@ public class XMLFileHandlerTest {
             e.setModifiedDate(xgcal);
             m1.getMessage().add(e);
             f.getMembers().add(m1);
-            instance.WriteToXML(f);
+            instance.WriteToXML();
             assertTrue(true);
         } catch (DatatypeConfigurationException ex) {
             Logger.getLogger(XMLFileHandlerTest.class.getName()).log(Level.SEVERE, null, ex);

@@ -79,7 +79,7 @@ public interface MessageInterface {
                  * @param messageId
                  * @return
                  */
-                public Date getModifiedDate(int messageId);
+                public Date getModifiedDate(int messageId) throws MessageNotFoundException;
 
 
 

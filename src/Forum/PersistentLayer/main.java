@@ -73,6 +73,14 @@ public class Main {
             xgcal = DatatypeFactory.newInstance().newXMLGregorianCalendar(gcal);
             m1.setDateJoined(xgcal);
             m1.setDateOfBirth(xgcal);
+                 MemberType m2 = factory.createMemberType();
+            m2.setUserName("alex");
+            m2.setNickName("superMan");
+            m2.setPassword("123456");
+            m2.setFirstName("a");
+            m2.setLastName("k");
+            m2.setEMail("a@a.com");
+            m2.setStatus(true);
             MessageType e = factory.createMessageType();
             e.setParentId(BigInteger.valueOf(0));
             e.setMessageId(BigInteger.valueOf(1));
@@ -83,8 +91,10 @@ public class Main {
             e.setModifiedDate(xgcal);
             m1.getMessage().add(e);
             f.getMembers().add(m1);
+               f.getMembers().add(m2);
+               f.setMessageCounter(BigInteger.valueOf(1));
             f.getMessages().add(e);
-            instance.WriteToXML(f);
+            instance.WriteToXML();
 
 
 		} catch (JAXBException e) {
