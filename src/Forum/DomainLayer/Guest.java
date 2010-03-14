@@ -5,14 +5,18 @@
 
 package Forum.DomainLayer;
 
-import Forum.DomainLayer.Interfaces.GuestInterface;
+import Forum.DomainLayer.Interfaces.DomainGuestInterface;
+import Forum.Exceptions.BadPasswordException;
+import Forum.Exceptions.MessageNotFoundException;
+import Forum.Exceptions.NicknameExistsException;
+import Forum.Exceptions.UserExistsException;
 import java.util.Date;
 
 /**
  *
  * @author Amit Ofer
  */
-public class Guest implements GuestInterface {
+public class Guest implements DomainGuestInterface {
 
 
     private Forum _forum;
@@ -34,12 +38,13 @@ public class Guest implements GuestInterface {
         return _forum;
     }
 
-    public String readMessage(int messageId) {
+    public String readMessage(int messageId) throws MessageNotFoundException{
         return  this._forum.getMessage(messageId).toString();
     }
-    public void register(String username, String password, String nickname, String email, String firstName, String lastName, Date dateOfBirth) {
+    public void register(String username, String password, String nickname, String email, String firstName, String lastName, Date dateOfBirth)
+            throws UserExistsException,NicknameExistsException,BadPasswordException{
         Member tMember = new Member(this._forum,username,nickname,email,password,firstName,lastName,dateOfBirth);
-        this._forum.register(tMember);
+        this._forum.register(tMember) ;
     }
 
     public void logIn(String username, String password) {

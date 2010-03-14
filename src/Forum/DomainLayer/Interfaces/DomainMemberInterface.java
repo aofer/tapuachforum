@@ -8,7 +8,7 @@ package Forum.DomainLayer.Interfaces;
  *
  * @author Amit Ofer
  */
-public interface MemberInterface extends GuestInterface {
+public interface DomainMemberInterface extends DomainGuestInterface {
 
     /**
      *logs out of the forum, turns the member back into a guest

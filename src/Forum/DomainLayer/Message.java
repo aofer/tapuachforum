@@ -13,7 +13,7 @@ import java.util.Vector;
  * @author Amit Ofer
  */
 public class Message {
- private int _messageId;
+
  private String _nickname;
  private String _subject;
  private String _body;
@@ -28,8 +28,7 @@ public class Message {
   * @param subject
   * @param body
   */
- public Message(int messageId,String nickname,String subject,String body){
-     this._messageId = messageId;
+ public Message(String nickname,String subject,String body){
      this._nickname = nickname;
      this._subject = subject;
      this._body = body;
@@ -38,13 +37,6 @@ public class Message {
      this._modifiedDate = new Date();
  }
 
- /**
-  *getter for messageId
-  * @return
-  */
- public int getMessageId() {
-        return _messageId;
-    }
 
  /**
   * getter for the body
@@ -110,7 +102,7 @@ public class Message {
      */
     @Override
  public String toString(){
-     return "Message number:" + _messageId + "\nSubject:" + _subject + "\nWritten by:" + _nickname
+     return  "\nSubject:" + _subject + "\nWritten by:" + _nickname
              + "\n Number of replies:" + _replies.size() + "\nBody:" + _body + "\n";
  }
 
