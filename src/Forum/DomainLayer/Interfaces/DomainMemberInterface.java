@@ -4,6 +4,9 @@
 
 package Forum.DomainLayer.Interfaces;
 
+import Forum.Exceptions.MessageNotFoundException;
+import Forum.Exceptions.MessageOwnerException;
+
 /**
  *
  * @author Amit Ofer
@@ -27,5 +30,12 @@ public interface DomainMemberInterface extends DomainGuestInterface {
      * @param subject
      * @param body
      */
-    public  void editMessage(int messageId,String subject,String body);
+    public  void editMessage(int messageId,String subject,String body)throws MessageNotFoundException,MessageOwnerException;
+    /**
+     * adds a new reply to a message
+     * @param parentId - the id of the parent message
+     * @param subject - the subject of the new reply
+     * @param body - the body of the new reply
+     */
+    public void addReply(int parentId,String subject,String body);
 }

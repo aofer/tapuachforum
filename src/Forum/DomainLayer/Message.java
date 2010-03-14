@@ -21,9 +21,9 @@ public class Message {
  private Date _writeDate;
  private Date _modifiedDate;
 
+
  /**
   *constructor
-  * @param messageId
   * @param nickname
   * @param subject
   * @param body
@@ -36,7 +36,16 @@ public class Message {
      this._writeDate = new Date();
      this._modifiedDate = new Date();
  }
-  public Message(String nickname,String subject,String body,Vector<Message> replies,Date WriteDate,Date ModifiedDate){
+ /**
+  *another constructor
+  * @param nickname
+  * @param subject
+  * @param body
+  * @param replies
+  * @param WriteDate
+  * @param ModifiedDate
+  */
+ public Message(String nickname,String subject,String body,Vector<Message> replies,Date WriteDate,Date ModifiedDate){
      this._nickname = nickname;
      this._subject = subject;
      this._body = body;

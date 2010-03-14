@@ -6,15 +6,17 @@
 package Forum.DomainLayer;
 import Forum.Exceptions.*;
 import Forum.DomainLayer.Interfaces.DomainForumInterface;
-import Forum.PersistentLayer.ForumHandler;
-import  Forum.PersistentLayer.Interfaces.*;
-import Forum.PersistentLayer.MemberHandler;
-import Forum.PersistentLayer.XMLMessageHandler;
+import  Forum.PersistentLayer.*;
+import Forum.PersistentLayer.Interfaces.ForumInterface;
+import Forum.PersistentLayer.Interfaces.MemberInterface;
+import Forum.PersistentLayer.Interfaces.MessageInterface;
 import java.util.Date;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
- * @author amit
+ * @author Amit Ofer
  */
 public class Forum implements DomainForumInterface{
 
@@ -23,13 +25,31 @@ public class Forum implements DomainForumInterface{
     private MessageInterface _XmlMessage;
     private Vector<Member> _onlineMembers;
 
-    public Forum(XMLMessageHandler messageHandler){
-        this._XmlForum = new ForumHandler();
-        this._XmlMember = new MemberHandler();
+    /**
+     *
+     * @param messageHandler
+     * @param forumHandler
+     * @param memberHandler
+     */
+    public Forum(XMLMessageHandler messageHandler,ForumHandler forumHandler,MemberHandler memberHandler){
+        this._XmlForum = forumHandler;
+        this._XmlMember = memberHandler;
         this._XmlMessage = messageHandler;
         this._onlineMembers = new Vector<Member>();
     }
 
+    public Vector<Member> getOnlineMembers() {
+        return _onlineMembers;
+    }
+
+    
+    /**
+     *
+     * @param newMember
+     * @throws UserExistsException
+     * @throws NicknameExistsException
+     * @throws BadPasswordException
+     */
     public void register(Member newMember)  throws UserExistsException,NicknameExistsException,BadPasswordException{
         if (this._XmlForum.checkUsername(newMember.getUserName()))
             throw new UserExistsException();
@@ -49,6 +69,12 @@ public class Forum implements DomainForumInterface{
         }
     }
 
+    /**
+     *
+     * @param messageId
+     * @return
+     * @throws MessageNotFoundException
+     */
     public Message getMessage(int messageId)  throws MessageNotFoundException{
         String tNickname = this._XmlMessage.getNickname(messageId);
         String tSubject = this._XmlMessage.getSubject(messageId);
@@ -62,6 +88,13 @@ public class Forum implements DomainForumInterface{
 
     }
 
+    /**
+     *
+     * @param username
+     * @param password
+     * @throws NoSuchUserException
+     * @throws WrongPasswordException
+     */
     public void login(String username, String password) throws NoSuchUserException,WrongPasswordException {
         String tPassword = this._XmlForum.userExists(username);
         if (tPassword == null)
@@ -81,11 +114,21 @@ public class Forum implements DomainForumInterface{
 
     }
 
+    /**
+     *
+     * @param _nickName
+     * @param subject
+     * @param body
+     */
     public void addMessage(String _nickName, String subject, String body) {
         Date tDate = new Date();
         this._XmlForum.addMessage(0, body, subject, body, tDate, tDate);
     }
 
+    /**
+     *
+     * @param username
+     */
     public void logout(String username) {
         for (int i=0;i < this._onlineMembers.size();i++){
             if (this._onlineMembers.elementAt(i).getUserName().equals(username)){
@@ -95,12 +138,51 @@ public class Forum implements DomainForumInterface{
         }
     }
 
+    /**
+     *
+     * @param password
+     * @return
+     */
     public boolean checkPasswordPolicy(String password) {
         return password.length() >= 8;
     }
 
+    /**
+     *
+     * @param member
+     */
     public void addMember(Member member) {
         this._onlineMembers.add(member);
+    }
+
+    /**
+     * 
+     * @param messageId
+     * @param subject
+     * @param body
+     */
+    public void editMessage(String nickname,int messageId, String subject, String body) throws MessageNotFoundException, MessageOwnerException{
+            Date tDate = new Date();
+            String tNickname = this._XmlMessage.getNickname(messageId);
+            if (nickname.equals(tNickname)) {
+                this._XmlForum.editMessage(messageId, subject, body, tDate);
+            }
+            else {
+                throw new MessageOwnerException();
+            }
+        } 
+    
+
+    /**
+     *
+     * @param parentId
+     * @param nickname
+     * @param subject
+     * @param body
+     */
+    public void addReply(int parentId, String nickname, String subject, String body) {
+        Date tDate = new Date();
+        this._XmlForum.addMessage(parentId, body, subject, body, tDate, tDate);
     }
 
 
