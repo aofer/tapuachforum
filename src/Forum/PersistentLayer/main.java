@@ -29,7 +29,7 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 
-public class main {
+public class Main {
 
 	/**
 	 * @param args
@@ -83,6 +83,7 @@ public class main {
             e.setModifiedDate(xgcal);
             m1.getMessage().add(e);
             f.getMembers().add(m1);
+            f.getMessages().add(e);
             instance.WriteToXML(f);
 
 

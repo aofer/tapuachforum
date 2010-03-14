@@ -119,9 +119,10 @@ public class XMLMessageHandlerTest {
             XMLMessageHandler instance = new XMLMessageHandler(xf);
             Date result = instance.getDateAdded(messageID);
             assertNotNull(result);
-            // TODO review the generated test code and remove the default call to fail.
-            fail("The test case is a prototype.");
+
         } catch (MessageNotFoundException ex) {
+
+
             Logger.getLogger(XMLMessageHandlerTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
