@@ -29,7 +29,7 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 
-public class main {
+public class Main {
 
 	/**
 	 * @param args
