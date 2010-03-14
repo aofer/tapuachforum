@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<forumType>
+    <members>
+        <userName>nir</userName>
+        <nickName>arsenik</nickName>
+        <password>123456</password>
+        <eMail>a@a.com</eMail>
+        <dateJoined>2010-03-14T17:20:28.580+02:00</dateJoined>
+        <firstName>a</firstName>
+        <LastName>k</LastName>
+        <dateOfBirth>2010-03-14+02:00</dateOfBirth>
+        <status>false</status>
+        <message>
+            <messageId>1</messageId>
+            <parentId>0</parentId>
+            <subject>hello potatoheads..</subject>
+            <body>hello everyone...</body>
+            <createdBy>nir</createdBy>
+            <dateAdded>2010-03-14T17:20:28.580+02:00</dateAdded>
+            <modifiedDate>2010-03-14T17:20:28.580+02:00</modifiedDate>
+        </message>
+    </members>
+    <messages>
+        <messageId>1</messageId>
+        <parentId>0</parentId>
+        <subject>hello potatoheads..</subject>
+        <body>hello everyone...</body>
+        <createdBy>nir</createdBy>
+        <dateAdded>2010-03-14T17:20:28.580+02:00</dateAdded>
+        <modifiedDate>2010-03-14T17:20:28.580+02:00</modifiedDate>
+    </messages>
+</forumType>
