@@ -8,7 +8,12 @@ package Forum.PersistentLayer;
 import Forum.PersistentLayer.Interfaces.ForumInterface;
 import java.math.BigInteger;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
@@ -21,10 +26,14 @@ public class ForumHandler  implements ForumInterface{
      *
      * @return
      */
-    public ForumType giveF() {
-             ObjectFactory factory = new ObjectFactory();
-             return       (factory.createForumType());
-        }
+
+
+           private XMLFileHandler xf;
+
+    public ForumHandler(XMLFileHandler xf) {
+        this.xf = xf;
+    }
+
         /**
          *
          * @param username
@@ -39,7 +48,7 @@ public class ForumHandler  implements ForumInterface{
             tempToSave = null;
             foundName = false;
             index = 0;
-            List< MemberType>  membersList =  giveF().getMembers();
+            List< MemberType>  membersList =  this.xf.getForum().getMembers();
             size = membersList.size();
             while ((index < size) & !foundName){
                   usernameTemp  = membersList.get(index).getNickName();
@@ -77,7 +86,7 @@ public class ForumHandler  implements ForumInterface{
             tempToSave = null;
             foundName = false;
             index = 0;
-            List< MemberType>  membersList =  giveF().getMembers();
+            List< MemberType>  membersList =  this.xf.getForum().getMembers();
             size = membersList.size();
             while ((index < size) & !foundName){
                   usernameTemp  = membersList.get(index).getNickName();
@@ -101,13 +110,21 @@ public class ForumHandler  implements ForumInterface{
      * set the status of the user to be online
      * @param username, password */
     public void login(String username) {
-       setObject(username, true, 8);
+        for (MemberType m : this.xf.getForum().getMembers()) {
+            if (m.getUserName().equals(username)) {
+                m.setStatus(true);
+            }
+       }
     }
 	/**
      * set the status of the user to be offline
      * @param username a message id */
     public void logoff(String username) {
-       setObject(username, false, 8);
+         for (MemberType m : this.xf.getForum().getMembers()) {
+            if (m.getUserName().equals(username)) {
+                m.setStatus(false);
+            }
+       }
     }
 
    	/**
@@ -115,55 +132,112 @@ public class ForumHandler  implements ForumInterface{
      * @param username 
      * @return username password if exists or NULL if not*/
     public String userExist(String username) {
-       String nickName = null;
-       nickName =(String)  getObject(username,  1);
-     return nickName;
-    }
+                           for (MemberType m : this.xf.getForum().getMembers()) {
+            if (m.getUserName().equals(username)) {
+                return m.getUserName();
+            }
+        }
+          return null;
+        };
+       
 
     	/**
      * add a new member to the forum
      * @param username ,  nickName, password, eMail, firstName, lastName, dateOfBirth */
     public void register(String userName, String nickName, String password, String eMail, String firstName, String lastName, Date dateOfBirth) {
-       	ObjectFactory factory = new ObjectFactory();
-	// Create a new member
-	MemberType  newMember = factory.createMemberType();
-        newMember.setUserName(userName);
-        newMember.setNickName(nickName);
-        newMember.setPassword(password);
-        newMember.setEMail(eMail);
-        newMember.setFirstName(firstName);
-        newMember.setLastName(lastName);
-
-    //    newMember.setDateOfBirth(null);
-         giveF().getMembers().add(newMember);
+        try {
+            ObjectFactory factory = new ObjectFactory();
+            // Create a new member
+            MemberType newMember = factory.createMemberType();
+            newMember.setUserName(userName);
+            newMember.setNickName(nickName);
+            newMember.setPassword(password);
+            newMember.setEMail(eMail);
+            newMember.setFirstName(firstName);
+            newMember.setLastName(lastName);
+            GregorianCalendar gcal = new GregorianCalendar();
+            gcal.setTime(dateOfBirth);
+            XMLGregorianCalendar xgcal;
+            xgcal = DatatypeFactory.newInstance().newXMLGregorianCalendar(gcal);
+            newMember.setDateOfBirth(xgcal);
+            //    newMember.setDateOfBirth(null);
+            this.xf.getForum().getMembers().add(newMember);
+        } catch (DatatypeConfigurationException ex) {
+            Logger.getLogger(ForumHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 	/**
      * add a new message to the forum
      * @param parentId, createdBy, subject,body */
     public void addMessage(int parentId, String createdBy, String subject, String body, Date DateAdded) {
-         ObjectFactory factory = new ObjectFactory();
-	// Create a new member
-        MessageType  newMessage = factory.createMessageType();
-        newMessage.setParentId(BigInteger.ONE);
-        newMessage.setCreatedBy(createdBy);
-        newMessage.setSubject(subject);
-        newMessage.setBody(body);
-
-        //newessage.setDateAdded(null);
-        giveF().getMessages().add(newMessage);
+        try {
+            ObjectFactory factory = new ObjectFactory();
+            // Create a new member
+            MessageType newMessage = factory.createMessageType();
+            newMessage.setParentId(BigInteger.valueOf(parentId));
+            newMessage.setCreatedBy(createdBy);
+            newMessage.setSubject(subject);
+            newMessage.setBody(body);
+            GregorianCalendar gcal = new GregorianCalendar();
+            gcal.setTime(DateAdded);
+            XMLGregorianCalendar xgcal;
+            xgcal = DatatypeFactory.newInstance().newXMLGregorianCalendar(gcal);
+            newMessage.setDateAdded(xgcal);
+            //newessage.setDateAdded(null);
+            this.xf.getForum().getMessages().add(newMessage);
+        } catch (DatatypeConfigurationException ex) {
+            Logger.getLogger(ForumHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
     public boolean checkNickname(String nickname) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+                           for (MemberType m : this.xf.getForum().getMembers()) {
+            if (m.getNickName().equals(nickname)) {
+                return true;
+            }
+        }
+          return false;
+        };
 
     public boolean checkPassword(String password) {
+                            for (MemberType m : this.xf.getForum().getMembers()) {
+            if (m.getPassword().equals(password)) {
+                return true;
+            }
+        }
+          return false;
+        };
+
+    public void addMessage(int parentId, String createdBy, String subject, String body, Date DateAdded, Date modifyDate) {
+        try {
+            ObjectFactory factory = new ObjectFactory();
+            // Create a new member
+            MessageType newMessage = factory.createMessageType();
+            newMessage.setParentId(BigInteger.valueOf(parentId));
+            newMessage.setCreatedBy(createdBy);
+            newMessage.setSubject(subject);
+            newMessage.setBody(body);
+            GregorianCalendar gcal = new GregorianCalendar();
+            gcal.setTime(DateAdded);
+            XMLGregorianCalendar xgcal, xgcal2;
+            xgcal = DatatypeFactory.newInstance().newXMLGregorianCalendar(gcal);
+            newMessage.setDateAdded(xgcal);
+
+            gcal.setTime(modifyDate);
+             xgcal2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(gcal);
+            newMessage.setModifiedDate(xgcal2);
+        } catch (DatatypeConfigurationException ex) {
+            Logger.getLogger(ForumHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public String userExists(String username) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public void addMessage(int parentId, String createdBy, String subject, String body, Date DateAdded, Date modifyDate) {
+    public boolean checkUsername(String username) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
