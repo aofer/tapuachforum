@@ -227,12 +227,32 @@ public class ForumHandlerTest {
     public void testCheckUsername() {
         System.out.println("checkUsername");
         String username = "nir";
-        ForumHandler instance =  new ForumHandler(xf);;
+        ForumHandler instance =  new ForumHandler(xf);
         boolean expResult = true;
         boolean result = instance.checkUsername(username);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
        // fail("The test case is a prototype.");
     }
+
+    /**
+     * Test of editMessage method, of class ForumHandler.
+     */
+    @Test
+    public void testEditMessage() {
+        System.out.println("editMessage");
+        int messageId = 4;
+        String newSubject = "it is new now";
+        String newBody = "we are trrrrrrrying to do bstst est ever";
+        Date dateModified = new Date();
+        ForumHandler instance = new ForumHandler(xf);
+        instance.editMessage(messageId, newSubject, newBody, dateModified);
+      String subNow = instance.getSubject(messageId);
+        assertEquals(newSubject, subNow);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+
+
 
 }

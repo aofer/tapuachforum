@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <forumType>
-    <messageCounter>15</messageCounter>
+    <messageCounter>29</messageCounter>
     <members>
         <userName>nir</userName>
         <nickName>arsenik</nickName>
@@ -23,11 +23,11 @@
         <message>
             <messageId>4</messageId>
             <parentId>1</parentId>
-            <subject>asd</subject>
-            <body>asdd </body>
+            <subject>it is new now</subject>
+            <body>we are trrrrrrrying to do bstst est ever</body>
             <createdBy>nir</createdBy>
             <dateAdded>2010-03-14T23:47:11.694+02:00</dateAdded>
-            <modifiedDate>2010-03-14T23:47:11.694+02:00</modifiedDate>
+            <modifiedDate>2010-03-15T00:44:33.134+02:00</modifiedDate>
         </message>
         <message>
             <messageId>6</messageId>
@@ -73,6 +73,69 @@
             <createdBy>nir</createdBy>
             <dateAdded>2010-03-15T00:07:22.560+02:00</dateAdded>
             <modifiedDate>2010-03-15T00:07:22.560+02:00</modifiedDate>
+        </message>
+        <message>
+            <messageId>16</messageId>
+            <parentId>1</parentId>
+            <subject>asd</subject>
+            <body>asdd </body>
+            <createdBy>nir</createdBy>
+            <dateAdded>2010-03-15T00:24:45.394+02:00</dateAdded>
+            <modifiedDate>2010-03-15T00:24:45.394+02:00</modifiedDate>
+        </message>
+        <message>
+            <messageId>18</messageId>
+            <parentId>1</parentId>
+            <subject>asd</subject>
+            <body>asdd </body>
+            <createdBy>nir</createdBy>
+            <dateAdded>2010-03-15T00:25:46.641+02:00</dateAdded>
+            <modifiedDate>2010-03-15T00:25:46.641+02:00</modifiedDate>
+        </message>
+        <message>
+            <messageId>20</messageId>
+            <parentId>1</parentId>
+            <subject>asd</subject>
+            <body>asdd </body>
+            <createdBy>nir</createdBy>
+            <dateAdded>2010-03-15T00:27:36.044+02:00</dateAdded>
+            <modifiedDate>2010-03-15T00:27:36.044+02:00</modifiedDate>
+        </message>
+        <message>
+            <messageId>22</messageId>
+            <parentId>1</parentId>
+            <subject>asd</subject>
+            <body>asdd </body>
+            <createdBy>nir</createdBy>
+            <dateAdded>2010-03-15T00:31:58.795+02:00</dateAdded>
+            <modifiedDate>2010-03-15T00:31:58.795+02:00</modifiedDate>
+        </message>
+        <message>
+            <messageId>24</messageId>
+            <parentId>1</parentId>
+            <subject>asd</subject>
+            <body>asdd </body>
+            <createdBy>nir</createdBy>
+            <dateAdded>2010-03-15T00:43:10.572+02:00</dateAdded>
+            <modifiedDate>2010-03-15T00:43:10.572+02:00</modifiedDate>
+        </message>
+        <message>
+            <messageId>26</messageId>
+            <parentId>1</parentId>
+            <subject>asd</subject>
+            <body>asdd </body>
+            <createdBy>nir</createdBy>
+            <dateAdded>2010-03-15T00:44:16.204+02:00</dateAdded>
+            <modifiedDate>2010-03-15T00:44:16.204+02:00</modifiedDate>
+        </message>
+        <message>
+            <messageId>28</messageId>
+            <parentId>1</parentId>
+            <subject>asd</subject>
+            <body>asdd </body>
+            <createdBy>nir</createdBy>
+            <dateAdded>2010-03-15T00:44:32.927+02:00</dateAdded>
+            <modifiedDate>2010-03-15T00:44:32.927+02:00</modifiedDate>
         </message>
     </members>
     <members>
@@ -146,6 +209,69 @@
             <dateAdded>2010-03-15T00:07:22.224+02:00</dateAdded>
             <modifiedDate>2010-03-15T00:07:22.224+02:00</modifiedDate>
         </message>
+        <message>
+            <messageId>15</messageId>
+            <parentId>76</parentId>
+            <subject>where is bob</subject>
+            <body>working</body>
+            <createdBy>alex</createdBy>
+            <dateAdded>2010-03-15T00:24:45.246+02:00</dateAdded>
+            <modifiedDate>2010-03-15T00:24:45.246+02:00</modifiedDate>
+        </message>
+        <message>
+            <messageId>17</messageId>
+            <parentId>76</parentId>
+            <subject>where is bob</subject>
+            <body>working</body>
+            <createdBy>alex</createdBy>
+            <dateAdded>2010-03-15T00:25:46.479+02:00</dateAdded>
+            <modifiedDate>2010-03-15T00:25:46.479+02:00</modifiedDate>
+        </message>
+        <message>
+            <messageId>19</messageId>
+            <parentId>76</parentId>
+            <subject>where is bob</subject>
+            <body>working</body>
+            <createdBy>alex</createdBy>
+            <dateAdded>2010-03-15T00:27:35.845+02:00</dateAdded>
+            <modifiedDate>2010-03-15T00:27:35.845+02:00</modifiedDate>
+        </message>
+        <message>
+            <messageId>21</messageId>
+            <parentId>76</parentId>
+            <subject>where is bob</subject>
+            <body>working</body>
+            <createdBy>alex</createdBy>
+            <dateAdded>2010-03-15T00:31:58.645+02:00</dateAdded>
+            <modifiedDate>2010-03-15T00:31:58.645+02:00</modifiedDate>
+        </message>
+        <message>
+            <messageId>23</messageId>
+            <parentId>76</parentId>
+            <subject>where is bob</subject>
+            <body>working</body>
+            <createdBy>alex</createdBy>
+            <dateAdded>2010-03-15T00:43:10.418+02:00</dateAdded>
+            <modifiedDate>2010-03-15T00:43:10.418+02:00</modifiedDate>
+        </message>
+        <message>
+            <messageId>25</messageId>
+            <parentId>76</parentId>
+            <subject>where is bob</subject>
+            <body>working</body>
+            <createdBy>alex</createdBy>
+            <dateAdded>2010-03-15T00:44:16.044+02:00</dateAdded>
+            <modifiedDate>2010-03-15T00:44:16.044+02:00</modifiedDate>
+        </message>
+        <message>
+            <messageId>27</messageId>
+            <parentId>76</parentId>
+            <subject>where is bob</subject>
+            <body>working</body>
+            <createdBy>alex</createdBy>
+            <dateAdded>2010-03-15T00:44:32.782+02:00</dateAdded>
+            <modifiedDate>2010-03-15T00:44:32.782+02:00</modifiedDate>
+        </message>
     </members>
     <messages>
         <messageId>1</messageId>
@@ -177,11 +303,11 @@
     <messages>
         <messageId>4</messageId>
         <parentId>1</parentId>
-        <subject>asd</subject>
-        <body>asdd </body>
+        <subject>it is new now</subject>
+        <body>we are trrrrrrrying to do bstst est ever</body>
         <createdBy>nir</createdBy>
         <dateAdded>2010-03-14T23:47:11.694+02:00</dateAdded>
-        <modifiedDate>2010-03-14T23:47:11.694+02:00</modifiedDate>
+        <modifiedDate>2010-03-15T00:44:33.134+02:00</modifiedDate>
     </messages>
     <messages>
         <messageId>5</messageId>
@@ -272,5 +398,131 @@
         <createdBy>nir</createdBy>
         <dateAdded>2010-03-15T00:07:22.560+02:00</dateAdded>
         <modifiedDate>2010-03-15T00:07:22.560+02:00</modifiedDate>
+    </messages>
+    <messages>
+        <messageId>15</messageId>
+        <parentId>76</parentId>
+        <subject>where is bob</subject>
+        <body>working</body>
+        <createdBy>alex</createdBy>
+        <dateAdded>2010-03-15T00:24:45.246+02:00</dateAdded>
+        <modifiedDate>2010-03-15T00:24:45.246+02:00</modifiedDate>
+    </messages>
+    <messages>
+        <messageId>16</messageId>
+        <parentId>1</parentId>
+        <subject>asd</subject>
+        <body>asdd </body>
+        <createdBy>nir</createdBy>
+        <dateAdded>2010-03-15T00:24:45.394+02:00</dateAdded>
+        <modifiedDate>2010-03-15T00:24:45.394+02:00</modifiedDate>
+    </messages>
+    <messages>
+        <messageId>17</messageId>
+        <parentId>76</parentId>
+        <subject>where is bob</subject>
+        <body>working</body>
+        <createdBy>alex</createdBy>
+        <dateAdded>2010-03-15T00:25:46.479+02:00</dateAdded>
+        <modifiedDate>2010-03-15T00:25:46.479+02:00</modifiedDate>
+    </messages>
+    <messages>
+        <messageId>18</messageId>
+        <parentId>1</parentId>
+        <subject>asd</subject>
+        <body>asdd </body>
+        <createdBy>nir</createdBy>
+        <dateAdded>2010-03-15T00:25:46.641+02:00</dateAdded>
+        <modifiedDate>2010-03-15T00:25:46.641+02:00</modifiedDate>
+    </messages>
+    <messages>
+        <messageId>19</messageId>
+        <parentId>76</parentId>
+        <subject>where is bob</subject>
+        <body>working</body>
+        <createdBy>alex</createdBy>
+        <dateAdded>2010-03-15T00:27:35.845+02:00</dateAdded>
+        <modifiedDate>2010-03-15T00:27:35.845+02:00</modifiedDate>
+    </messages>
+    <messages>
+        <messageId>20</messageId>
+        <parentId>1</parentId>
+        <subject>asd</subject>
+        <body>asdd </body>
+        <createdBy>nir</createdBy>
+        <dateAdded>2010-03-15T00:27:36.044+02:00</dateAdded>
+        <modifiedDate>2010-03-15T00:27:36.044+02:00</modifiedDate>
+    </messages>
+    <messages>
+        <messageId>21</messageId>
+        <parentId>76</parentId>
+        <subject>where is bob</subject>
+        <body>working</body>
+        <createdBy>alex</createdBy>
+        <dateAdded>2010-03-15T00:31:58.645+02:00</dateAdded>
+        <modifiedDate>2010-03-15T00:31:58.645+02:00</modifiedDate>
+    </messages>
+    <messages>
+        <messageId>22</messageId>
+        <parentId>1</parentId>
+        <subject>asd</subject>
+        <body>asdd </body>
+        <createdBy>nir</createdBy>
+        <dateAdded>2010-03-15T00:31:58.795+02:00</dateAdded>
+        <modifiedDate>2010-03-15T00:31:58.795+02:00</modifiedDate>
+    </messages>
+    <messages>
+        <messageId>23</messageId>
+        <parentId>76</parentId>
+        <subject>where is bob</subject>
+        <body>working</body>
+        <createdBy>alex</createdBy>
+        <dateAdded>2010-03-15T00:43:10.418+02:00</dateAdded>
+        <modifiedDate>2010-03-15T00:43:10.418+02:00</modifiedDate>
+    </messages>
+    <messages>
+        <messageId>24</messageId>
+        <parentId>1</parentId>
+        <subject>asd</subject>
+        <body>asdd </body>
+        <createdBy>nir</createdBy>
+        <dateAdded>2010-03-15T00:43:10.572+02:00</dateAdded>
+        <modifiedDate>2010-03-15T00:43:10.572+02:00</modifiedDate>
+    </messages>
+    <messages>
+        <messageId>25</messageId>
+        <parentId>76</parentId>
+        <subject>where is bob</subject>
+        <body>working</body>
+        <createdBy>alex</createdBy>
+        <dateAdded>2010-03-15T00:44:16.044+02:00</dateAdded>
+        <modifiedDate>2010-03-15T00:44:16.044+02:00</modifiedDate>
+    </messages>
+    <messages>
+        <messageId>26</messageId>
+        <parentId>1</parentId>
+        <subject>asd</subject>
+        <body>asdd </body>
+        <createdBy>nir</createdBy>
+        <dateAdded>2010-03-15T00:44:16.204+02:00</dateAdded>
+        <modifiedDate>2010-03-15T00:44:16.204+02:00</modifiedDate>
+    </messages>
+    <messages>
+        <messageId>27</messageId>
+        <parentId>76</parentId>
+        <subject>where is bob</subject>
+        <body>working</body>
+        <createdBy>alex</createdBy>
+        <dateAdded>2010-03-15T00:44:32.782+02:00</dateAdded>
+        <modifiedDate>2010-03-15T00:44:32.782+02:00</modifiedDate>
+    </messages>
+    <messages>
+        <messageId>28</messageId>
+        <parentId>1</parentId>
+        <subject>asd</subject>
+        <body>asdd </body>
+        <createdBy>nir</createdBy>
+        <dateAdded>2010-03-15T00:44:32.927+02:00</dateAdded>
+        <modifiedDate>2010-03-15T00:44:32.927+02:00</modifiedDate>
     </messages>
 </forumType>

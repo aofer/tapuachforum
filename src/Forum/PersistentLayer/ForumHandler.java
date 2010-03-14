@@ -81,6 +81,25 @@ public class ForumHandler  implements ForumInterface{
         }
           return null;
         }
+
+             private MessageType findMessage(int messageID) {
+                         for (MessageType m : this.xf.getForum().getMessages()) {
+              if(m.getMessageId().intValue() == messageID){
+                return m;
+            }
+        }
+          return null;
+        }
+
+             private MessageType findMessageOfUser(int messageID, String usernme) {
+                  MemberType memb = findMember(usernme);
+                 for (MessageType m :    memb.getMessage()) {
+              if(m.getMessageId().intValue() == messageID){
+                return m;
+            }
+        }
+          return null;
+        }
         /**
      * check if the username already exist 
      * @param username 
@@ -219,6 +238,31 @@ public class ForumHandler  implements ForumInterface{
             }
         }
           return false;
-        };
+        }
+
+    public void editMessage(int messageId, String newSubject, String newBody, Date dateModified) {
+        try {
+            MessageType msg = findMessage(messageId);
+            msg.setSubject(newSubject);
+            msg.setBody(newBody);
+
+            GregorianCalendar gcal = new GregorianCalendar();
+            gcal.setTime(dateModified);
+            XMLGregorianCalendar xgcal;
+            xgcal = DatatypeFactory.newInstance().newXMLGregorianCalendar(gcal);
+            msg.setModifiedDate(xgcal);
+
+
+            MessageType msg2 = findMessageOfUser(messageId, msg.getCreatedBy());
+            msg2.setSubject(newSubject);
+            msg2.setBody(newBody);
+              msg2.setModifiedDate(xgcal);
+
+            xf.WriteToXML();
+      
+        } catch (DatatypeConfigurationException ex) {
+            Logger.getLogger(ForumHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 }
