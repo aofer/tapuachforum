@@ -5,62 +5,67 @@
 
 package Forum.PersistentLayer;
 
+import Forum.DomainLayer.Forum;
+import java.math.BigInteger;
+import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
 /**
  *
  * @author Arseny
  */
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.math.BigInteger;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+public class XMLFileHandlerTest {
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
+    public XMLFileHandlerTest() {
+    }
 
-import java.util.GregorianCalendar;
-import javax.xml.bind.Marshaller;
-import javax.xml.datatype.DatatypeConfigurationException;
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
 
-import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
 
+    @Before
+    public void setUp() {
+    }
 
-public class main {
+    @After
+    public void tearDown() {
+    }
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		FileInputStream in = null;
-		FileOutputStream out = null;
+    /**
+     * Test of ReadFromXML method, of class XMLFileHandler.
+     */
+    @Test
+    public void testReadFromXML() {
+        System.out.println("ReadFromXML");
+        XMLFileHandler instance = new XMLFileHandler("tapuachforum.xml");
+        ForumType result = instance.ReadFromXML();
+        assertNotNull(result);
+    }
 
-		try {
-
-			JAXBContext jc = JAXBContext.newInstance("Forum.PersistentLayer");
-                        ObjectFactory factory = new ObjectFactory();
-			//Unmarshaller u = jc.createUnmarshaller();
-
-			//in = new FileInputStream("tapuachforum.xml");
-
-			// Obtain the data from the XML file.
-	ForumType f= factory.createForumType(); //(ForumType)u.unmarshal(in);
-			//in.close();
-
-			//System.out.println(f.getForumName());
-			
-
-                        // Create a factory.
-			
-
-
+    /**
+     * Test of WriteToXML method, of class XMLFileHandler.
+     */
+    @Test
+    public void testWriteToXML() {
+        try {
             System.out.println("WriteToXML");
             XMLFileHandler instance = new XMLFileHandler("tapuachforum.xml");
-
-            
+            ForumType f = instance.ReadFromXML();
+            ObjectFactory factory = new ObjectFactory();
             MemberType m1 = factory.createMemberType();
             m1.setUserName("nir");
             m1.setNickName("arsenik");
@@ -84,23 +89,12 @@ public class main {
             m1.getMessage().add(e);
             f.getMembers().add(m1);
             instance.WriteToXML(f);
+            assertTrue(true);
+        } catch (DatatypeConfigurationException ex) {
+            Logger.getLogger(XMLFileHandlerTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
-
-		} catch (JAXBException e) {
-			e.printStackTrace();
-		}/* catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-                catch (DatatypeConfigurationException ex) {
-               //todo
-            }
-		finally {
-			System.exit(0);
-		}
-	}
+   
 
 }
