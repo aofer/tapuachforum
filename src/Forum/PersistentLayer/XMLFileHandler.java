@@ -55,7 +55,7 @@ public class XMLFileHandler {
         return forum;
     }
 
-    public void WriteToXML(ForumType f) {
+    public void WriteToXML() {
         {
             FileOutputStream out = null;
             try {
@@ -71,7 +71,7 @@ public class XMLFileHandler {
             }
         }
     }
-
+    
     public ForumType getForum() {
         return f;
     }

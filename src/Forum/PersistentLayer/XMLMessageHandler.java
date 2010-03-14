@@ -91,6 +91,33 @@ public class XMLMessageHandler implements MessageInterface {
         throw e;
     }
 
+
+        public String getNickname(int messageID) throws MessageNotFoundException {
+            for(MessageType m : this.xf.getForum().getMessages()){
+            if(m.getMessageId().intValue() == messageID){
+
+                return m.getCreatedBy();
+            }
+        }
+
+      MessageNotFoundException  e = new MessageNotFoundException("message not exists");
+
+        throw e;
+    }
+
+    public Date getModifiedDate(int messageId) throws MessageNotFoundException{
+            for(MessageType m : this.xf.getForum().getMessages()){
+            if(m.getMessageId().intValue() == messageId){
+
+                return m.getModifiedDate().toGregorianCalendar().getTime();
+            }
+        }
+
+      MessageNotFoundException  e = new MessageNotFoundException("message not exists");
+
+        throw e;
+    }
+
     public void setSubject(int messageID, String newSubject) throws MessageNotFoundException {
       boolean success = false;
     for(MessageType m : this.xf.getForum().getMessages()){
@@ -129,11 +156,5 @@ MessageNotFoundException  e = new MessageNotFoundException("message not exists, 
 
     }
 
-    public String getNickname(int messageID) throws MessageNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
-    public Date getModifiedDate(int messageId) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 }

@@ -5,7 +5,10 @@
 
 package Forum.PersistentLayer;
 
+import Forum.Exceptions.NoSuchUserException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -44,16 +47,19 @@ public class ForumHandlerTest {
      */
     @Test
     public void testLogin() {
-        System.out.println("login");
-
-        String username = "nir";
-        ForumHandler instance = new ForumHandler(xf);
-        MemberHandler mh  = new MemberHandler(xf);
-        boolean oldStatus=  mh.getStatus(username);
-        assertFalse(oldStatus); 
-        instance.login(username);
-        boolean newStatus=  mh.getStatus(username);
-        assertTrue(newStatus);
+        try {
+            System.out.println("login");
+            String username = "nir";
+            ForumHandler instance = new ForumHandler(xf);
+            MemberHandler mh = new MemberHandler(xf);
+            boolean oldStatus = mh.getStatus(username);
+            assertFalse(oldStatus);
+            instance.login(username);
+            boolean newStatus = mh.getStatus(username);
+            assertTrue(newStatus);
+        } catch (NoSuchUserException ex) {
+            Logger.getLogger(ForumHandlerTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
      
     }
 
@@ -62,15 +68,19 @@ public class ForumHandlerTest {
      */
     @Test
     public void testLogoff() {
-        System.out.println("logoff");
-        String username = "nirfr";
-   ForumHandler instance = new ForumHandler(xf);
-        MemberHandler mh  = new MemberHandler(xf);
-        boolean oldStatus=  mh.getStatus(username);
-        assertTrue(oldStatus);
-        instance.logoff(username);
-        boolean newStatus=  mh.getStatus(username);
-        assertFalse(oldStatus);
+        try {
+            System.out.println("logoff");
+            String username = "alex";
+            ForumHandler instance = new ForumHandler(xf);
+            MemberHandler mh = new MemberHandler(xf);
+            boolean oldStatus = mh.getStatus(username);
+            assertTrue(oldStatus);
+            instance.logoff(username);
+            boolean newStatus = mh.getStatus(username);
+            assertFalse(newStatus);
+        } catch (NoSuchUserException ex) {
+            Logger.getLogger(ForumHandlerTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -79,13 +89,14 @@ public class ForumHandlerTest {
     @Test
     public void testUserExist() {
         System.out.println("userExist");
-        String username = "";
-        ForumHandler instance = null;
+        String username = "nir";
+        ForumHandler instance = new ForumHandler(xf);
+     
         String expResult = "";
         String result = instance.userExist(username);
-        assertEquals(expResult, result);
+        assertEquals(result, username);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+     //   fail("The test case is a prototype.");
     }
 
     /**
@@ -94,17 +105,20 @@ public class ForumHandlerTest {
     @Test
     public void testRegister() {
         System.out.println("register");
-        String userName = "";
-        String nickName = "";
-        String password = "";
-        String eMail = "";
-        String firstName = "";
-        String lastName = "";
-        Date dateOfBirth = null;
-        ForumHandler instance = null;
-        instance.register(userName, nickName, password, eMail, firstName, lastName, dateOfBirth);
+           ForumHandler instance = new ForumHandler(xf);
+
+        String userName = "alexSup";
+        String nickName = "superman";
+        String password = "edfr";
+        String eMail = "3@sd";
+        String firstName = "alex";
+        String lastName = "iscoll";
+        Date dateOfBirth = new Date();
+          instance.register(userName, nickName, password, eMail, firstName, lastName, dateOfBirth);
+            String result = instance.userExist(userName);
+        assertEquals(result, userName);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+      //  fail("The test case is a prototype.");
     }
 
     /**
@@ -113,15 +127,17 @@ public class ForumHandlerTest {
     @Test
     public void testAddMessage_5args() {
         System.out.println("addMessage");
-        int parentId = 0;
-        String createdBy = "";
-        String subject = "";
-        String body = "";
-        Date DateAdded = null;
-        ForumHandler instance = null;
+        int parentId = 76;
+        String createdBy = "alex";
+        String subject = "where is bob";
+        String body = "working";
+        Date DateAdded = new Date();
+        ForumHandler instance =  new ForumHandler(xf);;
         instance.addMessage(parentId, createdBy, subject, body, DateAdded);
+             String result = instance.getSubject(1);
+        assertEquals(result, subject);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+       // fail("The test case is a prototype.");
     }
 
     /**
@@ -130,13 +146,13 @@ public class ForumHandlerTest {
     @Test
     public void testCheckNickname() {
         System.out.println("checkNickname");
-        String nickname = "";
-        ForumHandler instance = null;
-        boolean expResult = false;
+        String nickname = "arsenik";
+        ForumHandler instance =  new ForumHandler(xf);;
+        boolean expResult = true;
         boolean result = instance.checkNickname(nickname);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+  //      fail("The test case is a prototype.");
     }
 
     /**
@@ -145,13 +161,13 @@ public class ForumHandlerTest {
     @Test
     public void testCheckPassword() {
         System.out.println("checkPassword");
-        String password = "";
-        ForumHandler instance = null;
-        boolean expResult = false;
+        String password = "123456";
+        ForumHandler instance =  new ForumHandler(xf);;
+        boolean expResult = true;
         boolean result = instance.checkPassword(password);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -160,16 +176,63 @@ public class ForumHandlerTest {
     @Test
     public void testAddMessage_6args() {
         System.out.println("addMessage");
-        int parentId = 0;
-        String createdBy = "";
-        String subject = "";
-        String body = "";
-        Date DateAdded = null;
-        Date modifyDate = null;
-        ForumHandler instance = null;
+        int parentId = 1;
+        String createdBy = "nir";
+        String subject = "asd";
+        String body = "asdd ";
+        Date DateAdded = new Date();
+        Date modifyDate =  new Date();
+        ForumHandler instance =  new ForumHandler(xf);
         instance.addMessage(parentId, createdBy, subject, body, DateAdded, modifyDate);
+        String resSub = instance.getSubject(2);
+        assertEquals(subject, resSub);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getSubject method, of class ForumHandler.
+     */
+    @Test
+    public void testGetSubject() {
+        System.out.println("getSubject");
+        int messageID = 3;
+        ForumHandler instance =  new ForumHandler(xf);;
+        String expResult = "where is bob";
+        String result = instance.getSubject(messageID);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+     //  fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of userExists method, of class ForumHandler.
+     */
+    @Test
+    public void testUserExists() {
+        System.out.println("userExists");
+        String username = "nir";
+        ForumHandler instance =  new ForumHandler(xf);;
+        String expResult = "123456";
+        String result = instance.userExists(username);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of checkUsername method, of class ForumHandler.
+     */
+    @Test
+    public void testCheckUsername() {
+        System.out.println("checkUsername");
+        String username = "nir";
+        ForumHandler instance =  new ForumHandler(xf);;
+        boolean expResult = true;
+        boolean result = instance.checkUsername(username);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+       // fail("The test case is a prototype.");
     }
 
 }
