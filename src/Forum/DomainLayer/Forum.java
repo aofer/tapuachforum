@@ -52,7 +52,16 @@ public class Forum implements DomainForumInterface{
     }
 
     public Message getMessage(int messageId)  throws MessageNotFoundException{
-        String tNickname = this._XmlMessage.
+        String tNickname = this._XmlMessage.getNickname(messageId);
+        String tSubject = this._XmlMessage.getSubject(messageId);
+        String tBody = this._XmlMessage.getContent(messageId);
+        Date tDateAdded = this._XmlMessage.getDateAdded(messageId);
+        Date tDateModified = this._XmlMessage.getModifiedDate(messageId);
+        Vector<Message> tReplies = new Vector<Message>();
+        //get children
+
+        return new Message(tNickname, tSubject, tBody, tReplies, tDateAdded, tDateModified);
+
     }
 
     public void login(String username, String password) {
