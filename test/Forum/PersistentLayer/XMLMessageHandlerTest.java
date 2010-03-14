@@ -51,7 +51,7 @@ public class XMLMessageHandlerTest {
         try {
             System.out.println("getParentId");
             XMLMessageHandler instance = new XMLMessageHandler(xf);
-            int expResult = 0;
+            int expResult = 76;
             int result = instance.getParentId(1);
             assertEquals(expResult, result);
         } catch (MessageNotFoundException ex) {
