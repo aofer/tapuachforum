@@ -12,6 +12,7 @@ package Forum.DomainLayer;
 public class Forum {
 
     void register(Member tMember) {
+
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
@@ -24,6 +25,10 @@ public class Forum {
     }
 
     void addMessage(String _nickName, String subject, String body) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    void logout(String _userName) {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 

@@ -24,8 +24,14 @@ public interface ForumInterface {
      * check if the username already exists 
      * @param username 
      * @return username password if exists or NULL if not*/
-	public String userExist (String username);
-	
+	public String userExists (String username);
+
+          /**
+     * check if the username exists
+     * @param username
+     * @return true if the username already exists */
+	public boolean checkUsername (String username);
+        
 	/**
      * check if the nickname exists
      * @param nickname 

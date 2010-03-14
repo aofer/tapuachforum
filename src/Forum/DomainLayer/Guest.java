@@ -10,7 +10,7 @@ import java.util.Date;
 
 /**
  *
- * @author amit
+ * @author Amit Ofer
  */
 public class Guest implements GuestInterface {
 
@@ -34,11 +34,9 @@ public class Guest implements GuestInterface {
         return _forum;
     }
 
-    public void readMessage(int messageId) {
-        Message tMsg = this._forum.getMessage(messageId);
-        System.out.println(tMsg.toString());
+    public String readMessage(int messageId) {
+        return  this._forum.getMessage(messageId).toString();
     }
-
     public void register(String username, String password, String nickname, String email, String firstName, String lastName, Date dateOfBirth) {
         Member tMember = new Member(this._forum,username,nickname,email,password,firstName,lastName,dateOfBirth);
         this._forum.register(tMember);

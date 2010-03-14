@@ -13,7 +13,7 @@ import java.util.Date;
  * @author Amit Ofer
  */
 public class Member  extends Guest implements MemberInterface{
-    private String _userName;
+private String _userName;
 private String _nickName;
 private String _password;
 private String _firstName;
@@ -36,7 +36,7 @@ public Member(Forum forum,String userName,String nickName,String password,String
 }
 
     public void logOut() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.getForum().logout(this._userName);
     }
 
     public void writeMessage(String subject, String body) {

@@ -17,7 +17,7 @@ public interface GuestInterface {
      *read the message with the given message ID
      * @param messageId
      */
-    public void readMessage(int messageId);
+    public String readMessage(int messageId);
     /**
      * registers a new user to the forum
      * @param username

@@ -22,7 +22,7 @@ public class Message {
  private Date _modifiedDate;
 
  /**
-  *
+  *constructor
   * @param messageId
   * @param nickname
   * @param subject
@@ -39,7 +39,7 @@ public class Message {
  }
 
  /**
-  *
+  *getter for messageId
   * @return
   */
  public int getMessageId() {
@@ -47,7 +47,7 @@ public class Message {
     }
 
  /**
-  * 
+  * getter for the body
   * @return
   */
  public String getBody() {
@@ -55,7 +55,7 @@ public class Message {
     }
 
     /**
-     *
+     *getter for the nickname
      * @return
      */
     public String getNickname() {
@@ -63,7 +63,7 @@ public class Message {
     }
 
     /**
-     *
+     *getter for the subject
      * @return
      */
     public String getSubject() {
@@ -71,7 +71,7 @@ public class Message {
     }
 
     /**
-     *
+     *getter for the replies
      * @return
      */
     public Vector<Message> getReplies() {
@@ -79,7 +79,7 @@ public class Message {
     }
 
     /**
-     *
+     *setter for th e body
      * @param _body
      */
     public void setBody(String _body) {
@@ -87,7 +87,7 @@ public class Message {
     }
 
     /**
-     *
+     *setter for the subject
      * @param _subject
      */
     public void setSubject(String _subject) {
@@ -97,12 +97,17 @@ public class Message {
 
  
     /**
-     *
+     *add a new reply
      * @param msg
      */
     public void addReply(Message msg){
      this._replies.add(msg);
  }
+
+    /**
+     * toString method for a message
+     * @return
+     */
     @Override
  public String toString(){
      return "Message number:" + _messageId + "\nSubject:" + _subject + "\nWritten by:" + _nickname
