@@ -13,6 +13,7 @@ import Forum.PersistentLayer.ForumHandler;
 import Forum.PersistentLayer.MemberHandler;
 import Forum.PersistentLayer.XMLFileHandler;
 import Forum.PersistentLayer.XMLMessageHandler;
+import java.util.Date;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -61,7 +62,8 @@ public class ForumTest {
        ForumHandler fH = new ForumHandler(xf);
        MemberHandler memH = new MemberHandler(xf);
        Forum instance = new Forum(msgH,fH,memH);
-         Member newMember = new Member(instance, "liron", "lolo", "87654321", "liron", "katav",null,null);
+       Date tDate = new Date();
+         Member newMember = new Member(instance, "liron", "lolo", "987654321", "liron", "katav","mail",tDate);
         instance.register(newMember);
        assertTrue (fH.checkUsername("liron") );
     }
@@ -78,10 +80,11 @@ public class ForumTest {
        ForumHandler fH = new ForumHandler(xf);
        MemberHandler memH = new MemberHandler(xf);
        Forum instance = new Forum(msgH,fH,memH);
-         Member newMember = new Member(instance, "liron", "lolo", "87654321", "liron", "katav",null,null);
+        Date tDate = new Date();
+         Member newMember = new Member(instance, "liron", "lolo", "987654321", "liron", "katav","mail",tDate);
         instance.register(newMember);
         String username = "liron";
-        String password = "87654321";
+        String password = "987654321";
         instance.login(username, password);
         assertTrue(instance.getOnlineMembers().size()== 1);
     }
@@ -98,17 +101,10 @@ public class ForumTest {
             ForumHandler fH = new ForumHandler(xf);
             MemberHandler memH = new MemberHandler(xf);
             Forum instance = new Forum(msgH, fH, memH);
-            Member newMember = new Member(instance, "liron", "lolo", "87654321", "liron", "katav", null, null);
-            try {
-                instance.register(newMember);
-            } catch (UserExistsException ex) {
-                Logger.getLogger(ForumTest.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (NicknameExistsException ex) {
-                Logger.getLogger(ForumTest.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (BadPasswordException ex) {
-                Logger.getLogger(ForumTest.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            String _nickName = "lolo";
+             Date tDate = new Date();
+            Member newMember = new Member(instance, "liron", "lolo", "987654321", "liron", "katav","mail",tDate);
+            instance.register(newMember);
+            String _nickName = "liron";
             String subject = "this is the subject";
             String body = "this is the body";
             instance.addMessage(_nickName, subject, body);
@@ -116,6 +112,12 @@ public class ForumTest {
             // TODO review the generated test code and remove the default call to fail.
             fail("The test case is a prototype.");
         } catch (MessageNotFoundException ex) {
+            Logger.getLogger(ForumTest.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UserExistsException ex) {
+            Logger.getLogger(ForumTest.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NicknameExistsException ex) {
+            Logger.getLogger(ForumTest.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (BadPasswordException ex) {
             Logger.getLogger(ForumTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
