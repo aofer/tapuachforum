@@ -142,7 +142,7 @@ public class ForumHandler  implements ForumInterface{
             //    newMember.setDateOfBirth(null);
             this.xf.getForum().getMembers().add(newMember);
 
-
+        xf.WriteToXML();
         } catch (DatatypeConfigurationException ex) {
             Logger.getLogger(ForumHandler.class.getName()).log(Level.SEVERE, null, ex);
         }

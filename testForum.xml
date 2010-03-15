@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<forumType>
+    <messageCounter>2</messageCounter>
+    <members>
+        <userName>liron</userName>
+        <nickName>lolo</nickName>
+        <password>987654321</password>
+        <eMail>mail</eMail>
+        <dateJoined>2010-03-15T11:28:18.212+02:00</dateJoined>
+        <firstName>liron</firstName>
+        <LastName>katav</LastName>
+        <dateOfBirth>2010-03-15+02:00</dateOfBirth>
+        <status>false</status>
+        <message>
+            <messageId>1</messageId>
+            <parentId>0</parentId>
+            <subject>this is the subject</subject>
+            <body>this is the body</body>
+            <createdBy>liron</createdBy>
+            <dateAdded>2010-03-15T11:28:18.212+02:00</dateAdded>
+            <modifiedDate>2010-03-15T11:28:18.212+02:00</modifiedDate>
+        </message>
+    </members>
+    <members>
+        <userName>amit</userName>
+        <nickName>amit</nickName>
+        <password>987654321</password>
+        <eMail>mail</eMail>
+        <dateJoined>2010-03-15T11:30:21.149+02:00</dateJoined>
+        <firstName>liron</firstName>
+        <LastName>katav</LastName>
+        <dateOfBirth>2010-03-15+02:00</dateOfBirth>
+        <status>false</status>
+    </members>
+    <messages>
+        <messageId>1</messageId>
+        <parentId>0</parentId>
+        <subject>this is the subject</subject>
+        <body>this is the body</body>
+        <createdBy>liron</createdBy>
+        <dateAdded>2010-03-15T11:28:18.212+02:00</dateAdded>
+        <modifiedDate>2010-03-15T11:28:18.212+02:00</modifiedDate>
+    </messages>
+	<members>
+        <userName>amit2</userName>
+        <nickName>amit2</nickName>
+        <password>12345678</password>
+        <eMail>mail</eMail>
+        <dateJoined>2010-03-15T11:30:21.149+02:00</dateJoined>
+        <firstName>liron</firstName>
+        <LastName>katav</LastName>
+        <dateOfBirth>2010-03-15+02:00</dateOfBirth>
+        <status>true</status>
+    </members>
+    <messages>
+        <messageId>4</messageId>
+        <parentId>0</parentId>
+        <subject>this is the subject</subject>
+        <body>this is the body</body>
+        <createdBy>liron</createdBy>
+        <dateAdded>2010-03-15T11:28:18.212+02:00</dateAdded>
+        <modifiedDate>2010-03-15T11:28:18.212+02:00</modifiedDate>
+    </messages>
+</forumType>
