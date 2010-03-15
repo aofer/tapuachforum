@@ -116,6 +116,7 @@ public String getLastName() {
  */
     public void logOut() {
         this.getForum().logout(this._userName);
+        //delete me !
     }
 /**
  * this method is used when the member want to write a new message
