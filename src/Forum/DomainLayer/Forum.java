@@ -15,8 +15,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
- *this class is the main logics of our forum
- * it communicates with the persistent layer through a pre defined interfaces
+ *
  * @author Amit Ofer
  */
 public class Forum implements DomainForumInterface{
@@ -27,7 +26,7 @@ public class Forum implements DomainForumInterface{
     private Vector<Member> _onlineMembers;
 
     /**
-     *constructor
+     *
      * @param messageHandler
      * @param forumHandler
      * @param memberHandler
@@ -38,21 +37,18 @@ public class Forum implements DomainForumInterface{
         this._XmlMessage = messageHandler;
         this._onlineMembers = new Vector<Member>();
     }
-/**
- * this is the getter for the vector of online members
- * @return a vector containing all online members
- */
+
     public Vector<Member> getOnlineMembers() {
         return _onlineMembers;
     }
 
     
     /**
-     *registers a new member to the forum
-     * @param newMember - the new member to be added
-     * @throws UserExistsException - is thrown when the username already exists in the forum
-     * @throws NicknameExistsException - is thrown when the nickname already exists in the forum
-     * @throws BadPasswordException -  is thrown when the password the user supplied does not meet the password policy
+     *
+     * @param newMember
+     * @throws UserExistsException
+     * @throws NicknameExistsException
+     * @throws BadPasswordException
      */
     public void register(Member newMember)  throws UserExistsException,NicknameExistsException,BadPasswordException{
         if (this._XmlForum.checkUsername(newMember.getUserName()))
@@ -74,10 +70,10 @@ public class Forum implements DomainForumInterface{
     }
 
     /**
-     *this method is used for getting a certain message from the bottom layer
-     * @param messageId - the id of the required message
-     * @return - returns the message needed
-     * @throws MessageNotFoundException - is thrown when the message was not found
+     *
+     * @param messageId
+     * @return
+     * @throws MessageNotFoundException
      */
     public Message getMessage(int messageId)  throws MessageNotFoundException{
         String tNickname = this._XmlMessage.getNickname(messageId);
@@ -86,15 +82,14 @@ public class Forum implements DomainForumInterface{
         Date tDateAdded = this._XmlMessage.getDateAdded(messageId);
         Date tDateModified = this._XmlMessage.getModifiedDate(messageId);
         Vector<Message> tReplies = new Vector<Message>();
-        
-        //get children to be implemented later on!!
+        //get children
 
         return new Message(tNickname, tSubject, tBody, tReplies, tDateAdded, tDateModified);
 
     }
 
     /**
-     *this method is used for logging into the forum
+     *
      * @param username
      * @param password
      * @throws NoSuchUserException
@@ -120,7 +115,7 @@ public class Forum implements DomainForumInterface{
     }
 
     /**
-     *this metho is used for writing a new message
+     *
      * @param _nickName
      * @param subject
      * @param body
@@ -131,7 +126,7 @@ public class Forum implements DomainForumInterface{
     }
 
     /**
-     *this method is used for logging out of the forum
+     *
      * @param username
      */
     public void logout(String username) {
@@ -144,7 +139,7 @@ public class Forum implements DomainForumInterface{
     }
 
     /**
-     *this method checks if the entered user meets our password policy
+     *
      * @param password
      * @return
      */
@@ -153,7 +148,7 @@ public class Forum implements DomainForumInterface{
     }
 
     /**
-     *add an online  member to the forum
+     *
      * @param member
      */
     public void addMember(Member member) {
@@ -161,7 +156,7 @@ public class Forum implements DomainForumInterface{
     }
 
     /**
-     * this is used for editing a message
+     * 
      * @param messageId
      * @param subject
      * @param body
@@ -179,7 +174,7 @@ public class Forum implements DomainForumInterface{
     
 
     /**
-     *this method is used for adding a new reply
+     *
      * @param parentId
      * @param nickname
      * @param subject

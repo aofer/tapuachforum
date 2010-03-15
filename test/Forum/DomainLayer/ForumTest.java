@@ -8,9 +8,7 @@ package Forum.DomainLayer;
 import Forum.Exceptions.BadPasswordException;
 import Forum.Exceptions.MessageNotFoundException;
 import Forum.Exceptions.NicknameExistsException;
-import Forum.Exceptions.NoSuchUserException;
 import Forum.Exceptions.UserExistsException;
-import Forum.Exceptions.WrongPasswordException;
 import Forum.PersistentLayer.ForumHandler;
 import Forum.PersistentLayer.MemberHandler;
 import Forum.PersistentLayer.XMLFileHandler;
@@ -28,7 +26,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Amit Ofer
+ * @author amit
  */
 public class ForumTest {
 
@@ -59,15 +57,15 @@ public class ForumTest {
     @Test
     public void testRegister() throws Exception {
         System.out.println("register");
-        XMLFileHandler xf = new XMLFileHandler("testForum.xml");
+        XMLFileHandler xf = new XMLFileHandler("tapuachforum.xml");
        XMLMessageHandler msgH = new XMLMessageHandler(xf);
        ForumHandler fH = new ForumHandler(xf);
        MemberHandler memH = new MemberHandler(xf);
        Forum instance = new Forum(msgH,fH,memH);
        Date tDate = new Date();
-         Member newMember = new Member(instance, "amit", "amit", "987654321", "liron", "katav","mail",tDate);
+         Member newMember = new Member(instance, "liron", "lolo", "987654321", "liron", "katav","mail",tDate);
         instance.register(newMember);
-       assertTrue (fH.checkUsername("amit") );
+       assertTrue (fH.checkUsername("liron") );
     }
 
    
@@ -77,14 +75,14 @@ public class ForumTest {
     @Test
     public void testLogin() throws Exception {
          System.out.println("login");
-        XMLFileHandler xf = new XMLFileHandler("testForum.xml");
+        XMLFileHandler xf = new XMLFileHandler("tapuachforum.xml");
        XMLMessageHandler msgH = new XMLMessageHandler(xf);
        ForumHandler fH = new ForumHandler(xf);
        MemberHandler memH = new MemberHandler(xf);
        Forum instance = new Forum(msgH,fH,memH);
         Date tDate = new Date();
-        // Member newMember = new Member(instance, "liron", "lolo", "987654321", "liron", "katav","mail",tDate);
-       // instance.register(newMember);
+         Member newMember = new Member(instance, "liron", "lolo", "987654321", "liron", "katav","mail",tDate);
+        instance.register(newMember);
         String username = "liron";
         String password = "987654321";
         instance.login(username, password);
@@ -98,7 +96,7 @@ public class ForumTest {
     public void testAddMessage() {
         try {
             System.out.println("addMessage");
-            XMLFileHandler xf = new XMLFileHandler("testForum.xml");
+            XMLFileHandler xf = new XMLFileHandler("tapuachforum.xml");
             XMLMessageHandler msgH = new XMLMessageHandler(xf);
             ForumHandler fH = new ForumHandler(xf);
             MemberHandler memH = new MemberHandler(xf);
@@ -111,6 +109,8 @@ public class ForumTest {
             String body = "this is the body";
             instance.addMessage(_nickName, subject, body);
             assertEquals(subject, instance.getMessage(1).getSubject());
+            // TODO review the generated test code and remove the default call to fail.
+            fail("The test case is a prototype.");
         } catch (MessageNotFoundException ex) {
             Logger.getLogger(ForumTest.class.getName()).log(Level.SEVERE, null, ex);
         } catch (UserExistsException ex) {
@@ -127,28 +127,12 @@ public class ForumTest {
      */
     @Test
     public void testLogout() {
-        try {
-            System.out.println("login");
-            XMLFileHandler xf = new XMLFileHandler("testForum.xml");
-            XMLMessageHandler msgH = new XMLMessageHandler(xf);
-            ForumHandler fH = new ForumHandler(xf);
-            MemberHandler memH = new MemberHandler(xf);
-            Forum instance = new Forum(msgH, fH, memH);
-            //Date tDate = new Date();
-            // Member newMember = new Member(instance, "liron", "lolo", "987654321", "liron", "katav","mail",tDate);
-            // instance.register(newMember);
-            String username = "amit2";
-            String password = "12345678";
-            instance.login(username, password);
-             int pre = instance.getOnlineMembers().size();
-              instance.logout(username);
-            assertTrue(instance.getOnlineMembers().size() == pre - 1);
-        } catch (NoSuchUserException ex) {
-            Logger.getLogger(ForumTest.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (WrongPasswordException ex) {
-            Logger.getLogger(ForumTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-      
+        System.out.println("logout");
+        String username = "";
+        Forum instance = null;
+        instance.logout(username);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
     /**
@@ -157,19 +141,13 @@ public class ForumTest {
     @Test
     public void testCheckPasswordPolicy() {
         System.out.println("checkPasswordPolicy");
-          XMLFileHandler xf = new XMLFileHandler("testForum.xml");
-            XMLMessageHandler msgH = new XMLMessageHandler(xf);
-            ForumHandler fH = new ForumHandler(xf);
-            MemberHandler memH = new MemberHandler(xf);
-            Forum instance = new Forum(msgH, fH, memH);
-        String password = "fhdsjkhfdjks";
-        String badPassword = "1234";
+        String password = "";
+        Forum instance = null;
+        boolean expResult = false;
         boolean result = instance.checkPasswordPolicy(password);
-        assertTrue( result);
-         boolean result2 = instance.checkPasswordPolicy(badPassword);
-        assertFalse( result2);
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-   
+        fail("The test case is a prototype.");
     }
 
     /**
@@ -177,17 +155,12 @@ public class ForumTest {
      */
     @Test
     public void testAddMember() {
-       System.out.println("addMember");
-        XMLFileHandler xf = new XMLFileHandler("testForum.xml");
-       XMLMessageHandler msgH = new XMLMessageHandler(xf);
-       ForumHandler fH = new ForumHandler(xf);
-       MemberHandler memH = new MemberHandler(xf);
-       Forum instance = new Forum(msgH,fH,memH);
-        Date tDate = new Date();
-        Member newMember = new Member(instance, "nir", "n", "987654321", "nir", "her","mail",tDate);
-          int pre = instance.getOnlineMembers().size();
-        instance.addMember(newMember);
-        assertTrue(instance.getOnlineMembers().size()== pre + 1);
+        System.out.println("addMember");
+        Member member = null;
+        Forum instance = null;
+        instance.addMember(member);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
     /**
@@ -195,7 +168,7 @@ public class ForumTest {
      */
     @Test
     public void testEditMessage() throws Exception {
-       /* System.out.println("editMessage");
+        System.out.println("editMessage");
         String nickname = "";
         int messageId = 0;
         String subject = "";
@@ -203,7 +176,7 @@ public class ForumTest {
         Forum instance = null;
         instance.editMessage(nickname, messageId, subject, body);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");*/
+        fail("The test case is a prototype.");
     }
 
     /**
@@ -211,7 +184,7 @@ public class ForumTest {
      */
     @Test
     public void testAddReply() {
-      /*  System.out.println("addReply");
+        System.out.println("addReply");
         int parentId = 0;
         String nickname = "";
         String subject = "";
@@ -219,7 +192,7 @@ public class ForumTest {
         Forum instance = null;
         instance.addReply(parentId, nickname, subject, body);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");*/
+        fail("The test case is a prototype.");
     }
 
 }
