@@ -44,7 +44,7 @@ public class GuestTest {
      */
     @Test
     public void testRegister() throws Exception {
-      /*  System.out.println("register");
+        System.out.println("register");
         String username = "lironka";
         String password = "12345";
         String nickname = "liron";
@@ -55,7 +55,7 @@ public class GuestTest {
         Guest instance = null;
         instance.register(username, password, nickname, email, firstName, lastName, dateOfBirth);
        // TODO review the generated test code and remove the default call to fail.
-      //  fail("The test case is a prototype.");*/
+      //  fail("The test case is a prototype.");
     }
 
     /**
@@ -63,7 +63,7 @@ public class GuestTest {
      */
     @Test
     public void testLogIn() throws Exception {
-   /*     System.out.println("logIn");
+        System.out.println("logIn");
         String tUsername = "liron";
         String tPassword = "12345678";
         Forum tForum = new Forum(null, null,null);
@@ -72,7 +72,7 @@ public class GuestTest {
         Guest instance = new Guest(tForum);
         instance.logIn(tUsername, tPassword);
         assertEquals(tMember, tForum.getOnlineMembers().elementAt(0));
-        //needs to add wrongs paramentes and checks*/
+        //needs to add wrongs paramentes and checks
     }
 
 }
