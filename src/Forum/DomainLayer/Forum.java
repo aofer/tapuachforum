@@ -55,7 +55,7 @@ public class Forum implements DomainForumInterface{
             throw new UserExistsException();
         else if (this._XmlForum.checkNickname(newMember.getNickName()))
             throw new NicknameExistsException();
-        else if (checkPasswordPolicy(newMember.getPassword()))
+        else if (!checkPasswordPolicy(newMember.getPassword()))
             throw new BadPasswordException();
         else {
            String tUsername = newMember.getUserName();
@@ -122,7 +122,7 @@ public class Forum implements DomainForumInterface{
      */
     public void addMessage(String _nickName, String subject, String body) {
         Date tDate = new Date();
-        this._XmlForum.addMessage(0, body, subject, body, tDate, tDate);
+        this._XmlForum.addMessage(0, _nickName, subject, body, tDate, tDate);
     }
 
     /**

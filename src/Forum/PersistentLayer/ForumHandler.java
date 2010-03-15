@@ -130,9 +130,15 @@ public class ForumHandler  implements ForumInterface{
             newMember.setLastName(lastName);
             GregorianCalendar gcal = new GregorianCalendar();
             gcal.setTime(dateOfBirth);
-            XMLGregorianCalendar xgcal;
+            XMLGregorianCalendar xgcal, xgcal2;
             xgcal = DatatypeFactory.newInstance().newXMLGregorianCalendar(gcal);
             newMember.setDateOfBirth(xgcal);
+
+            Date nowT = new Date();
+            gcal.setTime(nowT);
+
+            xgcal2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(gcal);
+            newMember.setDateJoined(xgcal2);
             //    newMember.setDateOfBirth(null);
             this.xf.getForum().getMembers().add(newMember);
 
