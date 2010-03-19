@@ -7,7 +7,7 @@ import java.util.Date;
 * @author Liron Katav
 */
 
-public interface ForumInterface {
+public interface ForumHandlerInterface {
 	
 	/**
      * add a new member to the forum
