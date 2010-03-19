@@ -7,13 +7,12 @@ package Forum.DomainLayer;
 import Forum.Exceptions.*;
 import Forum.DomainLayer.Interfaces.ForumInterface;
 import  Forum.PersistentLayer.*;
+import Forum.PersistentLayer.Data.MessageData;
 import Forum.PersistentLayer.Interfaces.ForumHandlerInterface;
 import Forum.PersistentLayer.Interfaces.MemberInterface;
 import Forum.PersistentLayer.Interfaces.MessageInterface;
 import java.util.Date;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 /**
@@ -94,17 +93,14 @@ public class Forum implements ForumInterface{
      * @throws MessageNotFoundException - is thrown when the message was not found
      */
     public Message getMessage(int messageId)  throws MessageNotFoundException{
-        String tNickname = this._XmlMessage.getNickname(messageId);
-        String tSubject = this._XmlMessage.getSubject(messageId);
-        String tBody = this._XmlMessage.getContent(messageId);
-        Date tDateAdded = this._XmlMessage.getDateAdded(messageId);
-        Date tDateModified = this._XmlMessage.getModifiedDate(messageId);
+        MessageData data= this._XmlMessage.getMessage(messageId);
+        Message msg=new Message(data);
+        
         Vector<Message> tReplies = new Vector<Message>();
         
         //get children to be implemented later on!!
 
-        return new Message(tNickname, tSubject, tBody, tReplies, tDateAdded, tDateModified);
-
+        return msg;
     }
 
     /**
@@ -182,7 +178,7 @@ public class Forum implements ForumInterface{
      */
     public void editMessage(String nickname,int messageId, String subject, String body) throws MessageNotFoundException, MessageOwnerException{
             Date tDate = new Date();
-            String tNickname = this._XmlMessage.getNickname(messageId);
+            String tNickname = this._XmlMessage.getMessage(messageId).getNickname();
             if (nickname.equals(tNickname)) {
                 this._XmlForum.editMessage(messageId, subject, body, tDate);
             }
