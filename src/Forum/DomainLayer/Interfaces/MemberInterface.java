@@ -11,7 +11,7 @@ import Forum.Exceptions.MessageOwnerException;
  *
  * @author Amit Ofer
  */
-public interface DomainMemberInterface extends DomainGuestInterface {
+public interface MemberInterface extends UserInterface {
 
     /**
      *logs out of the forum, turns the member back into a guest

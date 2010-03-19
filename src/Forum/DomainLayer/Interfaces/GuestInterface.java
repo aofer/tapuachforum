@@ -5,7 +5,6 @@
 
 package Forum.DomainLayer.Interfaces;
 
-import Forum.Exceptions.WrongPasswordException;
 import Forum.Exceptions.*;
 import java.util.Date;
 
@@ -13,13 +12,7 @@ import java.util.Date;
  *
  * @author Amit Ofer
  */
-public interface DomainGuestInterface {
-
-    /**
-     *read the message with the given message ID
-     * @param messageId
-     */
-    public String readMessage(int messageId)throws MessageNotFoundException;
+public interface GuestInterface extends UserInterface {
     /**
      * registers a new user to the forum
      * @param username

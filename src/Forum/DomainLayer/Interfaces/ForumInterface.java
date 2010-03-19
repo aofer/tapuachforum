@@ -5,7 +5,6 @@
 
 package Forum.DomainLayer.Interfaces;
 
-import Forum.Exceptions.WrongPasswordException;
 import Forum.DomainLayer.Member;
 import Forum.DomainLayer.Message;
 import Forum.Exceptions.*;
@@ -14,7 +13,7 @@ import Forum.Exceptions.*;
  *
  * @author Amit Ofer
  */
-public interface DomainForumInterface {
+public interface ForumInterface {
     /**
      *  this methods is used to get a message from the database
      * @param messageId - the id of the required message

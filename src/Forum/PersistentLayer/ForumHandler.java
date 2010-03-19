@@ -5,11 +5,10 @@
 
 package Forum.PersistentLayer;
 
-import Forum.PersistentLayer.Interfaces.ForumInterface;
+import Forum.PersistentLayer.Interfaces.ForumHandlerInterface;
 import java.math.BigInteger;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.datatype.DatatypeConfigurationException;
@@ -20,7 +19,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *
  * @author Nir
  */
-public class ForumHandler  implements ForumInterface{
+public class ForumHandler  implements  ForumHandlerInterface{
 
     /**
      *
@@ -142,7 +141,7 @@ public class ForumHandler  implements ForumInterface{
             //    newMember.setDateOfBirth(null);
             this.xf.getForum().getMembers().add(newMember);
 
-
+        xf.WriteToXML();
         } catch (DatatypeConfigurationException ex) {
             Logger.getLogger(ForumHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
