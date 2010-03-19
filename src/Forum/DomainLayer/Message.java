@@ -35,7 +35,6 @@ public class Message {
      this._replies  = new Vector<Message>();
      this._writeDate = new Date();
      this._modifiedDate = new Date();
-     //asdasds
  }
  /**
   *another constructor

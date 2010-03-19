@@ -2,16 +2,17 @@
 
 package Forum.DomainLayer;
 
-import Forum.DomainLayer.Interfaces.DomainMemberInterface;
+import Forum.DomainLayer.Interfaces.MemberInterface;
 import Forum.Exceptions.MessageNotFoundException;
 import Forum.Exceptions.MessageOwnerException;
+import java.text.Normalizer.Form;
 import java.util.Date;
 
 /**
  *this class represents a registered member in the forum
  * @author Amit Ofer
  */
-public class Member  extends Guest implements DomainMemberInterface{
+public class Member  extends User implements MemberInterface{
 private String _userName;
 private String _nickName;
 private String _password;
@@ -32,9 +33,9 @@ private Date _dateOfBirth;
  * @param email
  * @param dateOfBirth
  */
-public Member(Forum forum,String userName,String nickName,String password,String firstName,String lastName,String email,
+public Member(String userName,String nickName,String password,String firstName,String lastName,String email,
        Date dateOfBirth){
-    super(forum);
+    super();
     this._userName = userName;
     this._nickName = nickName;
     this._password = password;
@@ -115,7 +116,7 @@ public String getLastName() {
  * when the user logs out he becomes a guest and therefore can no longer write messages
  */
     public void logOut() {
-        this.getForum().logout(this._userName);
+       Forum.getInstance().logout(this._userName);
     }
 /**
  * this method is used when the member want to write a new message
@@ -123,7 +124,7 @@ public String getLastName() {
  * @param body - the body of the message
  */
     public void writeMessage(String subject, String body) {
-        this.getForum().addMessage(this._nickName,subject,body);
+        Forum.getInstance().addMessage(this._nickName,subject,body);
     }
 /**
  * edit a message by changing the subject or the body of the message
@@ -132,7 +133,7 @@ public String getLastName() {
  * @param body - the new body
  */
     public void editMessage(int messageId, String subject, String body) throws MessageNotFoundException,MessageOwnerException{
-        this.getForum().editMessage(this._nickName,messageId,subject,body);
+        Forum.getInstance().editMessage(this._nickName,messageId,subject,body);
     }
     /**
      * this method is used to add a new reply to a message
@@ -141,7 +142,7 @@ public String getLastName() {
      * @param body - the body of the message
      */
     public void addReply(int parentId,String subject,String body){
-        this.getForum().addReply(parentId, this._nickName, subject, body);
+        Forum.getInstance().addReply(parentId, this._nickName, subject, body);
     }
 
 }
