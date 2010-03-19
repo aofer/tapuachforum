@@ -5,6 +5,7 @@
 
 package Forum.DomainLayer;
 
+import Forum.PersistentLayer.Data.MessageData;
 import java.util.Date;
 import java.util.Vector;
 
@@ -14,12 +15,8 @@ import java.util.Vector;
  */
 public class Message {
 
- private String _nickname;
- private String _subject;
- private String _body;
+ private MessageData _data;
  private Vector<Message> _replies;
- private Date _writeDate;
- private Date _modifiedDate;
 
 
  /**
@@ -28,13 +25,10 @@ public class Message {
   * @param subject
   * @param body
   */
- public Message(String nickname,String subject,String body){
-     this._nickname = nickname;
-     this._subject = subject;
-     this._body = body;
+ public Message(MessageData data)
+ {
+     this._data=data;
      this._replies  = new Vector<Message>();
-     this._writeDate = new Date();
-     this._modifiedDate = new Date();
  }
  /**
   *another constructor
@@ -45,13 +39,10 @@ public class Message {
   * @param WriteDate
   * @param ModifiedDate
   */
- public Message(String nickname,String subject,String body,Vector<Message> replies,Date WriteDate,Date ModifiedDate){
-     this._nickname = nickname;
-     this._subject = subject;
-     this._body = body;
+ public Message(MessageData data , Vector<Message> replies)
+ {
+     this(data);
      this._replies  = new Vector<Message>();
-     this._writeDate = new Date();
-     this._modifiedDate = new Date();
  }
 
 
@@ -60,7 +51,7 @@ public class Message {
   * @return
   */
  public String getBody() {
-        return _body;
+        return _data.getBody();
     }
 
     /**
@@ -68,7 +59,7 @@ public class Message {
      * @return
      */
     public String getNickname() {
-        return _nickname;
+        return _data.getNickname();
     }
 
     /**
@@ -76,7 +67,7 @@ public class Message {
      * @return
      */
     public String getSubject() {
-        return _subject;
+        return _data.getSubject();
     }
 
     /**
@@ -91,20 +82,18 @@ public class Message {
      *setter for th e body
      * @param _body
      */
-    public void setBody(String _body) {
-        this._body = _body;
+    public void setBody(String body) {
+        _data.setBody(body);
     }
 
     /**
      *setter for the subject
      * @param _subject
      */
-    public void setSubject(String _subject) {
-        this._subject = _subject;
+    public void setSubject(String subject) {
+        _data.setSubject(subject);
     }
 
-
- 
     /**
      *add a new reply
      * @param msg
@@ -119,8 +108,8 @@ public class Message {
      */
     @Override
  public String toString(){
-     return  "\nSubject:" + _subject + "\nWritten by:" + _nickname
-             + "\n Number of replies:" + _replies.size() + "\nBody:" + _body + "\n";
+     return  "\nSubject:" + _data.getSubject() + "\nWritten by:" + _data.getNickname()
+             + "\n Number of replies:" + _replies.size() + "\nBody:" + _data.getBody() + "\n";
  }
 
 }
