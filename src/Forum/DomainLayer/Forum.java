@@ -13,6 +13,8 @@ import Forum.PersistentLayer.Data.MessageData;
 import Forum.PersistentLayer.Interfaces.ForumHandlerInterface;
 import Forum.PersistentLayer.Interfaces.MemberInterface;
 import Forum.PersistentLayer.Interfaces.MessageInterface;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.Vector;
 
@@ -82,11 +84,12 @@ public class Forum implements ForumInterface{
            String tUsername = newMember.getUserName();
            String tNickname = newMember.getNickName();
            String tPassword = newMember.getPassword();
+           String encryptedPassword = this.encryptPassword(tPassword);
            String tFirstname = newMember.getFirstName();
            String tLastname = newMember.getLastName();
            String tEmail = newMember.getEmail();
            Date tDateOfBirth = newMember.getDateOfBirth();
-            this._XmlForum.register(tUsername,tNickname,tPassword,tEmail,tFirstname, tLastname,tDateOfBirth);
+            this._XmlForum.register(tUsername,tNickname,encryptedPassword,tEmail,tFirstname, tLastname,tDateOfBirth);
         }
         return newMember;
     }
@@ -116,11 +119,12 @@ public class Forum implements ForumInterface{
      * @throws WrongPasswordException
      */
     public void login(String username, String password) throws NoSuchUserException,WrongPasswordException {
+        String encryptedPassword = this.encryptPassword(password);
     	TapuachLogger.getInstance().info("user:  " + username + " logged in");
     	String tPassword = this._XmlForum.userExists(username);
         if (tPassword == null)
             throw new NoSuchUserException(username);
-        else if (!tPassword.equals(password))
+        else if (!tPassword.equals(encryptedPassword))
             throw new WrongPasswordException();
         else{
             MemberData data=this._XmlMember.getMember(username);
@@ -202,7 +206,7 @@ public class Forum implements ForumInterface{
         this._XmlForum.addMessage(parentId, body, subject, body, tDate, tDate);
     }
 
-    void upgradeUser(String username) throws UserNotExistException {
+    public void upgradeUser(String username) throws UserNotExistException {
         this._XmlForum.upgradeUser(username);
         Forum.getInstance().logout(username);
         MemberData tData = this._XmlMember.getMember(username);
@@ -210,10 +214,32 @@ public class Forum implements ForumInterface{
         this._onlineMembers.add(tModerator);
     }
 
-    void deleteMessage(int messageId) throws MessageNotFoundException {
+    public void deleteMessage(int messageId) throws MessageNotFoundException {
         this._XmlForum.deleteMessage(messageId);
     }
+    /**
+     * this method encrypts a password that will later be saved in the persistent layer
+     * @param password - the original password that needs to be encrypted
+     * @return - the encrypted password using the chosen algorithm
+     * @throws NoSuchAlgorithmException - when the ecryption algorithm isn't known in this version of java
+     */
+    public String encryptPassword(String password) {
+        try{
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            String encryptedPassword = "";
+            byte[] b = password.getBytes();
+            md.update(b);
+            b = md.digest();
+            for (int i = 0; i < b.length; i++) {
+                encryptedPassword += String.format("%02x",0xFF & b[i]);
+            }
+            return encryptedPassword;
+            }
+        catch (NoSuchAlgorithmException e){
+            return password;
+        }
 
+    }
 
 
 
