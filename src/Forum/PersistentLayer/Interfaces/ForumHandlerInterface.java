@@ -1,5 +1,7 @@
 package Forum.PersistentLayer.Interfaces;
 
+import Forum.Exceptions.UserNotExistException;
+import Forum.Exceptions.MessageNotFoundException;
 import java.util.Date;
 
 /**
@@ -66,4 +68,8 @@ public interface ForumHandlerInterface {
          * @param dateModified - current date
          */
         public void editMessage(int messageId,String newSubject,String newBody,Date dateModified);
+
+        public void deleteMessage(int messageId) throws MessageNotFoundException;
+
+        public void upgradeUser (String username) throws UserNotExistException;
 }
