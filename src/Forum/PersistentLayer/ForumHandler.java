@@ -381,7 +381,17 @@ public class ForumHandler  implements  ForumHandlerInterface{
      * @throws UserNotExistException
      */
     public void upgradeUser(String username) throws UserNotExistException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        MemberType member = findMember(username);
+        if (member == null)
+            throw new UnsupportedOperationException("Not supported yet.");
+        else{
+         ModeratorType moderator = new ModeratorType();
+        moderator.info = member;
+        moderator.specialization = "agriculturist";
+        this.xf.getForum().getMembers().remove(member);
+         this.xf.getForum().getModerators().add(moderator);
+        xf.WriteToXML();
+        }
     }
 
     /**

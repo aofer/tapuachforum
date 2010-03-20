@@ -9,6 +9,7 @@ import Forum.Exceptions.NoSuchUserException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.text.StyledEditorKit.BoldAction;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -261,7 +262,7 @@ public class ForumHandlerTest {
         System.out.println("deleteMessage");
       //  testAddMessage_6args();
        int messageId = 2;
-        ForumHandler instance = new ForumHandler(xf);;;
+        ForumHandler instance = new ForumHandler(xf);
     //    instance.deleteMessage(messageId);
         String newSubject = "it is new now";
         String subNow = instance.getSubject(messageId);
@@ -280,11 +281,16 @@ public class ForumHandlerTest {
     @Test
     public void testUpgradeUser() throws Exception {
         System.out.println("upgradeUser");
-        String username = "";
-        ForumHandler instance = null;
+        String username = "alexSup";
+        ForumHandler instance = new ForumHandler(xf);
+       boolean result = instance.checkUsername(username);
+         assertTrue(result);
         instance.upgradeUser(username);
+       result = instance.checkUsername(username);
+       assertFalse(result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
+        // fail("The test case is a prototype.");
     }
 
     /**
@@ -296,7 +302,7 @@ public class ForumHandlerTest {
         ForumHandler instance = new ForumHandler(xf);
    //     instance.initForum();
         // TODO review the generated test code and remove the default call to fail.
-       fail("The test case is a prototype.");
+     //  fail("The test case is a prototype.");
     }
 
 
