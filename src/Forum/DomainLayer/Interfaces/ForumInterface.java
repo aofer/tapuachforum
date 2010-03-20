@@ -9,6 +9,7 @@ import Forum.DomainLayer.Member;
 import Forum.DomainLayer.Message;
 import Forum.Exceptions.*;
 import Forum.PersistentLayer.Data.MemberData;
+import java.security.NoSuchAlgorithmException;
 
 /**
  *
@@ -80,4 +81,11 @@ public interface ForumInterface {
      * @param body - the body of the reply
      */
     public void addReply(int parentId,String nickname,String subject,String body);
+    /**
+     * this method encrypts a password that will later be saved in the persistent layer
+     * @param password - the original password that needs to be encrypted
+     * @return - the encrypted password using the chosen algorithm
+     * @throws NoSuchAlgorithmException - when the ecryption algorithm isn't known in this version of java
+     */
+    public String encryptPassword(String password) ;
 }
