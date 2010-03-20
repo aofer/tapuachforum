@@ -50,7 +50,7 @@ public class MemberHandlerTest {
         try {
             System.out.println("getPassword");
             String username = "nir";
-            MemberHandler instance = new MemberHandler(xf);
+            XMLMemberHandler instance = new XMLMemberHandler(xf);
             String expResult = "123456";
             String result = instance.getPassword(username);
             assertEquals(expResult, result);
@@ -67,7 +67,7 @@ public class MemberHandlerTest {
         try {
             System.out.println("getEMail");
             String username = "nir";
-            MemberHandler instance = new MemberHandler(xf);
+            XMLMemberHandler instance = new XMLMemberHandler(xf);
             String expResult = "a@a.com";
             String result = instance.getEMail(username);
             assertEquals(expResult, result);
@@ -86,7 +86,7 @@ public class MemberHandlerTest {
         try {
             System.out.println("getDateJoined");
             String username = "nir";
-            MemberHandler instance = new MemberHandler(xf);
+            XMLMemberHandler instance = new XMLMemberHandler(xf);
             Date result = instance.getDateJoined(username);
             assertNotNull(result);
         } catch (NoSuchUserException ex) {
@@ -103,7 +103,7 @@ public class MemberHandlerTest {
         try {
             System.out.println("getFirstName");
             String username = "nir";
-            MemberHandler instance = new MemberHandler(xf);
+            XMLMemberHandler instance = new XMLMemberHandler(xf);
             String expResult = "a";
             String result = instance.getFirstName(username);
             assertEquals(expResult, result);
@@ -122,7 +122,7 @@ public class MemberHandlerTest {
         try {
             System.out.println("getLastName");
             String username = "nir";
-            MemberHandler instance = new MemberHandler(xf);
+            XMLMemberHandler instance = new XMLMemberHandler(xf);
             String expResult = "k";
             String result = instance.getLastName(username);
             assertEquals(expResult, result);
@@ -141,7 +141,7 @@ public class MemberHandlerTest {
         try {
             System.out.println("getDateofBirth");
             String username = "nir";
-            MemberHandler instance = new MemberHandler(xf);
+            XMLMemberHandler instance = new XMLMemberHandler(xf);
             Date result = instance.getDateofBirth(username);
             assertNotNull(result);
         } catch (NoSuchUserException ex) {
@@ -158,7 +158,7 @@ public class MemberHandlerTest {
         try {
             System.out.println("getStatus");
             String username = "nir";
-            MemberHandler instance = new MemberHandler(xf);
+            XMLMemberHandler instance = new XMLMemberHandler(xf);
             boolean expResult = false;
             boolean result = instance.getStatus(username);
             assertEquals(expResult, result);
@@ -179,7 +179,7 @@ public class MemberHandlerTest {
             System.out.println("setNickName");
             String username = "nir";
             String nickName = "liron";
-            MemberHandler instance = new MemberHandler(xf);
+            XMLMemberHandler instance = new XMLMemberHandler(xf);
             instance.setNickName(username, nickName);
             String modf = instance.getNickName(username);
             assertEquals(modf, nickName);
@@ -199,7 +199,7 @@ public class MemberHandlerTest {
             System.out.println("setPassword");
             String username = "nir";
             String password = "34r";
-            MemberHandler instance = new MemberHandler(xf);
+            XMLMemberHandler instance = new XMLMemberHandler(xf);
             instance.setPassword(username, password);
             String modf = instance.getPassword(username);
             assertEquals(modf, password);
@@ -217,7 +217,7 @@ public class MemberHandlerTest {
             System.out.println("setEMail");
             String username = "nir";
             String eMail = "asdtew";
-            MemberHandler instance = new MemberHandler(xf);
+            XMLMemberHandler instance = new XMLMemberHandler(xf);
             instance.setEMail(username, eMail);
             String modf = instance.getEMail(username);
             assertEquals(modf, eMail);
@@ -237,7 +237,7 @@ public class MemberHandlerTest {
             System.out.println("setDateJoined");
             String username = "nir";
             Date dateJoined = new Date();
-            MemberHandler instance = new MemberHandler(xf);
+            XMLMemberHandler instance = new XMLMemberHandler(xf);
             instance.setDateJoined(username, dateJoined);
             Date modf = instance.getDateJoined(username);
             assertNotNull(modf);
@@ -257,7 +257,7 @@ public class MemberHandlerTest {
             System.out.println("setFirstName");
             String username = "nir";
             String firstName = "asdw";
-            MemberHandler instance = new MemberHandler(xf);
+            XMLMemberHandler instance = new XMLMemberHandler(xf);
             instance.setFirstName(username, firstName);
             String modf = instance.getFirstName(username);
             assertEquals(modf, firstName);
@@ -277,7 +277,7 @@ public class MemberHandlerTest {
             System.out.println("setLastName");
             String username = "nir";
             String lastName = "dwdfs";
-            MemberHandler instance = new MemberHandler(xf);
+            XMLMemberHandler instance = new XMLMemberHandler(xf);
             instance.setLastName(username, lastName);
             String modf = instance.getLastName(username);
             assertEquals(modf, lastName);
@@ -297,7 +297,7 @@ public class MemberHandlerTest {
             System.out.println("setDateofBirth");
             String username = "nir";
             Date dateOfBirth = new Date();
-            MemberHandler instance = new MemberHandler(xf);
+            XMLMemberHandler instance = new XMLMemberHandler(xf);
             instance.setDateofBirth(username, dateOfBirth);
             Date modf = instance.getDateofBirth(username);
             assertNotNull(modf);
@@ -317,7 +317,7 @@ public class MemberHandlerTest {
             System.out.println("setStatus");
             String username = "nir";
             boolean status = false;
-            MemberHandler instance = new MemberHandler(xf);
+            XMLMemberHandler instance = new XMLMemberHandler(xf);
             instance.setStatus(username, status);
             boolean modf = instance.getStatus(username);
             assertEquals(modf, status);

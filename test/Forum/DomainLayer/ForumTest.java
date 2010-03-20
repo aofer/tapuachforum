@@ -12,7 +12,7 @@ import Forum.Exceptions.NoSuchUserException;
 import Forum.Exceptions.UserExistsException;
 import Forum.Exceptions.WrongPasswordException;
 import Forum.PersistentLayer.ForumHandler;
-import Forum.PersistentLayer.MemberHandler;
+import Forum.PersistentLayer.XMLMemberHandler;
 import Forum.PersistentLayer.XMLFileHandler;
 import Forum.PersistentLayer.XMLMessageHandler;
 import java.util.Date;
@@ -62,7 +62,7 @@ public class ForumTest {
         XMLFileHandler xf = new XMLFileHandler("testForum.xml");
        XMLMessageHandler msgH = new XMLMessageHandler(xf);
        ForumHandler fH = new ForumHandler(xf);
-       MemberHandler memH = new MemberHandler(xf);
+       XMLMemberHandler memH = new XMLMemberHandler(xf);
        Forum instance = new Forum(msgH,fH,memH);
        Date tDate = new Date();
          Member newMember = new Member(instance, "amit", "amit", "987654321", "liron", "katav","mail",tDate);
@@ -80,7 +80,7 @@ public class ForumTest {
         XMLFileHandler xf = new XMLFileHandler("testForum.xml");
        XMLMessageHandler msgH = new XMLMessageHandler(xf);
        ForumHandler fH = new ForumHandler(xf);
-       MemberHandler memH = new MemberHandler(xf);
+       XMLMemberHandler memH = new XMLMemberHandler(xf);
        Forum instance = new Forum(msgH,fH,memH);
         Date tDate = new Date();
         // Member newMember = new Member(instance, "liron", "lolo", "987654321", "liron", "katav","mail",tDate);
@@ -101,7 +101,7 @@ public class ForumTest {
             XMLFileHandler xf = new XMLFileHandler("testForum.xml");
             XMLMessageHandler msgH = new XMLMessageHandler(xf);
             ForumHandler fH = new ForumHandler(xf);
-            MemberHandler memH = new MemberHandler(xf);
+            XMLMemberHandler memH = new XMLMemberHandler(xf);
             Forum instance = new Forum(msgH, fH, memH);
              Date tDate = new Date();
             Member newMember = new Member(instance, "liron", "lolo", "987654321", "liron", "katav","mail",tDate);
@@ -132,7 +132,7 @@ public class ForumTest {
             XMLFileHandler xf = new XMLFileHandler("testForum.xml");
             XMLMessageHandler msgH = new XMLMessageHandler(xf);
             ForumHandler fH = new ForumHandler(xf);
-            MemberHandler memH = new MemberHandler(xf);
+            XMLMemberHandler memH = new XMLMemberHandler(xf);
             Forum instance = new Forum(msgH, fH, memH);
             //Date tDate = new Date();
             // Member newMember = new Member(instance, "liron", "lolo", "987654321", "liron", "katav","mail",tDate);
@@ -160,7 +160,7 @@ public class ForumTest {
           XMLFileHandler xf = new XMLFileHandler("testForum.xml");
             XMLMessageHandler msgH = new XMLMessageHandler(xf);
             ForumHandler fH = new ForumHandler(xf);
-            MemberHandler memH = new MemberHandler(xf);
+            XMLMemberHandler memH = new XMLMemberHandler(xf);
             Forum instance = new Forum(msgH, fH, memH);
         String password = "fhdsjkhfdjks";
         String badPassword = "1234";
@@ -181,7 +181,7 @@ public class ForumTest {
         XMLFileHandler xf = new XMLFileHandler("testForum.xml");
        XMLMessageHandler msgH = new XMLMessageHandler(xf);
        ForumHandler fH = new ForumHandler(xf);
-       MemberHandler memH = new MemberHandler(xf);
+       XMLMemberHandler memH = new XMLMemberHandler(xf);
        Forum instance = new Forum(msgH,fH,memH);
         Date tDate = new Date();
         Member newMember = new Member(instance, "nir", "n", "987654321", "nir", "her","mail",tDate);

@@ -51,7 +51,7 @@ public class ForumHandlerTest {
             System.out.println("login");
             String username = "nir";
             ForumHandler instance = new ForumHandler(xf);
-            MemberHandler mh = new MemberHandler(xf);
+            XMLMemberHandler mh = new XMLMemberHandler(xf);
             boolean oldStatus = mh.getStatus(username);
             assertFalse(oldStatus);
             instance.login(username);
@@ -72,7 +72,7 @@ public class ForumHandlerTest {
             System.out.println("logoff");
             String username = "alex";
             ForumHandler instance = new ForumHandler(xf);
-            MemberHandler mh = new MemberHandler(xf);
+            XMLMemberHandler mh = new XMLMemberHandler(xf);
             boolean oldStatus = mh.getStatus(username);
             assertTrue(oldStatus);
             instance.logoff(username);
