@@ -5,7 +5,7 @@ package Forum.DomainLayer;
 import Forum.DomainLayer.Interfaces.MemberInterface;
 import Forum.Exceptions.MessageNotFoundException;
 import Forum.Exceptions.MessageOwnerException;
-import java.text.Normalizer.Form;
+import Forum.PersistentLayer.Data.MemberData;
 import java.util.Date;
 
 /**
@@ -13,14 +13,7 @@ import java.util.Date;
  * @author Amit Ofer
  */
 public class Member  extends User implements MemberInterface{
-private String _userName;
-private String _nickName;
-private String _password;
-private String _firstName;
-private String _lastName;;
-private String _email;
-private Date _dateJoined;
-private Date _dateOfBirth;
+private MemberData _data;
 
 /**
  *constructor
@@ -33,17 +26,10 @@ private Date _dateOfBirth;
  * @param email
  * @param dateOfBirth
  */
-public Member(String userName,String nickName,String password,String firstName,String lastName,String email,
-       Date dateOfBirth){
+public Member(MemberData data){
     super();
-    this._userName = userName;
-    this._nickName = nickName;
-    this._password = password;
-    this._firstName = firstName;
-    this._lastName = lastName;
-    this._email = email;
-    this._dateOfBirth = dateOfBirth;
-    this._dateJoined = new Date();
+    this._data=data;
+    this._data.setDateJoined( new Date());
 }
 
 /**
@@ -51,7 +37,7 @@ public Member(String userName,String nickName,String password,String firstName,S
  * @return member's username
  */
 public String getUserName() {
-        return _userName;
+        return _data.getUserName();
     }
 
 /**
@@ -59,7 +45,7 @@ public String getUserName() {
  * @return member's password
  */
 public String getPassword() {
-        return _password;
+        return _data.getPassword();
     }
 
 /**
@@ -67,7 +53,7 @@ public String getPassword() {
  * @return member's nickname
  */
 public String getNickName() {
-        return _nickName;
+        return _data.getNickName();
     }
 
 /**
@@ -75,7 +61,7 @@ public String getNickName() {
  * @return member's last name
  */
 public String getLastName() {
-        return _lastName;
+        return _data.getLastName();
     }
 
 
@@ -85,7 +71,7 @@ public String getLastName() {
      * @return member's first name
      */
     public String getFirstName() {
-        return _firstName;
+        return _data.getFirstName();
     }
 
     /**
@@ -93,7 +79,7 @@ public String getLastName() {
      * @return member's email address
      */
     public String getEmail() {
-        return _email;
+        return _data.getEmail();
     }
 
     /**
@@ -101,7 +87,7 @@ public String getLastName() {
      * @return member's date of birth
      */
     public Date getDateOfBirth() {
-        return _dateOfBirth;
+        return _data.getDateOfBirth();
     }
 
     /**
@@ -109,14 +95,14 @@ public String getLastName() {
      * @return member's registration date
      */
     public Date getDateJoined() {
-        return _dateJoined;
+        return _data.getDateJoined();
     }
 /**
  * the mothod is used when the member decides to log out of the forum
  * when the user logs out he becomes a guest and therefore can no longer write messages
  */
     public void logOut() {
-       Forum.getInstance().logout(this._userName);
+       Forum.getInstance().logout(this.getUserName());
     }
 /**
  * this method is used when the member want to write a new message
@@ -124,7 +110,7 @@ public String getLastName() {
  * @param body - the body of the message
  */
     public void writeMessage(String subject, String body) {
-        Forum.getInstance().addMessage(this._nickName,subject,body);
+        Forum.getInstance().addMessage(this.getNickName(),subject,body);
     }
 /**
  * edit a message by changing the subject or the body of the message
@@ -133,7 +119,7 @@ public String getLastName() {
  * @param body - the new body
  */
     public void editMessage(int messageId, String subject, String body) throws MessageNotFoundException,MessageOwnerException{
-        Forum.getInstance().editMessage(this._nickName,messageId,subject,body);
+        Forum.getInstance().editMessage(this.getNickName(),messageId,subject,body);
     }
     /**
      * this method is used to add a new reply to a message
@@ -142,7 +128,7 @@ public String getLastName() {
      * @param body - the body of the message
      */
     public void addReply(int parentId,String subject,String body){
-        Forum.getInstance().addReply(parentId, this._nickName, subject, body);
+        Forum.getInstance().addReply(parentId, this.getNickName(), subject, body);
     }
 
 }

@@ -8,6 +8,7 @@ package Forum.DomainLayer.Interfaces;
 import Forum.DomainLayer.Member;
 import Forum.DomainLayer.Message;
 import Forum.Exceptions.*;
+import Forum.PersistentLayer.Data.MemberData;
 
 /**
  *
@@ -28,7 +29,7 @@ public interface ForumInterface {
      * @throws NicknameExistsException - is thrown when the nickname already exists
      * @throws BadPasswordException - is thrown when the password doesn't meet the required policy
      */
-    public void register(Member newMember) throws UserExistsException,NicknameExistsException,BadPasswordException;
+    public MemberInterface register(MemberData newMember) throws UserExistsException,NicknameExistsException,BadPasswordException;
     /**
      * this method is used when the user wants to log in
      * @param username -  the user name for the login
