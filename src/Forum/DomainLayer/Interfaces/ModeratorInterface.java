@@ -5,6 +5,8 @@
 
 package Forum.DomainLayer.Interfaces;
 
+import Forum.Exceptions.MessageNotFoundException;
+
 /**
  *
  * @author amit
@@ -14,5 +16,5 @@ public interface ModeratorInterface extends MemberInterface {
      * delete a message from the forum
      * @param messageId - the id of the message to be deleted
      */
-    public void deleteMessage(int messageId);
+    public void deleteMessage(int messageId) throws MessageNotFoundException;
 }
