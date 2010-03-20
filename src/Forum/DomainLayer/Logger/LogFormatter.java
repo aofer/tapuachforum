@@ -28,3 +28,5 @@ public class LogFormatter extends Formatter{
         return date.toString()+ "  "+ record.getMessage() + " " +  System.getProperty("line.separator");
 	}
 }
+
+
