@@ -6,7 +6,9 @@
 package Forum.DomainLayer;
 
 import Forum.DomainLayer.Interfaces.GuestInterface;
+import Forum.DomainLayer.Interfaces.MemberInterface;
 import Forum.Exceptions.*;
+import Forum.PersistentLayer.Data.MemberData;
 import java.util.Date;
 
 /**
@@ -35,10 +37,9 @@ public class Guest extends User implements GuestInterface {
      * @throws NicknameExistsException - is thrown when there is already a member with the same nickname
      * @throws BadPasswordException - is thrown when the password doesn't meet the required policy
      */
-    public void register(String username, String password, String nickname, String email, String firstName, String lastName, Date dateOfBirth)
+    public MemberInterface register(MemberData data)
             throws UserExistsException,NicknameExistsException,BadPasswordException{
-        Member tMember = new Member(username,nickname,email,password,firstName,lastName,dateOfBirth);
-        Forum.getInstance().register(tMember) ;
+        return Forum.getInstance().register(data) ;
     }
 /**
  * this method is used when a user wants to log into the forum

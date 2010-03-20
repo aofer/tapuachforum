@@ -7,6 +7,7 @@ package Forum.DomainLayer;
 import Forum.Exceptions.*;
 import Forum.DomainLayer.Interfaces.ForumInterface;
 import  Forum.PersistentLayer.*;
+import Forum.PersistentLayer.Data.MemberData;
 import Forum.PersistentLayer.Data.MessageData;
 import Forum.PersistentLayer.Interfaces.ForumHandlerInterface;
 import Forum.PersistentLayer.Interfaces.MemberInterface;
@@ -45,7 +46,7 @@ public class Forum implements ForumInterface{
      * @param forumHandler
      * @param memberHandler
      */
-    public void setXML(XMLMessageHandler messageHandler,ForumHandler forumHandler,MemberHandler memberHandler){
+    public void setXML(XMLMessageHandler messageHandler,ForumHandler forumHandler,XMLMemberHandler memberHandler){
         this._XmlForum = forumHandler;
         this._XmlMember = memberHandler;
         this._XmlMessage = messageHandler;
@@ -67,7 +68,9 @@ public class Forum implements ForumInterface{
      * @throws NicknameExistsException - is thrown when the nickname already exists in the forum
      * @throws BadPasswordException -  is thrown when the password the user supplied does not meet the password policy
      */
-    public void register(Member newMember)  throws UserExistsException,NicknameExistsException,BadPasswordException{
+    public Member register(MemberData newMemberData)  throws UserExistsException,NicknameExistsException,BadPasswordException{
+        Member newMember = new Member(newMemberData);
+        
         if (this._XmlForum.checkUsername(newMember.getUserName()))
             throw new UserExistsException();
         else if (this._XmlForum.checkNickname(newMember.getNickName()))
@@ -84,6 +87,7 @@ public class Forum implements ForumInterface{
            Date tDateOfBirth = newMember.getDateOfBirth();
             this._XmlForum.register(tUsername,tNickname,tPassword,tEmail,tFirstname, tLastname,tDateOfBirth);
         }
+        return newMember;
     }
 
     /**
@@ -117,13 +121,9 @@ public class Forum implements ForumInterface{
         else if (!tPassword.equals(password))
             throw new WrongPasswordException();
         else{
-            String tNickname = this._XmlMember.getNickName(username);
-            String tFirstName = this._XmlMember.getFirstName(username);
-            String tLastName = this._XmlMember.getLastName(username);
-            String tEmail = this._XmlMember.getEMail(username);
-            Date tDateOfBirth = this._XmlMember.getDateofBirth(username);
-            Date tDateJoined = this._XmlMember.getDateJoined(username);
-            Member tMember = new Member(username, tNickname, password, tFirstName, tLastName, tEmail, tDateOfBirth);
+            MemberData data=this._XmlMember.getMember(username);
+
+            Member tMember = new Member(data);
             this.addMember(tMember);
         }
 
