@@ -5,6 +5,8 @@
 
 package Forum.PersistentLayer;
 
+import Forum.Exceptions.MessageNotFoundException;
+import Forum.Exceptions.UserNotExistException;
 import Forum.PersistentLayer.Interfaces.ForumHandlerInterface;
 import java.math.BigInteger;
 import java.util.Date;
@@ -29,18 +31,25 @@ public class ForumHandler  implements  ForumHandlerInterface{
 
            private XMLFileHandler xf;
 
-    public ForumHandler(XMLFileHandler xf) {
+           /**
+            *
+            * @param xf
+            */
+           public ForumHandler(XMLFileHandler xf) {
         this.xf = xf;
     }
       	/**
      * set the status of the user to be online
-     * @param username, password */
+         * @param username
+         */
     public void login(String username) {
         for (MemberType m : this.xf.getForum().getMembers()) {
             if (m.getUserName().equals(username)) {
                 m.setStatus(true);
+                break;
             }
        }
+             xf.WriteToXML();
     }
 	/**
      * set the status of the user to be offline
@@ -49,10 +58,12 @@ public class ForumHandler  implements  ForumHandlerInterface{
          for (MemberType m : this.xf.getForum().getMembers()) {
             if (m.getUserName().equals(username)) {
                 m.setStatus(false);
+                break;
             }
        }
     }
 
+    // this function is helping to add ONE to the number of messeages in the forum
     private int getCounter(){
         int ans = this.xf.getForum().getMessageCounter().intValue();
         int tmp = ans +1;
@@ -60,19 +71,20 @@ public class ForumHandler  implements  ForumHandlerInterface{
         return ans;
     }
    	/**
-     * check if the username already exist 
-     * @param username 
+     * check if the username already exist
+     * @param username
      * @return username password if exists or NULL if not*/
     public String userExist(String username) {
                            for (MemberType m : this.xf.getForum().getMembers()) {
             if (m.getUserName().equals(username)) {
-                return m.getUserName();
+                return m.getPassword();
             }
         }
           return null;
         }
 
-        private MemberType findMember(String username){
+    // this function giving back member by his userName
+    private MemberType findMember(String username){
                          for (MemberType m : this.xf.getForum().getMembers()) {
             if (m.getUserName().equals(username)) {
                 return m;
@@ -81,16 +93,51 @@ public class ForumHandler  implements  ForumHandlerInterface{
           return null;
         }
 
-             private MessageType findMessage(int messageID) {
-                         for (MessageType m : this.xf.getForum().getMessages()) {
-              if(m.getMessageId().intValue() == messageID){
-                return m;
-            }
-        }
-          return null;
+     // this function giving back   Message from the main level of the tree if exist. Null outher wise;
+     // it is not in use!
+         private MessageType findMessageAtMain(int messageID) {
+
+             for (MessageType m : this.xf.getForum().getMessages()) {
+                     System.out.println( messageID);
+                   if(m.getMessageId().intValue() == messageID)
+                       return m;
+                 }
+
+                 return null;
         }
 
-             private MessageType findMessageOfUser(int messageID, String usernme) {
+
+      // this function giving back   Message from the tree if exist. Null outher wise;
+       // it is using the next helf-recorsivic function.
+        private MessageType findMessage(int messageID) {
+                MessageType tryMesaage = null;
+                 for (MessageType m : this.xf.getForum().getMessages()) {
+                       tryMesaage  =  findMessageRec(messageID, m);
+                       if (tryMesaage != null)
+                           return tryMesaage;
+                 }
+
+                 return null;
+        }
+
+     // recursivis function to find Messeage;
+        private MessageType findMessageRec(int messageID, MessageType messageAba) {
+                 if(messageAba.getMessageId().intValue() == messageID)
+                return messageAba;
+                 else{
+                MessageType tryMesaage = null;
+                for (MessageType m : messageAba.getMessage()) {
+                  tryMesaage =  findMessageRec(messageID, m);
+                  if (tryMesaage != null)
+                      return tryMesaage;
+                }
+                 }
+             return null;
+            }
+
+          // this is old function, not in use any more.
+        // is used to find Message under the user who wrote it.
+        private MessageType findMessageOfUser(int messageID, String usernme) {
                   MemberType memb = findMember(usernme);
                  for (MessageType m :    memb.getMessage()) {
               if(m.getMessageId().intValue() == messageID){
@@ -100,22 +147,28 @@ public class ForumHandler  implements  ForumHandlerInterface{
           return null;
         }
         /**
-     * check if the username already exist 
-     * @param username 
-     * @return username password if exists or NULL if not*/
-       
-        public String getSubject(int messageID)  {
-        for(MessageType m : this.xf.getForum().getMessages()){
-            if(m.getMessageId().intValue() == messageID){
+     * check if the username already exist
+         * @param messageID
+         * @return username password if exists or NULL if not*/
 
-                return m.getSubject();
+        public String getSubject(int messageID)  {
+            MessageType Aba = findMessage(messageID);
+          if (Aba != null)
+            return  Aba.getSubject();
+          else
+            return ("not such messe");
             }
-        }
-        return null;
-        }
+
     	/**
      * add a new member to the forum
-     * @param username ,  nickName, password, eMail, firstName, lastName, dateOfBirth */
+         * @param userName
+         * @param nickName
+         * @param password
+         * @param eMail
+         * @param firstName
+         * @param lastName
+         * @param dateOfBirth
+         */
     public void register(String userName, String nickName, String password, String eMail, String firstName, String lastName, Date dateOfBirth) {
         try {
             ObjectFactory factory = new ObjectFactory();
@@ -146,10 +199,15 @@ public class ForumHandler  implements  ForumHandlerInterface{
             Logger.getLogger(ForumHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
 	/**
      * add a new message to the forum
-     * @param parentId, createdBy, subject,body */
+         * @param parentId
+         * @param createdBy
+         * @param DateAdded
+         * @param subject
+         * @param body
+         */
     public void addMessage(int parentId, String createdBy, String subject, String body, Date DateAdded) {
         try {
             ObjectFactory factory = new ObjectFactory();
@@ -166,10 +224,16 @@ public class ForumHandler  implements  ForumHandlerInterface{
             newMessage.setDateAdded(xgcal);
             newMessage.setModifiedDate(xgcal);
             newMessage.setMessageId(BigInteger.valueOf(getCounter()));
-            this.xf.getForum().getMessages().add(newMessage);
+            //this.xf.getForum().getMessages().add(newMessage);
 
-            MemberType userWriter = findMember(createdBy);
-            userWriter.getMessage().add(newMessage);
+                  MessageType Aba = findMessage(parentId);
+          if (Aba != null)
+              Aba.getMessage().add(newMessage);
+          else
+               this.xf.getForum().getMessages().add(newMessage);
+
+          //  MemberType userWriter = findMember(createdBy);
+        //    userWriter.getMessage().add(newMessage);
 
             xf.WriteToXML();
         } catch (DatatypeConfigurationException ex) {
@@ -214,11 +278,23 @@ public class ForumHandler  implements  ForumHandlerInterface{
             gcal.setTime(modifyDate);
              xgcal2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(gcal);
             newMessage.setModifiedDate(xgcal2);
-               newMessage.setMessageId(BigInteger.valueOf(getCounter()));
-               this.xf.getForum().getMessages().add(newMessage);
+            newMessage.setMessageId(BigInteger.valueOf(getCounter()));
 
-                 MemberType userWriter = findMember(createdBy);
-            userWriter.getMessage().add(newMessage);
+          // add messega to MAIN
+            if (parentId == 0)
+           this.xf.getForum().getMessages().add(newMessage);
+          // add messega in TREE
+          else{
+              MessageType Aba = findMessage(parentId);
+          if (Aba != null)
+              Aba.getMessage().add(newMessage);
+         // didnt find perent, put in MAIN
+          else
+               this.xf.getForum().getMessages().add(newMessage);
+          }
+
+  //               MemberType userWriter = findMember(createdBy);
+//            userWriter.getMessage().add(newMessage);
                    xf.WriteToXML();
         } catch (DatatypeConfigurationException ex) {
             Logger.getLogger(ForumHandler.class.getName()).log(Level.SEVERE, null, ex);
@@ -233,8 +309,8 @@ public class ForumHandler  implements  ForumHandlerInterface{
         }
           return null;
         };
-   
-    
+
+
 
     public boolean checkUsername(String username) {
                                   for (MemberType m : this.xf.getForum().getMembers()) {
@@ -245,7 +321,9 @@ public class ForumHandler  implements  ForumHandlerInterface{
           return false;
         }
 
+
     public void editMessage(int messageId, String newSubject, String newBody, Date dateModified) {
+
         try {
             MessageType msg = findMessage(messageId);
             msg.setSubject(newSubject);
@@ -256,18 +334,72 @@ public class ForumHandler  implements  ForumHandlerInterface{
             XMLGregorianCalendar xgcal;
             xgcal = DatatypeFactory.newInstance().newXMLGregorianCalendar(gcal);
             msg.setModifiedDate(xgcal);
+              xf.WriteToXML();
 
-
-            MessageType msg2 = findMessageOfUser(messageId, msg.getCreatedBy());
-            msg2.setSubject(newSubject);
-            msg2.setBody(newBody);
-              msg2.setModifiedDate(xgcal);
-
-            xf.WriteToXML();
-      
         } catch (DatatypeConfigurationException ex) {
             Logger.getLogger(ForumHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    /**
+     *
+     * @param messageId
+     * @throws MessageNotFoundException
+     */
+    public void deleteMessage(int messageId) throws MessageNotFoundException {
+            MessageType sonToRemove = findMessage(messageId);
+            // find the messeage
+             if (sonToRemove != null) {
+                 // message is in main level
+            if (sonToRemove.getParentId().intValue() == 0){
+                this.xf.getForum().getMessages().remove(sonToRemove);
+                int nowNum = this.xf.getForum().getMessageCounter().intValue();
+                  this.xf.getForum().setMessageCounter(BigInteger.valueOf(nowNum-1));
+            }
+          // message is NOT inn main level
+            else {
+              MessageType Aba = findMessage(sonToRemove.getParentId().intValue());
+           // find it somewhere
+              if (Aba != null){
+                  Aba.getMessage().remove(sonToRemove);
+                       int nowNum = this.xf.getForum().getMessageCounter().intValue();
+                  this.xf.getForum().setMessageCounter(BigInteger.valueOf(nowNum-1));
+              }
+            // didn't find at all. BAD
+              else
+                    throw new MessageNotFoundException("There is son, but not perent");
+           }
+             }
+             else
+                 // didnt find the message
+              throw new MessageNotFoundException("There is not son to delete. at no place!");
+              xf.WriteToXML();
+       }
+
+    /**
+     *
+     * @param username
+     * @throws UserNotExistException
+     */
+    public void upgradeUser(String username) throws UserNotExistException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    /**
+     *
+     */
+
+    // this is just help funtion. It is taking at exsisting forum and clean it;
+    public void initForum(){
+               this.xf.getForum().getMembers().removeAll(this.xf.getForum().getMembers());
+               this.xf.getForum().getMessages().removeAll(this.xf.getForum().getMessages());
+               this.xf.getForum().setForumName("Tapuach");
+               this.xf.getForum().setMessageCounter(BigInteger.ONE);
+    }
+    // this function giving back member by his userName
+    public boolean getStatus(String username){
+            return    findMember(username).isStatus();
+        }
+
+
 
 }
