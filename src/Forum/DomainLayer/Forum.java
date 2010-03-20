@@ -6,6 +6,7 @@
 package Forum.DomainLayer;
 import Forum.Exceptions.*;
 import Forum.DomainLayer.Interfaces.ForumInterface;
+import Forum.DomainLayer.Logger.TapuachLogger;
 import  Forum.PersistentLayer.*;
 import Forum.PersistentLayer.Data.MemberData;
 import Forum.PersistentLayer.Data.MessageData;
@@ -115,7 +116,8 @@ public class Forum implements ForumInterface{
      * @throws WrongPasswordException
      */
     public void login(String username, String password) throws NoSuchUserException,WrongPasswordException {
-        String tPassword = this._XmlForum.userExists(username);
+    	TapuachLogger.getInstance().info("user:  " + username + " logged in");
+    	String tPassword = this._XmlForum.userExists(username);
         if (tPassword == null)
             throw new NoSuchUserException(username);
         else if (!tPassword.equals(password))
