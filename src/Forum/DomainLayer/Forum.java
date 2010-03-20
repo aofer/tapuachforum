@@ -200,6 +200,14 @@ public class Forum implements ForumInterface{
         this._XmlForum.addMessage(parentId, body, subject, body, tDate, tDate);
     }
 
+    void upgradeUser(String username) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    void deleteMessage(int messageId) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
 
 
 
