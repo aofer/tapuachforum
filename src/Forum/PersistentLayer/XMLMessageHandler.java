@@ -21,10 +21,37 @@ public class XMLMessageHandler implements MessageInterface {
         this.xf = xf;
     }
 
-    public MessageData getMessage(int messageID)
-    {
-           for(MessageType m : this.xf.getForum().getMessages()){
-                if(m.getMessageId().intValue() == messageID){
+     private MessageType findMessage(int messageID) {
+                MessageType tryMesaage = null;
+                 for (MessageType m : this.xf.getForum().getMessages()) {
+                       tryMesaage  =  findMessageRec(messageID, m);
+                       if (tryMesaage != null)
+                           return tryMesaage;
+                 }
+
+                 return null;
+        }
+
+     // recursivis function to find Messeage;
+        private MessageType findMessageRec(int messageID, MessageType messageAba) {
+                 if(messageAba.getMessageId().intValue() == messageID)
+                return messageAba;
+                 else{
+                MessageType tryMesaage = null;
+                for (MessageType m : messageAba.getMessage()) {
+                  tryMesaage =  findMessageRec(messageID, m);
+                  if (tryMesaage != null)
+                      return tryMesaage;
+                }
+                 }
+             return null;
+            }
+
+    public MessageData getMessage(int messageID)    {
+      MessageType m = findMessage(messageID);
+      if  (m != null) {
+      //  for(MessageType m : this.xf.getForum().getMessages()){
+    //            if(m.getMessageId().intValue() == messageID){
                     String nick=m.getCreatedBy();
                     String sub=m.getSubject();
                     String body = m.getBody();
@@ -32,8 +59,9 @@ public class XMLMessageHandler implements MessageInterface {
                     Date modified =m.getModifiedDate().toGregorianCalendar().getTime();
 
                     return new MessageData(nick, sub, body, created, modified);
-                }
+   //             }
             }
            return null;
     }
 }
+//change XMLMemberHandler to do recursic searsh all over the hirracic tree of messages.
