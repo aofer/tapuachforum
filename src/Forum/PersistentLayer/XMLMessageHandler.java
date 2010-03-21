@@ -6,14 +6,14 @@ package Forum.PersistentLayer;
 
 import Forum.Exceptions.MessageNotFoundException;
 import Forum.PersistentLayer.Data.MessageData;
-import Forum.PersistentLayer.Interfaces.MessageInterface;
+import Forum.PersistentLayer.Interfaces.XMLMessageInterface;
 import java.util.Date;
 
 /**
  *
  * @author Arseny
  */
-public class XMLMessageHandler implements MessageInterface {
+public class XMLMessageHandler implements XMLMessageInterface {
 
     private XMLFileHandler xf;
 

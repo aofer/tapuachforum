@@ -21,5 +21,4 @@ public class Moderator extends Member implements ModeratorInterface {
     public void deleteMessage(int messageId) throws MessageNotFoundException{
         Forum.getInstance().deleteMessage(messageId);
     }
-
 }

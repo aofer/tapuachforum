@@ -5,6 +5,7 @@
 
 package Forum.DomainLayer;
 
+import Forum.DomainLayer.Interfaces.MessageInterface;
 import Forum.PersistentLayer.Data.MessageData;
 import java.util.Date;
 import java.util.Vector;
@@ -13,7 +14,7 @@ import java.util.Vector;
  *
  * @author Amit Ofer
  */
-public class Message {
+public class Message implements MessageInterface {
 
  private MessageData _data;
  private Vector<Message> _replies;

@@ -5,24 +5,34 @@
 
 package Forum.DomainLayer.Interfaces;
 
-import Forum.DomainLayer.Member;
-import Forum.DomainLayer.Message;
 import Forum.Exceptions.*;
 import Forum.PersistentLayer.Data.MemberData;
-import java.security.NoSuchAlgorithmException;
+import Forum.PersistentLayer.ForumHandler;
+import Forum.PersistentLayer.Interfaces.XMLMessageInterface;
+import Forum.PersistentLayer.XMLMemberHandler;
+import Forum.PersistentLayer.XMLMessageHandler;
+import java.util.Vector;
 
 /**
  *
  * @author Amit Ofer
  */
 public interface ForumInterface {
+
+    /**
+     * Setting the Handlers of which the forum will read and write data
+     * @param messageHandler
+     * @param forumHandler
+     * @param memberHandler
+     */
+    void setDBHandlers(XMLMessageHandler messageHandler,ForumHandler forumHandler,XMLMemberHandler memberHandler);
     /**
      *  this methods is used to get a message from the database
      * @param messageId - the id of the required message
      * @return the message that is required
      * @throws MessageNotFoundException - is thrown when the message does not exist
      */
-    public Message getMessage(int messageId)throws MessageNotFoundException;
+    MessageInterface getMessage(int messageId)throws MessageNotFoundException;
     /**
      * this method is used to register a new user to the forum
      * @param newMember - the details of the member to be added
@@ -30,7 +40,7 @@ public interface ForumInterface {
      * @throws NicknameExistsException - is thrown when the nickname already exists
      * @throws BadPasswordException - is thrown when the password doesn't meet the required policy
      */
-    public MemberInterface register(MemberData newMember) throws UserExistsException,NicknameExistsException,BadPasswordException;
+    MemberInterface register(MemberData newMember) throws UserExistsException,NicknameExistsException,BadPasswordException;
     /**
      * this method is used when the user wants to log in
      * @param username -  the user name for the login
@@ -38,30 +48,26 @@ public interface ForumInterface {
      * @throws NoSuchUserException - is thrown when there is no such user
      * @throws WrongPasswordException - is thrown when the password doesn't match
      */
-    public void login(String username, String password) throws NoSuchUserException,WrongPasswordException ;
+    void login(String username, String password) throws NoSuchUserException,WrongPasswordException ;
     /**
      * this method is used for logging out of the forum
      * @param username - the user name of the user that wants to log out
      */
-    public void logout(String username);
+    void logout(String username);
     /**
      * this method is used for adding a new message for the forum
      * @param nickname - the nickname of the user that writes the message
      * @param Subject - the subject of the message
      * @param body - the body of the message
      */
-    public void addMessage(String nickname,String Subject,String body);
-    /**
-     * check if the given password meets a certain policy
-     * @param password - the given password
-     * @return - true if the password is ok false if not
+    void addMessage(String nickname,String Subject,String body) throws MessageOwnerException;
+        /**
+     * this method is used for adding a reply to  a new message in the forum
+     * @param nickname - the nickname of the user that writes the message
+     * @param Subject - the subject of the message
+     * @param body - the body of the message
      */
-    public boolean checkPasswordPolicy(String password);
-    /**
-     * this method is used for adding an online member to the forum
-     * @param member
-     */
-    public void addMember(Member member) ;
+    void addMessage(int replyId, String nickname,String Subject,String body) throws MessageNotFoundException,MessageOwnerException;
     /**
      * this method is used for editing a message
      * @param nickname - the nickname of the writer
@@ -72,20 +78,14 @@ public interface ForumInterface {
      * @throws MessageOwnerException - is thrown when the user that wants to edit the message is not the owner
      * of the message
      */
-    public void editMessage(String nickname,int messageId,String newSubject,String newBody)throws MessageNotFoundException,MessageOwnerException;
+    void editMessage(String nickname,int messageId,String newSubject,String newBody) throws MessageNotFoundException,MessageOwnerException;
+
+     void deleteMessage(int messageId) throws MessageNotFoundException;
     /**
-     *this method is used for adding a new reply to a certain message
-     * @param parentId - the id of the parent of the reply
-     * @param nickname - the nickname of the writer of the reply
-     * @param subject - the subject of the reply
-     * @param body - the body of the reply
+     * get a vector with all the member who are login in the forum
+     * @return  a vector with all the member who are login in the forum
      */
-    public void addReply(int parentId,String nickname,String subject,String body);
-    /**
-     * this method encrypts a password that will later be saved in the persistent layer
-     * @param password - the original password that needs to be encrypted
-     * @return - the encrypted password using the chosen algorithm
-     * @throws NoSuchAlgorithmException - when the ecryption algorithm isn't known in this version of java
-     */
-    public String encryptPassword(String password) ;
+     Vector<MemberInterface> getOnlineMembers();
+
+      void upgradeUser(String username) throws UserNotExistException;
 }

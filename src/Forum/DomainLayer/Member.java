@@ -109,8 +109,17 @@ public String getLastName() {
  * @param subject - the subject of the message
  * @param body - the body of the message
  */
-    public void writeMessage(String subject, String body) {
+  public  void writeMessage(String subject, String body) throws MessageNotFoundException,MessageOwnerException{
         Forum.getInstance().addMessage(this.getNickName(),subject,body);
+    }
+        /**
+     * this method is used to add a new reply to a message
+     * @param parentId - the id of the parent message
+     * @param subject - the subject of the new reply
+     * @param body - the body of the message
+     */
+    public void writeMessage(int replyID,String subject,String body) throws MessageNotFoundException,MessageOwnerException{
+        Forum.getInstance().addMessage(replyID, this.getNickName(), subject, body);
     }
 /**
  * edit a message by changing the subject or the body of the message
@@ -121,14 +130,6 @@ public String getLastName() {
     public void editMessage(int messageId, String subject, String body) throws MessageNotFoundException,MessageOwnerException{
         Forum.getInstance().editMessage(this.getNickName(),messageId,subject,body);
     }
-    /**
-     * this method is used to add a new reply to a message
-     * @param parentId - the id of the parent message
-     * @param subject - the subject of the new reply
-     * @param body - the body of the message
-     */
-    public void addReply(int parentId,String subject,String body){
-        Forum.getInstance().addReply(parentId, this.getNickName(), subject, body);
-    }
+
 
 }
