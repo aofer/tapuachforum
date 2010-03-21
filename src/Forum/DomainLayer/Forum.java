@@ -26,13 +26,12 @@ public class Forum implements ForumInterface {
     public static Forum getInstance() {
         if (_forum == null) {
             _forum = new Forum();
-            
+
         }
         return _forum;
     }
 
     private Forum() {
-
     }
 
     /**

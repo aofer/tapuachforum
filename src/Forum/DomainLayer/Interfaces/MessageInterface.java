@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Forum.DomainLayer.Interfaces;
 
 import Forum.DomainLayer.Message;
@@ -55,5 +54,4 @@ public interface MessageInterface {
      * @param _subject
      */
     void setSubject(String subject);
-
 }

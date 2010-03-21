@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Forum.DomainLayer.Interfaces;
 
 import Forum.Exceptions.MessageNotFoundException;
@@ -12,7 +11,8 @@ import Forum.Exceptions.MessageNotFoundException;
  * @author Kipi
  */
 public interface UserInterface {
-        /**
+
+    /**
      * this method is used when the user requests to read a certain message, by supplying the id of the message
      * that needs to be read
      * @param messageId - the id of the message

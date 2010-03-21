@@ -1,5 +1,3 @@
-
-
 package Forum.DomainLayer;
 
 import Forum.DomainLayer.Interfaces.MemberInterface;
@@ -12,59 +10,58 @@ import java.util.Date;
  *this class represents a registered member in the forum
  * @author Amit Ofer
  */
-public class Member  extends User implements MemberInterface{
-private MemberData _data;
+public class Member extends User implements MemberInterface {
 
-/**
- *constructor
- * @param forum
- * @param userName
- * @param nickName
- * @param password
- * @param firstName
- * @param lastName
- * @param email
- * @param dateOfBirth
- */
-public Member(MemberData data){
-    super();
-    this._data=data;
-    this._data.setDateJoined( new Date());
-}
+    private MemberData _data;
 
-/**
- *getter for the username
- * @return member's username
- */
-public String getUserName() {
+    /**
+     *constructor
+     * @param forum
+     * @param userName
+     * @param nickName
+     * @param password
+     * @param firstName
+     * @param lastName
+     * @param email
+     * @param dateOfBirth
+     */
+    public Member(MemberData data) {
+        super();
+        this._data = data;
+        this._data.setDateJoined(new Date());
+    }
+
+    /**
+     *getter for the username
+     * @return member's username
+     */
+    public String getUserName() {
         return _data.getUserName();
     }
 
-/**
- *getter for the password
- * @return member's password
- */
-public String getPassword() {
+    /**
+     *getter for the password
+     * @return member's password
+     */
+    public String getPassword() {
         return _data.getPassword();
     }
 
-/**
- *getter for nickName
- * @return member's nickname
- */
-public String getNickName() {
+    /**
+     *getter for nickName
+     * @return member's nickname
+     */
+    public String getNickName() {
         return _data.getNickName();
     }
 
-/**
- *getter for the lastName
- * @return member's last name
- */
-public String getLastName() {
+    /**
+     *getter for the lastName
+     * @return member's last name
+     */
+    public String getLastName() {
         return _data.getLastName();
     }
-
-
 
     /**
      *getter for the first name
@@ -97,39 +94,41 @@ public String getLastName() {
     public Date getDateJoined() {
         return _data.getDateJoined();
     }
-/**
- * the mothod is used when the member decides to log out of the forum
- * when the user logs out he becomes a guest and therefore can no longer write messages
- */
+
+    /**
+     * the mothod is used when the member decides to log out of the forum
+     * when the user logs out he becomes a guest and therefore can no longer write messages
+     */
     public void logOut() {
-       Forum.getInstance().logout(this.getUserName());
+        Forum.getInstance().logout(this.getUserName());
     }
-/**
- * this method is used when the member want to write a new message
- * @param subject - the subject of the message
- * @param body - the body of the message
- */
-  public  void writeMessage(String subject, String body) throws MessageNotFoundException,MessageOwnerException{
-        Forum.getInstance().addMessage(this.getNickName(),subject,body);
+
+    /**
+     * this method is used when the member want to write a new message
+     * @param subject - the subject of the message
+     * @param body - the body of the message
+     */
+    public void writeMessage(String subject, String body) throws MessageNotFoundException, MessageOwnerException {
+        Forum.getInstance().addMessage(this.getNickName(), subject, body);
     }
-        /**
+
+    /**
      * this method is used to add a new reply to a message
      * @param parentId - the id of the parent message
      * @param subject - the subject of the new reply
      * @param body - the body of the message
      */
-    public void writeMessage(int replyID,String subject,String body) throws MessageNotFoundException,MessageOwnerException{
+    public void writeMessage(int replyID, String subject, String body) throws MessageNotFoundException, MessageOwnerException {
         Forum.getInstance().addMessage(replyID, this.getNickName(), subject, body);
     }
-/**
- * edit a message by changing the subject or the body of the message
- * @param messageId - the Id of the number that needs to be edited
- * @param subject - the new subject
- * @param body - the new body
- */
-    public void editMessage(int messageId, String subject, String body) throws MessageNotFoundException,MessageOwnerException{
-        Forum.getInstance().editMessage(this.getNickName(),messageId,subject,body);
+
+    /**
+     * edit a message by changing the subject or the body of the message
+     * @param messageId - the Id of the number that needs to be edited
+     * @param subject - the new subject
+     * @param body - the new body
+     */
+    public void editMessage(int messageId, String subject, String body) throws MessageNotFoundException, MessageOwnerException {
+        Forum.getInstance().editMessage(this.getNickName(), messageId, subject, body);
     }
-
-
 }
