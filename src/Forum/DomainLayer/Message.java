@@ -2,12 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Forum.DomainLayer;
 
 import Forum.DomainLayer.Interfaces.MessageInterface;
 import Forum.PersistentLayer.Data.MessageData;
-import java.util.Date;
 import java.util.Vector;
 
 /**
@@ -16,42 +14,39 @@ import java.util.Vector;
  */
 public class Message implements MessageInterface {
 
- private MessageData _data;
- private Vector<Message> _replies;
+    private MessageData _data;
+    private Vector<Message> _replies;
 
+    /**
+     *constructor
+     * @param nickname
+     * @param subject
+     * @param body
+     */
+    public Message(MessageData data) {
+        this._data = data;
+        this._replies = new Vector<Message>();
+    }
 
- /**
-  *constructor
-  * @param nickname
-  * @param subject
-  * @param body
-  */
- public Message(MessageData data)
- {
-     this._data=data;
-     this._replies  = new Vector<Message>();
- }
- /**
-  *another constructor
-  * @param nickname
-  * @param subject
-  * @param body
-  * @param replies
-  * @param WriteDate
-  * @param ModifiedDate
-  */
- public Message(MessageData data , Vector<Message> replies)
- {
-     this(data);
-     this._replies  = new Vector<Message>();
- }
+    /**
+     *another constructor
+     * @param nickname
+     * @param subject
+     * @param body
+     * @param replies
+     * @param WriteDate
+     * @param ModifiedDate
+     */
+    public Message(MessageData data, Vector<Message> replies) {
+        this(data);
+        this._replies = new Vector<Message>();
+    }
 
-
- /**
-  * getter for the body
-  * @return
-  */
- public String getBody() {
+    /**
+     * getter for the body
+     * @return
+     */
+    public String getBody() {
         return _data.getBody();
     }
 
@@ -99,18 +94,17 @@ public class Message implements MessageInterface {
      *add a new reply
      * @param msg
      */
-    public void addReply(Message msg){
-     this._replies.add(msg);
- }
+    public void addReply(Message msg) {
+        this._replies.add(msg);
+    }
 
     /**
      * toString method for a message
      * @return
      */
     @Override
- public String toString(){
-     return  "\nSubject:" + _data.getSubject() + "\nWritten by:" + _data.getNickname()
-             + "\n Number of replies:" + _replies.size() + "\nBody:" + _data.getBody() + "\n";
- }
-
+    public String toString() {
+        return "\nSubject:" + _data.getSubject() + "\nWritten by:" + _data.getNickname()
+                + "\n Number of replies:" + _replies.size() + "\nBody:" + _data.getBody() + "\n";
+    }
 }

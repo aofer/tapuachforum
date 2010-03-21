@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Forum.DomainLayer.Interfaces;
 
 import Forum.Exceptions.*;
@@ -25,14 +24,16 @@ public interface ForumInterface {
      * @param forumHandler
      * @param memberHandler
      */
-    void setDBHandlers(XMLMessageHandler messageHandler,ForumHandler forumHandler,XMLMemberHandler memberHandler);
+    void setDBHandlers(XMLMessageHandler messageHandler, ForumHandler forumHandler, XMLMemberHandler memberHandler);
+
     /**
      *  this methods is used to get a message from the database
      * @param messageId - the id of the required message
      * @return the message that is required
      * @throws MessageNotFoundException - is thrown when the message does not exist
      */
-    MessageInterface getMessage(int messageId)throws MessageNotFoundException;
+    MessageInterface getMessage(int messageId) throws MessageNotFoundException;
+
     /**
      * this method is used to register a new user to the forum
      * @param newMember - the details of the member to be added
@@ -40,7 +41,8 @@ public interface ForumInterface {
      * @throws NicknameExistsException - is thrown when the nickname already exists
      * @throws BadPasswordException - is thrown when the password doesn't meet the required policy
      */
-    MemberInterface register(MemberData newMember) throws UserExistsException,NicknameExistsException,BadPasswordException;
+    MemberInterface register(MemberData newMember) throws UserExistsException, NicknameExistsException, BadPasswordException;
+
     /**
      * this method is used when the user wants to log in
      * @param username -  the user name for the login
@@ -48,26 +50,30 @@ public interface ForumInterface {
      * @throws NoSuchUserException - is thrown when there is no such user
      * @throws WrongPasswordException - is thrown when the password doesn't match
      */
-    void login(String username, String password) throws NoSuchUserException,WrongPasswordException ;
+    void login(String username, String password) throws NoSuchUserException, WrongPasswordException;
+
     /**
      * this method is used for logging out of the forum
      * @param username - the user name of the user that wants to log out
      */
     void logout(String username);
+
     /**
      * this method is used for adding a new message for the forum
      * @param nickname - the nickname of the user that writes the message
      * @param Subject - the subject of the message
      * @param body - the body of the message
      */
-    void addMessage(String nickname,String Subject,String body) throws MessageOwnerException;
-        /**
+    void addMessage(String nickname, String Subject, String body) throws MessageOwnerException;
+
+    /**
      * this method is used for adding a reply to  a new message in the forum
      * @param nickname - the nickname of the user that writes the message
      * @param Subject - the subject of the message
      * @param body - the body of the message
      */
-    void addMessage(int replyId, String nickname,String Subject,String body) throws MessageNotFoundException,MessageOwnerException;
+    void addMessage(int replyId, String nickname, String Subject, String body) throws MessageNotFoundException, MessageOwnerException;
+
     /**
      * this method is used for editing a message
      * @param nickname - the nickname of the writer
@@ -78,14 +84,15 @@ public interface ForumInterface {
      * @throws MessageOwnerException - is thrown when the user that wants to edit the message is not the owner
      * of the message
      */
-    void editMessage(String nickname,int messageId,String newSubject,String newBody) throws MessageNotFoundException,MessageOwnerException;
+    void editMessage(String nickname, int messageId, String newSubject, String newBody) throws MessageNotFoundException, MessageOwnerException;
 
-     void deleteMessage(int messageId) throws MessageNotFoundException;
+    void deleteMessage(int messageId) throws MessageNotFoundException;
+
     /**
      * get a vector with all the member who are login in the forum
      * @return  a vector with all the member who are login in the forum
      */
-     Vector<MemberInterface> getOnlineMembers();
+    Vector<MemberInterface> getOnlineMembers();
 
-      void upgradeUser(String username) throws UserNotExistException;
+    void upgradeUser(String username) throws UserNotExistException;
 }
