@@ -6,7 +6,7 @@ package Forum.PersistentLayer;
 
 import Forum.Exceptions.NoSuchUserException;
 import Forum.PersistentLayer.Data.MemberData;
-import Forum.PersistentLayer.Interfaces.MemberInterface;
+import Forum.PersistentLayer.Interfaces.XMLMemberInterface;
 import java.util.Date;
 import java.util.GregorianCalendar;
 //import javax.swing.text.StyledEditorKit.BoldAction;
@@ -21,7 +21,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *
  * @author Nir
  */
-public class XMLMemberHandler implements MemberInterface {
+public class XMLMemberHandler implements XMLMemberInterface {
 
     /**
      *

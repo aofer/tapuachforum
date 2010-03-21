@@ -7,6 +7,6 @@ import Forum.PersistentLayer.Data.MemberData;
 * @author Liron Katav
 */
 
-public interface MemberInterface {
+public interface XMLMemberInterface {
     MemberData getMember(String userName);
 }

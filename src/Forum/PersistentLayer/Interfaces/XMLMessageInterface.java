@@ -5,7 +5,7 @@ import Forum.PersistentLayer.Data.MessageData;
 *
 * @author Liron Katav
 */
-public interface MessageInterface {
+public interface XMLMessageInterface {
 	    
         MessageData getMessage(int messageID);
         
