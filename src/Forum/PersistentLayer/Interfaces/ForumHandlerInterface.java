@@ -13,7 +13,14 @@ public interface ForumHandlerInterface {
 	
 	/**
      * add a new member to the forum
-     * @param username ,  nickName, password, eMail, firstName, lastName, dateOfBirth */
+         * @param userName
+         * @param password
+         * @param nickName
+         * @param eMail
+         * @param lastName
+         * @param firstName
+         * @param dateOfBirth
+         */
 	public void register ( 	String userName , 
 							String nickName,
 							String password,
@@ -48,7 +55,8 @@ public interface ForumHandlerInterface {
 	
 	/**
      * set the status of the user to be online
-     * @param username, password */
+         * @param username
+         */
 	public void login (String username);
 	
 	/**
@@ -58,7 +66,13 @@ public interface ForumHandlerInterface {
 		
 	/**
      * add a new message to the forum
-     * @param parentId, createdBy, subject,body */
+         * @param parentId
+         * @param body
+         * @param createdBy
+         * @param subject
+         * @param DateAdded
+         * @param modifyDate
+         */
 	public void addMessage ( int parentId, String createdBy, String subject,String body, Date DateAdded, Date modifyDate);
         /**
          * edits a message
@@ -69,7 +83,17 @@ public interface ForumHandlerInterface {
          */
         public void editMessage(int messageId,String newSubject,String newBody,Date dateModified);
 
+        /**
+         * used for deleting a message from the forum
+         * @param messageId - the id of the message that will be deleted
+         * @throws MessageNotFoundException - is thrown when the message was not found
+         */
         public void deleteMessage(int messageId) throws MessageNotFoundException;
 
-        public void upgradeUser (String username) throws UserNotExistException;
+        /**
+         * upgrade a user into a moderator
+         * @param username - the username of the user we want to upgrade
+         * @throws UserNotExistException - is thrown when the user does not exist
+         */
+        public void upgradeUser(String username) throws UserNotExistException;
 }

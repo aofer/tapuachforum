@@ -11,6 +11,7 @@ import Forum.PersistentLayer.Data.MessageData;
 import Forum.PersistentLayer.Interfaces.ForumHandlerInterface;
 import Forum.PersistentLayer.Interfaces.XMLMessageInterface;
 import java.util.Date;
+import java.util.List;
 import java.util.Vector;
 
 /**
@@ -27,13 +28,14 @@ public class MessageHandler {
         this._XmlMessage = xmlMessage;
     }
 
-    public MessageInterface getMessage(int messageId) throws MessageNotFoundException {
+    public Message getMessage(int messageId) throws MessageNotFoundException {
         MessageData data = this._XmlMessage.getMessage(messageId);
         Message msg = new Message(data);
-
-        Vector<Message> tReplies = new Vector<Message>();
-
-        //get children to be implemented later on!!
+        List<Integer> tReplyIds = this._XmlMessage.getRepliesIds(messageId);
+        for (int i = 0;i<tReplyIds.size();i++){
+            Message  tReply = getMessage(tReplyIds.get(i).intValue());
+            msg.addReply(tReply);
+        }
 
         return msg;
     }
