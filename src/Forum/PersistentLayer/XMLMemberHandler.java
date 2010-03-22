@@ -4,17 +4,11 @@
  */
 package Forum.PersistentLayer;
 
-import Forum.Exceptions.NoSuchUserException;
 import Forum.PersistentLayer.Data.MemberData;
 import Forum.PersistentLayer.Interfaces.XMLMemberInterface;
+import Forum.PersistentLayer.Interfaces.eMemberType;
 import java.util.Date;
-import java.util.GregorianCalendar;
 //import javax.swing.text.StyledEditorKit.BoldAction;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
 //import sun.font.CreatedFontTracker;
 
 /**
@@ -48,6 +42,10 @@ public class XMLMemberHandler implements XMLMemberInterface {
             }
         }
         return null;
+    }
+
+    public eMemberType getMemberType(String userName) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
 

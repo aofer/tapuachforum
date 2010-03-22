@@ -7,6 +7,7 @@ package Forum.DomainLayer;
 import Forum.DomainLayer.Interfaces.ModeratorInterface;
 import Forum.Exceptions.MessageNotFoundException;
 import Forum.PersistentLayer.Data.MemberData;
+import Forum.PersistentLayer.Interfaces.eMemberType;
 
 /**
  *
@@ -20,5 +21,10 @@ public class Moderator extends Member implements ModeratorInterface {
 
     public void deleteMessage(int messageId) throws MessageNotFoundException {
         Forum.getInstance().deleteMessage(messageId);
+    }
+
+    @Override
+    public eMemberType getType() {
+        return eMemberType.Moderator;
     }
 }

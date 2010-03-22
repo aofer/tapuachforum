@@ -4,6 +4,7 @@ import Forum.DomainLayer.Interfaces.MemberInterface;
 import Forum.Exceptions.MessageNotFoundException;
 import Forum.Exceptions.MessageOwnerException;
 import Forum.PersistentLayer.Data.MemberData;
+import Forum.PersistentLayer.Interfaces.eMemberType;
 import java.util.Date;
 
 /**
@@ -130,5 +131,9 @@ public class Member extends User implements MemberInterface {
      */
     public void editMessage(int messageId, String subject, String body) throws MessageNotFoundException, MessageOwnerException {
         Forum.getInstance().editMessage(this.getNickName(), messageId, subject, body);
+    }
+
+    public eMemberType getType() {
+        return eMemberType.member;
     }
 }
