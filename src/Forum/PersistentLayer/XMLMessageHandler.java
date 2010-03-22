@@ -4,10 +4,10 @@
  */
 package Forum.PersistentLayer;
 
-import Forum.Exceptions.MessageNotFoundException;
 import Forum.PersistentLayer.Data.MessageData;
 import Forum.PersistentLayer.Interfaces.XMLMessageInterface;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -62,6 +62,10 @@ public class XMLMessageHandler implements XMLMessageInterface {
    //             }
             }
            return null;
+    }
+
+    public List<Integer> getRepliesIds(int messageID) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
 //change XMLMemberHandler to do recursic searsh all over the hirracic tree of messages.
