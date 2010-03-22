@@ -6,6 +6,7 @@ package Forum.DomainLayer.Interfaces;
 
 import Forum.Exceptions.MessageNotFoundException;
 import Forum.Exceptions.MessageOwnerException;
+import Forum.PersistentLayer.Interfaces.eMemberType;
 import java.util.Date;
 
 /**
@@ -84,4 +85,7 @@ public interface MemberInterface {
     void writeMessage(String subject, String body) throws MessageNotFoundException, MessageOwnerException;
 
     void writeMessage(int replyID, String subject, String body) throws MessageNotFoundException, MessageOwnerException;
+
+    eMemberType getType();
+
 }

@@ -7,6 +7,7 @@ package Forum.DomainLayer;
 import Forum.DomainLayer.Interfaces.AdminInterface;
 import Forum.Exceptions.UserNotExistException;
 import Forum.PersistentLayer.Data.MemberData;
+import Forum.PersistentLayer.Interfaces.eMemberType;
 
 /**
  *
@@ -21,4 +22,8 @@ public class Admin extends Moderator implements AdminInterface {
     public void upgradeUser(String username) throws UserNotExistException {
         Forum.getInstance().upgradeUser(username);
     }
+        @Override
+    public eMemberType getType() {
+        return eMemberType.Admin;
+       }
 }

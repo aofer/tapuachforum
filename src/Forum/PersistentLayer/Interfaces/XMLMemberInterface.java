@@ -14,4 +14,7 @@ public interface XMLMemberInterface {
      * @return - a MemberData object containing all the member's data
      */
     MemberData getMember(String userName);
+    
+    eMemberType getMemberType(String userName);
+
 }

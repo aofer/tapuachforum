@@ -15,6 +15,7 @@ import Forum.Exceptions.WrongPasswordException;
 import Forum.PersistentLayer.Data.MemberData;
 import Forum.PersistentLayer.Interfaces.ForumHandlerInterface;
 import Forum.PersistentLayer.Interfaces.XMLMemberInterface;
+import Forum.PersistentLayer.Interfaces.eMemberType;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
@@ -69,9 +70,23 @@ public class UserHandler {
             throw new WrongPasswordException();
         } else {
             MemberData data = this._XmlMember.getMember(username);
-
-            Member tMember = new Member(data);
-            this.addMember(tMember);
+            MemberInterface tMember ;
+            eMemberType type=  this._XmlMember.getMemberType(username);
+            switch (type)
+            {
+                case Admin:
+                    tMember=new Admin(data);
+                    this.addMember(tMember);
+                    break;
+                case Moderator:
+                    tMember=new Moderator(data);
+                    this.addMember(tMember);
+                    break;
+                case member:
+                    tMember=new Member(data);
+                    this.addMember(tMember);
+                    break;
+            }
         }
 
     }
