@@ -73,8 +73,8 @@ public class Forum implements ForumInterface {
         this._messageHandler.addMessage(nickname, Subject, body);
     }
 
-    public void addMessage(int replyId, String nickname, String Subject, String body) throws MessageNotFoundException, MessageOwnerException {
-        this._messageHandler.addMessage(replyId, nickname, Subject, body);
+    public void addReply(int parentId, String nickname, String Subject, String body) throws MessageNotFoundException {
+        this._messageHandler.addReply(parentId, nickname, Subject, body);
     }
 
     public void editMessage(String nickname, int messageId, String newSubject, String newBody) throws MessageNotFoundException, MessageOwnerException {
