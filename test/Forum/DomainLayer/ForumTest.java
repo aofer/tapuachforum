@@ -347,12 +347,12 @@ public class ForumTest {
     @Test
     public void testAddMessage_4args() throws Exception {
         System.out.println("addMessage");
-        int replyId = 0;
+        int parentId = 0;
         String nickname = "amitWritesFOR";
         String Subject = "now we 4 args";
         String body = "4 3 2 one!";
         Forum instance = Forum.getInstance();
-        instance.addMessage(replyId, nickname, Subject, body);
+        instance.addReply(parentId, nickname, Subject, body);
          assertEquals("now we 4 args", instance.getMessage(3).getSubject());
         // TODO review the generated test code and remove the default call to fail.
        // fail("The test case is a prototype.");
