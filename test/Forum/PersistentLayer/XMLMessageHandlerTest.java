@@ -8,6 +8,8 @@ package Forum.PersistentLayer;
 import Forum.Exceptions.MessageNotFoundException;
 import Forum.PersistentLayer.Data.MessageData;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.After;
@@ -178,6 +180,22 @@ public class XMLMessageHandlerTest {
         assertEquals(expResult,  result.getBody());
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getRepliesIds method, of class XMLMessageHandler.
+     */
+    @Test
+    public void testGetRepliesIds() {
+        System.out.println("getRepliesIds");
+        int messageID = 0;
+        XMLMessageHandler instance =  new XMLMessageHandler(xf);
+
+        List expResult = null;
+        List <Integer>result = instance.getRepliesIds(messageID);
+        assertNotNull(result);
+        // TODO review the generated test code and remove the default call to fail.
+      //  fail("The test case is a prototype.");
     }
 
 }

@@ -86,7 +86,6 @@ public class XMLFileHandlerTest {
             e.setBody("hello everyone...");
             e.setDateAdded(xgcal);
             e.setModifiedDate(xgcal);
-            m1.getMessage().add(e);
             f.getMembers().add(m1);
             instance.WriteToXML();
             assertTrue(true);

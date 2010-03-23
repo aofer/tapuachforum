@@ -43,17 +43,7 @@ public class XMLMemberHandlerTest {
     /**
      * Test of giveF method, of class XMLMemberHandler.
      */
-    @Test
-    public void testGiveF() {
-        System.out.println("giveF");
 
-        XMLMemberHandler instance = null;
-        ForumType expResult = null;
-        ForumType result = instance.giveF();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-  //      fail("The test case is a prototype.");
-    }
 
     /**
      * Test of getMember method, of class XMLMemberHandler.

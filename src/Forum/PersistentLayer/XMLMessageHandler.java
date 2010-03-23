@@ -6,7 +6,9 @@ package Forum.PersistentLayer;
 
 import Forum.PersistentLayer.Data.MessageData;
 import Forum.PersistentLayer.Interfaces.XMLMessageInterface;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -65,7 +67,22 @@ public class XMLMessageHandler implements XMLMessageInterface {
     }
 
     public List<Integer> getRepliesIds(int messageID) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        List<Integer> listReplies =  new ArrayList<Integer>();
+      if (messageID == 0)
+      {
+          for (MessageType m : this.xf.getForum().getMessages()){
+              listReplies.add(new Integer(m.messageId.intValue()));
+            }
+            return (listReplies);
+      }
+      else
+        for (MessageType m : findMessage(messageID).getMessage()){
+              listReplies.add(new Integer(m.messageId.intValue()));
+            }
+      
+          return (listReplies);
     }
 }
-//change XMLMemberHandler to do recursic searsh all over the hirracic tree of messages.
+
+
+ 
