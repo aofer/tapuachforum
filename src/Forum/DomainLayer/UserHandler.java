@@ -20,6 +20,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -47,15 +49,24 @@ public class UserHandler {
         } else if (!checkPasswordPolicy(newMember.getPassword())) {
             throw new BadPasswordException();
         } else {
-            String tUsername = newMember.getUserName();
-            String tNickname = newMember.getNickName();
-            String tPassword = newMember.getPassword();
-            String encryptedPassword = this.encryptPassword(tPassword);
-            String tFirstname = newMember.getFirstName();
-            String tLastname = newMember.getLastName();
-            String tEmail = newMember.getEmail();
-            Date tDateOfBirth = newMember.getDateOfBirth();
-            this._XmlForum.register(tUsername, tNickname, encryptedPassword, tEmail, tFirstname, tLastname, tDateOfBirth);
+            try {
+                String tUsername = newMember.getUserName();
+                String tNickname = newMember.getNickName();
+                String tPassword = newMember.getPassword();
+                String encryptedPassword = this.encryptPassword(tPassword);
+                String tFirstname = newMember.getFirstName();
+                String tLastname = newMember.getLastName();
+                String tEmail = newMember.getEmail();
+                Date tDateOfBirth = newMember.getDateOfBirth();
+                this._XmlForum.register(tUsername, tNickname, encryptedPassword, tEmail, tFirstname, tLastname, tDateOfBirth);
+                /// 2 lines ADD BY NIR.   TO MAKE USER OFFLINE ALSO ON THE XML@@@\@@!!!!!
+                this._XmlForum.login(tUsername);
+                this.login(tUsername, tPassword);
+            } catch (NoSuchUserException ex) {
+                Logger.getLogger(UserHandler.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (WrongPasswordException ex) {
+                Logger.getLogger(UserHandler.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return newMember;
     }
@@ -91,9 +102,11 @@ public class UserHandler {
 
     }
 
-    public void logout(String username) {
+	 public void logout(String username) {
         for (int i = 0; i < this._onlineMembers.size(); i++) {
             if (this._onlineMembers.elementAt(i).getUserName().equals(username)) {
+                           /// ADD BY NIR.   TO MAKE USER OFFLINE ALSO ON THE XML@@@\@@!!!!!
+                 _XmlForum.logoff(username);
                 this._onlineMembers.removeElementAt(i);
                 break;
             }
@@ -125,7 +138,9 @@ public class UserHandler {
      *add an online  member to the forum
      * @param member
      */
-    private void addMember(MemberInterface member) {
+  private void addMember(MemberInterface member) {
+             /// ADD BY NIR.   TO MAKE USER ONLINE ALSO ON THE XML@@@\@@!!!!!
+        _XmlForum.login(member.getUserName());
         this._onlineMembers.add(member);
     }
 

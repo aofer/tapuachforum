@@ -5,6 +5,12 @@
 
 package Forum.DomainLayer;
 
+import Forum.DomainLayer.Interfaces.MemberInterface;
+import Forum.PersistentLayer.Data.MemberData;
+import Forum.PersistentLayer.ForumHandler;
+import Forum.PersistentLayer.XMLFileHandler;
+import Forum.PersistentLayer.XMLMemberHandler;
+import Forum.PersistentLayer.XMLMessageHandler;
 import java.util.Date;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -38,22 +44,32 @@ public class GuestTest {
     public void tearDown() {
     }
 
-   
+       XMLFileHandler xf = new XMLFileHandler("testForum.xml");
+       XMLMessageHandler msgH = new XMLMessageHandler(xf);
+       ForumHandler fH = new ForumHandler(xf);
+       XMLMemberHandler memH = new XMLMemberHandler(xf);
+       Forum  instanceForum = Forum.getInstance();
+
     /**
      * Test of register method, of class Guest.
      */
     @Test
     public void testRegister() throws Exception {
-      /*  System.out.println("register");
-        String username = "lironka";
-        String password = "12345";
-        String nickname = "liron";
+          instanceForum.setDBHandlers(msgH, fH, memH);
+         fH.initForum();
+        System.out.println("register");
+        String username = "guestUser";
+        String password = "guestPass";
+        String nickname = "guestNick";
         String email = "blahblah@gmail.com";
-        String firstName = "liron";
-        String lastName = "katav";
-        Date dateOfBirth = null;;
-        Guest instance = null;
-        instance.register(username, password, nickname, email, firstName, lastName, dateOfBirth);
+        String firstName = "guestFirst";
+        String lastName = "guestLast";
+
+          Date dateOfBirth = new Date();
+        Guest instance2 = new Guest();
+        MemberData newMem = new MemberData(username, nickname, password, firstName, lastName, email, dateOfBirth);
+           MemberInterface memInter = instanceForum.register(newMem);
+        assertEquals(memInter.getFirstName(), firstName);
        // TODO review the generated test code and remove the default call to fail.
       //  fail("The test case is a prototype.");*/
     }
@@ -63,15 +79,13 @@ public class GuestTest {
      */
     @Test
     public void testLogIn() throws Exception {
-   /*     System.out.println("logIn");
-        String tUsername = "liron";
-        String tPassword = "12345678";
-        Forum tForum = new Forum(null, null,null);
-        Member tMember = new Member (tForum, tUsername, null, tPassword, null, null,null, null);
-        tForum.addMember(tMember);
-        Guest instance = new Guest(tForum);
-        instance.logIn(tUsername, tPassword);
-        assertEquals(tMember, tForum.getOnlineMembers().elementAt(0));
+        System.out.println("logIn");
+        String tUsername = "guestUser";
+        String tPassword = "guestPass";
+       Guest instance = new Guest();
+       assertEquals(instanceForum.getOnlineMembers().size(), 1);
+       instance.logIn(tUsername, tPassword);
+      assertEquals(instanceForum.getOnlineMembers().size(), 2);
         //needs to add wrongs paramentes and checks*/
     }
 
