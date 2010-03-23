@@ -57,6 +57,7 @@ public class Forum implements ForumInterface {
         return this._messageHandler.getMessage(messageId);
     }
 
+
     public MemberInterface register(MemberData newMember) throws UserExistsException, NicknameExistsException, BadPasswordException {
         return _userHandler.register(newMember);
     }
@@ -69,7 +70,7 @@ public class Forum implements ForumInterface {
         this._userHandler.logout(username);
     }
 
-    public void addMessage(String nickname, String Subject, String body) throws MessageOwnerException {
+    public void addMessage(String nickname, String Subject, String body)  { //might needs to throw NoSuchUserException in case there is no user with that nickname
         this._messageHandler.addMessage(nickname, Subject, body);
     }
     /**
@@ -94,5 +95,9 @@ public class Forum implements ForumInterface {
 
     public void upgradeUser(String username) throws UserNotExistException {
         this._userHandler.upgradeUser(username);
+    }
+
+    public Vector<Message> viewForum() {
+        return this._messageHandler.viewForum();
     }
 }

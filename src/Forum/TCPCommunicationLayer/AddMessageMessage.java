@@ -25,7 +25,8 @@ public class AddMessageMessage extends ClientMessage {
 	 */
 	@Override
 	public ServerResponse doOperation(Forum forum) {
-		forum.
+            // parsing of m_content in order to get the nickname** subject and body
+		Forum.getInstance().addMessage(m_content, m_content, m_content);
 		return null;
 	}
 

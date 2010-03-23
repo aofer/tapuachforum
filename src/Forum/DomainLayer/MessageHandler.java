@@ -67,4 +67,17 @@ public class MessageHandler {
     public void deleteMessage(int messageId) throws MessageNotFoundException {
         this._XmlForum.deleteMessage(messageId);
     }
+
+    Vector<Message> viewForum() {
+        Vector<Message> entireForum = new Vector<Message>();
+        List<Integer> threadsIds = this._XmlMessage.getRepliesIds(0);
+        for (int i = 0;i< threadsIds.size();i++){
+            int tId = threadsIds.get(i).intValue();
+            MessageData tData = this._XmlMessage.getMessage(tId);
+            Message tMessage = new Message(tData);
+            entireForum.add(tMessage);
+        }
+
+        return entireForum;
+    }
 }

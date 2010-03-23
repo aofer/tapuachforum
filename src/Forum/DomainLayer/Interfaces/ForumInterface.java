@@ -4,6 +4,7 @@
  */
 package Forum.DomainLayer.Interfaces;
 
+import Forum.DomainLayer.Message;
 import Forum.Exceptions.*;
 import Forum.PersistentLayer.Data.MemberData;
 import Forum.PersistentLayer.ForumHandler;
@@ -33,7 +34,11 @@ public interface ForumInterface {
      * @throws MessageNotFoundException - is thrown when the message does not exist
      */
     MessageInterface getMessage(int messageId) throws MessageNotFoundException;
-
+    /**
+    * used for reading all of the forum messages (might be replaced later when we decide how many messages the forum keeps in memory)
+    * @return
+    */
+    Vector<Message> viewForum();
     /**
      * this method is used to register a new user to the forum
      * @param newMember - the details of the member to be added
@@ -64,7 +69,7 @@ public interface ForumInterface {
      * @param Subject - the subject of the message
      * @param body - the body of the message
      */
-    void addMessage(String nickname, String Subject, String body) throws MessageOwnerException;
+    void addMessage(String nickname, String Subject, String body);
 
     /**
      * this method is used for adding a reply to  a new message in the forum

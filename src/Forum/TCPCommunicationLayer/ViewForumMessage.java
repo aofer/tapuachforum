@@ -1,6 +1,9 @@
 package Forum.TCPCommunicationLayer;
 
 import Forum.DomainLayer.Forum;
+import Forum.DomainLayer.Interfaces.MessageInterface;
+import Forum.DomainLayer.Message;
+import java.util.Vector;
 
 /**
  * 
@@ -15,8 +18,15 @@ public class ViewForumMessage extends ClientMessage {
 	 */
 	@Override
 	public ServerResponse doOperation(Forum forum) {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("test");
+//                Vector<Message> tForum = Forum.getInstance().viewForum();
+   //             String tForumString = "";
+    //            for (int i = 0;i<tForum.size();i++){
+     //             tForumString = tForumString + tForum.elementAt(i).toString() + "\n\n\n";
+      //              System.out.println(tForumString);
+                //}
+                ServerResponse tResponse = new ServerResponse("nice!!", true);
+		return tResponse;
 	}
 
 }
