@@ -49,7 +49,6 @@ public class UserHandler {
         } else if (!checkPasswordPolicy(newMember.getPassword())) {
             throw new BadPasswordException();
         } else {
-            try {
                 String tUsername = newMember.getUserName();
                 String tNickname = newMember.getNickName();
                 String tPassword = newMember.getPassword();
@@ -59,14 +58,8 @@ public class UserHandler {
                 String tEmail = newMember.getEmail();
                 Date tDateOfBirth = newMember.getDateOfBirth();
                 this._XmlForum.register(tUsername, tNickname, encryptedPassword, tEmail, tFirstname, tLastname, tDateOfBirth);
-                /// 2 lines ADD BY NIR.   TO MAKE USER OFFLINE ALSO ON THE XML@@@\@@!!!!!
+                /// ONLY 1 line  ADD BY NIR.   TO MAKE USER ONLINE ALSO ON THE XML@@@\@@!!!!!
                 this._XmlForum.login(tUsername);
-                this.login(tUsername, tPassword);
-            } catch (NoSuchUserException ex) {
-                Logger.getLogger(UserHandler.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (WrongPasswordException ex) {
-                Logger.getLogger(UserHandler.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
         return newMember;
     }
