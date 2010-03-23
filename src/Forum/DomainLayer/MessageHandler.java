@@ -45,9 +45,9 @@ public class MessageHandler {
         this._XmlForum.addMessage(0, _nickName, subject, body, tDate, tDate);
     }
 
-    public void addMessage(int replyId, String nickname, String subject, String body) throws MessageNotFoundException, MessageOwnerException {
+    public void addReply(int parentId, String nickname, String subject, String body) throws MessageNotFoundException {
         Date tDate = new Date();
-        this._XmlForum.addMessage(replyId, body, subject, body, tDate, tDate);
+        this._XmlForum.addMessage(parentId, body, subject, body, tDate, tDate);
     }
 
     public void editMessage(String nickname, int messageId, String subject, String body) throws MessageNotFoundException, MessageOwnerException {
@@ -60,9 +60,10 @@ public class MessageHandler {
         }
     }
 
-    public void addReply(int parentId, String nickname, String subject, String body) {
+    // why was it here? ??!?@?!#$%
+/*   public void addReply(int parentId, String nickname, String subject, String body) {
     }
-
+*/
     public void deleteMessage(int messageId) throws MessageNotFoundException {
         this._XmlForum.deleteMessage(messageId);
     }

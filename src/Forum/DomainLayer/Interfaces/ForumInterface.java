@@ -72,7 +72,7 @@ public interface ForumInterface {
      * @param Subject - the subject of the message
      * @param body - the body of the message
      */
-    void addMessage(int replyId, String nickname, String Subject, String body) throws MessageNotFoundException, MessageOwnerException;
+    void addReply(int replyId, String nickname, String Subject, String body) throws MessageNotFoundException, MessageOwnerException;
 
     /**
      * this method is used for editing a message
