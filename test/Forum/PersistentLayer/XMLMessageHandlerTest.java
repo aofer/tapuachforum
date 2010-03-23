@@ -188,14 +188,17 @@ public class XMLMessageHandlerTest {
     @Test
     public void testGetRepliesIds() {
         System.out.println("getRepliesIds");
-        int messageID = 0;
+        int messageID = 1;
         XMLMessageHandler instance =  new XMLMessageHandler(xf);
 
         List expResult = null;
         List <Integer>result = instance.getRepliesIds(messageID);
+        for (int i = 0; i<result.size();i++)
+          System.out.println(result.get(i).intValue());
         assertNotNull(result);
         // TODO review the generated test code and remove the default call to fail.
       //  fail("The test case is a prototype.");
     }
+
 
 }

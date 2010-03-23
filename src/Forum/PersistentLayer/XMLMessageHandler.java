@@ -68,17 +68,23 @@ public class XMLMessageHandler implements XMLMessageInterface {
 
     public List<Integer> getRepliesIds(int messageID) {
         List<Integer> listReplies =  new ArrayList<Integer>();
+
       if (messageID == 0)
       {
+          
           for (MessageType m : this.xf.getForum().getMessages()){
               listReplies.add(new Integer(m.messageId.intValue()));
             }
             return (listReplies);
       }
-      else
-        for (MessageType m : findMessage(messageID).getMessage()){
-              listReplies.add(new Integer(m.messageId.intValue()));
-            }
+      else{
+               MessageType m2 = findMessage(messageID);
+               if (m2 != null)
+                 for (MessageType m :m2.getMessage()){
+                 if (m != null)
+                   listReplies.add(new Integer(m.messageId.intValue()));
+             }
+      }
       
           return (listReplies);
     }
