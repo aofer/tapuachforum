@@ -84,7 +84,7 @@ public interface MemberInterface {
      */
     void writeMessage(String subject, String body) throws MessageNotFoundException, MessageOwnerException;
 
-    void writeMessage(int replyID, String subject, String body) throws MessageNotFoundException, MessageOwnerException;
+    void writeReply(int parentId, String subject, String body) throws MessageNotFoundException, MessageOwnerException;
 
     eMemberType getType();
 

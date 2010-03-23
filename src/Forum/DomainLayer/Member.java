@@ -119,8 +119,8 @@ public class Member extends User implements MemberInterface {
      * @param subject - the subject of the new reply
      * @param body - the body of the message
      */
-    public void writeMessage(int replyID, String subject, String body) throws MessageNotFoundException, MessageOwnerException {
-        Forum.getInstance().addMessage(replyID, this.getNickName(), subject, body);
+    public void writeReply(int parentId, String subject, String body) throws MessageNotFoundException, MessageOwnerException {
+        Forum.getInstance().addReply(parentId, this.getNickName(), subject, body);
     }
 
     /**
