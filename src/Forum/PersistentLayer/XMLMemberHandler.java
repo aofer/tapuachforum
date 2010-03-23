@@ -21,10 +21,7 @@ public class XMLMemberHandler implements XMLMemberInterface {
      *
      * @return
      */
-    public ForumType giveF() {
-        ObjectFactory factory = new ObjectFactory();
-        return (factory.createForumType());
-    }
+
     private XMLFileHandler xf;
 
     public XMLMemberHandler(XMLFileHandler xf) {
@@ -45,8 +42,20 @@ public class XMLMemberHandler implements XMLMemberInterface {
     }
 
     public eMemberType getMemberType(String userName) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        for (MemberType m : this.xf.getForum().getMembers()) {
+            if (m.getUserName().equals(userName)) {
+                if (m.isAdmin)
+                    return (eMemberType.Admin);
+                else
+                    if (m.isModerator)
+                        return (eMemberType.Moderator);
+                    else
+                        return eMemberType.member;
+            }
+        }
+        return (null);
     }
+
 }
 
 

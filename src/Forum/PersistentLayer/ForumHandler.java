@@ -135,17 +135,7 @@ public class ForumHandler  implements  ForumHandlerInterface{
              return null;
             }
 
-          // this is old function, not in use any more.
-        // is used to find Message under the user who wrote it.
-        private MessageType findMessageOfUser(int messageID, String usernme) {
-                  MemberType memb = findMember(usernme);
-                 for (MessageType m :    memb.getMessage()) {
-              if(m.getMessageId().intValue() == messageID){
-                return m;
-            }
-        }
-          return null;
-        }
+
         /**
      * check if the username already exist
          * @param messageID
@@ -385,11 +375,7 @@ public class ForumHandler  implements  ForumHandlerInterface{
         if (member == null)
             throw new UnsupportedOperationException("Not supported yet.");
         else{
-         ModeratorType moderator = new ModeratorType();
-        moderator.info = member;
-        moderator.specialization = "agriculturist";
-        this.xf.getForum().getMembers().remove(member);
-         this.xf.getForum().getModerators().add(moderator);
+            member.setIsModerator(true);
         xf.WriteToXML();
         }
     }
