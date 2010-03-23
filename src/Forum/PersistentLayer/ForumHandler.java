@@ -58,6 +58,7 @@ public class ForumHandler  implements  ForumHandlerInterface{
          for (MemberType m : this.xf.getForum().getMembers()) {
             if (m.getUserName().equals(username)) {
                 m.setStatus(false);
+                xf.WriteToXML();
                 break;
             }
        }

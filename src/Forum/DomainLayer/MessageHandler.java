@@ -47,7 +47,8 @@ public class MessageHandler {
 
     public void addReply(int parentId, String nickname, String subject, String body) throws MessageNotFoundException {
         Date tDate = new Date();
-        this._XmlForum.addMessage(parentId, body, subject, body, tDate, tDate);
+        // NEXT LINE FIXED BY NIR . from "body" to "nickname"!!!!!!!!!
+        this._XmlForum.addMessage(parentId, nickname, subject, body, tDate, tDate);
     }
 
     public void editMessage(String nickname, int messageId, String subject, String body) throws MessageNotFoundException, MessageOwnerException {
