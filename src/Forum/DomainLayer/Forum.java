@@ -72,7 +72,14 @@ public class Forum implements ForumInterface {
     public void addMessage(String nickname, String Subject, String body) throws MessageOwnerException {
         this._messageHandler.addMessage(nickname, Subject, body);
     }
-
+    /**
+     * this method adds a new reply to the forum
+     * @param parentId - the id of the message that we want to add the reply to
+     * @param nickname
+     * @param Subject
+     * @param body
+     * @throws MessageNotFoundException
+     */
     public void addReply(int parentId, String nickname, String Subject, String body) throws MessageNotFoundException {
         this._messageHandler.addReply(parentId, nickname, Subject, body);
     }
