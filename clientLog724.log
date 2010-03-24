@@ -2,8 +2,8 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2010-03-24T14:49:37</date>
-  <millis>1269434977325</millis>
+  <date>2010-03-24T10:50:35</date>
+  <millis>1269420635826</millis>
   <sequence>0</sequence>
   <logger>forum</logger>
   <level>INFO</level>

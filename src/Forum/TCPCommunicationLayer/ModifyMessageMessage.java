@@ -1,6 +1,10 @@
 package Forum.TCPCommunicationLayer;
 
 import Forum.DomainLayer.Forum;
+import Forum.Exceptions.MessageNotFoundException;
+import Forum.Exceptions.MessageOwnerException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Tomer Heber
@@ -31,8 +35,20 @@ public class ModifyMessageMessage extends ClientMessage {
 	 */
 	@Override
 	public ServerResponse doOperation(Forum forum) {
-		// TODO Auto-generated method stub
-		return null;
+            ServerResponse tResponse;
+        try {
+            Forum.getInstance().editMessage("nickNameTBA", (int) m_messageId,"subjectTBA", m_content);
+            tResponse = new ServerResponse("Message was modified successfully.", true);
+        } catch (MessageNotFoundException ex) {
+            String tAns = "Message " + m_messageId + " does not exist.";
+            tResponse = new ServerResponse(tAns, false);
+            //Logger.getLogger(ModifyMessageMessage.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MessageOwnerException ex) {
+            String tAns = "You are not the owner of this message.";
+            tResponse = new ServerResponse(tAns,false);
+           // Logger.getLogger(ModifyMessageMessage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+		return tResponse;
 	}
 
 }

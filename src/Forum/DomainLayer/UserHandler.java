@@ -39,29 +39,20 @@ public class UserHandler {
         this._XmlMember = xmlMember;
     }
 
-    public Member register(MemberData newMemberData) throws UserExistsException, NicknameExistsException, BadPasswordException {
-        Member newMember = new Member(newMemberData);
+    public void  register(String username,String password,String nickname,
+            String email,String firstName,String lastName,Date dateOfBirth) throws UserExistsException, NicknameExistsException, BadPasswordException {
+        //Member newMember = new Member(newMemberData);
 
-        if (this._XmlForum.checkUsername(newMember.getUserName())) {
+        if (this._XmlForum.checkUsername(username)) {
             throw new UserExistsException();
-        } else if (this._XmlForum.checkNickname(newMember.getNickName())) {
+        } else if (this._XmlForum.checkNickname(nickname)) {
             throw new NicknameExistsException();
-        } else if (!checkPasswordPolicy(newMember.getPassword())) {
+        } else if (!checkPasswordPolicy(password)) {
             throw new BadPasswordException();
         } else {
-                String tUsername = newMember.getUserName();
-                String tNickname = newMember.getNickName();
-                String tPassword = newMember.getPassword();
-                String encryptedPassword = this.encryptPassword(tPassword);
-                String tFirstname = newMember.getFirstName();
-                String tLastname = newMember.getLastName();
-                String tEmail = newMember.getEmail();
-                Date tDateOfBirth = newMember.getDateOfBirth();
-                this._XmlForum.register(tUsername, tNickname, encryptedPassword, tEmail, tFirstname, tLastname, tDateOfBirth);
-                /// ONLY 1 line  ADD BY NIR.   TO MAKE USER ONLINE ALSO ON THE XML@@@\@@!!!!!
-                this._XmlForum.login(tUsername);
+                String encryptedPassword = this.encryptPassword(password);
+                this._XmlForum.register(username, nickname, encryptedPassword, email, firstName, lastName, dateOfBirth);
         }
-        return newMember;
     }
 
     public void login(String username, String password) throws NoSuchUserException, WrongPasswordException {

@@ -10,6 +10,10 @@ import Forum.Exceptions.*;
 import Forum.DomainLayer.Interfaces.ForumInterface;
 import Forum.PersistentLayer.*;
 import Forum.PersistentLayer.Data.MemberData;
+import Forum.PersistentLayer.Interfaces.ForumHandlerInterface;
+import Forum.PersistentLayer.Interfaces.XMLMemberInterface;
+import Forum.PersistentLayer.Interfaces.XMLMessageInterface;
+import java.util.Date;
 import java.util.Vector;
 
 /**
@@ -31,7 +35,14 @@ public class Forum implements ForumInterface {
         return _forum;
     }
 
-    private Forum() {
+    private Forum() {   //added stuff to the constructor in order to make it work
+        XMLFileHandler xf = new XMLFileHandler("testforum.xml"); //currently using the testforum xml file
+        ForumHandlerInterface xmlForumHandler = new ForumHandler(xf);
+        XMLMessageInterface xmlMessageHandler = new XMLMessageHandler(xf);
+        XMLMemberInterface xmlMemberHandler = new XMLMemberHandler(xf);
+        this._messageHandler = new MessageHandler(xmlForumHandler,xmlMessageHandler);
+        this._userHandler = new UserHandler(xmlForumHandler, xmlMemberHandler);
+
     }
 
     /**
@@ -57,9 +68,14 @@ public class Forum implements ForumInterface {
         return this._messageHandler.getMessage(messageId);
     }
 
-
-    public MemberInterface register(MemberData newMember) throws UserExistsException, NicknameExistsException, BadPasswordException {
+// omri's version
+/*    public MemberInterface register(MemberData newMember) throws UserExistsException, NicknameExistsException, BadPasswordException {
         return _userHandler.register(newMember);
+    }*/
+// amit's version
+    public void register(String username,String password,String nickname,
+            String email,String firstName,String lastName,Date dateOfBirth) throws UserExistsException, NicknameExistsException, BadPasswordException {
+        this._userHandler.register(username,password,nickname,email,firstName,lastName,dateOfBirth);
     }
 
     public void login(String username, String password) throws NoSuchUserException, WrongPasswordException {
@@ -100,4 +116,5 @@ public class Forum implements ForumInterface {
     public Vector<Message> viewForum() {
         return this._messageHandler.viewForum();
     }
+
 }

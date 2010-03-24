@@ -1,64 +1,94 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <forumType>
-    <messageCounter>2</messageCounter>
+    <forumName>Tapuach</forumName>
+    <messageCounter>8</messageCounter>
     <members>
         <userName>liron</userName>
-        <nickName>lolo</nickName>
-        <password>987654321</password>
-        <eMail>mail</eMail>
-        <dateJoined>2010-03-15T11:28:18.212+02:00</dateJoined>
+        <nickName>blah</nickName>
+        <password>5e8667a439c68f5145dd2fcbecf02209</password>
+        <eMail>lirrr@l.c</eMail>
+        <dateJoined>2010-03-24T10:09:17.322+02:00</dateJoined>
         <firstName>liron</firstName>
         <LastName>katav</LastName>
-        <dateOfBirth>2010-03-15+02:00</dateOfBirth>
-        <status>false</status>
-        <message>
-            <messageId>1</messageId>
-            <parentId>0</parentId>
-            <subject>this is the subject</subject>
-            <body>this is the body</body>
-            <createdBy>liron</createdBy>
-            <dateAdded>2010-03-15T11:28:18.212+02:00</dateAdded>
-            <modifiedDate>2010-03-15T11:28:18.212+02:00</modifiedDate>
-        </message>
+        <dateOfBirth>2010-03-24+02:00</dateOfBirth>
+        <status>true</status>
+        <isModerator>false</isModerator>
+        <isAdmin>false</isAdmin>
     </members>
     <members>
-        <userName>amit</userName>
-        <nickName>amit</nickName>
-        <password>987654321</password>
-        <eMail>mail</eMail>
-        <dateJoined>2010-03-15T11:30:21.149+02:00</dateJoined>
-        <firstName>liron</firstName>
-        <LastName>katav</LastName>
-        <dateOfBirth>2010-03-15+02:00</dateOfBirth>
-        <status>false</status>
+        <userName>bkdsjkj</userName>
+        <nickName>nicknameTBA</nickName>
+        <password>25d55ad283aa400af464c76d713c07ad</password>
+        <eMail>oferamit@gmail.com</eMail>
+        <dateJoined>2010-03-24T14:51:00.825+02:00</dateJoined>
+        <firstName>amitofer</firstName>
+        <LastName>lastNameTBA</LastName>
+        <dateOfBirth>2010-03-24+02:00</dateOfBirth>
+        <status>true</status>
+        <isModerator>false</isModerator>
+        <isAdmin>false</isAdmin>
     </members>
     <messages>
         <messageId>1</messageId>
         <parentId>0</parentId>
-        <subject>this is the subject</subject>
-        <body>this is the body</body>
-        <createdBy>liron</createdBy>
-        <dateAdded>2010-03-15T11:28:18.212+02:00</dateAdded>
-        <modifiedDate>2010-03-15T11:28:18.212+02:00</modifiedDate>
+        <subject>member try</subject>
+        <body>this is a test. Specipiuc memebr write the message</body>
+        <createdBy>membNickName</createdBy>
+        <dateAdded>2010-03-24T10:09:17.102+02:00</dateAdded>
+        <modifiedDate>2010-03-24T10:09:17.102+02:00</modifiedDate>
+        <message>
+            <messageId>2</messageId>
+            <parentId>1</parentId>
+            <subject>NEW SUBJECT</subject>
+            <body>here it is edited message.</body>
+            <createdBy>membNickName</createdBy>
+            <dateAdded>2010-03-24T10:09:17.202+02:00</dateAdded>
+            <modifiedDate>2010-03-24T10:09:17.232+02:00</modifiedDate>
+        </message>
     </messages>
-	<members>
-        <userName>amit2</userName>
-        <nickName>amit2</nickName>
-        <password>12345678</password>
-        <eMail>mail</eMail>
-        <dateJoined>2010-03-15T11:30:21.149+02:00</dateJoined>
-        <firstName>liron</firstName>
-        <LastName>katav</LastName>
-        <dateOfBirth>2010-03-15+02:00</dateOfBirth>
-        <status>true</status>
-    </members>
+    <messages>
+        <messageId>3</messageId>
+        <parentId>0</parentId>
+        <subject>noSubject</subject>
+        <body>hello i am a message sent from the client THIS IS A TEST</body>
+        <createdBy>noNickname</createdBy>
+        <dateAdded>2010-03-24T10:39:13.535+02:00</dateAdded>
+        <modifiedDate>2010-03-24T10:39:13.535+02:00</modifiedDate>
+    </messages>
     <messages>
         <messageId>4</messageId>
         <parentId>0</parentId>
-        <subject>this is the subject</subject>
-        <body>this is the body</body>
-        <createdBy>liron</createdBy>
-        <dateAdded>2010-03-15T11:28:18.212+02:00</dateAdded>
-        <modifiedDate>2010-03-15T11:28:18.212+02:00</modifiedDate>
+        <subject>noSubject</subject>
+        <body>this is the second test message!!</body>
+        <createdBy>noNickname</createdBy>
+        <dateAdded>2010-03-24T10:43:11.006+02:00</dateAdded>
+        <modifiedDate>2010-03-24T10:43:11.006+02:00</modifiedDate>
+    </messages>
+    <messages>
+        <messageId>5</messageId>
+        <parentId>0</parentId>
+        <subject>noSubject</subject>
+        <body>this is the third test!!!!!!?</body>
+        <createdBy>noNickname</createdBy>
+        <dateAdded>2010-03-24T10:43:26.298+02:00</dateAdded>
+        <modifiedDate>2010-03-24T10:43:26.298+02:00</modifiedDate>
+        <message>
+            <messageId>7</messageId>
+            <parentId>5</parentId>
+            <subject>NoSubjectYet</subject>
+            <body>this is a reply test!</body>
+            <createdBy>noNickYet</createdBy>
+            <dateAdded>2010-03-24T10:52:02.941+02:00</dateAdded>
+            <modifiedDate>2010-03-24T10:52:02.941+02:00</modifiedDate>
+        </message>
+    </messages>
+    <messages>
+        <messageId>6</messageId>
+        <parentId>500</parentId>
+        <subject>NoSubjectYet</subject>
+        <body>this is a test message should not be added!!</body>
+        <createdBy>noNickYet</createdBy>
+        <dateAdded>2010-03-24T10:51:02.594+02:00</dateAdded>
+        <modifiedDate>2010-03-24T10:51:02.594+02:00</modifiedDate>
     </messages>
 </forumType>

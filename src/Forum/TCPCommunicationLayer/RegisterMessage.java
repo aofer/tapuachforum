@@ -1,6 +1,12 @@
 package Forum.TCPCommunicationLayer;
 
 import Forum.DomainLayer.Forum;
+import Forum.Exceptions.BadPasswordException;
+import Forum.Exceptions.NicknameExistsException;
+import Forum.Exceptions.UserExistsException;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Tomer Heber
@@ -42,8 +48,24 @@ public class RegisterMessage extends ClientMessage {
 	 */
 	@Override
 	public ServerResponse doOperation(Forum forum) {
-		// TODO Auto-generated method stub
-		return null;
+            Date tDate = new Date();
+            ServerResponse tResponse;
+        try {
+            Forum.getInstance().register(m_username, m_password, "nicknameTBA", m_email, m_realname, "lastNameTBA", tDate);
+            tResponse = new ServerResponse("Registeration was successful.", true);
+        } catch (UserExistsException ex) {
+            //Logger.getLogger(RegisterMessage.class.getName()).log(Level.SEVERE, null, ex);
+            String tAns = m_username + " already exist.";
+            tResponse = new ServerResponse(tAns, false);
+        } catch (NicknameExistsException ex) {
+            //Logger.getLogger(RegisterMessage.class.getName()).log(Level.SEVERE, null, ex);
+            String tAns = "nicknameTBA" + " already exist.";
+            tResponse = new ServerResponse(tAns, false);
+        } catch (BadPasswordException ex) {
+          //  Logger.getLogger(RegisterMessage.class.getName()).log(Level.SEVERE, null, ex);
+            tResponse = new ServerResponse("password does not meet the policy, please choose a different password.", false);
+        }
+            return tResponse;
 	}
 
 }

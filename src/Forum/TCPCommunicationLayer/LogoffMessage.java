@@ -15,8 +15,9 @@ public class LogoffMessage extends ClientMessage {
 	 */
 	@Override
 	public ServerResponse doOperation(Forum forum) {
-		// TODO Auto-generated method stub
-		return null;
+		Forum.getInstance().logout("toBeAddedLater");
+                ServerResponse tResponse = new ServerResponse("user logged off successfully.",true);
+		return tResponse;
 	}
 
 }
