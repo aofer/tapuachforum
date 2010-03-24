@@ -19,13 +19,13 @@ public class ViewForumMessage extends ClientMessage {
 	@Override
 	public ServerResponse doOperation(Forum forum) {
 		System.out.println("test");
-//                Vector<Message> tForum = Forum.getInstance().viewForum();
-   //             String tForumString = "";
-    //            for (int i = 0;i<tForum.size();i++){
-     //             tForumString = tForumString + tForum.elementAt(i).toString() + "\n\n\n";
-      //              System.out.println(tForumString);
-                //}
-                ServerResponse tResponse = new ServerResponse("nice!!", true);
+                Vector<Message> tForum = Forum.getInstance().viewForum();
+                String tForumString = "";
+                for (int i = 0;i<tForum.size();i++){
+                tForumString = tForumString + tForum.elementAt(i).toString() + "\n";
+                //System.out.println(tForumString);
+                }
+                ServerResponse tResponse = new ServerResponse(tForumString, true);
 		return tResponse;
 	}
 

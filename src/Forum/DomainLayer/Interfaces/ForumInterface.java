@@ -11,6 +11,7 @@ import Forum.PersistentLayer.ForumHandler;
 import Forum.PersistentLayer.Interfaces.XMLMessageInterface;
 import Forum.PersistentLayer.XMLMemberHandler;
 import Forum.PersistentLayer.XMLMessageHandler;
+import java.util.Date;
 import java.util.Vector;
 
 /**
@@ -25,7 +26,7 @@ public interface ForumInterface {
      * @param forumHandler
      * @param memberHandler
      */
-    void setDBHandlers(XMLMessageHandler messageHandler, ForumHandler forumHandler, XMLMemberHandler memberHandler);
+    public void setDBHandlers(XMLMessageHandler messageHandler, ForumHandler forumHandler, XMLMemberHandler memberHandler);
 
     /**
      *  this methods is used to get a message from the database
@@ -33,21 +34,14 @@ public interface ForumInterface {
      * @return the message that is required
      * @throws MessageNotFoundException - is thrown when the message does not exist
      */
-    MessageInterface getMessage(int messageId) throws MessageNotFoundException;
+    public MessageInterface getMessage(int messageId) throws MessageNotFoundException;
     /**
     * used for reading all of the forum messages (might be replaced later when we decide how many messages the forum keeps in memory)
     * @return
     */
-    Vector<Message> viewForum();
-    /**
-     * this method is used to register a new user to the forum
-     * @param newMember - the details of the member to be added
-     * @throws UserExistsException - is thrown when the user name already exists
-     * @throws NicknameExistsException - is thrown when the nickname already exists
-     * @throws BadPasswordException - is thrown when the password doesn't meet the required policy
-     */
-    MemberInterface register(MemberData newMember) throws UserExistsException, NicknameExistsException, BadPasswordException;
-
+    public Vector<Message> viewForum();
+   public void register(String username,String password,String nickname,
+            String email,String firstName,String lastName,Date dateOfBirth) throws UserExistsException, NicknameExistsException, BadPasswordException ;
     /**
      * this method is used when the user wants to log in
      * @param username -  the user name for the login
@@ -55,13 +49,13 @@ public interface ForumInterface {
      * @throws NoSuchUserException - is thrown when there is no such user
      * @throws WrongPasswordException - is thrown when the password doesn't match
      */
-    void login(String username, String password) throws NoSuchUserException, WrongPasswordException;
+    public void login(String username, String password) throws NoSuchUserException, WrongPasswordException;
 
     /**
      * this method is used for logging out of the forum
      * @param username - the user name of the user that wants to log out
      */
-    void logout(String username);
+    public void logout(String username);
 
     /**
      * this method is used for adding a new message for the forum
@@ -69,7 +63,7 @@ public interface ForumInterface {
      * @param Subject - the subject of the message
      * @param body - the body of the message
      */
-    void addMessage(String nickname, String Subject, String body);
+    public void addMessage(String nickname, String Subject, String body);
 
     /**
      * this method is used for adding a reply to  a new message in the forum
@@ -77,7 +71,7 @@ public interface ForumInterface {
      * @param Subject - the subject of the message
      * @param body - the body of the message
      */
-    void addReply(int replyId, String nickname, String Subject, String body) throws MessageNotFoundException, MessageOwnerException;
+    public void addReply(int replyId, String nickname, String Subject, String body) throws MessageNotFoundException, MessageOwnerException;
 
     /**
      * this method is used for editing a message
@@ -89,15 +83,15 @@ public interface ForumInterface {
      * @throws MessageOwnerException - is thrown when the user that wants to edit the message is not the owner
      * of the message
      */
-    void editMessage(String nickname, int messageId, String newSubject, String newBody) throws MessageNotFoundException, MessageOwnerException;
+    public void editMessage(String nickname, int messageId, String newSubject, String newBody) throws MessageNotFoundException, MessageOwnerException;
 
-    void deleteMessage(int messageId) throws MessageNotFoundException;
+    public void deleteMessage(int messageId) throws MessageNotFoundException;
 
     /**
      * get a vector with all the member who are login in the forum
      * @return  a vector with all the member who are login in the forum
      */
-    Vector<MemberInterface> getOnlineMembers();
+    public Vector<MemberInterface> getOnlineMembers();
 
-    void upgradeUser(String username) throws UserNotExistException;
+    public void upgradeUser(String username) throws UserNotExistException;
 }

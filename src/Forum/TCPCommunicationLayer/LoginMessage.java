@@ -1,6 +1,10 @@
 package Forum.TCPCommunicationLayer;
 
 import Forum.DomainLayer.Forum;
+import Forum.Exceptions.NoSuchUserException;
+import Forum.Exceptions.WrongPasswordException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Tomer Heber
@@ -30,8 +34,21 @@ public class LoginMessage extends ClientMessage {
 	 */
 	@Override
 	public ServerResponse doOperation(Forum forum) {
-		// TODO Auto-generated method stub
-		return null;
+            ServerResponse tResponse;
+        try {
+            Forum.getInstance().login(m_username, m_password);
+            String tAns = m_username + " logged in successfully.";
+            tResponse = new ServerResponse(tAns,true);
+        } catch (NoSuchUserException ex) {
+            //Logger.getLogger(LoginMessage.class.getName()).log(Level.SEVERE, null, ex);
+            String tAns = m_username + " does not exist.";
+            tResponse = new ServerResponse(tAns,false);
+        } catch (WrongPasswordException ex) {
+            //Logger.getLogger(LoginMessage.class.getName()).log(Level.SEVERE, null, ex);
+            String tAns = "Wrong password.";
+            tResponse = new ServerResponse(tAns, false);
+        }
+		return tResponse;
 	}
 
 }

@@ -1,6 +1,9 @@
 package Forum.TCPCommunicationLayer;
 
 import Forum.DomainLayer.Forum;
+import Forum.Exceptions.MessageNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Tomer Heber
@@ -31,8 +34,17 @@ public class AddReplyMessage extends ClientMessage {
 	 */
 	@Override
 	public ServerResponse doOperation(Forum forum) {
-		// TODO Auto-generated method stub
-		return null;
+            ServerResponse tResponse;
+        try {
+            Forum.getInstance().addReply((int) m_parentMessageId, "noNickYet", "NoSubjectYet", m_content);
+            tResponse = new ServerResponse("Reply was added  successfully.", true);
+            return tResponse;
+        } catch (MessageNotFoundException ex) {
+          //  Logger.getLogger(AddReplyMessage.class.getName()).log(Level.SEVERE, null, ex);
+            tResponse = new ServerResponse("Message was not found, new reply was not added!", false);
+            return tResponse;
+        }
+     //   return tResponse;
 	}
 
 }
