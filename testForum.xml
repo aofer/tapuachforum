@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <forumType>
     <forumName>Tapuach</forumName>
-    <messageCounter>8</messageCounter>
+    <messageCounter>9</messageCounter>
     <members>
         <userName>liron</userName>
         <nickName>blah</nickName>
@@ -24,6 +24,19 @@
         <firstName>amitofer</firstName>
         <LastName>lastNameTBA</LastName>
         <dateOfBirth>2010-03-24+02:00</dateOfBirth>
+        <status>true</status>
+        <isModerator>false</isModerator>
+        <isAdmin>false</isAdmin>
+    </members>
+    <members>
+        <userName>amit84</userName>
+        <nickName>aofer</nickName>
+        <password>a8bc9a1937c97feac8e401835d0935ff</password>
+        <eMail>oferamit@gmail.com</eMail>
+        <dateJoined>2010-03-27T14:17:34.801+03:00</dateJoined>
+        <firstName>amit</firstName>
+        <LastName>ofer</LastName>
+        <dateOfBirth>2010-03-27+03:00</dateOfBirth>
         <status>true</status>
         <isModerator>false</isModerator>
         <isAdmin>false</isAdmin>
@@ -90,5 +103,14 @@
         <createdBy>noNickYet</createdBy>
         <dateAdded>2010-03-24T10:51:02.594+02:00</dateAdded>
         <modifiedDate>2010-03-24T10:51:02.594+02:00</modifiedDate>
+    </messages>
+    <messages>
+        <messageId>8</messageId>
+        <parentId>0</parentId>
+        <subject>noSubject</subject>
+        <body>blah blah test message 2345!!!!</body>
+        <createdBy>noNickname</createdBy>
+        <dateAdded>2010-03-27T14:18:03.803+03:00</dateAdded>
+        <modifiedDate>2010-03-27T14:18:03.803+03:00</modifiedDate>
     </messages>
 </forumType>

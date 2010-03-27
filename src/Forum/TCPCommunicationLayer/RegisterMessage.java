@@ -17,9 +17,13 @@ public class RegisterMessage extends ClientMessage {
 	private static final long serialVersionUID = -3267419208356408002L;
 	
 	/**
-	 * The users real name.
+	 * The users real first name.
 	 */
-	private String m_realname;
+	private String m_firstName;
+        /**
+	 * The users real last name.
+	 */
+	private String m_lastName;;
 	
 	/**
 	 * The e-mail of the user.
@@ -30,17 +34,23 @@ public class RegisterMessage extends ClientMessage {
 	 * The username of the user. 
 	 */
 	private String m_username;
-	
+        /**
+         *  the user nickname.
+         */
+        private String m_nickname;
 	/** 
 	 * The password of the user. 
 	 */
 	private String m_password;
 
-	public RegisterMessage(String realname, String email, String username, String password) {
-		m_realname = realname;
+
+	public RegisterMessage(String firstName,String lastName,String nickname, String email, String username, String password) {
+		m_firstName = firstName;
+                m_lastName = lastName;
 		m_email = email;
 		m_username = username;
-		m_password = password;		
+		m_password = password;
+                m_nickname = nickname;
 	}
 
 	/* (non-Javadoc)
@@ -51,7 +61,7 @@ public class RegisterMessage extends ClientMessage {
             Date tDate = new Date();
             ServerResponse tResponse;
         try {
-            Forum.getInstance().register(m_username, m_password, "nicknameTBA", m_email, m_realname, "lastNameTBA", tDate);
+            Forum.getInstance().register(m_username, m_password, m_nickname, m_email, m_firstName, m_lastName, tDate);
             tResponse = new ServerResponse("Registeration was successful.", true);
         } catch (UserExistsException ex) {
             //Logger.getLogger(RegisterMessage.class.getName()).log(Level.SEVERE, null, ex);
