@@ -121,7 +121,9 @@ public class ClientConnectionController extends Thread {
 				"- view_forum" + "\n" +
 				"- logoff" + "\n" +
 				"- login <username> <password>" + "\n" +
-				"- register <realname> <e-mail> <username> <password>" + "\n" +
+				"- register <firstname><lastname><nickname> <e-mail> <username> <password>" + "\n" +
+                                "- upgrade_user <username to be upgraded>" + "\n" +
+                                "- delete_message <message id to delete>" + "\n" +
 				"- disconnect" + "\n" +
 				"//TODO add more operations (Admin, Moderator, Search)"	+ "\n"			
 		);								
@@ -153,7 +155,7 @@ public class ClientConnectionController extends Thread {
 				return new LogoffMessage();
 			}
 			if (command.equals("register")) {
-				return new RegisterMessage(st.nextToken(),st.nextToken(),st.nextToken(),st.nextToken());
+				return new RegisterMessage(st.nextToken(),st.nextToken(),st.nextToken(),st.nextToken(),st.nextToken(),st.nextToken());
 			}
 			if (command.equals("add_reply")) {
 				String messageIdS = st.nextToken();
@@ -165,10 +167,19 @@ public class ClientConnectionController extends Thread {
 				long messageId = Long.parseLong(messageIdS);
 				return new ModifyMessageMessage(messageId,str.substring(command.length()+messageIdS.length()+2));
 			}
+                        if (command.equals("upgrade_user")){
+                                String tusername = st.nextToken();
+                                return new UpgradeUserMessage(tusername);
+
+                        }
+                         if (command.equals("delete_message")){
+                                String tMessageIdS = st.nextToken();
+                                long tMessageId = Long.parseLong(tMessageIdS);
+                                return new DeleteMessageMessage(tMessageId);
+
+                        }
 			
 			// TODO Add Search messages.
-			// TODO Add Admin messages
-			// TODO Add Moderator messages.
 		}
 		catch(Exception e) {
 			throw new BadCommandException("The command "+str+" is invalid.");
