@@ -54,4 +54,6 @@ public interface MessageInterface {
      * @param _subject
      */
     void setSubject(String subject);
+
+     int getIndex();
 }
