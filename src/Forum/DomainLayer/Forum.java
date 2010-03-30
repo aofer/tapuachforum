@@ -8,8 +8,9 @@ import Forum.DomainLayer.Interfaces.MemberInterface;
 import Forum.DomainLayer.Interfaces.MessageInterface;
 import Forum.Exceptions.*;
 import Forum.DomainLayer.Interfaces.ForumInterface;
+import Forum.DomainLayer.SearchEngine.SearchEngineHandler;
+import Forum.DomainLayer.SearchEngine.SearchHit;
 import Forum.PersistentLayer.*;
-import Forum.PersistentLayer.Data.MemberData;
 import Forum.PersistentLayer.Interfaces.ForumHandlerInterface;
 import Forum.PersistentLayer.Interfaces.XMLMemberInterface;
 import Forum.PersistentLayer.Interfaces.XMLMessageInterface;
@@ -25,6 +26,7 @@ public class Forum implements ForumInterface {
 
     private MessageHandler _messageHandler;
     private UserHandler _userHandler;
+    private SearchEngineHandler _searchHandler;
     private static Forum _forum;
 
     public static Forum getInstance() {
@@ -42,6 +44,7 @@ public class Forum implements ForumInterface {
         XMLMemberInterface xmlMemberHandler = new XMLMemberHandler(xf);
         this._messageHandler = new MessageHandler(xmlForumHandler,xmlMessageHandler);
         this._userHandler = new UserHandler(xmlForumHandler, xmlMemberHandler);
+        this._searchHandler = new SearchEngineHandler();
 
     }
 
@@ -117,4 +120,15 @@ public class Forum implements ForumInterface {
         return this._messageHandler.viewForum();
     }
 
+    public void addMessageToIndex(MessageInterface m){
+        this._searchHandler.addData(m);
+    }
+
+    public  SearchHit[] searchByContent(String phrase, int from, int to){
+        return _searchHandler.searchByContent(phrase, from, to);
+    }
+
+    public SearchHit[] searchByAuthor(String username, int from, int to){
+        return _searchHandler.searchByAuthor(username, from, to);
+    }
 }
