@@ -72,5 +72,7 @@ public class SearchEngineHandler implements SearchEngineInterface {
         return sh;
     }
 
-
+public void RemoveMessage(MessageInterface m ){
+    _searchData.removeMessage(m);
+}
 }
