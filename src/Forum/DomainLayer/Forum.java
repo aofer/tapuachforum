@@ -131,4 +131,8 @@ public class Forum implements ForumInterface {
     public SearchHit[] searchByAuthor(String username, int from, int to){
         return _searchHandler.searchByAuthor(username, from, to);
     }
+
+   public void removeMessageFromIndex(MessageInterface m){
+       _searchHandler.RemoveMessage(m);
+   }
 }
