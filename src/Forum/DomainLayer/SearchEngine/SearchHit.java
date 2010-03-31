@@ -24,5 +24,8 @@ public class SearchHit {
 	public MessageInterface getMessage() {
 		return m_message;
 	}
-
+    @Override
+        public String toString(){
+            return "Score:" + this.m_score + "\n" + this.m_message.toString();
+        }
 }

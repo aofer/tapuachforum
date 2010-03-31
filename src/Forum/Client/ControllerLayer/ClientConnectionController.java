@@ -124,6 +124,8 @@ public class ClientConnectionController extends Thread {
 				"- register <firstname><lastname><nickname> <e-mail> <username> <password>" + "\n" +
                                 "- upgrade_user <username to be upgraded>" + "\n" +
                                 "- delete_message <message id to delete>" + "\n" +
+                                "- search_by_author <author's nickname> <from index><to index>" + "\n" +
+                                "- search_by_phrase  <from index><to index><prhase to be searched>" + "\n" +
 				"- disconnect" + "\n" +
 				"//TODO add more operations (Admin, Moderator, Search)"	+ "\n"			
 		);								
@@ -178,8 +180,25 @@ public class ClientConnectionController extends Thread {
                                 return new DeleteMessageMessage(tMessageId);
 
                         }
-			
-			// TODO Add Search messages.
+                        if (command.equals("search_by_author")){
+                                String tNickname = st.nextToken();
+                                String tFromS = st.nextToken();
+                                String tToS = st.nextToken();
+                                int tTo = Integer.parseInt(tToS);
+                                int tFrom = Integer.parseInt(tFromS);
+                                return new SearchByAuthorMessage(tNickname,tFrom,tTo);
+
+                        }
+                        if (command.equals("search_by_phrase")){
+                                String tFromS = st.nextToken();
+                                String tToS = st.nextToken();
+                                String tPhrase = st.nextToken();
+                                int tTo = Integer.parseInt(tToS);
+                                int tFrom = Integer.parseInt(tFromS);
+                                return new SearchByContentMessage(tPhrase,tFrom,tTo);
+
+                        }
+
 		}
 		catch(Exception e) {
 			throw new BadCommandException("The command "+str+" is invalid.");
