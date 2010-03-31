@@ -68,8 +68,8 @@ public class GuestTest {
           Date dateOfBirth = new Date();
         Guest instance2 = new Guest();
         MemberData newMem = new MemberData(username, nickname, password, firstName, lastName, email, dateOfBirth);
-           MemberInterface memInter = instanceForum.register(newMem);
-        assertEquals(memInter.getFirstName(), firstName);
+//           MemberInterface memInter = instanceForum.register(newMem);
+   //     assertEquals(memInter.getFirstName(), firstName);
        // TODO review the generated test code and remove the default call to fail.
       //  fail("The test case is a prototype.");*/
     }

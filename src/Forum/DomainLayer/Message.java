@@ -107,4 +107,8 @@ public class Message implements MessageInterface {
         return "\nSubject:" + _data.getSubject() + "\nWritten by:" + _data.getNickname()
                 + "\n Number of replies:" + _replies.size() + "\nBody:" + _data.getBody() + "\n";
     }
+
+        public int getIndex() {
+        return 0;
+    }
 }

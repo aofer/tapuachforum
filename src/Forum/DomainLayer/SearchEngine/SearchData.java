@@ -67,8 +67,8 @@ public class SearchData implements SearchDataInterface {
 
     private void addAuthor(String author, MessageInterface msg) {
         if (!_authors.containsKey(author)) { //there is no such author
-            _words.put(author, new ArrayList<Integer>()); //init the list of messages
+            _authors.put(author, new ArrayList<Integer>()); //init the list of messages
         }
-        _words.get(author).add(msg.getIndex()); //add the messgae index to the given authors list
+        _authors.get(author).add(msg.getIndex()); //add the messgae index to the given authors list
     }
 }

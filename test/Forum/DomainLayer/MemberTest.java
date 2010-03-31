@@ -265,23 +265,23 @@ public class MemberTest {
      */
     @Test
     public void testLogOut() {
-        try {
+   //     try {
 
             System.out.println("logOut");
             Date tDate = new Date();
             MemberData instance = new MemberData("liron", "blah", "87654321", "liron", "katav", "lirrr@l.c", tDate);
             Member memb = new Member(instance);
-            instanceForum.register(instance);
+//            instanceForum.register(instance);
              assertTrue(instanceForum.getOnlineMembers().size() == 1);
             memb.logOut();
             assertTrue(instanceForum.getOnlineMembers().size() == 0);
-        } catch (UserExistsException ex) {
-            Logger.getLogger(MemberTest.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NicknameExistsException ex) {
-            Logger.getLogger(MemberTest.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (BadPasswordException ex) {
-            Logger.getLogger(MemberTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+      //  } catch (UserExistsException ex) {
+         //   Logger.getLogger(MemberTest.class.getName()).log(Level.SEVERE, null, ex);
+        //} catch (NicknameExistsException ex) {
+//            Logger.getLogger(MemberTest.class.getName()).log(Level.SEVERE, null, ex);
+   //     } catch (BadPasswordException ex) {
+      //      Logger.getLogger(MemberTest.class.getName()).log(Level.SEVERE, null, ex);
+        //}
     }
 
 }
