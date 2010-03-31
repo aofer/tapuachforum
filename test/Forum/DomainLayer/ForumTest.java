@@ -77,7 +77,7 @@ public class ForumTest {
      fH.initForum();
          //   instance.getInstance().initForum();
          // assertNull (fH.checkUsername("amitTest") );
-        instance.getInstance().register(memberDetails);
+//        instance.getInstance().register(memberDetails);
        assertTrue (fH.checkUsername("amitUserName") );
     }
 
@@ -118,7 +118,7 @@ public class ForumTest {
             Forum instance = Forum.getInstance();
              Date tDate = new Date();
            MemberData memberDetails = new MemberData("lironUserName", "lironNickName", "liroPass","lironFirstName","lironLastName","liron@agr",tDate);
-          instance.register(memberDetails);
+//          instance.register(memberDetails);
             String _nickName = "liron";
             String subject = "this is the subject";
             String body = "this is the body";
@@ -129,11 +129,11 @@ public class ForumTest {
             assertEquals(subject, instance.getMessage(1).getSubject());
         } catch (MessageNotFoundException ex) {
             Logger.getLogger(ForumTest.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UserExistsException ex) {
+        //} catch (UserExistsException ex) {
+           // Logger.getLogger(ForumTest.class.getName()).log(Level.SEVERE, null, ex);
+        //} catch (NicknameExistsException ex) {
             Logger.getLogger(ForumTest.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NicknameExistsException ex) {
-            Logger.getLogger(ForumTest.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (BadPasswordException ex) {
+        //} catch (BadPasswordException ex) {
             Logger.getLogger(ForumTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -262,7 +262,7 @@ public class ForumTest {
      */
     @Test
     public void testSetDBHandlers() {
-        try {
+//        try {
             System.out.println("setDBHandlers");
             XMLFileHandler xf = new XMLFileHandler("testForum.xml");
             XMLMessageHandler msgH = new XMLMessageHandler(xf);
@@ -272,17 +272,17 @@ public class ForumTest {
             instance.setDBHandlers(msgH, fH, memH);
             Date tDate = new Date();
             MemberData memberDetails = new MemberData("AnotherTestUserName", "AnotherTestNickName", "liroPass", "AnotherTestFirstName", "AnotherTestLastName", "AnotherTest@agr", tDate);
-            instance.register(memberDetails);
+            //instance.register(memberDetails);
             assertTrue(fH.checkUsername("AnotherTestUserName"));
             // TODO review the generated test code and remove the default call to fail.
        //     fail("The test case is a prototype.");
-        } catch (UserExistsException ex) {
-            Logger.getLogger(ForumTest.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NicknameExistsException ex) {
-            Logger.getLogger(ForumTest.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (BadPasswordException ex) {
-            Logger.getLogger(ForumTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        //} catch (UserExistsException ex) {
+//            Logger.getLogger(ForumTest.class.getName()).log(Level.SEVERE, null, ex);//
+        //} catch (NicknameExistsException ex) {
+   //         Logger.getLogger(ForumTest.class.getName()).log(Level.SEVERE, null, ex);
+        //} catch (BadPasswordException ex) {
+      //      Logger.getLogger(ForumTest.class.getName()).log(Level.SEVERE, null, ex);
+        //}
     }
 
     /**
