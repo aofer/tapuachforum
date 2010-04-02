@@ -5,6 +5,7 @@
 
 package Forum.DomainLayer.SearchEngine;
 
+import Forum.DomainLayer.Forum;
 import Forum.DomainLayer.Interfaces.MessageInterface;
 import Forum.DomainLayer.Message;
 import Forum.PersistentLayer.Data.MessageData;
@@ -48,9 +49,12 @@ public class SearchEngineHandlerTest {
         System.out.println("addData");
         MessageInterface msg1 = new Message(new MessageData("Arseny", "i just love aly and fila", "their latest future sound of egypt is great ", null, null));
         MessageInterface msg2 = new Message(new MessageData("Amit", "who cares about armin", "gareth emery is much better.. armin is so commercial now ", null, null));
-        SearchEngineHandler instance = new SearchEngineHandler();
-        instance.addData(msg1);
-        instance.addData(msg2);
+        //SearchEngineHandler instance = new SearchEngineHandler();
+        Forum f = Forum.getInstance();
+        f.addMessageToIndex(msg1);
+        f.addMessageToIndex(msg2);
+        //instance.addData(msg1);
+        //instance.addData(msg2);
         assertTrue(true);
         
         
@@ -66,11 +70,16 @@ public class SearchEngineHandlerTest {
         int from = 0;
         int to = 2;
         SearchEngineHandler instance = new SearchEngineHandler();
-         MessageInterface msg1 = new Message(new MessageData("Arseny", "i just love aly and fila", "their latest future sound of egypt is great ", null, null));
-        MessageInterface msg2 = new Message(new MessageData("Amit", "who cares about armin", "gareth emery is much better.. armin is so commercial now ", null, null));
-        instance.addData(msg1);
-        instance.addData(msg2);
-        SearchHit[] result = instance.searchByAuthor("Arseny", from, to);
+        MessageData m = new MessageData("Arseny", "i just love aly and fila", "their latest future sound of egypt is great ", null, null) ;
+        m.setId(37);
+        MessageInterface msg1 = new Message(m);
+       m = new MessageData("Amit", "who cares about armin", "gareth emery is much better.. armin is so commercial now ", null, null)  ;
+       m.setId(38);
+        MessageInterface msg2 = new Message(m);
+        Forum f = Forum.getInstance();
+        f.addMessageToIndex(msg1);
+        f.addMessageToIndex(msg2);
+        SearchHit[] result =f.searchByAuthor("Arseny", from, to);
         assertTrue(result.length == 1);
         
     }
