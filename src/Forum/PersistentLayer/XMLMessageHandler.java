@@ -59,8 +59,12 @@ public class XMLMessageHandler implements XMLMessageInterface {
                     String body = m.getBody();
                     Date created=m.getDateAdded().toGregorianCalendar().getTime();
                     Date modified =m.getModifiedDate().toGregorianCalendar().getTime();
-
-                    return new MessageData(nick, sub, body, created, modified);
+                    int indexId = m.getMessageId().intValue();
+                    //****************************************//
+                    // changed for getIndex   ****************/
+                    //the next line is the old constractor;
+                    //   return new MessageData(nick, sub, body, created, modified);
+                    return new MessageData(nick, sub, body, created, modified,indexId);
    //             }
             }
            return null;

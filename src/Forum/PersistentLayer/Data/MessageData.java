@@ -18,6 +18,7 @@ public class MessageData {
  private String _body;
  private Date _writeDate;
  private Date _modifiedDate;
+ private int _id;
 
  public MessageData(String nickname , String subject,String body,Date writeDate,Date modifedDate)
  {
@@ -26,6 +27,19 @@ public class MessageData {
      this._body=body;
      this._writeDate=writeDate;
      this._modifiedDate=modifedDate;
+ }
+
+                     //****************************************//
+                    // changed for getIndex   ****************/
+ // new constractor
+  public MessageData(String nickname , String subject,String body,Date writeDate,Date modifedDate, int indexId)
+ {
+     this._nickname=nickname;
+     this._subject=subject;
+     this._body=body;
+     this._writeDate=writeDate;
+     this._modifiedDate=modifedDate;
+     this._id = indexId;
  }
 
     /**
@@ -75,5 +89,18 @@ public class MessageData {
     public void setBody(String body) {
         this._body = body;
     }
- 
+
+    /**
+     * @return the _id
+     */
+    public int getId() {
+        return _id;
+    }
+
+    /**
+     * @return id to set - should not be used!!! - used only for tests.
+     */
+    public void setId(int id) {
+       this._id = id;
+    }
 }
