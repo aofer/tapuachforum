@@ -108,7 +108,21 @@ public class Message implements MessageInterface {
                 + "\n Number of replies:" + _replies.size() + "\nBody:" + _data.getBody() + "\n";
     }
 
-        public int getIndex() {
-        return 0;
+    /**
+     * index getter
+     * @return the index of the message
+     */
+    public int getIndex() {
+        return this._data.getId();
     }
+        
+
+        /**
+         * index setter - should not be used; used only for tests.
+         * @param id - the index of the message
+         */
+        public void  setIndex(int id) {
+        this._data.setId(id);
+    }
+
 }

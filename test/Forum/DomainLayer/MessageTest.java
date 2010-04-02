@@ -179,6 +179,38 @@ public class MessageTest {
         // fail("The test case is a prototype.");
     }
 
+    /**
+     * Test of getIndex method, of class Message.
+     */
+    @Test
+    public void testGetIndex() {
+
+        System.out.println("getIndex");
+         MessageData mesData = new MessageData("mesWriter", "theMesSubject", "the Mes Body", tDate, tDate);
+        Message instance = new Message(mesData);
+        int expResult = 0;
+        int result = instance.getIndex();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+    //    fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setIndex method, of class Message.
+     */
+    @Test
+    public void testSetIndex() {
+        System.out.println("setIndex");
+        int id = 5;
+
+         MessageData mesData = new MessageData("mesWriter", "theMesSubject", "the Mes Body", tDate, tDate);
+        Message instance = new Message(mesData);
+        int expResult = 5;
+             instance.setIndex(id);
+        int result =  instance.getIndex();
+         assertEquals(expResult, result);
+    }
+
 
 
 }
