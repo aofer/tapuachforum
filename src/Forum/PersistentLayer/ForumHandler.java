@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
+import Forum.Exceptions.*;
 
 /**
  *
@@ -199,7 +200,7 @@ public class ForumHandler  implements  ForumHandlerInterface{
          * @param subject
          * @param body
          */
-    public void addMessage(int parentId, String createdBy, String subject, String body, Date DateAdded) {
+    public void addMessage(int parentId, String createdBy, String subject, String body, Date DateAdded) throws MessageNotFoundException {
         try {
             ObjectFactory factory = new ObjectFactory();
             // Create a new member
@@ -217,16 +218,25 @@ public class ForumHandler  implements  ForumHandlerInterface{
             newMessage.setMessageId(BigInteger.valueOf(getCounter()));
             //this.xf.getForum().getMessages().add(newMessage);
 
-                  MessageType Aba = findMessage(parentId);
-          if (Aba != null)
-              Aba.getMessage().add(newMessage);
-          else
-               this.xf.getForum().getMessages().add(newMessage);
+                if (parentId == 0)
+                    this.xf.getForum().getMessages().add(newMessage);
+                else
+                {
+                   MessageType Aba = findMessage(parentId);
+                      if (Aba != null)
+                                   Aba.getMessage().add(newMessage);
+                      else
+                         throw new MessageNotFoundException ("there is not such parent" + parentId);
+
+                }
+
+            
 
           //  MemberType userWriter = findMember(createdBy);
         //    userWriter.getMessage().add(newMessage);
 
             xf.WriteToXML();
+
         } catch (DatatypeConfigurationException ex) {
             Logger.getLogger(ForumHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
