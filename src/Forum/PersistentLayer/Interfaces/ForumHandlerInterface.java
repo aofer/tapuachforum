@@ -73,7 +73,7 @@ public interface ForumHandlerInterface {
          * @param DateAdded
          * @param modifyDate
          */
-	public void addMessage ( int parentId, String createdBy, String subject,String body, Date DateAdded, Date modifyDate);
+	public int addMessage ( int parentId, String createdBy, String subject,String body, Date DateAdded, Date modifyDate);
         /**
          * edits a message
          * @param messageId - the id of the message to be edited

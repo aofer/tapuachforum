@@ -5,6 +5,7 @@
 
 package Forum.PersistentLayer;
 
+import Forum.Exceptions.MessageNotFoundException;
 import Forum.Exceptions.NoSuchUserException;
 import java.util.Date;
 import java.util.logging.Level;
@@ -150,7 +151,11 @@ public class ForumHandlerTest {
         String body = "working";
         Date DateAdded = new Date();
         ForumHandler instance =  new ForumHandler(xf);;
-        instance.addMessage(parentId, createdBy, subject, body, DateAdded);
+        try {
+            instance.addMessage(parentId, createdBy, subject, body, DateAdded);
+        } catch (MessageNotFoundException ex) {
+            Logger.getLogger(ForumHandlerTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
          String result = instance.getSubject(1);
         assertEquals(result, subject);
         // TODO review the generated test code and remove the default call to fail.

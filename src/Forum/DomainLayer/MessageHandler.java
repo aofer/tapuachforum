@@ -42,7 +42,10 @@ public class MessageHandler {
 
     public void addMessage(String _nickName, String subject, String body) {
         Date tDate = new Date();
-        this._XmlForum.addMessage(0, _nickName, subject, body, tDate, tDate);
+        int id = this._XmlForum.addMessage(0, _nickName, subject, body, tDate, tDate);
+        Date d = null;
+        MessageInterface m = new Message(new MessageData(_nickName, subject, body, d,d, id));
+        Forum.getInstance().addMessageToIndex(m);
     }
 
     public void addReply(int parentId, String nickname, String subject, String body) throws MessageNotFoundException {

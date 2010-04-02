@@ -200,7 +200,7 @@ public class ForumHandler  implements  ForumHandlerInterface{
          * @param subject
          * @param body
          */
-    public void addMessage(int parentId, String createdBy, String subject, String body, Date DateAdded) throws MessageNotFoundException {
+public void addMessage(int parentId, String createdBy, String subject, String body, Date DateAdded) throws MessageNotFoundException {
         try {
             ObjectFactory factory = new ObjectFactory();
             // Create a new member
@@ -261,7 +261,7 @@ public class ForumHandler  implements  ForumHandlerInterface{
           return false;
         };
 
-    public void addMessage(int parentId, String createdBy, String subject, String body, Date DateAdded, Date modifyDate) {
+    public int addMessage(int parentId, String createdBy, String subject, String body, Date DateAdded, Date modifyDate) {
         try {
             ObjectFactory factory = new ObjectFactory();
             // Create a new member
@@ -279,7 +279,8 @@ public class ForumHandler  implements  ForumHandlerInterface{
             gcal.setTime(modifyDate);
              xgcal2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(gcal);
             newMessage.setModifiedDate(xgcal2);
-            newMessage.setMessageId(BigInteger.valueOf(getCounter()));
+            BigInteger id = BigInteger.valueOf(getCounter());
+            newMessage.setMessageId(id);
 
           // add messega to MAIN
             if (parentId == 0)
@@ -297,9 +298,12 @@ public class ForumHandler  implements  ForumHandlerInterface{
   //               MemberType userWriter = findMember(createdBy);
 //            userWriter.getMessage().add(newMessage);
                    xf.WriteToXML();
+                           return id.intValue();
+
         } catch (DatatypeConfigurationException ex) {
             Logger.getLogger(ForumHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return 0;
     }
 
     public String userExists(String username) {
