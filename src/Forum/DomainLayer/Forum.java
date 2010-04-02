@@ -116,7 +116,7 @@ public class Forum implements ForumInterface {
         this._userHandler.upgradeUser(username);
     }
 
-    public Vector<Message> viewForum() {
+    public Vector<MessageInterface> viewForum() {
         return this._messageHandler.viewForum();
     }
 

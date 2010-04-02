@@ -39,7 +39,7 @@ public interface ForumInterface {
     * used for reading all of the forum messages (might be replaced later when we decide how many messages the forum keeps in memory)
     * @return
     */
-    public Vector<Message> viewForum();
+    public Vector<MessageInterface> viewForum();
    public void register(String username,String password,String nickname,
             String email,String firstName,String lastName,Date dateOfBirth) throws UserExistsException, NicknameExistsException, BadPasswordException ;
     /**

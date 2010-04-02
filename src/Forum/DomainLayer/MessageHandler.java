@@ -13,6 +13,8 @@ import Forum.PersistentLayer.Interfaces.XMLMessageInterface;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -72,14 +74,20 @@ public class MessageHandler {
         this._XmlForum.deleteMessage(messageId);
     }
 
-    Vector<Message> viewForum() {
-        Vector<Message> entireForum = new Vector<Message>();
+    Vector<MessageInterface> viewForum() {
+        Vector<MessageInterface> entireForum = new Vector<MessageInterface>();
         List<Integer> threadsIds = this._XmlMessage.getRepliesIds(0);
         for (int i = 0;i< threadsIds.size();i++){
             int tId = threadsIds.get(i).intValue();
-            MessageData tData = this._XmlMessage.getMessage(tId);
-            Message tMessage = new Message(tData);
-            entireForum.add(tMessage);
+            try {
+                MessageInterface tMessage = Forum.getInstance().getMessage(tId);
+                entireForum.add(tMessage);
+            } catch (MessageNotFoundException ex) {
+                
+            }
+            //MessageData tData = this._XmlMessage.getMessage(tId);
+            //Message tMessage = new Message(tData);
+
         }
 
         return entireForum;
