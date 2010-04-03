@@ -109,8 +109,8 @@ public class Message implements MessageInterface {
        if (_replies.size() > 0){
             ans = ans + "\nReplies:\n\n";
             for (int i = 0; i < _replies.size();i++){
-                ans = ans + "Reply      " + (i+1) ;
-                _replies.elementAt(i).toString();
+                ans = ans + "Reply      " + (i+1)  + "\n";
+                ans = ans + _replies.elementAt(i).toString() + "\n";
             }
        }
         return ans;
