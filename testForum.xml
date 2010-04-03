@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <forumType>
     <forumName>Tapuach</forumName>
-    <messageCounter>9</messageCounter>
+    <messageCounter>12</messageCounter>
     <members>
         <userName>liron</userName>
         <nickName>blah</nickName>
@@ -112,5 +112,32 @@
         <createdBy>noNickname</createdBy>
         <dateAdded>2010-03-27T14:18:03.803+03:00</dateAdded>
         <modifiedDate>2010-03-27T14:18:03.803+03:00</modifiedDate>
+    </messages>
+    <messages>
+        <messageId>9</messageId>
+        <parentId>0</parentId>
+        <subject>noSubject</subject>
+        <body>jibrish3548932758923758378975328 325325</body>
+        <createdBy>noNickname</createdBy>
+        <dateAdded>2010-04-03T13:47:44.101+03:00</dateAdded>
+        <modifiedDate>2010-04-03T13:47:44.101+03:00</modifiedDate>
+        <message>
+            <messageId>10</messageId>
+            <parentId>9</parentId>
+            <subject>NoSubjectYet</subject>
+            <body>reply to jibrish!!!!!!!!!!!!</body>
+            <createdBy>noNickYet</createdBy>
+            <dateAdded>2010-04-03T13:48:10.829+03:00</dateAdded>
+            <modifiedDate>2010-04-03T13:48:10.829+03:00</modifiedDate>
+        </message>
+        <message>
+            <messageId>11</messageId>
+            <parentId>9</parentId>
+            <subject>NoSubjectYet</subject>
+            <body>hi new reply</body>
+            <createdBy>noNickYet</createdBy>
+            <dateAdded>2010-04-03T13:51:05.340+03:00</dateAdded>
+            <modifiedDate>2010-04-03T13:51:05.340+03:00</modifiedDate>
+        </message>
     </messages>
 </forumType>

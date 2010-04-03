@@ -30,7 +30,6 @@ public class DeleteMessageMessage extends ClientMessage{
             String tAns = "Message was deleted successfully.";
             tResponse = new ServerResponse(tAns, true);
         } catch (MessageNotFoundException ex) {
-            //Logger.getLogger(DeleteMessageMessage.class.getName()).log(Level.SEVERE, null, ex);
             tResponse = new ServerResponse("Message does not exist.", false);
         }
         return tResponse;

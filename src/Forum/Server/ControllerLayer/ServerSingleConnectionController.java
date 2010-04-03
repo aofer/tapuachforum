@@ -12,6 +12,8 @@ import Forum.Settings;
 import Forum.DomainLayer.*;
 import Forum.DomainLayer.User;
 import Forum.TCPCommunicationLayer.ClientMessage;
+import Forum.TCPCommunicationLayer.LoginMessage;
+import Forum.TCPCommunicationLayer.RegisterMessage;
 import Forum.TCPCommunicationLayer.ServerResponse;
 
 /**
@@ -80,7 +82,14 @@ public class ServerSingleConnectionController implements Runnable {
 				log.info("Received a message from client "+m_socket.getInetAddress()+".");
 				ClientMessage message = (ClientMessage)o;
 				/* Operate on the message */				
-				ServerResponse response = message.doOperation(); 
+				ServerResponse response = message.doOperation();
+
+                                //this part deals with user control
+                                if ( (message instanceof LoginMessage) && (response.hasExecuted())){
+                                    //this._user = new Member()
+
+                                }
+
 				/* Send response back to the client */
 				log.info("Sending a response back to client "+m_socket.getInetAddress()+".");
 				out.writeObject(response);
