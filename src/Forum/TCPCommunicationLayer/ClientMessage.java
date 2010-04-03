@@ -20,6 +20,6 @@ public abstract class ClientMessage implements Serializable {
 	 * @param forum A facade to communicate with the Domain layer.
 	 * @return ServerResponse A response that should be sent back to the client
 	 */
-	public abstract ServerResponse doOperation(Forum forum);
+	public abstract ServerResponse doOperation();
 
 }

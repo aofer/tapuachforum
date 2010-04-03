@@ -57,7 +57,7 @@ public class RegisterMessage extends ClientMessage {
 	 * @see forum.tcpcommunicationlayer.ClientMessage#doOperation(forum.server.domainlayer.ForumFacade)
 	 */
 	@Override
-	public ServerResponse doOperation(Forum forum) {
+	public ServerResponse doOperation() {
             Date tDate = new Date();
             ServerResponse tResponse;
         try {

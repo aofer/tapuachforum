@@ -33,7 +33,7 @@ public class LoginMessage extends ClientMessage {
 	 * @see forum.tcpcommunicationlayer.ClientMessage#doOperation(forum.server.domainlayer.ForumFacade)
 	 */
 	@Override
-	public ServerResponse doOperation(Forum forum) {
+	public ServerResponse doOperation() {
             ServerResponse tResponse;
         try {
             Forum.getInstance().login(m_username, m_password);

@@ -17,8 +17,7 @@ public class ViewForumMessage extends ClientMessage {
 	 * @see forum.tcpcommunicationlayer.ClientMessage#doOperation(forum.server.domainlayer.ForumFacade)
 	 */
 	@Override
-	public ServerResponse doOperation(Forum forum) {
-		System.out.println("test");
+	public ServerResponse doOperation() {
                 Vector<MessageInterface> tForum = Forum.getInstance().viewForum();
                 String tForumString = "";
                 for (int i = 0;i<tForum.size();i++){
