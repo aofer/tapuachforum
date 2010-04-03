@@ -5,13 +5,16 @@
 package Forum.DomainLayer;
 
 import Forum.DomainLayer.Interfaces.MessageInterface;
+import Forum.DomainLayer.Logger.TapuachLogger;
 import Forum.Exceptions.MessageNotFoundException;
 import Forum.Exceptions.MessageOwnerException;
 import Forum.PersistentLayer.Data.MessageData;
 import Forum.PersistentLayer.Interfaces.ForumHandlerInterface;
 import Forum.PersistentLayer.Interfaces.XMLMessageInterface;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -74,7 +77,7 @@ public class MessageHandler {
         this._XmlForum.deleteMessage(messageId);
     }
 
-    Vector<MessageInterface> viewForum() {
+    public Vector<MessageInterface> viewForum() {
         Vector<MessageInterface> entireForum = new Vector<MessageInterface>();
         List<Integer> threadsIds = this._XmlMessage.getRepliesIds(0);
         for (int i = 0;i< threadsIds.size();i++){
@@ -92,4 +95,26 @@ public class MessageHandler {
 
         return entireForum;
     }
+// function that i began writing that should extract all messages from the forum as linear structure
+/*    public Set<MessageInterface> getAllMessages(){
+        Set<MessageInterface> s = new HashSet<MessageInterface>();
+          List<Integer> threadsIds = this._XmlMessage.getRepliesIds(0);
+          for(Integer it : threadsIds){
+            try {
+                MessageInterface tMessage = Forum.getInstance().getMessage(it);
+                s.add(tMessage);
+            }
+            catch (MessageNotFoundException ex) {
+               TapuachLogger t = TapuachLogger.getInstance();
+               t.severe("message # " + it.intValue() + " was not found");
+            }
+          }
+
+
+          //List<Integer> tReplyIds = this._XmlMessage.getRepliesIds(messageId);
+        // MessageInterface tMessage = Forum.getInstance().getMessage(tId);
+
+        return s;
+    }
+*/
 }

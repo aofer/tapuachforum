@@ -11,6 +11,9 @@ import java.util.List;
 import java.util.ListIterator;
 import Forum.DomainLayer.Forum;
 import Forum.DomainLayer.Logger.TapuachLogger;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  *
@@ -25,6 +28,12 @@ public class SearchEngineHandler implements SearchEngineInterface {
     }
 
 
+    //should init the search index
+    /*public void init()
+{
+       //Vector<MessageInterface> entireForum = new Vector<MessageInterface>();
+        //List<Integer> threadsIds =.getRepliesIds(0);
+}*/
 
     public void addData(MessageInterface msg) {
        _searchData.addMessage(msg);
@@ -54,8 +63,17 @@ public class SearchEngineHandler implements SearchEngineInterface {
     public SearchHit[] searchByContent(String phrase, int from, int to) {
         int n  = to-from-1; int i=0;
         SearchHit[] sh = new SearchHit[n];
-        List<Integer> li =_searchData.getByContent(phrase);
-        ListIterator<Integer> lit = li.listIterator();
+        //List<Integer> li =_searchData.getByContent(phrase);
+        
+        Set<Integer> li = new HashSet<Integer>();
+        String[] body = phrase.split(" ");
+        for(i = 0; i < body.length; i++) {
+            List<Integer> l =_searchData.getByContent(body[i]);
+            for(Integer it : l){
+                li.add(it);
+            }
+        }
+        Iterator<Integer> lit = li.iterator();
         Forum f = Forum.getInstance();
         while(i<=n)
         {
