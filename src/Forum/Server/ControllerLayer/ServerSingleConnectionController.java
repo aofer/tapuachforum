@@ -9,7 +9,8 @@ import java.util.concurrent.Executors;
 import java.util.logging.Logger;
 
 import Forum.Settings;
-import Forum.DomainLayer.Forum;
+import Forum.DomainLayer.*;
+import Forum.DomainLayer.User;
 import Forum.TCPCommunicationLayer.ClientMessage;
 import Forum.TCPCommunicationLayer.ServerResponse;
 
@@ -26,14 +27,16 @@ public class ServerSingleConnectionController implements Runnable {
 	private Socket m_socket;
 	private ObjectInputStream in;
 	private ObjectOutputStream out;
-	// TODO create an instance (maybe singleton?) of the facade.
-	private Forum forum = null;
+
+        private User _user;
+
 	
 	private ServerSingleConnectionController(Socket socket) throws IOException {
 		m_socket = socket;		
 		out = new ObjectOutputStream(m_socket.getOutputStream());
 		out.flush();
-		in = new ObjectInputStream(m_socket.getInputStream());		
+		in = new ObjectInputStream(m_socket.getInputStream());
+                _user = new Guest();
 	}
 	
 	/**
@@ -77,7 +80,7 @@ public class ServerSingleConnectionController implements Runnable {
 				log.info("Received a message from client "+m_socket.getInetAddress()+".");
 				ClientMessage message = (ClientMessage)o;
 				/* Operate on the message */				
-				ServerResponse response = message.doOperation(forum); 
+				ServerResponse response = message.doOperation(); 
 				/* Send response back to the client */
 				log.info("Sending a response back to client "+m_socket.getInetAddress()+".");
 				out.writeObject(response);

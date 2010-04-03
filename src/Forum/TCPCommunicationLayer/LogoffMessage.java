@@ -14,7 +14,7 @@ public class LogoffMessage extends ClientMessage {
 	 * @see forum.tcpcommunicationlayer.ClientMessage#doOperation(forum.server.domainlayer.ForumFacade)
 	 */
 	@Override
-	public ServerResponse doOperation(Forum forum) {
+	public ServerResponse doOperation() {
 		Forum.getInstance().logout("toBeAddedLater");
                 ServerResponse tResponse = new ServerResponse("user logged off successfully.",true);
 		return tResponse;

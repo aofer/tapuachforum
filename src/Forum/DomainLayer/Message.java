@@ -104,8 +104,18 @@ public class Message implements MessageInterface {
      */
     @Override
     public String toString() {
-        return "\nSubject:" + _data.getSubject() + "\nWritten by:" + _data.getNickname()
-                + "\n Number of replies:" + _replies.size() + "\nBody:" + _data.getBody() + "\n";
+        String ans = "MessageId: " + _data.getId() + "\nSubject:" + _data.getSubject() + "\nWritten by:"
+                + _data.getNickname() + "\nBody:" + _data.getBody() + "\n";
+       if (_replies.size() > 0){
+            ans = ans + "\nReplies:\n\n";
+            for (int i = 0; i < _replies.size();i++){
+                ans = ans + "Reply      " + (i+1) ;
+                _replies.elementAt(i).toString();
+            }
+       }
+        return ans;
+     //   return "\nSubject:" + _data.getSubject() + "\nWritten by:" + _data.getNickname()
+      //          + "\n Number of replies:" + _replies.size() + "\nBody:" + _data.getBody() + "\n";
     }
 
     /**

@@ -33,7 +33,7 @@ public class SearchByContentMessage extends ClientMessage {
         this.m_to = to;
     }
 
-    public ServerResponse doOperation(Forum forum) {
+    public ServerResponse doOperation() {
         SearchHit[] tHits = Forum.getInstance().searchByContent(m_phrase, m_from, m_to);
         String tRes = "";
         for (int i = 0;i< tHits.length;i++){

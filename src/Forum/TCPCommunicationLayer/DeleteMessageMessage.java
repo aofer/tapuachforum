@@ -23,7 +23,7 @@ public class DeleteMessageMessage extends ClientMessage{
     }
 
 
-    public ServerResponse doOperation(Forum forum) {
+    public ServerResponse doOperation() {
         ServerResponse tResponse;
         try {
             Forum.getInstance().deleteMessage((int) m_messageId);

@@ -33,7 +33,7 @@ public class AddReplyMessage extends ClientMessage {
 	 * @see forum.tcpcommunicationlayer.ClientMessage#doOperation(forum.server.domainlayer.ForumFacade)
 	 */
 	@Override
-	public ServerResponse doOperation(Forum forum) {
+	public ServerResponse doOperation() {
             ServerResponse tResponse;
         try {
             Forum.getInstance().addReply((int) m_parentMessageId, "noNickYet", "NoSubjectYet", m_content);

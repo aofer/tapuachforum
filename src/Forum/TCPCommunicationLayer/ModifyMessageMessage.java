@@ -34,7 +34,7 @@ public class ModifyMessageMessage extends ClientMessage {
 	 * @see forum.tcpcommunicationlayer.ClientMessage#doOperation(forum.server.domainlayer.ForumFacade)
 	 */
 	@Override
-	public ServerResponse doOperation(Forum forum) {
+	public ServerResponse doOperation() {
             ServerResponse tResponse;
         try {
             Forum.getInstance().editMessage("nickNameTBA", (int) m_messageId,"subjectTBA", m_content);

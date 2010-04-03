@@ -24,7 +24,7 @@ public class AddMessageMessage extends ClientMessage {
 	 * @see forum.tcpcommunicationlayer.ClientMessage#doOperation(forum.server.domainlayer.ForumFacade)
 	 */
 	@Override
-	public ServerResponse doOperation(Forum forum) {
+	public ServerResponse doOperation() {
             // parsing of m_content in order to get the nickname** subject and body
 		Forum.getInstance().addMessage("noNickname","noSubject", m_content);
                 ServerResponse tResponse = new ServerResponse("Message was added  successfully.",true);

@@ -22,7 +22,7 @@ public class UpgradeUserMessage extends ClientMessage {
         this.m_username = username;
     }
 
-    public ServerResponse doOperation(Forum forum) {
+    public ServerResponse doOperation() {
         ServerResponse tResponse;
         try {
             Forum.getInstance().upgradeUser(m_username); //maybe change to username later
