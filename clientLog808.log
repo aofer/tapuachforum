@@ -2,8 +2,8 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2010-04-04T14:36:32</date>
-  <millis>1270380992903</millis>
+  <date>2010-04-04T14:38:41</date>
+  <millis>1270381121828</millis>
   <sequence>0</sequence>
   <logger>forum</logger>
   <level>INFO</level>
@@ -13,8 +13,8 @@
   <message>The client is connected to the server.</message>
 </record>
 <record>
-  <date>2010-04-04T14:38:11</date>
-  <millis>1270381091715</millis>
+  <date>2010-04-04T14:41:19</date>
+  <millis>1270381279525</millis>
   <sequence>1</sequence>
   <logger>forum</logger>
   <level>SEVERE</level>
@@ -24,8 +24,8 @@
   <message>IOException occured while trying to read/send/write.</message>
 </record>
 <record>
-  <date>2010-04-04T14:38:11</date>
-  <millis>1270381091745</millis>
+  <date>2010-04-04T14:41:19</date>
+  <millis>1270381279555</millis>
   <sequence>2</sequence>
   <logger>forum</logger>
   <level>INFO</level>

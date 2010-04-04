@@ -388,7 +388,7 @@ public void addMessage(int parentId, String createdBy, String subject, String bo
     public void upgradeUser(String username) throws UserNotExistException {
         MemberType member = findMember(username);
         if (member == null)
-            throw new UnsupportedOperationException("Not supported yet.");
+            throw new UserNotExistException();
         else{
             member.setIsModerator(true);
         xf.WriteToXML();
