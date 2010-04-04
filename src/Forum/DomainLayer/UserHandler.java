@@ -170,7 +170,8 @@ public class UserHandler {
     }
     public void addAdmin(String username,String password,String nickname,
             String email,String firstName,String lastName,Date dateOfBirth) {
-
-        //todo later
+            String encryptedPassword = encryptPassword(password);
+            this._XmlForum.registerAdmin(username, nickname, encryptedPassword , email, firstName, lastName, dateOfBirth);
+        
     }
 }

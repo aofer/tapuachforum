@@ -45,7 +45,8 @@ public class Forum implements ForumInterface {
         this._messageHandler = new MessageHandler(xmlForumHandler,xmlMessageHandler);
         this._userHandler = new UserHandler(xmlForumHandler, xmlMemberHandler);
         this._searchHandler = new SearchEngineHandler();
-        addAdmin("admin", "admin", "adminy", "thebestadmin@gmail.com", "ad", "min", null);
+        Date tDate = new Date();
+        addAdmin("admin", "admin", "adminy", "thebestadmin@gmail.com", "ad", "min", tDate);
 
     }
 

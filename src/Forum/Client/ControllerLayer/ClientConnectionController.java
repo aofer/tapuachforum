@@ -63,8 +63,8 @@ public class ClientConnectionController extends Thread {
 					msg = handleCommand(str);						
 				} catch (BadCommandException e) {
 					log.info("The user has inputed an invalid command.");
-					e.printStackTrace();
-					System.out.println();
+					//e.printStackTrace();
+					System.out.println(e.getMessage());
 					continue;
 				}
 				/* send the message to the server. */

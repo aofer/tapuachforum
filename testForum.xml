@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <forumType>
     <forumName>Tapuach</forumName>
-    <messageCounter>12</messageCounter>
+    <messageCounter>11</messageCounter>
     <members>
         <userName>liron</userName>
         <nickName>blah</nickName>
@@ -67,24 +67,32 @@
         <isModerator>true</isModerator>
         <isAdmin>false</isAdmin>
     </members>
-    <messages>
-        <messageId>1</messageId>
-        <parentId>0</parentId>
-        <subject>member try</subject>
-        <body>this is a test. Specipiuc memebr write the message</body>
-        <createdBy>membNickName</createdBy>
-        <dateAdded>2010-03-24T10:09:17.102+02:00</dateAdded>
-        <modifiedDate>2010-03-24T10:09:17.102+02:00</modifiedDate>
-        <message>
-            <messageId>2</messageId>
-            <parentId>1</parentId>
-            <subject>NEW SUBJECT</subject>
-            <body>here it is edited message.</body>
-            <createdBy>membNickName</createdBy>
-            <dateAdded>2010-03-24T10:09:17.202+02:00</dateAdded>
-            <modifiedDate>2010-03-24T10:09:17.232+02:00</modifiedDate>
-        </message>
-    </messages>
+    <members>
+        <userName>admin</userName>
+        <nickName>adminy</nickName>
+        <password>21232f297a57a5a743894a0e4a801fc3</password>
+        <eMail>thebestadmin@gmail.com</eMail>
+        <dateJoined>2010-04-04T15:43:52.792+03:00</dateJoined>
+        <firstName>ad</firstName>
+        <LastName>min</LastName>
+        <dateOfBirth>2010-04-04+03:00</dateOfBirth>
+        <status>true</status>
+        <isModerator>false</isModerator>
+        <isAdmin>true</isAdmin>
+    </members>
+    <members>
+        <userName>admin</userName>
+        <nickName>adminy</nickName>
+        <password>21232f297a57a5a743894a0e4a801fc3</password>
+        <eMail>thebestadmin@gmail.com</eMail>
+        <dateJoined>2010-04-04T15:49:06.033+03:00</dateJoined>
+        <firstName>ad</firstName>
+        <LastName>min</LastName>
+        <dateOfBirth>2010-04-04+03:00</dateOfBirth>
+        <status>false</status>
+        <isModerator>false</isModerator>
+        <isAdmin>true</isAdmin>
+    </members>
     <messages>
         <messageId>3</messageId>
         <parentId>0</parentId>
