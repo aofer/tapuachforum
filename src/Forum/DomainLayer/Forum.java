@@ -45,6 +45,7 @@ public class Forum implements ForumInterface {
         this._messageHandler = new MessageHandler(xmlForumHandler,xmlMessageHandler);
         this._userHandler = new UserHandler(xmlForumHandler, xmlMemberHandler);
         this._searchHandler = new SearchEngineHandler();
+        addAdmin("admin", "admin", "adminy", "thebestadmin@gmail.com", "ad", "min", null);
 
     }
 
@@ -137,5 +138,9 @@ public class Forum implements ForumInterface {
    }
    public MemberInterface getMember(String username){
        return _userHandler.getMember(username);
+   }
+   private void addAdmin(String username,String password,String nickname,
+            String email,String firstName,String lastName,Date dateOfBirth) {
+            this._userHandler.addAdmin(username, password, nickname, email, firstName, lastName, dateOfBirth);
    }
 }

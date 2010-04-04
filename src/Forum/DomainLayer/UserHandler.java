@@ -168,4 +168,9 @@ public class UserHandler {
         }
         return tMember;
     }
+    public void addAdmin(String username,String password,String nickname,
+            String email,String firstName,String lastName,Date dateOfBirth) {
+
+        //todo later
+    }
 }
