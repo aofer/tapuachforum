@@ -5,12 +5,13 @@
 package Forum.DomainLayer;
 
 import Forum.Exceptions.MessageNotFoundException;
+import Forum.PersistentLayer.Interfaces.eMemberType;
 
 /**
  *
  * @author Kipi
  */
-public class User {
+public  abstract class User {
 
     public User() {
     }
@@ -25,4 +26,5 @@ public class User {
     public String readMessage(int messageId) throws MessageNotFoundException {
         return Forum.getInstance().getMessage(messageId).toString();
     }
+    public abstract eMemberType getType();
 }
