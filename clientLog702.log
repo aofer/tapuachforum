@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2010-04-04T13:45:18</date>
+  <millis>1270377918673</millis>
+  <sequence>0</sequence>
+  <logger>forum</logger>
+  <level>INFO</level>
+  <class>Forum.Client.ControllerLayer.ClientConnectionController</class>
+  <method>connect</method>
+  <thread>10</thread>
+  <message>The client is connected to the server.</message>
+</record>
+<record>
+  <date>2010-04-04T13:46:02</date>
+  <millis>1270377962125</millis>
+  <sequence>1</sequence>
+  <logger>forum</logger>
+  <level>INFO</level>
+  <class>Forum.Client.ControllerLayer.ClientConnectionController</class>
+  <method>run</method>
+  <thread>11</thread>
+  <message>The user has inputed an invalid command.</message>
+</record>
+<record>
+  <date>2010-04-04T13:46:40</date>
+  <millis>1270378000961</millis>
+  <sequence>2</sequence>
+  <logger>forum</logger>
+  <level>INFO</level>
+  <class>Forum.Client.ControllerLayer.ClientConnectionController</class>
+  <method>run</method>
+  <thread>11</thread>
+  <message>The user has inputed an invalid command.</message>
+</record>

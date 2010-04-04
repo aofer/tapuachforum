@@ -150,4 +150,22 @@ public class UserHandler {
         }
 
     }
+    public MemberInterface getMember(String username){
+        MemberData data = this._XmlMember.getMember(username);
+        MemberInterface tMember  = null;
+        eMemberType type=  this._XmlMember.getMemberType(username);
+        switch (type)
+        {
+            case Admin:
+                tMember=new Admin(data);
+                break;
+            case Moderator:
+                tMember=new Moderator(data);
+                break;
+            case member:
+                tMember=new Member(data);
+                break;
+        }
+        return tMember;
+    }
 }

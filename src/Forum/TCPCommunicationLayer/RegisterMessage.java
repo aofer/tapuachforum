@@ -1,9 +1,11 @@
 package Forum.TCPCommunicationLayer;
 
 import Forum.DomainLayer.Forum;
+import Forum.DomainLayer.ForumFascade;
 import Forum.Exceptions.BadPasswordException;
 import Forum.Exceptions.NicknameExistsException;
 import Forum.Exceptions.UserExistsException;
+import Forum.Exceptions.UserPrivilegeException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -57,23 +59,22 @@ public class RegisterMessage extends ClientMessage {
 	 * @see forum.tcpcommunicationlayer.ClientMessage#doOperation(forum.server.domainlayer.ForumFacade)
 	 */
 	@Override
-	public ServerResponse doOperation() {
+	public ServerResponse doOperation(ForumFascade forum) {
             Date tDate = new Date();
             ServerResponse tResponse;
         try {
-            Forum.getInstance().register(m_username, m_password, m_nickname, m_email, m_firstName, m_lastName, tDate);
+            forum.register(m_username, m_password, m_nickname, m_email, m_firstName, m_lastName, tDate);
             tResponse = new ServerResponse("Registeration was successful.", true);
         } catch (UserExistsException ex) {
-            //Logger.getLogger(RegisterMessage.class.getName()).log(Level.SEVERE, null, ex);
             String tAns = m_username + " already exist.";
             tResponse = new ServerResponse(tAns, false);
         } catch (NicknameExistsException ex) {
-            //Logger.getLogger(RegisterMessage.class.getName()).log(Level.SEVERE, null, ex);
             String tAns = "nicknameTBA" + " already exist.";
             tResponse = new ServerResponse(tAns, false);
         } catch (BadPasswordException ex) {
-          //  Logger.getLogger(RegisterMessage.class.getName()).log(Level.SEVERE, null, ex);
             tResponse = new ServerResponse("password does not meet the policy, please choose a different password.", false);
+        }catch (UserPrivilegeException ex) {
+            tResponse = new ServerResponse(ex.getMessage(), false);
         }
             return tResponse;
 	}

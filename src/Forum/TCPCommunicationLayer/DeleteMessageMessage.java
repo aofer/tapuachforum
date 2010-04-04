@@ -6,7 +6,9 @@
 package Forum.TCPCommunicationLayer;
 
 import Forum.DomainLayer.Forum;
+import Forum.DomainLayer.ForumFascade;
 import Forum.Exceptions.MessageNotFoundException;
+import Forum.Exceptions.UserPrivilegeException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,15 +25,19 @@ public class DeleteMessageMessage extends ClientMessage{
     }
 
 
-    public ServerResponse doOperation() {
+    public ServerResponse doOperation(ForumFascade forum) {
         ServerResponse tResponse;
         try {
-            Forum.getInstance().deleteMessage((int) m_messageId);
-            String tAns = "Message was deleted successfully.";
-            tResponse = new ServerResponse(tAns, true);
-        } catch (MessageNotFoundException ex) {
+            forum.deleteMessage((int) m_messageId);
+            tResponse = new ServerResponse("Message was deleted successfully.", true);
+        }
+        catch (MessageNotFoundException ex) {
             tResponse = new ServerResponse("Message does not exist.", false);
         }
+        catch (UserPrivilegeException ex) {
+            tResponse = new ServerResponse(ex.getMessage(), false);
+        }
+
         return tResponse;
     }
 }

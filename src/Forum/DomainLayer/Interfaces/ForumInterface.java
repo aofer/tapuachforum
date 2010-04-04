@@ -94,4 +94,6 @@ public interface ForumInterface {
     public Vector<MemberInterface> getOnlineMembers();
 
     public void upgradeUser(String username) throws UserNotExistException;
+
+    public MemberInterface getMember(String username);
 }

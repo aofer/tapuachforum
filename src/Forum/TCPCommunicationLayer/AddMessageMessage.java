@@ -4,6 +4,9 @@
 package Forum.TCPCommunicationLayer;
 
 import Forum.DomainLayer.*;
+import Forum.Exceptions.UserPrivilegeException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Tomer Heber
@@ -24,10 +27,16 @@ public class AddMessageMessage extends ClientMessage {
 	 * @see forum.tcpcommunicationlayer.ClientMessage#doOperation(forum.server.domainlayer.ForumFacade)
 	 */
 	@Override
-	public ServerResponse doOperation() {
+	public ServerResponse doOperation(ForumFascade forum) {
             // parsing of m_content in order to get the nickname** subject and body
-		Forum.getInstance().addMessage("noNickname","noSubject", m_content);
-                ServerResponse tResponse = new ServerResponse("Message was added  successfully.",true);
+            ServerResponse tResponse;
+            try {
+                forum.addMessage("TBA", m_content);
+                tResponse = new ServerResponse("Message was added  successfully.",true);
+
+            } catch (UserPrivilegeException ex) {
+                tResponse = new ServerResponse(ex.getMessage(),false);
+            }
 		return tResponse;
 	}
 

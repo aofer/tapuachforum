@@ -1,7 +1,11 @@
 package Forum.TCPCommunicationLayer;
 
 import Forum.DomainLayer.Forum;
+import Forum.DomainLayer.ForumFascade;
+import Forum.DomainLayer.Member;
+import Forum.DomainLayer.User;
 import Forum.Exceptions.NoSuchUserException;
+import Forum.Exceptions.UserPrivilegeException;
 import Forum.Exceptions.WrongPasswordException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,20 +37,21 @@ public class LoginMessage extends ClientMessage {
 	 * @see forum.tcpcommunicationlayer.ClientMessage#doOperation(forum.server.domainlayer.ForumFacade)
 	 */
 	@Override
-	public ServerResponse doOperation() {
+	public ServerResponse doOperation(ForumFascade forum) {
             ServerResponse tResponse;
         try {
-            Forum.getInstance().login(m_username, m_password);
+            forum.login(m_username, m_password);
             String tAns = m_username + " logged in successfully.";
             tResponse = new ServerResponse(tAns,true);
+            forum.setUser((User) Forum.getInstance().getMember(m_username));
         } catch (NoSuchUserException ex) {
-            //Logger.getLogger(LoginMessage.class.getName()).log(Level.SEVERE, null, ex);
             String tAns = m_username + " does not exist.";
             tResponse = new ServerResponse(tAns,false);
         } catch (WrongPasswordException ex) {
-            //Logger.getLogger(LoginMessage.class.getName()).log(Level.SEVERE, null, ex);
             String tAns = "Wrong password.";
             tResponse = new ServerResponse(tAns, false);
+        } catch (UserPrivilegeException ex) {
+           tResponse = new ServerResponse(ex.getMessage(), false);
         }
 		return tResponse;
 	}

@@ -1,8 +1,10 @@
 package Forum.TCPCommunicationLayer;
 
 import Forum.DomainLayer.Forum;
+import Forum.DomainLayer.ForumFascade;
 import Forum.Exceptions.MessageNotFoundException;
 import Forum.Exceptions.MessageOwnerException;
+import Forum.Exceptions.UserPrivilegeException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -34,20 +36,20 @@ public class ModifyMessageMessage extends ClientMessage {
 	 * @see forum.tcpcommunicationlayer.ClientMessage#doOperation(forum.server.domainlayer.ForumFacade)
 	 */
 	@Override
-	public ServerResponse doOperation() {
+	public ServerResponse doOperation(ForumFascade forum) {
             ServerResponse tResponse;
-        try {
-            Forum.getInstance().editMessage("nickNameTBA", (int) m_messageId,"subjectTBA", m_content);
-            tResponse = new ServerResponse("Message was modified successfully.", true);
-        } catch (MessageNotFoundException ex) {
-            String tAns = "Message " + m_messageId + " does not exist.";
-            tResponse = new ServerResponse(tAns, false);
-            //Logger.getLogger(ModifyMessageMessage.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (MessageOwnerException ex) {
-            String tAns = "You are not the owner of this message.";
-            tResponse = new ServerResponse(tAns,false);
-           // Logger.getLogger(ModifyMessageMessage.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            try {
+                forum.editMessage((int) m_messageId, "subjectTBA", m_content);
+                tResponse = new ServerResponse("Message was modified successfully.", true);
+            } catch (MessageNotFoundException ex) {
+                String tAns = "Message " + m_messageId + " does not exist.";
+                tResponse = new ServerResponse(tAns, false);
+            } catch (MessageOwnerException ex) {
+                String tAns = "You are not the owner of this message.";
+                tResponse = new ServerResponse(tAns,false);
+            } catch (UserPrivilegeException ex) {
+                tResponse = new ServerResponse(ex.getMessage(),false);
+            }
 		return tResponse;
 	}
 
