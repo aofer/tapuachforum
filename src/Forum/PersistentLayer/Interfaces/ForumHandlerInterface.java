@@ -96,4 +96,15 @@ public interface ForumHandlerInterface {
          * @throws UserNotExistException - is thrown when the user does not exist
          */
         public void upgradeUser(String username) throws UserNotExistException;
+       /**
+        * add a Admin to the forum
+        * @param userName
+        * @param password
+        * @param nickName
+        * @param eMail
+        * @param lastName
+        * @param firstName
+        * @param dateOfBirth
+        */
+        public void registerAdmin(String userName, String nickName, String password, String eMail, String firstName, String lastName, Date dateOfBirth);
 }

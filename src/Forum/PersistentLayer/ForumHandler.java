@@ -411,6 +411,45 @@ public void addMessage(int parentId, String createdBy, String subject, String bo
             return    findMember(username).isStatus();
         }
 
+  /* add a Admin to the forum
+        * @param userName
+        * @param nickName
+        * @param password
+        * @param eMail
+        * @param firstName
+        * @param lastName
+        * @param dateOfBirth
+        */
+   public void registerAdmin(String userName, String nickName, String password, String eMail, String firstName, String lastName, Date dateOfBirth) {
+       try {
+           ObjectFactory factory = new ObjectFactory();
+           // Create a new member
+           MemberType newMember = factory.createMemberType();
+           newMember.setUserName(userName);
+           newMember.setNickName(nickName);
+           newMember.setPassword(password);
+           newMember.setEMail(eMail);
+           newMember.setFirstName(firstName);
+           newMember.setLastName(lastName);
+           GregorianCalendar gcal = new GregorianCalendar();
+           gcal.setTime(dateOfBirth);
+           XMLGregorianCalendar xgcal, xgcal2;
+           xgcal = DatatypeFactory.newInstance().newXMLGregorianCalendar(gcal);
+           newMember.setDateOfBirth(xgcal);
+           newMember.setIsAdmin(true);
+           Date nowT = new Date();
+           gcal.setTime(nowT);
+
+           xgcal2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(gcal);
+           newMember.setDateJoined(xgcal2);
+           //    newMember.setDateOfBirth(null);
+           this.xf.getForum().getMembers().add(newMember);
+
+       xf.WriteToXML();
+       } catch (DatatypeConfigurationException ex) {
+           Logger.getLogger(ForumHandler.class.getName()).log(Level.SEVERE, null, ex);
+       }
+   }
 
 
 }
