@@ -6,6 +6,7 @@
 package Forum.TCPCommunicationLayer;
 
 import Forum.DomainLayer.Forum;
+import Forum.DomainLayer.ForumFascade;
 import Forum.DomainLayer.SearchEngine.SearchHit;
 
 /**
@@ -33,8 +34,8 @@ public class SearchByAuthorMessage extends ClientMessage{
         this.m_to = to;
     }
 
-    public ServerResponse doOperation() {
-        SearchHit[] tHits = Forum.getInstance().searchByAuthor(m_nickname, m_from, m_to);
+    public ServerResponse doOperation(ForumFascade forum) {
+        SearchHit[] tHits = forum.searchByAuthor(m_nickname, m_from, m_to);
         String tRes = "";
         for (int i = 0;i < tHits.length;i++){
             tRes = tRes + tHits[i].toString() + "\n";

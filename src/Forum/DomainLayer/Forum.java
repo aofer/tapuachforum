@@ -135,4 +135,7 @@ public class Forum implements ForumInterface {
    public void removeMessageFromIndex(MessageInterface m){
        _searchHandler.RemoveMessage(m);
    }
+   public MemberInterface getMember(String username){
+       return _userHandler.getMember(username);
+   }
 }

@@ -6,7 +6,9 @@
 package Forum.TCPCommunicationLayer;
 
 import Forum.DomainLayer.Forum;
+import Forum.DomainLayer.ForumFascade;
 import Forum.Exceptions.UserNotExistException;
+import Forum.Exceptions.UserPrivilegeException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,15 +24,16 @@ public class UpgradeUserMessage extends ClientMessage {
         this.m_username = username;
     }
 
-    public ServerResponse doOperation() {
+    public ServerResponse doOperation(ForumFascade forum) {
         ServerResponse tResponse;
         try {
-            Forum.getInstance().upgradeUser(m_username); //maybe change to username later
+            forum.upgradeUser(m_username); //maybe change to nickname later
             String tAns = "The user " + m_username + " was upgraded successfully.";
             tResponse = new ServerResponse(tAns, true);
         } catch (UserNotExistException ex) {
             tResponse = new ServerResponse("User does not exist.", false);
-            //Logger.getLogger(UpgradeUserMessage.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UserPrivilegeException ex) {
+            tResponse = new ServerResponse(ex.getMessage(), false);
         }
         return tResponse;
     }

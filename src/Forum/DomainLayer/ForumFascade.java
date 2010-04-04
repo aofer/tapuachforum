@@ -8,6 +8,7 @@ package Forum.DomainLayer;
 
 import Forum.DomainLayer.Interfaces.MemberInterface;
 import Forum.DomainLayer.Interfaces.MessageInterface;
+import Forum.DomainLayer.SearchEngine.SearchHit;
 import Forum.Exceptions.*;
 import Forum.PersistentLayer.ForumHandler;
 import Forum.PersistentLayer.Interfaces.eMemberType;
@@ -75,16 +76,16 @@ public class ForumFascade {
         }
     }
 
-    public void addReply(int replyId, String nickname, String Subject, String body) throws MessageNotFoundException, MessageOwnerException, UserPrivilegeException {
+    public void addReply(int parentId,String Subject, String body) throws MessageNotFoundException,  UserPrivilegeException {
         if (this._user.getType() == eMemberType.guest){
             throw new UserPrivilegeException("Guests can't write replies, please login or register first.");
         }
         else{
-            ((Member)this._user).writeReply(replyId, Subject, body);
+            ((Member)this._user).writeReply(parentId, Subject, body);
         }
     }
 
-    public void editMessage(String nickname, int messageId, String newSubject, String newBody) throws MessageNotFoundException, MessageOwnerException, UserPrivilegeException {
+    public void editMessage(int messageId, String newSubject, String newBody) throws MessageNotFoundException, MessageOwnerException, UserPrivilegeException {
         if (this._user.getType() == eMemberType.guest){
             throw new UserPrivilegeException("Guests can't edit messages, please login or register first.");
         }
@@ -111,5 +112,18 @@ public class ForumFascade {
             throw new UserPrivilegeException("Only Admins can upgrade users.");
         }
     }
+    public void setUser(User user){
+        this._user = user;
+    }
+    public User getUser(){
+        return this._user;
+    }
 
+    public SearchHit[] searchByAuthor(String m_nickname, int m_from, int m_to) {
+        return Forum.getInstance().searchByAuthor(m_nickname, m_from, m_to);
+    }
+
+    public SearchHit[] searchByContent(String m_phrase, int m_from, int m_to) {
+        return Forum.getInstance().searchByContent(m_phrase, m_from, m_to);
+    }
 }

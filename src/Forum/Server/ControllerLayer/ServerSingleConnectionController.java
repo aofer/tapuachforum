@@ -30,7 +30,7 @@ public class ServerSingleConnectionController implements Runnable {
 	private ObjectInputStream in;
 	private ObjectOutputStream out;
 
-        private User _user;
+        private ForumFascade _forum;
 
 	
 	private ServerSingleConnectionController(Socket socket) throws IOException {
@@ -38,7 +38,7 @@ public class ServerSingleConnectionController implements Runnable {
 		out = new ObjectOutputStream(m_socket.getOutputStream());
 		out.flush();
 		in = new ObjectInputStream(m_socket.getInputStream());
-                _user = new Guest();
+                _forum  = new ForumFascade();
 	}
 	
 	/**
@@ -82,7 +82,7 @@ public class ServerSingleConnectionController implements Runnable {
 				log.info("Received a message from client "+m_socket.getInetAddress()+".");
 				ClientMessage message = (ClientMessage)o;
 				/* Operate on the message */				
-				ServerResponse response = message.doOperation();
+				ServerResponse response = message.doOperation(_forum);
 
                                 //this part deals with user control
                                 if ( (message instanceof LoginMessage) && (response.hasExecuted())){
