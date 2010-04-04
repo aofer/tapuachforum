@@ -10,5 +10,5 @@ package Forum.PersistentLayer.Interfaces;
  * @author Kipi
  */
 public enum eMemberType {
-    Admin, Moderator, member
+    Admin, Moderator, member,guest
 };

@@ -5,6 +5,7 @@
 package Forum.DomainLayer.Interfaces;
 
 import Forum.Exceptions.MessageNotFoundException;
+import Forum.PersistentLayer.Interfaces.eMemberType;
 
 /**
  *
@@ -20,4 +21,5 @@ public interface UserInterface {
      * @throws MessageNotFoundException - when there is no message with the given messageId
      */
     public String readMessage(int messageId) throws MessageNotFoundException;
+    public abstract eMemberType getType();
 }

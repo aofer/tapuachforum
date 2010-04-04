@@ -58,7 +58,7 @@ public class UserTest {
         instanceForum.setDBHandlers(mseH, fH, memH);
 
         int messageId = 1;
-        User instance = new User();
+        User instance = new Guest();
         String expResult = "Subject:where is";
         String result = instance.readMessage(messageId);
    //     System.out.println("****"+ expResult+ "****" +result.substring(1, 17)+"****");

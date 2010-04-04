@@ -5,9 +5,8 @@
 package Forum.DomainLayer;
 
 import Forum.DomainLayer.Interfaces.GuestInterface;
-import Forum.DomainLayer.Interfaces.MemberInterface;
 import Forum.Exceptions.*;
-import Forum.PersistentLayer.Data.MemberData;
+import Forum.PersistentLayer.Interfaces.eMemberType;
 import java.util.Date;
 
 /**
@@ -58,5 +57,10 @@ public class Guest extends User implements GuestInterface {
      */
     public void logIn(String username, String password) throws NoSuchUserException, WrongPasswordException {
         Forum.getInstance().login(username, password);
+    }
+
+    @Override
+    public eMemberType getType() {
+        return eMemberType.guest;
     }
 }
