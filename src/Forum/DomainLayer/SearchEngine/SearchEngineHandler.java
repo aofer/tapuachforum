@@ -11,9 +11,11 @@ import java.util.List;
 import java.util.ListIterator;
 import Forum.DomainLayer.Forum;
 import Forum.DomainLayer.Logger.TapuachLogger;
+import Forum.DomainLayer.Message;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.Vector;
 
 /**
  *
@@ -29,11 +31,31 @@ public class SearchEngineHandler implements SearchEngineInterface {
 
 
     //should init the search index
-    /*public void init()
+  public void init()
 {
-       //Vector<MessageInterface> entireForum = new Vector<MessageInterface>();
-        //List<Integer> threadsIds =.getRepliesIds(0);
-}*/
+    Forum f = Forum.getInstance();
+    Vector<MessageInterface> v = f.viewForum();
+    for(MessageInterface m : v){
+        addData(m);
+   //    if(m.getReplies() != null){
+   //     processReplies(m.getReplies());
+   //     }
+    }
+ }
+
+    private void processReplies(Vector<Message> v){
+        if(v.isEmpty()){//no replies
+            return;
+        }
+        else{
+            for(Message m : v){
+                addData(m);
+                 if(m.getReplies() != null){
+                processReplies(m.getReplies());
+            }
+            }
+        }
+    }
 
     public void addData(MessageInterface msg) {
        _searchData.addMessage(msg);
@@ -41,14 +63,19 @@ public class SearchEngineHandler implements SearchEngineInterface {
 
     public SearchHit[] searchByAuthor(String username, int from, int to) {
         int n  = to-from-1; int i=0;
-        SearchHit[] sh = new SearchHit[n];
+       // next line changed by Nir from "n" to "n+1"
+        SearchHit[] sh = new SearchHit[n+1];
         List<Integer> li =_searchData.getByAuthor(username);
-        ListIterator<Integer> lit = li.listIterator();
+        // next line have been canceled by Nir. We  don't need it
+        //       ListIterator<Integer> lit = li.listIterator();
         Forum f = Forum.getInstance();
         while(i<=n)
         {
             try {
-                MessageInterface m = f.getMessage(lit.next());
+            //  old
+                //            MessageInterface m = f.getMessage(lit.next());
+                // new by Nir
+                MessageInterface m = f.getMessage(li.get(i).intValue());
                 sh[i] = new SearchHit(m, 0);//@TODO by arseny.. how the score is determined??
                 i++;
             } catch (MessageNotFoundException ex) {
@@ -62,7 +89,8 @@ public class SearchEngineHandler implements SearchEngineInterface {
 
     public SearchHit[] searchByContent(String phrase, int from, int to) {
         int n  = to-from-1; int i=0;
-        SearchHit[] sh = new SearchHit[n];
+       // next line changed by Nir from "n" to "n+1"
+        SearchHit[] sh = new SearchHit[n+1];
         //List<Integer> li =_searchData.getByContent(phrase);
         
         Set<Integer> li = new HashSet<Integer>();
@@ -73,6 +101,7 @@ public class SearchEngineHandler implements SearchEngineInterface {
                 li.add(it);
             }
         }
+
         Iterator<Integer> lit = li.iterator();
         Forum f = Forum.getInstance();
         while(i<=n)

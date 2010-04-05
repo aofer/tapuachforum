@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import Forum.DomainLayer.Forum;
+import java.util.Set;
 
 /**
  *
@@ -46,7 +47,18 @@ public class SearchData implements SearchDataInterface {
         return _authors.get(author);
     }
 
-    private void removeValue(HashMap<String, List<Integer>> hash, Integer value) {
+  // that is the new version that Arsenik wrote.
+       private void removeValue(HashMap<String, List<Integer>> hash, Integer value) {
+         Set<String> ks = hash.keySet();
+        for(String s : ks){
+            List<Integer> ls = hash.get(s);
+            ls.remove(value);
+            hash.put(s, ls);
+           }
+    }
+
+    // that is the old version.
+/* private void removeValue(HashMap<String, List<Integer>> hash, Integer value) {
         for (Iterator<String> it = hash.keySet().iterator(); it.hasNext();) { //for each word
             String key = it.next();
             List<Integer> msgIndexs = hash.get(key);
@@ -58,6 +70,8 @@ public class SearchData implements SearchDataInterface {
             }
         }
     }
+ *
+ */
 
     private void addWord(String word, MessageInterface msg) {
         if (!_words.containsKey(word)) { //there is no such word
