@@ -33,12 +33,30 @@ public class UserHandler {
     private XMLMemberInterface _XmlMember;
     private Vector<MemberInterface> _onlineMembers;
 
+    /**
+     * constructor
+     * @param xmlForum
+     * @param xmlMember
+     */
     public UserHandler(ForumHandlerInterface xmlForum, XMLMemberInterface xmlMember) {
         this._onlineMembers = new Vector<MemberInterface>();
         this._XmlForum = xmlForum;
         this._XmlMember = xmlMember;
     }
 
+    /**
+     * This method registrate a new member to the forum
+     * @param username
+     * @param password
+     * @param nickname
+     * @param email
+     * @param firstName
+     * @param lastName
+     * @param dateOfBirth
+     * @throws UserExistsException
+     * @throws NicknameExistsException
+     * @throws BadPasswordException
+     */ 
     public void  register(String username,String password,String nickname,
             String email,String firstName,String lastName,Date dateOfBirth) throws UserExistsException, NicknameExistsException, BadPasswordException {
         //Member newMember = new Member(newMemberData);
@@ -54,6 +72,13 @@ public class UserHandler {
         }
     }
 
+    /**
+     * This method makes the user logged in to the forum
+     * @param username
+     * @param password
+     * @throws NoSuchUserException
+     * @throws WrongPasswordException
+     */
     public void login(String username, String password) throws NoSuchUserException, WrongPasswordException {
         String encryptedPassword = this.encryptPassword(password);
         String tPassword = this._XmlForum.userExists(username);
@@ -84,6 +109,11 @@ public class UserHandler {
 
     }
 
+    
+    /**
+     * This method log out the user
+     * @param username
+     */
 	 public void logout(String username) {
         for (int i = 0; i < this._onlineMembers.size(); i++) {
             if (this._onlineMembers.elementAt(i).getUserName().equals(username)) {
@@ -95,6 +125,12 @@ public class UserHandler {
         }
     }
 
+	 
+	 /**
+	  * This method allows the admin to upgrade other users
+	  * @param username, the user need to be upgraded
+	  * @throws UserNotExistException
+	  */
     public void upgradeUser(String username) throws UserNotExistException {
         this._XmlForum.upgradeUser(username);
         Forum.getInstance().logout(username);
@@ -103,6 +139,10 @@ public class UserHandler {
         addMember(tModerator);
     }
 
+    /**
+     * This method getting all the online members
+     * @return Vector<MemberInterface>
+     */
     public Vector<MemberInterface> getOnlineMembers() {
         return _onlineMembers;
     }
@@ -146,8 +186,12 @@ public class UserHandler {
         } catch (NoSuchAlgorithmException e) {
             return password;
         }
-
     }
+    
+    /**
+     * This method gets a memeber instance by it's username
+     * @param username 
+     */
     public MemberInterface getMember(String username){
         MemberData data = this._XmlMember.getMember(username);
         MemberInterface tMember  = null;
@@ -166,6 +210,17 @@ public class UserHandler {
         }
         return tMember;
     }
+    
+    /**
+     * This method adds a new admin to the forum
+     * @param username
+     * @param password
+     * @param nickname
+     * @param email
+     * @param firstName
+     * @param lastName
+     * @param dateOfBirth
+     */
     public void addAdmin(String username,String password,String nickname,
             String email,String firstName,String lastName,Date dateOfBirth) {
             String encryptedPassword = encryptPassword(password);

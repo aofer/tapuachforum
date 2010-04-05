@@ -102,7 +102,6 @@ public class Message implements MessageInterface {
      * toString method for a message
      * @return
      */
-    @Override
     public String toString() {
         String ans = "MessageId: " + _data.getId() + "\nSubject:" + _data.getSubject() + "\nWritten by:"
                 + _data.getNickname() + "\nBody:" + _data.getBody() + "\n";
@@ -127,11 +126,11 @@ public class Message implements MessageInterface {
     }
         
 
-        /**
-         * index setter - should not be used; used only for tests.
-         * @param id - the index of the message
-         */
-        public void  setIndex(int id) {
+    /**
+     * index setter - should not be used; used only for tests.
+     * @param id - the index of the message
+     */
+    public void  setIndex(int id) {
         this._data.setId(id);
     }
 

@@ -15,15 +15,26 @@ import Forum.PersistentLayer.Interfaces.eMemberType;
  */
 public class Admin extends Moderator implements AdminInterface {
 
-    public Admin(MemberData data) {
+	/**
+	 * Constructor for the Admin class
+	 * @param data
+	 */
+	public Admin(MemberData data) {
         super(data);
     }
 
+	/**
+     * This method allow the admin to upgrade other users
+     * @param username, the user need to be upgraded
+    */
     public void upgradeUser(String username) throws UserNotExistException {
         Forum.getInstance().upgradeUser(username);
     }
-        @Override
+
+    /**
+     * This method returns the type of the user
+     */
     public eMemberType getType() {
         return eMemberType.Admin;
-       }
+    }
 }
