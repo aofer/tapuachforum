@@ -42,7 +42,6 @@ public class UserHandler {
     public void  register(String username,String password,String nickname,
             String email,String firstName,String lastName,Date dateOfBirth) throws UserExistsException, NicknameExistsException, BadPasswordException {
         //Member newMember = new Member(newMemberData);
-
         if (this._XmlForum.checkUsername(username)) {
             throw new UserExistsException();
         } else if (this._XmlForum.checkNickname(nickname)) {
