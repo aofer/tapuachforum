@@ -59,7 +59,9 @@ public class Guest extends User implements GuestInterface {
         Forum.getInstance().login(username, password);
     }
 
-    @Override
+    /**
+     * This method returns the type of the user
+     */
     public eMemberType getType() {
         return eMemberType.guest;
     }

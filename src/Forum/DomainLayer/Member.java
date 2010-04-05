@@ -133,6 +133,9 @@ public class Member extends User implements MemberInterface {
         Forum.getInstance().editMessage(this.getNickName(), messageId, subject, body);
     }
 
+    /**
+     * This method returns the type of the user
+     */
     public eMemberType getType() {
         return eMemberType.member;
     }
