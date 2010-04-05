@@ -16,6 +16,7 @@ import Forum.PersistentLayer.Interfaces.XMLMemberInterface;
 import Forum.PersistentLayer.Interfaces.XMLMessageInterface;
 import java.util.Date;
 import java.util.Vector;
+import Forum.DomainLayer.Logger.*;
 
 /**
  *this class is the main logics of our forum
