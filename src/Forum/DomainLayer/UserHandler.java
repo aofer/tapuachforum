@@ -56,7 +56,6 @@ public class UserHandler {
 
     public void login(String username, String password) throws NoSuchUserException, WrongPasswordException {
         String encryptedPassword = this.encryptPassword(password);
-        TapuachLogger.getInstance().info("user:  " + username + " logged in");
         String tPassword = this._XmlForum.userExists(username);
         if (tPassword == null) {
             throw new NoSuchUserException(username);
