@@ -80,18 +80,22 @@ public class Forum implements ForumInterface {
 // amit's version
     public void register(String username,String password,String nickname,
             String email,String firstName,String lastName,Date dateOfBirth) throws UserExistsException, NicknameExistsException, BadPasswordException {
+    	TapuachLogger.getInstance().info("user:  " + username + " registered to the forum");
         this._userHandler.register(username,password,nickname,email,firstName,lastName,dateOfBirth);
     }
 
     public void login(String username, String password) throws NoSuchUserException, WrongPasswordException {
-        this._userHandler.login(username, password);
+    	TapuachLogger.getInstance().info("user:  " + username + " logged in");
+    	this._userHandler.login(username, password);
     }
 
     public void logout(String username) {
+    	TapuachLogger.getInstance().info("user:  " + username + " logged out");
         this._userHandler.logout(username);
     }
 
     public void addMessage(String nickname, String Subject, String body)  { //might needs to throw NoSuchUserException in case there is no user with that nickname
+    	TapuachLogger.getInstance().info( "nickname: "+nickname + " added new message");
         this._messageHandler.addMessage(nickname, Subject, body);
     }
     /**
@@ -103,18 +107,22 @@ public class Forum implements ForumInterface {
      * @throws MessageNotFoundException
      */
     public void addReply(int parentId, String nickname, String Subject, String body) throws MessageNotFoundException {
+    	TapuachLogger.getInstance().info( "nickname: "+nickname + " add reply to message number:" + parentId);
         this._messageHandler.addReply(parentId, nickname, Subject, body);
     }
 
     public void editMessage(String nickname, int messageId, String newSubject, String newBody) throws MessageNotFoundException, MessageOwnerException {
+    	TapuachLogger.getInstance().info( "nickname: "+nickname + " edit message number:" + messageId);
         this._messageHandler.editMessage(nickname, messageId, newSubject, newBody);
     }
 
     public void deleteMessage(int messageId) throws MessageNotFoundException {
+    	TapuachLogger.getInstance().info( "message number:" + messageId+" deleted");
         this._messageHandler.deleteMessage(messageId);
     }
 
     public void upgradeUser(String username) throws UserNotExistException {
+    	TapuachLogger.getInstance().info("user:  " + username + " has been upgraded");
         this._userHandler.upgradeUser(username);
     }
 
@@ -141,7 +149,8 @@ public class Forum implements ForumInterface {
        return _userHandler.getMember(username);
    }
    private void addAdmin(String username,String password,String nickname,
-            String email,String firstName,String lastName,Date dateOfBirth) {
-            this._userHandler.addAdmin(username, password, nickname, email, firstName, lastName, dateOfBirth);
+		   				 String email,String firstName,String lastName,Date dateOfBirth) {
+	   TapuachLogger.getInstance().info(username + " registered to the forum as Admin");
+       this._userHandler.addAdmin(username, password, nickname, email, firstName, lastName, dateOfBirth);
    }
 }
