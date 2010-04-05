@@ -9,6 +9,9 @@ import Forum.DomainLayer.Forum;
 import Forum.DomainLayer.Interfaces.MessageInterface;
 import Forum.DomainLayer.Message;
 import Forum.PersistentLayer.Data.MessageData;
+import Forum.PersistentLayer.ForumHandler;
+import Forum.PersistentLayer.XMLFileHandler;
+import java.util.Date;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -41,23 +44,31 @@ public class SearchEngineHandlerTest {
     public void tearDown() {
     }
 
+           XMLFileHandler xf = new XMLFileHandler("testForum.xml");
+       ForumHandler fH = new ForumHandler(xf);
+
+        Forum  fInstance = Forum.getInstance();
+
+
+
     /**
      * Test of addData method, of class SearchEngineHandler.
      */
     @Test
     public void testAddData() {
+       fH.initForum();
         System.out.println("addData");
-        MessageInterface msg1 = new Message(new MessageData("Arseny", "i just love aly and fila", "their latest future sound of egypt is great ", null, null));
-        MessageInterface msg2 = new Message(new MessageData("Amit", "who cares about armin", "gareth emery is much better.. armin is so commercial now ", null, null));
-        //SearchEngineHandler instance = new SearchEngineHandler();
-        Forum f = Forum.getInstance();
-        f.addMessageToIndex(msg1);
-        f.addMessageToIndex(msg2);
-        //instance.addData(msg1);
-        //instance.addData(msg2);
+         int messageIndex;
+           SearchEngineHandler instance = new SearchEngineHandler();
+           Date tDate = new Date();
+       messageIndex = fH.addMessage(0, "Arseny", "i just love aly and fila", "their latest future sound of egypt is great ", tDate, tDate);
+         MessageInterface msg1 = new Message(new MessageData("Arseny", "i just love aly and fila", "their latest future sound of egypt is great ", tDate, tDate,messageIndex));
+        messageIndex = fH.addMessage(0, "Amit", "who cares about armin", "gareth emery is much better.. armin is so commercial now ", tDate, tDate);
+         MessageInterface msg2 = new Message(new MessageData("Amit", "who cares about armin", "gareth emery is much better.. armin is so commercial now ", tDate, tDate, messageIndex));
+       instance.addData(msg1);
+        instance.addData(msg2);
         assertTrue(true);
-        
-        
+
     }
 
     /**
@@ -66,22 +77,39 @@ public class SearchEngineHandlerTest {
     @Test
     public void testSearchByAuthor() {
         System.out.println("searchByAuthor");
-        String username = "";
+        String username = "Arseny2";
         int from = 0;
-        int to = 2;
-        SearchEngineHandler instance = new SearchEngineHandler();
-        MessageData m = new MessageData("Arseny", "i just love aly and fila", "their latest future sound of egypt is great ", null, null) ;
-        m.setId(37);
-        MessageInterface msg1 = new Message(m);
-       m = new MessageData("Amit", "who cares about armin", "gareth emery is much better.. armin is so commercial now ", null, null)  ;
-       m.setId(38);
-        MessageInterface msg2 = new Message(m);
-        Forum f = Forum.getInstance();
-        f.addMessageToIndex(msg1);
-        f.addMessageToIndex(msg2);
-        SearchHit[] result =f.searchByAuthor("Arseny", from, to);
+        int to = 1;
+              int messageIndex;
+           SearchEngineHandler instance = new SearchEngineHandler();
+           Date tDate = new Date();
+       messageIndex = fH.addMessage(0, "Arseny2", "i just love aly and fila", "their latest future sound of egypt is great ", tDate, tDate);
+         MessageInterface msg1 = new Message(new MessageData("Arseny2", "i just love aly and fila", "their latest future sound of egypt is great ", tDate, tDate,messageIndex));
+        messageIndex = fH.addMessage(0, "Amit", "who cares about armin", "gareth emery is much better.. armin is so commercial now ", tDate, tDate);
+         MessageInterface msg2 = new Message(new MessageData("Amit", "who cares about armin", "gareth emery is much better.. armin is so commercial now ", tDate, tDate, messageIndex));
+       instance.addData(msg1);
+        instance.addData(msg2);
+
+        SearchHit[] result =instance.searchByAuthor(username, from, to);
+             System.out.println("hey");
         assertTrue(result.length == 1);
-        
+        messageIndex = fH.addMessage(0, "Arseny2", "i just love aly and fila", "their latest future sound of egypt is great ", tDate, tDate);
+          msg1 = new Message(new MessageData("Arseny2", "i just love aly and fila", "their latest future sound of egypt is great ", tDate, tDate,messageIndex));
+            instance.addData(msg1);
+        messageIndex = fH.addMessage(0, "Arseny2", "i just love aly and fila", "their latest future sound of egypt is great ", tDate, tDate);
+          msg1 = new Message(new MessageData("Arseny2", "i just love aly and fila", "their latest future sound of egypt is great ", tDate, tDate,messageIndex));
+            instance.addData(msg1);
+            result =instance.searchByAuthor(username, from, 3);
+        assertEquals(result.length , 3);
+
+            messageIndex = fH.addMessage(0, "Arseny2", "i just love aly and fila", "their latest future sound of egypt is great ", tDate, tDate);
+          msg1 = new Message(new MessageData("Arseny2", "i just love aly and fila", "their latest future sound of egypt is great ", tDate, tDate,messageIndex));
+           instance.addData(msg1);
+                 result =instance.searchByAuthor(username, from, 4);
+        assertEquals(result.length , 4);
+
+
+
     }
 
     /**
@@ -90,15 +118,26 @@ public class SearchEngineHandlerTest {
     @Test
     public void testSearchByContent() {
         System.out.println("searchByContent");
-        String phrase = "";
+        String phrase = "emmmmery";
         int from = 0;
-        int to = 0;
-        SearchEngineHandler instance = new SearchEngineHandler();
-        SearchHit[] expResult = null;
+        int to = 1;
+              int messageIndex;
+           SearchEngineHandler instance = new SearchEngineHandler();
+           Date tDate = new Date();
+       messageIndex = fH.addMessage(0, "Arseny3", "i just love aly and fila", "their latest future emmmmery sound of egypt is great ", tDate, tDate);
+         MessageInterface msg1 = new Message(new MessageData("Arseny3", "i just love aly and fila", "their latest future emmmmery sound of egypt is great ", tDate, tDate,messageIndex));
+        messageIndex = fH.addMessage(0, "Amit3", "who cares  armin", "gareth emmjmmery is much better.. armin is so commercial now ", tDate, tDate);
+         MessageInterface msg2 = new Message(new MessageData("Amit", "who cares about armin", "gareth emmjmmery is much better.. armin is so commercial now ", tDate, tDate, messageIndex));
+       instance.addData(msg1);
+        instance.addData(msg2);
+
         SearchHit[] result = instance.searchByContent(phrase, from, to);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+                assertEquals(result.length , 1);
+      //       result = instance.searchByContent("aboutXttt", from, to);
+     //           assertEquals(result.length , 0);
+
+
+               
     }
 
     /**
@@ -115,3 +154,5 @@ public class SearchEngineHandlerTest {
     }
 
 }
+
+
