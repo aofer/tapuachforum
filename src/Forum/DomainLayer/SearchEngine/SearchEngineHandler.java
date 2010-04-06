@@ -69,7 +69,7 @@ public class SearchEngineHandler implements SearchEngineInterface {
         // next line have been canceled by Nir. We  don't need it
         //       ListIterator<Integer> lit = li.listIterator();
         Forum f = Forum.getInstance();
-        while(i<=n)
+        while(i<=n & (li != null))
         {
             try {
             //  old
@@ -87,16 +87,48 @@ public class SearchEngineHandler implements SearchEngineInterface {
         return sh;
     }
 
-    public SearchHit[] searchByContent(String phrase, int from, int to) {
+ //* new version , made by Nir.
+     public SearchHit[] searchByContent(String phrase, int from, int to) {
+        int n  = to-from-1; int i=0;
+        SearchHit[] sh = new SearchHit[n+1];
+        String[] body = phrase.split(" ");
+        List<Integer> li =_searchData.getByContent(body[0]);
+        Forum f = Forum.getInstance();
+       i =1;
+       int runOnBody = body.length;
+          while( (li != null) & (i < runOnBody))
+        {
+                  li.addAll(_searchData.getByContent(body[i]));
+                  i = i+1;
+
+          }
+       i = 0;
+        while(i<=n & (li != null) & (i < li.size()))
+        {
+            try {
+                MessageInterface m = f.getMessage(li.get(i).intValue());
+                sh[i] = new SearchHit(m, 0);//@TODO by arseny.. how the score is determined??
+                i++;
+            } catch (MessageNotFoundException ex) {
+                TapuachLogger tl = TapuachLogger.getInstance();
+                tl.fine("message number" + ex.toString() + "not found");
+            }
+
+        }
+       return sh;
+     }
+        /* old version
+  /*  public SearchHit[] searchByContent(String phrase, int from, int to) {
         int n  = to-from-1; int i=0;
        // next line changed by Nir from "n" to "n+1"
         SearchHit[] sh = new SearchHit[n+1];
-        //List<Integer> li =_searchData.getByContent(phrase);
-        
+    //    List<Integer> li =_searchData.getByContent(phrase);
+      
         Set<Integer> li = new HashSet<Integer>();
         String[] body = phrase.split(" ");
         for(i = 0; i < body.length; i++) {
             List<Integer> l =_searchData.getByContent(body[i]);
+           if (l != null)
             for(Integer it : l){
                 li.add(it);
             }
@@ -117,7 +149,7 @@ public class SearchEngineHandler implements SearchEngineInterface {
 
         }
         return sh;
-    }
+    }*/
 
 public void RemoveMessage(MessageInterface m ){
     _searchData.removeMessage(m);

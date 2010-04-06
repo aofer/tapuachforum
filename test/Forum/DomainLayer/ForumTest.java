@@ -5,7 +5,9 @@
 
 package Forum.DomainLayer;
 
+import Forum.DomainLayer.Interfaces.MemberInterface;
 import Forum.DomainLayer.Interfaces.MessageInterface;
+import Forum.DomainLayer.SearchEngine.SearchHit;
 import Forum.Exceptions.BadPasswordException;
 import Forum.Exceptions.MessageNotFoundException;
 import Forum.Exceptions.MessageOwnerException;
@@ -14,6 +16,7 @@ import Forum.Exceptions.NoSuchUserException;
 import Forum.Exceptions.UserExistsException;
 import Forum.Exceptions.WrongPasswordException;
 import Forum.PersistentLayer.Data.MemberData;
+import Forum.PersistentLayer.Data.MessageData;
 import Forum.PersistentLayer.ForumHandler;
 import Forum.PersistentLayer.Interfaces.eMemberType;
 import Forum.PersistentLayer.XMLMemberHandler;
@@ -71,13 +74,14 @@ public class ForumTest {
     //   Forum instance = new Forum(msgH,fH,memH);
          Forum  instance = Forum.getInstance();       
          instance.setDBHandlers(msgH, fH, memH);
+      fH.initForum();
          Date tDate = new Date();
-         MemberData memberDetails = new MemberData("amitUserName", "amitNickName", "amiiPass","amitFirstName","amitLastName","amit@agr",tDate);
+         MemberData memberDetails = new MemberData("amitUserName", "amitNickName", "amiiPass","amitFirstName","amitLastName","amit@iteration.1",tDate);
          Member newMember = new Member(memberDetails);
-     fH.initForum();
+  //   fH.initForum();
          //   instance.getInstance().initForum();
          // assertNull (fH.checkUsername("amitTest") );
-//        instance.getInstance().register(memberDetails);
+        instance.getInstance().register("amitUserName", "amiiPass","amitNickName", "amitFirstName","amitLastName","amit@iteration.1",tDate);
        assertTrue (fH.checkUsername("amitUserName") );
     }
 
@@ -262,7 +266,8 @@ public class ForumTest {
      */
     @Test
     public void testSetDBHandlers() {
-//        try {
+        try {
+            //        try {
             System.out.println("setDBHandlers");
             XMLFileHandler xf = new XMLFileHandler("testForum.xml");
             XMLMessageHandler msgH = new XMLMessageHandler(xf);
@@ -272,17 +277,24 @@ public class ForumTest {
             instance.setDBHandlers(msgH, fH, memH);
             Date tDate = new Date();
             MemberData memberDetails = new MemberData("AnotherTestUserName", "AnotherTestNickName", "liroPass", "AnotherTestFirstName", "AnotherTestLastName", "AnotherTest@agr", tDate);
-            //instance.register(memberDetails);
+            instance.register("AnotherTestUserName", "AnotherTestNickName", "liroPass", "AnotherTestFirstName", "AnotherTestLastName", "AnotherTest@agr", tDate);
             assertTrue(fH.checkUsername("AnotherTestUserName"));
             // TODO review the generated test code and remove the default call to fail.
-       //     fail("The test case is a prototype.");
-        //} catch (UserExistsException ex) {
-//            Logger.getLogger(ForumTest.class.getName()).log(Level.SEVERE, null, ex);//
-        //} catch (NicknameExistsException ex) {
-   //         Logger.getLogger(ForumTest.class.getName()).log(Level.SEVERE, null, ex);
-        //} catch (BadPasswordException ex) {
-      //      Logger.getLogger(ForumTest.class.getName()).log(Level.SEVERE, null, ex);
-        //}
+            //     fail("The test case is a prototype.");
+            //} catch (UserExistsException ex) {
+            //            Logger.getLogger(ForumTest.class.getName()).log(Level.SEVERE, null, ex);//
+            //} catch (NicknameExistsException ex) {
+            //         Logger.getLogger(ForumTest.class.getName()).log(Level.SEVERE, null, ex);
+            //} catch (BadPasswordException ex) {
+            //      Logger.getLogger(ForumTest.class.getName()).log(Level.SEVERE, null, ex);
+            //}
+        } catch (UserExistsException ex) {
+            Logger.getLogger(ForumTest.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NicknameExistsException ex) {
+            Logger.getLogger(ForumTest.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (BadPasswordException ex) {
+            Logger.getLogger(ForumTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -399,7 +411,126 @@ public class ForumTest {
         instance.upgradeUser(username);
    //    assertEquals(memH.getMemberType("amitUserName"),eMemberType.Moderator);
       //  instance.upgradeUser(username);
+    }
+
+    /**
+     * Test of addReply method, of class Forum.
+     */
+    @Test
+    public void testAddReply() throws Exception {
+        System.out.println("addReply");
+        int parentId = 2;
+        String nickname = "liroPass";
+        String Subject = "replay COOL";
+        String body = "i want to try it";
+        Forum instance = Forum.getInstance();
+        assertTrue(instance.getMessage(2).getReplies().size() == 0);
+        instance.addReply(parentId, nickname, Subject, body);
+
+         assertTrue(instance.getMessage(2).getReplies().size() != 0l);
+    }
+
+    /**
+     * Test of viewForum method, of class Forum.
+     */
+    @Test
+    public void testViewForum() {
+        System.out.println("viewForum");
+        Forum instance =  Forum.getInstance();;
+        Vector expResult = null;
+        Vector result = instance.viewForum();
+        assertTrue(result.size() == 2);
+    }
+
+    /**
+     * Test of addMessageToIndex method, of class Forum.
+     */
+    @Test
+    public void testAddMessageToIndex() {
+        System.out.println("addMessageToIndex");
+        Date tDate = new Date();
+                  XMLFileHandler xf = new XMLFileHandler("testForum.xml");
+            XMLMessageHandler msgH = new XMLMessageHandler(xf);
+            ForumHandler fH = new ForumHandler(xf);
+            XMLMemberHandler memH = new XMLMemberHandler(xf);
+        Forum instance = Forum.getInstance();
+
+        int indexMes   = fH.addMessage(0,"liroPass", "subject to index", "body to index IkkkkkkkS  COOL ", tDate, tDate);
+        MessageInterface m = new Message( new MessageData("liroPass", "subject to index", "body to index IS COOL", tDate, tDate,indexMes));
+           assertTrue(instance.searchByAuthor("liroPass", 0, 1)[0] == null);
+        instance.addMessageToIndex(m);
+       //    System.out.println(instance.searchByAuthor("liroPass", 0, 1)[0].getMessage());
+          assertTrue(instance.searchByAuthor("liroPass", 0, 1)[0] != null);
+    }
+
+    /**
+     * Test of searchByContent method, of class Forum.
+     */
+    @Test
+    public void testSearchByContent() {
+        System.out.println("searchByContent");
+        String phrase = "COOjL";
+        int from = 0;
+        int to =2;
+      Date tDate = new Date();
+        Forum instance = Forum.getInstance();
+                 XMLFileHandler xf = new XMLFileHandler("testForum.xml");
+            XMLMessageHandler msgH = new XMLMessageHandler(xf);
+            ForumHandler fH = new ForumHandler(xf);
+            XMLMemberHandler memH = new XMLMemberHandler(xf);
+     int indexMes   = fH.addMessage(0,"liroPass", "subject to index", "body to index IS  COOjL ", tDate, tDate);
+        MessageInterface m = new Message( new MessageData("liroPass", "subject to index", "body to index IS  COOjL ", tDate, tDate,indexMes));
+        instance.addMessageToIndex(m);
+        SearchHit[] result =  instance.searchByContent(phrase, from, to);
+       //   System.out.println(result[0].getMessage());
+        assertTrue( result[0] != null);
+         assertTrue( result[1] == null);
+    }
+
+    /**
+     * Test of searchByAuthor method, of class Forum.
+     */
+    @Test
+    public void testsearchByAuthor() {
+        System.out.println("searchByAuthor");
+        Date tDate = new Date();
+                  XMLFileHandler xf = new XMLFileHandler("testForum.xml");
+            XMLMessageHandler msgH = new XMLMessageHandler(xf);
+            ForumHandler fH = new ForumHandler(xf);
+            XMLMemberHandler memH = new XMLMemberHandler(xf);
+        Forum instance = Forum.getInstance();
+
+        int indexMes   = fH.addMessage(0,"liroPassp", "subject to indexp", "body to index IkkkkkkkS  COOL ", tDate, tDate);
+        MessageInterface m = new Message( new MessageData("liroPassp", "subject tpo index", "bpody to index IS COOL", tDate, tDate,indexMes));
+           assertTrue(instance.searchByAuthor("liroPassp", 0, 1)[0] == null);
+        instance.addMessageToIndex(m);
+       //    System.out.println(instance.searchByAuthor("liroPass", 0, 1)[0].getMessage());
+          assertTrue(instance.searchByAuthor("liroPassp", 0, 1)[0] != null);
+    }
+
+    /**
+     * Test of removeMessageFromIndex method, of class Forum.
+     */
+    @Test
+    public void testRemoveMessageFromIndex() {
+        System.out.println("removeMessageFromIndex");
+        MessageInterface m = null;
+        Forum instance = null;
+        instance.removeMessageFromIndex(m);
         // TODO review the generated test code and remove the default call to fail.
-   //     fail("The test case is a prototype.");
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getMember method, of class Forum.
+     */
+    @Test
+    public void testGetMember() {
+        System.out.println("getMember");
+        String username = "amitUserName";
+        Forum instance = Forum.getInstance();
+        MemberInterface expResult = null;
+        MemberInterface result = instance.getMember(username);
+        assertEquals("amitLastName", result.getFirstName());
     }
 }
