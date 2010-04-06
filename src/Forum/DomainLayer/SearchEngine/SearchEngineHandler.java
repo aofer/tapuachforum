@@ -69,7 +69,7 @@ public class SearchEngineHandler implements SearchEngineInterface {
         // next line have been canceled by Nir. We  don't need it
         //       ListIterator<Integer> lit = li.listIterator();
         Forum f = Forum.getInstance();
-        while(i<=n & (li != null))
+        while(i<=n & (li != null) & (i < li.size()))
         {
             try {
             //  old

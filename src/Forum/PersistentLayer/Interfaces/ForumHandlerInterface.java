@@ -107,4 +107,10 @@ public interface ForumHandlerInterface {
         * @param dateOfBirth
         */
         public void registerAdmin(String userName, String nickName, String password, String eMail, String firstName, String lastName, Date dateOfBirth);
+
+        /**
+         * only init the file to be clean.
+         */
+        public void initForum();
+
 }

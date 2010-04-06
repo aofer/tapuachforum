@@ -8,10 +8,13 @@ package Forum.DomainLayer.SearchEngine;
 import Forum.DomainLayer.Forum;
 import Forum.DomainLayer.Interfaces.MessageInterface;
 import Forum.DomainLayer.Message;
+import Forum.Exceptions.MessageNotFoundException;
 import Forum.PersistentLayer.Data.MessageData;
 import Forum.PersistentLayer.ForumHandler;
 import Forum.PersistentLayer.XMLFileHandler;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -118,9 +121,9 @@ public class SearchEngineHandlerTest {
     @Test
     public void testSearchByContent() {
         System.out.println("searchByContent");
-        String phrase = "emmmmery";
+        String phrase = "emmmmery emmjmmery";
         int from = 0;
-        int to = 1;
+        int to = 2;
               int messageIndex;
            SearchEngineHandler instance = new SearchEngineHandler();
            Date tDate = new Date();
@@ -132,7 +135,9 @@ public class SearchEngineHandlerTest {
         instance.addData(msg2);
 
         SearchHit[] result = instance.searchByContent(phrase, from, to);
-                assertEquals(result.length , 1);
+            System.out.println(result[0].getMessage());
+                System.out.println(result[1].getMessage());
+        assertEquals(result.length , 2);
       //       result = instance.searchByContent("aboutXttt", from, to);
      //           assertEquals(result.length , 0);
 
@@ -145,14 +150,20 @@ public class SearchEngineHandlerTest {
      */
     @Test
     public void testRemoveMessage() {
-        System.out.println("RemoveMessage");
-        MessageInterface m = null;
-        SearchEngineHandler instance = new SearchEngineHandler();
-        instance.RemoveMessage(m);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+            System.out.println("RemoveMessage");
+            SearchEngineHandler instance = new SearchEngineHandler();
+            int messageIndex;
+            Date tDate = new Date();
+            messageIndex = fH.addMessage(0, "REMMM", "i just love aly and fila", "their latest future emmmmery sound of egypt is great ", tDate, tDate);
+            MessageInterface msg1 = new Message(new MessageData("REMMM", "i just love aly and fila", "their latest future emmmmery sound of egypt is great ", tDate, tDate, messageIndex));
+            instance.addData(msg1);
+            SearchHit[]   result =instance.searchByAuthor("REMMM", 0, 1);
+            assertNotSame(result[0] , null);
+            //  instance.RemoveMessage(msg1);
+            instance.RemoveMessage(msg1);
+            result =instance.searchByAuthor("REMMM", 0, 1);
+            assertEquals(result[0] , null);
     }
-
 }
 
 

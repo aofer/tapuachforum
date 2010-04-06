@@ -83,11 +83,10 @@ public class SearchDataTest {
 
              MessageInterface msg1 = new Message(new MessageData("TestRem", "i just love aly and fila", "their3 latest  kk future sound of egypt is great ", tDate, tDate));
           instance.addMessage(msg1);
-       //     assertTrue (instance.getByAuthor("TestRem").size() == 1);
+            assertTrue (instance.getByAuthor("TestRem").size() == 1);
               System.out.println("removeMessage2");
       instance.removeMessage(msg1);
-     //  assertTrue (instance.getByAuthor("TestRem").size() == 0);
-   //   TODO
+      assertTrue (instance.getByAuthor("TestRem").size() == 0);
     }
 
     /**
