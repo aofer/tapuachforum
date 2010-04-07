@@ -68,8 +68,8 @@ public class SearchEngineHandlerTest {
          MessageInterface msg1 = new Message(new MessageData("Arseny", "i just love aly and fila", "their latest future sound of egypt is great ", tDate, tDate,messageIndex));
         messageIndex = fH.addMessage(0, "Amit", "who cares about armin", "gareth emery is much better.. armin is so commercial now ", tDate, tDate);
          MessageInterface msg2 = new Message(new MessageData("Amit", "who cares about armin", "gareth emery is much better.. armin is so commercial now ", tDate, tDate, messageIndex));
-       instance.addData(msg1);
-        instance.addData(msg2);
+       instance.addMessage(msg1);
+        instance.addMessage(msg2);
         assertTrue(true);
 
     }
@@ -90,24 +90,24 @@ public class SearchEngineHandlerTest {
          MessageInterface msg1 = new Message(new MessageData("Arseny2", "i just love aly and fila", "their latest future sound of egypt is great ", tDate, tDate,messageIndex));
         messageIndex = fH.addMessage(0, "Amit", "who cares about armin", "gareth emery is much better.. armin is so commercial now ", tDate, tDate);
          MessageInterface msg2 = new Message(new MessageData("Amit", "who cares about armin", "gareth emery is much better.. armin is so commercial now ", tDate, tDate, messageIndex));
-       instance.addData(msg1);
-        instance.addData(msg2);
+       instance.addMessage(msg1);
+        instance.addMessage(msg2);
 
         SearchHit[] result =instance.searchByAuthor(username, from, to);
              System.out.println("hey");
         assertTrue(result.length == 1);
         messageIndex = fH.addMessage(0, "Arseny2", "i just love aly and fila", "their latest future sound of egypt is great ", tDate, tDate);
           msg1 = new Message(new MessageData("Arseny2", "i just love aly and fila", "their latest future sound of egypt is great ", tDate, tDate,messageIndex));
-            instance.addData(msg1);
+            instance.addMessage(msg1);
         messageIndex = fH.addMessage(0, "Arseny2", "i just love aly and fila", "their latest future sound of egypt is great ", tDate, tDate);
           msg1 = new Message(new MessageData("Arseny2", "i just love aly and fila", "their latest future sound of egypt is great ", tDate, tDate,messageIndex));
-            instance.addData(msg1);
+            instance.addMessage(msg1);
             result =instance.searchByAuthor(username, from, 3);
         assertEquals(result.length , 3);
 
             messageIndex = fH.addMessage(0, "Arseny2", "i just love aly and fila", "their latest future sound of egypt is great ", tDate, tDate);
           msg1 = new Message(new MessageData("Arseny2", "i just love aly and fila", "their latest future sound of egypt is great ", tDate, tDate,messageIndex));
-           instance.addData(msg1);
+           instance.addMessage(msg1);
                  result =instance.searchByAuthor(username, from, 4);
         assertEquals(result.length , 4);
 
@@ -131,8 +131,8 @@ public class SearchEngineHandlerTest {
          MessageInterface msg1 = new Message(new MessageData("Arseny3", "i just love aly and fila", "their latest future emmmmery sound of egypt is great ", tDate, tDate,messageIndex));
         messageIndex = fH.addMessage(0, "Amit3", "who cares  armin", "gareth emmjmmery is much better.. armin is so commercial now ", tDate, tDate);
          MessageInterface msg2 = new Message(new MessageData("Amit", "who cares about armin", "gareth emmjmmery is much better.. armin is so commercial now ", tDate, tDate, messageIndex));
-       instance.addData(msg1);
-        instance.addData(msg2);
+       instance.addMessage(msg1);
+        instance.addMessage(msg2);
 
         SearchHit[] result = instance.searchByContent(phrase, from, to);
             System.out.println(result[0].getMessage());
@@ -156,11 +156,11 @@ public class SearchEngineHandlerTest {
             Date tDate = new Date();
             messageIndex = fH.addMessage(0, "REMMM", "i just love aly and fila", "their latest future emmmmery sound of egypt is great ", tDate, tDate);
             MessageInterface msg1 = new Message(new MessageData("REMMM", "i just love aly and fila", "their latest future emmmmery sound of egypt is great ", tDate, tDate, messageIndex));
-            instance.addData(msg1);
+            instance.addMessage(msg1);
             SearchHit[]   result =instance.searchByAuthor("REMMM", 0, 1);
             assertNotSame(result[0] , null);
             //  instance.RemoveMessage(msg1);
-            instance.RemoveMessage(msg1);
+            instance.updateMessage(msg1);
             result =instance.searchByAuthor("REMMM", 0, 1);
             assertEquals(result[0] , null);
     }

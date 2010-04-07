@@ -22,6 +22,11 @@ public interface SearchEngineInterface {
          * @param msg
          */
         public void updateMessage(MessageInterface msg);
+                /**
+         * Will be called when the messgae is removed fro the forum
+         * @param msg
+         */
+        public void removeMessage(MessageInterface msg);
 	
 	/**
 	 * Search for all the messages(SearchHit) written by the author called username.<br><br>
