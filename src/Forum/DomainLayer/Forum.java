@@ -17,6 +17,8 @@ import Forum.PersistentLayer.Interfaces.XMLMessageInterface;
 import java.util.Date;
 import java.util.Vector;
 import Forum.DomainLayer.Logger.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *this class is the main logics of our forum
@@ -50,7 +52,7 @@ public class Forum implements ForumInterface {
         ForumHandlerInterface xmlForumHandler = new ForumHandler(xf);
         XMLMessageInterface xmlMessageHandler = new XMLMessageHandler(xf);
         XMLMemberInterface xmlMemberHandler = new XMLMemberHandler(xf);
-        this._messageHandler = new MessageHandler(xmlForumHandler,xmlMessageHandler);
+        this._messageHandler = new MessageHandler(xmlForumHandler, xmlMessageHandler);
         this._userHandler = new UserHandler(xmlForumHandler, xmlMemberHandler);
         this._searchHandler = new SearchEngineHandler();
         Date tDate = new Date();
@@ -89,10 +91,8 @@ public class Forum implements ForumInterface {
 
 // omri's version
 /*    public MemberInterface register(MemberData newMember) throws UserExistsException, NicknameExistsException, BadPasswordException {
-        return _userHandler.register(newMember);
+    return _userHandler.register(newMember);
     }*/
-    
-    
 // amit's version
     /**
      * This method transpot the user's detail to the userHandler class
@@ -106,11 +106,11 @@ public class Forum implements ForumInterface {
      * @throws UserExistsException
      * @throws NicknameExistsException
      * @throws BadPasswordException
-     */ 
-    public void register(String username,String password,String nickname,
-            String email,String firstName,String lastName,Date dateOfBirth) throws UserExistsException, NicknameExistsException, BadPasswordException {
-    	TapuachLogger.getInstance().info("user:  " + username + " registered to the forum");
-        this._userHandler.register(username,password,nickname,email,firstName,lastName,dateOfBirth);
+     */
+    public void register(String username, String password, String nickname,
+            String email, String firstName, String lastName, Date dateOfBirth) throws UserExistsException, NicknameExistsException, BadPasswordException {
+        TapuachLogger.getInstance().info("user:  " + username + " registered to the forum");
+        this._userHandler.register(username, password, nickname, email, firstName, lastName, dateOfBirth);
     }
 
     /**
@@ -122,8 +122,8 @@ public class Forum implements ForumInterface {
      * @throws WrongPasswordException
      */
     public void login(String username, String password) throws NoSuchUserException, WrongPasswordException {
-    	TapuachLogger.getInstance().info("user:  " + username + " logged in");
-    	this._userHandler.login(username, password);
+        TapuachLogger.getInstance().info("user:  " + username + " logged in");
+        this._userHandler.login(username, password);
     }
 
     /**
@@ -131,7 +131,7 @@ public class Forum implements ForumInterface {
      * @param username
      */
     public void logout(String username) {
-    	TapuachLogger.getInstance().info("user:  " + username + " logged out");
+        TapuachLogger.getInstance().info("user:  " + username + " logged out");
         this._userHandler.logout(username);
     }
 
@@ -141,10 +141,16 @@ public class Forum implements ForumInterface {
      * @param Subject
      * @param body
      */
-    public void addMessage(String nickname, String Subject, String body)  { //might needs to throw NoSuchUserException in case there is no user with that nickname
-    	TapuachLogger.getInstance().info( "nickname: "+nickname + " added new message");
-        this._messageHandler.addMessage(nickname, Subject, body);
+    public void addMessage(String nickname, String Subject, String body) { //might needs to throw NoSuchUserException in case there is no user with that nickname
+        TapuachLogger.getInstance().info("nickname: " + nickname + " added new message");
+        int id = this._messageHandler.addMessage(nickname, Subject, body);
+        try {
+            Message msg = this._messageHandler.getMessage(id);
+            this._searchHandler.addMessage(msg);
+        } catch (MessageNotFoundException ex) {
+        }
     }
+
     /**
      * This method transpot the new reply's details messageHandler class
      * @param parentId - the id of the message that we want to add the reply to
@@ -154,8 +160,13 @@ public class Forum implements ForumInterface {
      * @throws MessageNotFoundException
      */
     public void addReply(int parentId, String nickname, String Subject, String body) throws MessageNotFoundException {
-    	TapuachLogger.getInstance().info( "nickname: "+nickname + " add reply to message number:" + parentId);
-        this._messageHandler.addReply(parentId, nickname, Subject, body);
+        TapuachLogger.getInstance().info("nickname: " + nickname + " add reply to message number:" + parentId);
+        int id=this._messageHandler.addReply(parentId, nickname, Subject, body);
+                try {
+            Message msg = this._messageHandler.getMessage(id);
+            this._searchHandler.addMessage(msg);
+        } catch (MessageNotFoundException ex) {
+        }
     }
 
     /**
@@ -168,8 +179,10 @@ public class Forum implements ForumInterface {
      * @throws MessageOwnerException
      */
     public void editMessage(String nickname, int messageId, String newSubject, String newBody) throws MessageNotFoundException, MessageOwnerException {
-    	TapuachLogger.getInstance().info( "nickname: "+nickname + " edit message number:" + messageId);
+        TapuachLogger.getInstance().info("nickname: " + nickname + " edit message number:" + messageId);
         this._messageHandler.editMessage(nickname, messageId, newSubject, newBody);
+        Message msg = this._messageHandler.getMessage(messageId);
+        this._searchHandler.updateMessage(msg);
     }
 
     /**
@@ -179,7 +192,9 @@ public class Forum implements ForumInterface {
      *  @throws MessageNotFoundException
      */
     public void deleteMessage(int messageId) throws MessageNotFoundException {
-    	TapuachLogger.getInstance().info( "message number:" + messageId+" deleted");
+        TapuachLogger.getInstance().info("message number:" + messageId + " deleted");
+        Message msg = _messageHandler.getMessage(messageId);
+        this._searchHandler.removeMessage(msg);
         this._messageHandler.deleteMessage(messageId);
     }
 
@@ -190,7 +205,7 @@ public class Forum implements ForumInterface {
      *  @throws UserNotExistException
      */
     public void upgradeUser(String username) throws UserNotExistException {
-    	TapuachLogger.getInstance().info("user:  " + username + " has been upgraded");
+        TapuachLogger.getInstance().info("user:  " + username + " has been upgraded");
         this._userHandler.upgradeUser(username);
     }
 
@@ -203,14 +218,6 @@ public class Forum implements ForumInterface {
     }
 
     /**
-     * This method transpot the message to the searchHandler class
-     * @param m - a message
-     */
-    public void addMessageToIndex(MessageInterface m){
-        this._searchHandler.addData(m);
-    }
-
-    /**
      * This method transpot the context need to search to the searchHandler class
      * @param m - a message
      * @param phrase 
@@ -218,11 +225,10 @@ public class Forum implements ForumInterface {
      * @param to
      * @return SearchHit[]
      */
-    public  SearchHit[] searchByContent(String phrase, int from, int to){
+    public SearchHit[] searchByContent(String phrase, int from, int to) {
         return _searchHandler.searchByContent(phrase, from, to);
     }
 
-    
     /**
      * This method transpot the Author's details to the searchHandler class
      * @param username
@@ -230,29 +236,21 @@ public class Forum implements ForumInterface {
      * @param to
      * @return SearchHit[]
      */
-    public SearchHit[] searchByAuthor(String username, int from, int to){
+    public SearchHit[] searchByAuthor(String username, int from, int to) {
         return _searchHandler.searchByAuthor(username, from, to);
     }
 
     /**
-     * This method transpot the message to the searchHandler class
-     * @param m - a message
-     */
-   public void removeMessageFromIndex(MessageInterface m){
-       _searchHandler.RemoveMessage(m);
-   }
-   
-   /** 
-    * This method transpot the username userHandler class
-    *  @param username
-    *  @return MemberInterface
-    *  */
-   public MemberInterface getMember(String username){
-       return _userHandler.getMember(username);
-   }
-   
-   /**
-    * This method transpot the new admin's details to the userHandler class
+     * This method transpot the username userHandler class
+     *  @param username
+     *  @return MemberInterface
+     *  */
+    public MemberInterface getMember(String username) {
+        return _userHandler.getMember(username);
+    }
+
+    /**
+     * This method transpot the new admin's details to the userHandler class
      * @param username
      * @param password
      * @param nickname
@@ -260,10 +258,10 @@ public class Forum implements ForumInterface {
      * @param firstName
      * @param lastName
      * @param dateOfBirth
-    */
-   private void addAdmin(String username,String password,String nickname,
-		   				 String email,String firstName,String lastName,Date dateOfBirth) {
-	   TapuachLogger.getInstance().info(username + " registered to the forum as Admin");
-       this._userHandler.addAdmin(username, password, nickname, email, firstName, lastName, dateOfBirth);
-   }
+     */
+    private void addAdmin(String username, String password, String nickname,
+            String email, String firstName, String lastName, Date dateOfBirth) {
+        TapuachLogger.getInstance().info(username + " registered to the forum as Admin");
+        this._userHandler.addAdmin(username, password, nickname, email, firstName, lastName, dateOfBirth);
+    }
 }
