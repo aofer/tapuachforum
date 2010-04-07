@@ -63,7 +63,7 @@ public interface ForumInterface {
      * @param Subject - the subject of the message
      * @param body - the body of the message
      */
-    public void addMessage(String nickname, String Subject, String body);
+    public int addMessage(String nickname, String Subject, String body);
 
     /**
      * this method is used for adding a reply to  a new message in the forum
