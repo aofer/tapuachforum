@@ -62,12 +62,10 @@ public class MessageHandler {
      * @param subject
      * @param body
      */
-    public void addMessage(String _nickName, String subject, String body) {
+    public int addMessage(String _nickName, String subject, String body) {
         Date tDate = new Date();
-        int id = this._XmlForum.addMessage(0, _nickName, subject, body, tDate, tDate);
-        Date d = null;
-        MessageInterface m = new Message(new MessageData(_nickName, subject, body, d,d, id));
-        Forum.getInstance().addMessageToIndex(m);
+        int id=this._XmlForum.addMessage(0, _nickName, subject, body, tDate, tDate);
+        return id;
     }
 
     /**
@@ -78,10 +76,10 @@ public class MessageHandler {
      * @param body
      * @throws MessageNotFoundException
      */
-    public void addReply(int parentId, String nickname, String subject, String body) throws MessageNotFoundException {
+    public int addReply(int parentId, String nickname, String subject, String body) throws MessageNotFoundException {
         Date tDate = new Date();
-        // NEXT LINE FIXED BY NIR . from "body" to "nickname"!!!!!!!!!
-        this._XmlForum.addMessage(parentId, nickname, subject, body, tDate, tDate);
+        int id=this._XmlForum.addMessage(parentId, nickname, subject, body, tDate, tDate);
+        return id;
     }
 
     /**
@@ -102,12 +100,6 @@ public class MessageHandler {
             throw new MessageOwnerException();
         }
     }
-
-    // why was it here? ??!?@?!#$%
-/*   public void addReply(int parentId, String nickname, String subject, String body) {
-    }
-*/
-    
     /**
      * This method delete a message 
      * @param messageId
@@ -132,33 +124,8 @@ public class MessageHandler {
             } catch (MessageNotFoundException ex) {
                 
             }
-            //MessageData tData = this._XmlMessage.getMessage(tId);
-            //Message tMessage = new Message(tData);
-
         }
 
         return entireForum;
     }
-// function that i began writing that should extract all messages from the forum as linear structure
-/*    public Set<MessageInterface> getAllMessages(){
-        Set<MessageInterface> s = new HashSet<MessageInterface>();
-          List<Integer> threadsIds = this._XmlMessage.getRepliesIds(0);
-          for(Integer it : threadsIds){
-            try {
-                MessageInterface tMessage = Forum.getInstance().getMessage(it);
-                s.add(tMessage);
-            }
-            catch (MessageNotFoundException ex) {
-               TapuachLogger t = TapuachLogger.getInstance();
-               t.severe("message # " + it.intValue() + " was not found");
-            }
-          }
-
-
-          //List<Integer> tReplyIds = this._XmlMessage.getRepliesIds(messageId);
-        // MessageInterface tMessage = Forum.getInstance().getMessage(tId);
-
-        return s;
-    }
-*/
 }
