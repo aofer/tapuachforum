@@ -11,6 +11,7 @@ import Forum.DomainLayer.Forum;
 import Forum.DomainLayer.Logger.TapuachLogger;
 import Forum.DomainLayer.Message;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Vector;
 
 /**
@@ -58,11 +59,13 @@ public class SearchEngineHandler implements SearchEngineInterface {
         return getSearchHits(msgIndexs, from, to);
     }
 
-    //* new version , made by Nir.
+
     public SearchHit[] searchByContent(String phrase, int from, int to) {
-        //todo adding AND OR and searching all the body
         String[] body = phrase.split(" ");
-        List<Integer> msgIndexs = this._searchData.getByContent(body[0]);
+        List<Integer> msgIndexs=new LinkedList<Integer>();
+        for (int i=0;i<body.length;i++){
+            msgIndexs.addAll( this._searchData.getByContent(body[0]));
+        }
         return getSearchHits(msgIndexs, from, to);
     }
 
