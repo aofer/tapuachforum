@@ -458,7 +458,7 @@ public class ForumTest {
         int indexMes   = fH.addMessage(0,"liroPass", "subject to index", "body to index IkkkkkkkS  COOL ", tDate, tDate);
         MessageInterface m = new Message( new MessageData("liroPass", "subject to index", "body to index IS COOL", tDate, tDate,indexMes));
            assertTrue(instance.searchByAuthor("liroPass", 0, 1)[0] == null);
-        instance.addMessageToIndex(m);
+        instance.addMessage("liroPass", "subject to index", "body to index IkkkkkkkS  COOL");
        //    System.out.println(instance.searchByAuthor("liroPass", 0, 1)[0].getMessage());
           assertTrue(instance.searchByAuthor("liroPass", 0, 1)[0] != null);
     }
@@ -480,7 +480,7 @@ public class ForumTest {
             XMLMemberHandler memH = new XMLMemberHandler(xf);
      int indexMes   = fH.addMessage(0,"liroPass", "subject to index", "body to index IS  COOjL ", tDate, tDate);
         MessageInterface m = new Message( new MessageData("liroPass", "subject to index", "body to index IS  COOjL ", tDate, tDate,indexMes));
-        instance.addMessageToIndex(m);
+        instance.addMessage("liroPass", "subject to index", "body to index IS  COOjL ");
         SearchHit[] result =  instance.searchByContent(phrase, from, to);
        //   System.out.println(result[0].getMessage());
         assertTrue( result[0] != null);
@@ -503,22 +503,9 @@ public class ForumTest {
         int indexMes   = fH.addMessage(0,"liroPassp", "subject to indexp", "body to index IkkkkkkkS  COOL ", tDate, tDate);
         MessageInterface m = new Message( new MessageData("liroPassp", "subject tpo index", "bpody to index IS COOL", tDate, tDate,indexMes));
            assertTrue(instance.searchByAuthor("liroPassp", 0, 1)[0] == null);
-        instance.addMessageToIndex(m);
+        instance.addMessage("liroPassp", "subject to indexp", "body to index IkkkkkkkS  COOL ");
        //    System.out.println(instance.searchByAuthor("liroPass", 0, 1)[0].getMessage());
           assertTrue(instance.searchByAuthor("liroPassp", 0, 1)[0] != null);
-    }
-
-    /**
-     * Test of removeMessageFromIndex method, of class Forum.
-     */
-    @Test
-    public void testRemoveMessageFromIndex() {
-        System.out.println("removeMessageFromIndex");
-        MessageInterface m = null;
-        Forum instance = null;
-        instance.removeMessageFromIndex(m);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**

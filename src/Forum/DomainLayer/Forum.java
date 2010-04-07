@@ -141,7 +141,7 @@ public class Forum implements ForumInterface {
      * @param Subject
      * @param body
      */
-    public void addMessage(String nickname, String Subject, String body) { //might needs to throw NoSuchUserException in case there is no user with that nickname
+    public int addMessage(String nickname, String Subject, String body) { //might needs to throw NoSuchUserException in case there is no user with that nickname
         TapuachLogger.getInstance().info("nickname: " + nickname + " added new message");
         int id = this._messageHandler.addMessage(nickname, Subject, body);
         try {
@@ -149,6 +149,7 @@ public class Forum implements ForumInterface {
             this._searchHandler.addMessage(msg);
         } catch (MessageNotFoundException ex) {
         }
+        return id;
     }
 
     /**

@@ -10,6 +10,7 @@ import java.util.List;
 import Forum.DomainLayer.Forum;
 import Forum.DomainLayer.Logger.TapuachLogger;
 import Forum.DomainLayer.Message;
+import java.util.ArrayList;
 import java.util.Vector;
 
 /**
@@ -53,58 +54,41 @@ public class SearchEngineHandler implements SearchEngineInterface {
     }
 
     public SearchHit[] searchByAuthor(String username, int from, int to) {
-        int n = to - from - 1;
-        int i = 0;
-        // next line changed by Nir from "n" to "n+1"
-        SearchHit[] sh = new SearchHit[n + 1];
-        List<Integer> li = _searchData.getByAuthor(username);
-        // next line have been canceled by Nir. We  don't need it
-        //       ListIterator<Integer> lit = li.listIterator();
-        Forum f = Forum.getInstance();
-        while (i <= n & (li != null) & (i < li.size())) {
-            try {
-                //  old
-                //            MessageInterface m = f.getMessage(lit.next());
-                // new by Nir
-                MessageInterface m = f.getMessage(li.get(i).intValue());
-                sh[i] = new SearchHit(m, 0);//@TODO by arseny.. how the score is determined??
-                i++;
-            } catch (MessageNotFoundException ex) {
-                TapuachLogger tl = TapuachLogger.getInstance();
-                tl.fine("message number" + ex.toString() + "not found");
-            }
-
-        }
-        return sh;
+        List<Integer> msgIndexs = this._searchData.getByAuthor(username);
+        return getSearchHits(msgIndexs, from, to);
     }
 
     //* new version , made by Nir.
     public SearchHit[] searchByContent(String phrase, int from, int to) {
-        int n = to - from - 1;
-        int i = 0;
-        SearchHit[] sh = new SearchHit[n + 1];
+        //todo adding AND OR and searching all the body
         String[] body = phrase.split(" ");
-        List<Integer> li = _searchData.getByContent(body[0]);
-        Forum f = Forum.getInstance();
-        i = 1;
-        int runOnBody = body.length;
-        while ((li != null) & (i < runOnBody)) {
-            li.addAll(_searchData.getByContent(body[i]));
-            i = i + 1;
+        List<Integer> msgIndexs = this._searchData.getByContent(body[0]);
+        return getSearchHits(msgIndexs, from, to);
+    }
 
-        }
-        i = 0;
-        while (i <= n & (li != null) & (i < li.size())) {
-            try {
-                MessageInterface m = f.getMessage(li.get(i).intValue());
-                sh[i] = new SearchHit(m, 0);//@TODO by arseny.. how the score is determined??
-                i++;
-            } catch (MessageNotFoundException ex) {
-                TapuachLogger tl = TapuachLogger.getInstance();
-                tl.fine("message number" + ex.toString() + "not found");
+    private SearchHit[] getSearchHits(List<Integer> msgIndexs, int from, int to) {
+        Forum frm;
+        int n;
+        SearchHit[] retHits;
+        MessageInterface msg;
+
+        if (msgIndexs == null) {
+            retHits = new SearchHit[0];
+        } else {
+            frm = Forum.getInstance();
+            n = Math.min(to - from + 1, msgIndexs.size() - from);
+            retHits = new SearchHit[n];
+
+            for (int i = 0; i < n; i++) {
+                try {
+                    msg = frm.getMessage(msgIndexs.get(i + from));
+                    retHits[i] = new SearchHit(msg, 0);
+                } catch (MessageNotFoundException ex) {
+                    TapuachLogger tl = TapuachLogger.getInstance();
+                    tl.fine("SearchEngine : searchByAuthor : message number" + ex.toString() + "not found");
+                }
             }
-
         }
-        return sh;
+        return retHits;
     }
 }
