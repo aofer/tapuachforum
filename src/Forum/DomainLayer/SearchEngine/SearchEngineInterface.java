@@ -16,7 +16,12 @@ public interface SearchEngineInterface {
 	 *  
 	 * @param msg The message which we want to add to the indexing data base of the search engine.
 	 */
-	public void addData(MessageInterface msg);
+	public void addMessage(MessageInterface msg);
+        /**
+         * Will be called when the messgae data is changed and need to be updated in the search engine
+         * @param msg
+         */
+        public void updateMessage(MessageInterface msg);
 	
 	/**
 	 * Search for all the messages(SearchHit) written by the author called username.<br><br>
