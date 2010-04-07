@@ -7,9 +7,7 @@ package Forum.DomainLayer.SearchEngine;
 import Forum.DomainLayer.Interfaces.MessageInterface;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import Forum.DomainLayer.Forum;
 import java.util.Set;
 
 /**
@@ -56,22 +54,6 @@ public class SearchData implements SearchDataInterface {
             hash.put(s, ls);
            }
     }
-
-    // that is the old version.
-/* private void removeValue(HashMap<String, List<Integer>> hash, Integer value) {
-        for (Iterator<String> it = hash.keySet().iterator(); it.hasNext();) { //for each word
-            String key = it.next();
-            List<Integer> msgIndexs = hash.get(key);
-            if (msgIndexs.contains(value)) { //if the list of  indexs contian the given message index
-                msgIndexs.remove(value);
-            }
-            if (msgIndexs.isEmpty()) {
-                hash.remove(key);
-            }
-        }
-    }
- *
- */
 
     private void addWord(String word, MessageInterface msg) {
         if (!_words.containsKey(word)) { //there is no such word

@@ -7,13 +7,9 @@ package Forum.DomainLayer.SearchEngine;
 import Forum.DomainLayer.Interfaces.MessageInterface;
 import Forum.Exceptions.MessageNotFoundException;
 import java.util.List;
-import java.util.ListIterator;
 import Forum.DomainLayer.Forum;
 import Forum.DomainLayer.Logger.TapuachLogger;
 import Forum.DomainLayer.Message;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
 import java.util.Vector;
 
 /**
@@ -50,6 +46,10 @@ public class SearchEngineHandler implements SearchEngineInterface {
     public void updateMessage(MessageInterface msg) {
         _searchData.removeMessage(msg);
         _searchData.addMessage(msg);
+    }
+
+    public void removeMessage(MessageInterface msg) {
+        _searchData.removeMessage(msg);
     }
 
     public SearchHit[] searchByAuthor(String username, int from, int to) {
