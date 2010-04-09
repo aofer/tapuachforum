@@ -135,7 +135,7 @@ public class MessageHandlerTest {
        for(  int i = 0; i < result.size(); i++ )         
         System.out.println(result.elementAt(i).toString());
            System.out.println("end view");
-        assertTrue( result.size()>1);
+        assertTrue( result.size()>=1);
 
       }
 

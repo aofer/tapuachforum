@@ -59,10 +59,10 @@ public class UserTest {
 
         int messageId = 1;
         User instance = new Guest();
-        String expResult = "Subject:where is";
+        String expResult = "Subject:CHang;ei";
         String result = instance.readMessage(messageId);
    //     System.out.println("****"+ expResult+ "****" +result.substring(1, 17)+"****");
-        assertEquals(expResult, result.substring(1, 17));
+        assertEquals(expResult , result.substring(13, 29));
      }
 
 }

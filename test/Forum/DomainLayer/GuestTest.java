@@ -68,10 +68,9 @@ public class GuestTest {
           Date dateOfBirth = new Date();
         Guest instance2 = new Guest();
         MemberData newMem = new MemberData(username, nickname, password, firstName, lastName, email, dateOfBirth);
-//           MemberInterface memInter = instanceForum.register(newMem);
+ instanceForum.register(username, password, nickname, email, firstName, lastName, dateOfBirth);
+        //           MemberInterface memInter = instanceForum.register(newMem);
    //     assertEquals(memInter.getFirstName(), firstName);
-       // TODO review the generated test code and remove the default call to fail.
-      //  fail("The test case is a prototype.");*/
     }
 
     /**
@@ -83,9 +82,9 @@ public class GuestTest {
         String tUsername = "guestUser";
         String tPassword = "guestPass";
        Guest instance = new Guest();
-       assertEquals(instanceForum.getOnlineMembers().size(), 1);
+       assertEquals(instanceForum.getOnlineMembers().size(), 0);
        instance.logIn(tUsername, tPassword);
-      assertEquals(instanceForum.getOnlineMembers().size(), 2);
+      assertEquals(instanceForum.getOnlineMembers().size(), 1);
         //needs to add wrongs paramentes and checks*/
     }
 
