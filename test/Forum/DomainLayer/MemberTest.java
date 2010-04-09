@@ -73,8 +73,6 @@ public class MemberTest {
         String expResult = "membUserName";
         String result = instance.getUserName();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-       // fail("The test case is a prototype.");
     }
 
     /**
@@ -89,8 +87,6 @@ public class MemberTest {
         String expResult = "memiPass";
         String result = instance.getPassword();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-       // fail("The test case is a prototype.");
     }
 
     /**
@@ -105,8 +101,6 @@ public class MemberTest {
         String expResult = "membNickName";
         String result = instance.getNickName();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-      //  fail("The test case is a prototype.");
     }
 
     /**
@@ -121,8 +115,6 @@ public class MemberTest {
         String expResult = "membLastName";
         String result = instance.getLastName();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-       // fail("The test case is a prototype.");
     }
 
     /**
@@ -137,8 +129,6 @@ public class MemberTest {
         String expResult = "membFirstName";
         String result = instance.getFirstName();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-    //    fail("The test case is a prototype.");
     }
 
     /**
@@ -153,8 +143,6 @@ public class MemberTest {
         String expResult = "memb@agr";
         String result = instance.getEmail();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-    //    fail("The test case is a prototype.");
     }
 
     /**
@@ -169,8 +157,6 @@ public class MemberTest {
         Date expResult = tDate;
         Date result = instance.getDateOfBirth();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-      //  fail("The test case is a prototype.");
     }
 
     /**
@@ -184,8 +170,6 @@ public class MemberTest {
         Member instance = new Member(memD);
         Date result = instance.getDateJoined();
         assertNotNull(result);
-        // TODO review the generated test code and remove the default call to fail.
-       // fail("The test case is a prototype.");
     }
 
     /**
@@ -201,8 +185,6 @@ public class MemberTest {
         Member instance = new Member(memD);
         instance.writeMessage(subject, body);
         assertEquals(instanceForum.getMessage(1).getSubject(),subject);
-        // TODO review the generated test code and remove the default call to fail.
-       // fail("The test case is a prototype.");
        System.out.print(instanceForum.getMessage(1));
     }
 
@@ -221,9 +203,6 @@ public class MemberTest {
         Member instance = new Member(memD);
         instance.writeReply(parentId, subject, body);
         assertEquals(instanceForum.getMessage(2).getSubject(),subject);
-
-        // TODO review the generated test code and remove the default call to fail.
-       // fail("The test case is a prototype.");
     }
 
     /**
@@ -240,7 +219,6 @@ public class MemberTest {
         Member instance = new Member(memD);
         assertNotSame(instanceForum.getMessage(2).getSubject(),subject);
         instance.editMessage(messageId, subject, body);
-        // TODO review the generated test code and remove the default call to fail.
       assertEquals(instanceForum.getMessage(2).getSubject(),subject);
     }
 
@@ -256,8 +234,6 @@ public class MemberTest {
         eMemberType expResult = eMemberType.member;
         eMemberType result = instance.getType();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-     //   fail("The test case is a prototype.");
     }
 
         /**
@@ -265,23 +241,23 @@ public class MemberTest {
      */
     @Test
     public void testLogOut() {
-   //     try {
+       try {
 
             System.out.println("logOut");
             Date tDate = new Date();
             MemberData instance = new MemberData("liron", "blah", "87654321", "liron", "katav", "lirrr@l.c", tDate);
             Member memb = new Member(instance);
-//            instanceForum.register(instance);
-             assertTrue(instanceForum.getOnlineMembers().size() == 1);
+            instanceForum.register("liron", "blah", "87654321", "liron", "katav", "lirrr@l.c", tDate);
+             assertEquals(instanceForum.getOnlineMembers().size() , 1);
             memb.logOut();
-            assertTrue(instanceForum.getOnlineMembers().size() == 0);
-      //  } catch (UserExistsException ex) {
-         //   Logger.getLogger(MemberTest.class.getName()).log(Level.SEVERE, null, ex);
-        //} catch (NicknameExistsException ex) {
-//            Logger.getLogger(MemberTest.class.getName()).log(Level.SEVERE, null, ex);
-   //     } catch (BadPasswordException ex) {
-      //      Logger.getLogger(MemberTest.class.getName()).log(Level.SEVERE, null, ex);
-        //}
+            assertEquals(instanceForum.getOnlineMembers().size() , 0);
+        } catch (UserExistsException ex) {
+            Logger.getLogger(MemberTest.class.getName()).log(Level.SEVERE, null, ex);
+       } catch (NicknameExistsException ex) {
+            Logger.getLogger(MemberTest.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (BadPasswordException ex) {
+           Logger.getLogger(MemberTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

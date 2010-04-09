@@ -178,8 +178,7 @@ public class XMLMessageHandlerTest {
         MessageData result = instance.getMessage(messageID);
        
         assertEquals(expResult,  result.getBody());
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+
     }
 
     /**
@@ -196,8 +195,7 @@ public class XMLMessageHandlerTest {
         for (int i = 0; i<result.size();i++)
           System.out.println(result.get(i).intValue());
         assertNotNull(result);
-        // TODO review the generated test code and remove the default call to fail.
-      //  fail("The test case is a prototype.");
+
     }
 
 

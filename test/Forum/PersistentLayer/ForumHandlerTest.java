@@ -56,8 +56,7 @@ public class ForumHandlerTest {
         ForumHandler instance = new ForumHandler(xf);
         instance.initForum();
         assertNotNull(instance);
-        // TODO review the generated test code and remove the default call to fail.
-     //  fail("The test case is a prototype.");
+
     }
 
     @Test
@@ -113,8 +112,7 @@ public class ForumHandlerTest {
         assertNull(result);
          result = instance.userExist("userToCheckLogInandLogOut");
         assertEquals(result, "PaSSword");
-        // TODO review the generated test code and remove the default call to fail.
-     //   fail("The test case is a prototype.");
+
     }
 
     /**
@@ -135,8 +133,7 @@ public class ForumHandlerTest {
           instance.register(userName, nickName, password, eMail, firstName, lastName, dateOfBirth);
            String result = instance.userExist(userName);
         assertEquals(result,password);
-        // TODO review the generated test code and remove the default call to fail.
-      //  fail("The test case is a prototype.");
+
     }
 
     /**
@@ -158,8 +155,7 @@ public class ForumHandlerTest {
         }
          String result = instance.getSubject(1);
         assertEquals(result, subject);
-        // TODO review the generated test code and remove the default call to fail.
-       // fail("The test case is a prototype.");
+
     }
 
     /**
@@ -176,8 +172,7 @@ public class ForumHandlerTest {
         result = instance.checkNickname("nowOut");
         expResult = true;
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-  //      fail("The test case is a prototype.");
+
     }
 
     /**
@@ -194,8 +189,6 @@ public class ForumHandlerTest {
          expResult = true;
          result = instance.checkPassword("PaSSword");
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -215,8 +208,6 @@ public class ForumHandlerTest {
        instance.addMessage(parentId, createdBy, subject, body, DateAdded, modifyDate);
         String resSub = instance.getSubject(2);
         assertEquals(subject, resSub);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -230,8 +221,6 @@ public class ForumHandlerTest {
         String expResult = " welcome prev mesage!!!";
         String result = instance.getSubject(messageID);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-     //  fail("The test case is a prototype.");
     }
 
 
@@ -250,8 +239,6 @@ public class ForumHandlerTest {
           expResult = true;
          result = instance.checkUsername("userToCheckLogInandLogOut");
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-       // fail("The test case is a prototype.");
     }
 
     /**
@@ -268,8 +255,6 @@ public class ForumHandlerTest {
         instance.editMessage(messageId, newSubject, newBody, dateModified);
       String subNow = instance.getSubject(messageId);
         assertEquals(newSubject, subNow);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -288,8 +273,6 @@ public class ForumHandlerTest {
 //        instance.deleteMessage(messageId);
         subNow = instance.getSubject(messageId);
         assertNotSame(newSubject, subNow);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
 
@@ -306,12 +289,5 @@ public class ForumHandlerTest {
         instance.upgradeUser(username);
         boolean result2= instance.checkUsername(username);
        assertEquals(result2, result);
-        // TODO review the generated test code and remove the default call to fail.
-
-        // fail("The test case is a prototype.");
     }
-
-
-
-
 }

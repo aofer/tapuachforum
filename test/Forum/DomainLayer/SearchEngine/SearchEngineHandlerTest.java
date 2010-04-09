@@ -73,7 +73,7 @@ public class SearchEngineHandlerTest {
     /**
      * Test of searchByAuthor method, of class SearchEngineHandler.
      */
-    @Test
+   @Test
     public void testSearchByAuthor() {
         System.out.println("searchByAuthor");
         String username = "Arseny2";
@@ -123,19 +123,19 @@ public class SearchEngineHandlerTest {
         int messageIndex;
         SearchEngineHandler instance = new SearchEngineHandler();
         Date tDate = new Date();
-        messageIndex = fH.addMessage(0, "Arseny3", "i just love aly and fila", "their latest future emmmmery sound of egypt is great ", tDate, tDate);
+        messageIndex = fInstance.addMessage( "Arseny3", "i just love aly and fila", "their latest future emmmmery sound of egypt is great ");
         MessageInterface msg1 = new Message(new MessageData("Arseny3", "i just love aly and fila", "their latest future emmmmery sound of egypt is great ", tDate, tDate, messageIndex));
-        messageIndex = fH.addMessage(0, "Amit3", "who cares  armin", "gareth emmjmmery is much better.. armin is so commercial now ", tDate, tDate);
+        messageIndex = fInstance.addMessage( "Amit3", "who cares  armin", "gareth emmjmmery is much better.. armin is so commercial now ");
         MessageInterface msg2 = new Message(new MessageData("Amit", "who cares about armin", "gareth emmjmmery is much better.. armin is so commercial now ", tDate, tDate, messageIndex));
         instance.addMessage(msg1);
         instance.addMessage(msg2);
-
+//         System.out.println (instance.);
         SearchHit[] result = instance.searchByContent(phrase, from, to);
         System.out.println(result[0].getMessage());
         System.out.println(result[1].getMessage());
-        assertEquals(result.length, 2);
-        //       result = instance.searchByContent("aboutXttt", from, to);
-        //           assertEquals(result.length , 0);
+        assertEquals(result.length,2);
+//               result = instance.searchByContent("aboutXttt", from, to);
+       //            assertEquals(result.length , 0);
 
 
 
@@ -146,16 +146,16 @@ public class SearchEngineHandlerTest {
      */
     @Test
     public void testRemoveMessage() {
+
         System.out.println("RemoveMessage");
         SearchEngineHandler instance = new SearchEngineHandler();
         int messageIndex;
         Date tDate = new Date();
-        messageIndex = fH.addMessage(0, "REMMM", "i just love aly and fila", "their latest future emmmmery sound of egypt is great ", tDate, tDate);
+        messageIndex = fInstance.addMessage( "REMMM", "i just love aly and fila", "their latest future emmmmery sound of egypt is great ");
         MessageInterface msg1 = new Message(new MessageData("REMMM", "i just love aly and fila", "their latest future emmmmery sound of egypt is great ", tDate, tDate, messageIndex));
         instance.addMessage(msg1);
         SearchHit[] result = instance.searchByAuthor("REMMM", 0, 1);
         assertNotSame(result[0], null);
-        //  instance.RemoveMessage(msg1);
         instance.removeMessage(msg1);
         result = instance.searchByAuthor("REMMM", 0, 1);
         assertTrue(result.length==0);

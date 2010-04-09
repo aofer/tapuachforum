@@ -61,8 +61,6 @@ public class MessageTest {
         String expResult = "the Mes Body";
         String result = instance.getBody();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to // fail.
-        // fail("The test case is a prototype.");
     }
 
     /**
@@ -76,8 +74,6 @@ public class MessageTest {
         String expResult = "mesWriter";
         String result = instance.getNickname();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to // fail.
-        // fail("The test case is a prototype.");
     }
 
     /**
@@ -91,8 +87,6 @@ public class MessageTest {
         String expResult = "theMesSubject";
         String result = instance.getSubject();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to // fail.
-        // // fail("The test case is a prototype.");
     }
 
         /**
@@ -130,8 +124,6 @@ public class MessageTest {
         instance.addReply(instance2);
         Vector result = instance.getReplies();
        assertEquals(instance.getReplies().elementAt(0).getBody(),"the Mes Body222222");
-        // TODO review the generated test code and remove the default call to // // fail.
-        // // fail("The test case is a prototype.");
     }
 
     /**
@@ -145,8 +137,6 @@ public class MessageTest {
         Message instance = new Message(mesData);
         instance.setBody(body);
         assertEquals(instance.getBody(), body);
-        // TODO review the generated test code and remove the default call to // // fail.
-        // // fail("The test case is a prototype.");
     }
 
     /**
@@ -160,8 +150,6 @@ public class MessageTest {
         Message instance = new Message(mesData);
         instance.setSubject(subject);
          assertEquals(instance.getSubject(), subject);
-        // TODO review the generated test code and remove the default call to // // fail.
-        // // fail("The test case is a prototype.");
     }
 
     /**
@@ -172,11 +160,9 @@ public class MessageTest {
         System.out.println("toString");
                MessageData mesData = new MessageData("mesWriter", "theMesSubject", "the Mes Body", tDate, tDate);
         Message instance = new Message(mesData);
-        String expResult = "ubject:theMesSubjec";
+        String expResult = "theMesSubjec";
         String result = instance.toString();
-        assertEquals(expResult, result.substring(2, 21));
-        // TODO review the generated test code and remove the default call to // fail.
-        // fail("The test case is a prototype.");
+        assertEquals(expResult, result.substring(21, 33));
     }
 
     /**
@@ -191,8 +177,6 @@ public class MessageTest {
         int expResult = 0;
         int result = instance.getIndex();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-    //    fail("The test case is a prototype.");
     }
 
     /**
@@ -202,7 +186,6 @@ public class MessageTest {
     public void testSetIndex() {
         System.out.println("setIndex");
         int id = 5;
-
          MessageData mesData = new MessageData("mesWriter", "theMesSubject", "the Mes Body", tDate, tDate);
         Message instance = new Message(mesData);
         int expResult = 5;

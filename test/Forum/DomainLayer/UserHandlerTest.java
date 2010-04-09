@@ -5,6 +5,7 @@
 
 package Forum.DomainLayer;
 
+import Forum.DomainLayer.Interfaces.MemberInterface;
 import Forum.Exceptions.NoSuchUserException;
 import Forum.Exceptions.WrongPasswordException;
 import Forum.PersistentLayer.Data.MemberData;
@@ -69,9 +70,10 @@ public class UserHandlerTest {
         fH.initForum();
         String expResult = "membUserNameToRegister";
       // Should be by Omri way.
-        // Member result = instance.register(newMemberData);
-       String result = "this is stub string!!!";
-        assertEquals(expResult, result);//result.getUserName());
+        instance.register("membUserNameToRegister", "memiPass", "membNickName","membFirstName","membLastName","memb@agr",tDate);
+
+       MemberInterface result = instance.getMember("membUserNameToRegister");
+        assertEquals(expResult, result.getUserName());
   }     
 
     /**

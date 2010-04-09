@@ -158,7 +158,6 @@ public class SearchDataTest {
              }
         if (result != null)
        assertTrue(result.size() == 1 );
-        // TODO review the generated test code and remove the default call to fail.
          }
      //   catch (MessageNotFoundException ex) {
    //         Logger.getLogger(SearchDataTest.class.getName()).log(Level.SEVERE, null, ex);
