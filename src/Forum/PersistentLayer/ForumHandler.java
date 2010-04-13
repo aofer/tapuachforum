@@ -358,7 +358,6 @@ public void addMessage(int parentId, String createdBy, String subject, String bo
             if (sonToRemove.getParentId().intValue() == 0){
                 this.xf.getForum().getMessages().remove(sonToRemove);
                 int nowNum = this.xf.getForum().getMessageCounter().intValue();
-                  this.xf.getForum().setMessageCounter(BigInteger.valueOf(nowNum-1));
             }
           // message is NOT inn main level
             else {
@@ -367,7 +366,6 @@ public void addMessage(int parentId, String createdBy, String subject, String bo
               if (Aba != null){
                   Aba.getMessage().remove(sonToRemove);
                        int nowNum = this.xf.getForum().getMessageCounter().intValue();
-                  this.xf.getForum().setMessageCounter(BigInteger.valueOf(nowNum-1));
               }
             // didn't find at all. BAD
               else
