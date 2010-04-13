@@ -366,6 +366,7 @@ public void addMessage(int parentId, String createdBy, String subject, String bo
               if (Aba != null){
                   Aba.getMessage().remove(sonToRemove);
                        int nowNum = this.xf.getForum().getMessageCounter().intValue();
+                // here was onde num--
               }
             // didn't find at all. BAD
               else
