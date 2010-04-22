@@ -93,6 +93,45 @@
         <isModerator>false</isModerator>
         <isAdmin>true</isAdmin>
     </members>
+    <members>
+        <userName>admin</userName>
+        <nickName>adminy</nickName>
+        <password>21232f297a57a5a743894a0e4a801fc3</password>
+        <eMail>thebestadmin@gmail.com</eMail>
+        <dateJoined>2010-04-19T15:18:55.819+03:00</dateJoined>
+        <firstName>ad</firstName>
+        <LastName>min</LastName>
+        <dateOfBirth>2010-04-19+03:00</dateOfBirth>
+        <status>false</status>
+        <isModerator>false</isModerator>
+        <isAdmin>true</isAdmin>
+    </members>
+    <members>
+        <userName>admin</userName>
+        <nickName>adminy</nickName>
+        <password>21232f297a57a5a743894a0e4a801fc3</password>
+        <eMail>thebestadmin@gmail.com</eMail>
+        <dateJoined>2010-04-21T11:01:53.432+03:00</dateJoined>
+        <firstName>ad</firstName>
+        <LastName>min</LastName>
+        <dateOfBirth>2010-04-21+03:00</dateOfBirth>
+        <status>false</status>
+        <isModerator>false</isModerator>
+        <isAdmin>true</isAdmin>
+    </members>
+    <members>
+        <userName>ars</userName>
+        <nickName>arsenik</nickName>
+        <password>25d55ad283aa400af464c76d713c07ad</password>
+        <eMail>@</eMail>
+        <dateJoined>2010-04-21T11:03:54.150+03:00</dateJoined>
+        <firstName>arseny</firstName>
+        <LastName>krupnik</LastName>
+        <dateOfBirth>2010-04-21+03:00</dateOfBirth>
+        <status>true</status>
+        <isModerator>false</isModerator>
+        <isAdmin>false</isAdmin>
+    </members>
     <messages>
         <messageId>3</messageId>
         <parentId>0</parentId>
