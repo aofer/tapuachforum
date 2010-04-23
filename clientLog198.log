@@ -2,8 +2,8 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2010-04-12T19:06:18</date>
-  <millis>1271088378559</millis>
+  <date>2010-04-12T19:03:22</date>
+  <millis>1271088202696</millis>
   <sequence>0</sequence>
   <logger>forum</logger>
   <level>SEVERE</level>
@@ -13,8 +13,8 @@
   <message>An IOException was thrown while trying to connect to the server.</message>
 </record>
 <record>
-  <date>2010-04-12T19:06:18</date>
-  <millis>1271088378839</millis>
+  <date>2010-04-12T19:03:22</date>
+  <millis>1271088202856</millis>
   <sequence>1</sequence>
   <logger>forum</logger>
   <level>INFO</level>

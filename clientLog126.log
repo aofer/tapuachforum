@@ -2,25 +2,24 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2010-04-12T19:06:18</date>
-  <millis>1271088378559</millis>
+  <date>2010-04-06T09:17:34</date>
+  <millis>1270534654808</millis>
   <sequence>0</sequence>
   <logger>forum</logger>
-  <level>SEVERE</level>
+  <level>INFO</level>
   <class>Forum.Client.ControllerLayer.ClientConnectionController</class>
-  <method>main</method>
+  <method>connect</method>
   <thread>10</thread>
-  <message>An IOException was thrown while trying to connect to the server.</message>
+  <message>The client is connected to the server.</message>
 </record>
 <record>
-  <date>2010-04-12T19:06:18</date>
-  <millis>1271088378839</millis>
+  <date>2010-04-06T09:17:48</date>
+  <millis>1270534668918</millis>
   <sequence>1</sequence>
   <logger>forum</logger>
   <level>INFO</level>
   <class>Forum.Client.ControllerLayer.ClientConnectionController</class>
-  <method>main</method>
-  <thread>10</thread>
-  <message>Exiting...</message>
+  <method>run</method>
+  <thread>11</thread>
+  <message>The user has inputed an invalid command.</message>
 </record>
-</log>
