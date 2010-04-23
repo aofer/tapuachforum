@@ -26,9 +26,11 @@ public class ModifyMessageMessage extends ClientMessage {
 	 * The new content of the message.
 	 */
 	private String m_content;
+        private String m_subject;
 
-	public ModifyMessageMessage(long messageId, String content) {
+	public ModifyMessageMessage(long messageId, String subject,String content) {
 		m_messageId = messageId;
+                m_subject = subject;
 		m_content = content;
 	}
 
@@ -39,7 +41,7 @@ public class ModifyMessageMessage extends ClientMessage {
 	public ServerResponse doOperation(ForumFascade forum) {
             ServerResponse tResponse;
             try {
-                forum.editMessage((int) m_messageId, "subjectTBA", m_content);
+                forum.editMessage((int) m_messageId, m_subject, m_content);
                 tResponse = new ServerResponse("Message was modified successfully.", true);
             } catch (MessageNotFoundException ex) {
                 String tAns = "Message " + m_messageId + " does not exist.";

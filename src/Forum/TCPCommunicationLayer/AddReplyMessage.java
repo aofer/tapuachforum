@@ -25,9 +25,11 @@ public class AddReplyMessage extends ClientMessage {
 	 * The content of the reply message.
 	 */
 	private String m_content;
+        private String m_subject;
 
-	public AddReplyMessage(long parentMessageId, String content) {
+	public AddReplyMessage(long parentMessageId, String subject,String content) {
 		m_parentMessageId = parentMessageId;
+                m_subject = subject;
 		m_content = content;
 	}
 
@@ -38,7 +40,7 @@ public class AddReplyMessage extends ClientMessage {
 	public ServerResponse doOperation(ForumFascade forum) {
             ServerResponse tResponse;
             try {
-                forum.addReply((int) m_parentMessageId,  "SUBJECT-TBA", m_content);
+                forum.addReply((int) m_parentMessageId, m_subject, m_content);
                 tResponse = new ServerResponse("Reply was added  successfully.", true);
             }
             catch (MessageNotFoundException ex) {

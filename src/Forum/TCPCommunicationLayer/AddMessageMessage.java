@@ -17,10 +17,12 @@ public class AddMessageMessage extends ClientMessage {
 	private static final long serialVersionUID = 8912617401305761411L;
 	
 	/* The content of the message to add. */
-	private String m_content;
+	private String m_subject;
+        private String m_content;
 
-	public AddMessageMessage(String content) {
-		m_content = content;
+	public AddMessageMessage(String subject,String content) {
+	   this.m_subject = subject;
+            m_content = content;
 	}
 
 	/* (non-Javadoc)
@@ -31,7 +33,7 @@ public class AddMessageMessage extends ClientMessage {
             // parsing of m_content in order to get the nickname** subject and body
             ServerResponse tResponse;
             try {
-                forum.addMessage("TBA", m_content);
+                forum.addMessage(m_subject, m_content);
                 tResponse = new ServerResponse("Message was added  successfully.",true);
 
             } catch (UserPrivilegeException ex) {
