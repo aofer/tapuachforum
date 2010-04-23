@@ -183,10 +183,10 @@ private boolean correctInput(){
                   JOptionPane.showMessageDialog(this,   "please enter a first name",    "Error",    JOptionPane.WARNING_MESSAGE);
                   return false;
             }
-               if(this.=Lname.getText().compareTo("") ==0) { 
+             /*  if(this.=Lname.getText().compareTo("") ==0) {
                   JOptionPane.showMessageDialog(this,   "please enter a first name",    "Error",    JOptionPane.WARNING_MESSAGE);
                   return false;
-            }
+            }*/
 
     return true;
 }
