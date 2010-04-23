@@ -1,16 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <forumType>
     <forumName>Tapuach</forumName>
-    <messageCounter>11</messageCounter>
+    <messageCounter>1</messageCounter>
     <members>
+<<<<<<< local
+        <userName>membUserNameToRegister</userName>
+        <nickName>membNickName</nickName>
+        <password>c39cd9c59b8aa2c8a6d0d8d484cdff0d</password>
+        <eMail>membFirstName</eMail>
+        <dateJoined>2010-04-22T10:53:52.592+03:00</dateJoined>
+        <firstName>membLastName</firstName>
+        <LastName>memb@agr</LastName>
+        <dateOfBirth>2010-04-22+03:00</dateOfBirth>
+        <status>true</status>
+        <isModerator>true</isModerator>
+        <isAdmin>false</isAdmin>
+    </members>
+    <members>
+=======
+>>>>>>> other
         <userName>admin</userName>
         <nickName>adminy</nickName>
         <password>21232f297a57a5a743894a0e4a801fc3</password>
         <eMail>thebestadmin@gmail.com</eMail>
+<<<<<<< local
+        <dateJoined>2010-04-22T10:53:53.357+03:00</dateJoined>
+=======
         <dateJoined>2010-04-06T09:15:04.391+03:00</dateJoined>
+>>>>>>> other
         <firstName>ad</firstName>
         <LastName>min</LastName>
+<<<<<<< local
+        <dateOfBirth>2010-04-22+03:00</dateOfBirth>
+=======
         <dateOfBirth>2010-04-06+03:00</dateOfBirth>
+>>>>>>> other
         <status>true</status>
         <isModerator>false</isModerator>
         <isAdmin>true</isAdmin>
@@ -20,10 +44,18 @@
         <nickName>adminy</nickName>
         <password>21232f297a57a5a743894a0e4a801fc3</password>
         <eMail>thebestadmin@gmail.com</eMail>
+<<<<<<< local
+        <dateJoined>2010-04-22T10:55:04.980+03:00</dateJoined>
+=======
         <dateJoined>2010-04-06T09:15:05.443+03:00</dateJoined>
+>>>>>>> other
         <firstName>ad</firstName>
         <LastName>min</LastName>
+<<<<<<< local
+        <dateOfBirth>2010-04-22+03:00</dateOfBirth>
+=======
         <dateOfBirth>2010-04-06+03:00</dateOfBirth>
+>>>>>>> other
         <status>false</status>
         <isModerator>false</isModerator>
         <isAdmin>true</isAdmin>
@@ -33,6 +65,9 @@
         <nickName>adminy</nickName>
         <password>21232f297a57a5a743894a0e4a801fc3</password>
         <eMail>thebestadmin@gmail.com</eMail>
+<<<<<<< local
+        <dateJoined>2010-04-22T19:13:51.305+03:00</dateJoined>
+=======
         <dateJoined>2010-04-06T09:17:55.908+03:00</dateJoined>
         <firstName>ad</firstName>
         <LastName>min</LastName>
@@ -164,6 +199,7 @@
         <password>21232f297a57a5a743894a0e4a801fc3</password>
         <eMail>thebestadmin@gmail.com</eMail>
         <dateJoined>2010-04-22T19:29:58.272+03:00</dateJoined>
+>>>>>>> other
         <firstName>ad</firstName>
         <LastName>min</LastName>
         <dateOfBirth>2010-04-22+03:00</dateOfBirth>
@@ -176,10 +212,18 @@
         <nickName>adminy</nickName>
         <password>21232f297a57a5a743894a0e4a801fc3</password>
         <eMail>thebestadmin@gmail.com</eMail>
+<<<<<<< local
+        <dateJoined>2010-04-22T19:17:41.498+03:00</dateJoined>
+=======
         <dateJoined>2010-04-19T15:18:55.819+03:00</dateJoined>
+>>>>>>> other
         <firstName>ad</firstName>
         <LastName>min</LastName>
+<<<<<<< local
+        <dateOfBirth>2010-04-22+03:00</dateOfBirth>
+=======
         <dateOfBirth>2010-04-19+03:00</dateOfBirth>
+>>>>>>> other
         <status>false</status>
         <isModerator>false</isModerator>
         <isAdmin>true</isAdmin>
@@ -189,14 +233,24 @@
         <nickName>adminy</nickName>
         <password>21232f297a57a5a743894a0e4a801fc3</password>
         <eMail>thebestadmin@gmail.com</eMail>
+<<<<<<< local
+        <dateJoined>2010-04-22T19:20:16.024+03:00</dateJoined>
+=======
         <dateJoined>2010-04-21T11:01:53.432+03:00</dateJoined>
+>>>>>>> other
         <firstName>ad</firstName>
         <LastName>min</LastName>
+<<<<<<< local
+        <dateOfBirth>2010-04-22+03:00</dateOfBirth>
+=======
         <dateOfBirth>2010-04-21+03:00</dateOfBirth>
+>>>>>>> other
         <status>false</status>
         <isModerator>false</isModerator>
         <isAdmin>true</isAdmin>
     </members>
+<<<<<<< local
+=======
     <members>
         <userName>ars</userName>
         <nickName>arsenik</nickName>
@@ -282,4 +336,5 @@
             <modifiedDate>2010-04-22T19:32:48.657+03:00</modifiedDate>
         </message>
     </messages>
+>>>>>>> other
 </forumType>
