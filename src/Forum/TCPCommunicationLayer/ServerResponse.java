@@ -14,7 +14,8 @@ public class ServerResponse implements Serializable {
 	
 	private String m_response;
 	private boolean m_hasExecuted;
-	
+	private boolean  _isSuccessful;
+
 	public ServerResponse(String response, boolean hasExecuted) {
 		m_response = response;
 		m_hasExecuted = hasExecuted;
@@ -36,5 +37,18 @@ public class ServerResponse implements Serializable {
 	public boolean hasExecuted() {
 		return m_hasExecuted;
 	}
+  
+    /**
+     * @return the _isSuccessful
+     */
+    public boolean isSuccessful() {
+        return _isSuccessful;
+    }
 
+    /**
+     * @param isSuccessful the _isSuccessful to set
+     */
+    public void setIsSuccessful(boolean isSuccessful) {
+        this._isSuccessful = isSuccessful;
+    }
 }
