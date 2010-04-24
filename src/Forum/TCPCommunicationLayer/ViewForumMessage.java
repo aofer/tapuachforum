@@ -20,11 +20,10 @@ public class ViewForumMessage extends ClientMessage {
 	@Override
 	public ServerResponse doOperation(ForumFascade forum) {
                 Vector<MessageInterface> tForum = forum.viewForum();
-                String tForumString = "";
-                for (int i = 0;i<tForum.size();i++){
-                tForumString = tForumString + tForum.elementAt(i).toString() + "\n";
-                //System.out.println(tForumString);
-                }
+               String tForumString = "";
+               for(MessageInterface m : tForum) {
+               tForumString += MessagesParser.Encode(m);
+               }
                 ServerResponse tResponse = new ServerResponse(tForumString, true);
 		return tResponse;
 	}
