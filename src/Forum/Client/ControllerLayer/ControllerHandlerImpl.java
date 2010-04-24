@@ -13,6 +13,7 @@ import Forum.TCPCommunicationLayer.LoginMessage;
 import Forum.TCPCommunicationLayer.RegisterMessage;
 import Forum.TCPCommunicationLayer.SearchByAuthorMessage;
 import Forum.TCPCommunicationLayer.SearchByContentMessage;
+import Forum.TCPCommunicationLayer.ViewForumMessage;
 
 /**
  * You need to delete all the code in here and implement it yourself.<br>
@@ -78,6 +79,10 @@ public class ControllerHandlerImpl extends ControllerHandler {
     }
 
 
+ @Override
+    public void viewForum(Component comp) {
+        handleEvent(new ViewForumMessage(),comp);
+    }
 
 
     private void handleEvent(ClientMessage msg, Component comp) {
@@ -90,5 +95,6 @@ public class ControllerHandlerImpl extends ControllerHandler {
             notifyObservers(new ForumTreeErrorEvent(res.getResponse()));
         }
     }
+
 
 }

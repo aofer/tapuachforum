@@ -137,7 +137,11 @@ public class ForumTree  implements ForumTreeHandler {
 	 * @return The tree representing the forum.
 	 */
 	private ForumCell decodeView(String encodedView) {
-		// TODO implement the decoder (based on the encoding your write.
+            //BIG TODO...
+            // a message from arseny and omri:
+            //use MessagesParser's decode function to receive vector of messages, and do what you need to do to update the gui
+
+            // TODO implement the decoder (based on the encoding your write.
 		//return null;
 		// Delete the below line codes.
 		ForumCell fc1 = new ForumCell(2,"fsdf","fsdfsd");

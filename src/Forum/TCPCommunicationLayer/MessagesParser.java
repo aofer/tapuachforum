@@ -8,14 +8,15 @@ package Forum.TCPCommunicationLayer;
 import Forum.DomainLayer.Interfaces.MessageInterface;
 import Forum.DomainLayer.Message;
 import java.util.Iterator;
+import java.util.Vector;
 
 /**
  *
  * @author Kipi
  */
-public class MessagesParser {
+ public  class MessagesParser {
 
-    public String Encode(MessageInterface msg){
+    public static String Encode(MessageInterface msg){
         String str;
         str = " <message> ";
         str+="id: " + msg.getIndex() + "  user: " + msg.getNickname() ;
@@ -29,7 +30,7 @@ public class MessagesParser {
         str+=" </message>";
         return str;
     }
-    public MessageInterface Decode(String str){
+    public static Vector<Message> Decode(String str){
         return null;
     }
 }
