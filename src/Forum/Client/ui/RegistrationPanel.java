@@ -4,23 +4,21 @@
  */
 
 /*
- * RegisterFrame.java
+ * RegistrationPanel.java
  *
- * Created on 23/04/2010, 11:01:06
+ * Created on 24/04/2010, 12:22:03
  */
 
 package Forum.Client.ui;
 
-import javax.swing.JOptionPane;
-
 /**
  *
- * @author Arseny
+ * @author amit
  */
-public class RegisterFrame extends javax.swing.JFrame {
+public class RegistrationPanel extends javax.swing.JPanel {
 
-    /** Creates new form RegisterFrame */
-    public RegisterFrame() {
+    /** Creates new form RegistrationPanel */
+    public RegistrationPanel() {
         initComponents();
     }
 
@@ -33,59 +31,22 @@ public class RegisterFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        Fname = new javax.swing.JTextField();
-        Lname = new javax.swing.JTextField();
-        email = new javax.swing.JTextField();
-        Nick = new javax.swing.JTextField();
-        Uname = new javax.swing.JTextField();
-        Pass = new javax.swing.JPasswordField();
+        RegButton = new javax.swing.JButton();
         rePass = new javax.swing.JPasswordField();
         CancelButton = new javax.swing.JButton();
-        RegButton = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Registration");
-
-        jLabel1.setText("First Name:");
-
-        jLabel2.setText("Last Name:");
-
-        jLabel3.setText("Email:");
-
-        jLabel4.setText("Nickname:");
-
-        jLabel5.setText("Username:");
-
-        jLabel6.setText("Password:");
-
-        jLabel7.setText("Password Again:");
-
-        Fname.setColumns(10);
-        Fname.setToolTipText("your first name");
-
-        Lname.setColumns(10);
-        Lname.setToolTipText("your family name");
-
-        email.setColumns(15);
-        email.setToolTipText("email");
-
-        Nick.setToolTipText("your nickname in the forum");
-
-        Uname.setToolTipText("username for login purposes");
-
-        Pass.setColumns(8);
-        Pass.setToolTipText("the password must be 8 characters");
-
-        rePass.setToolTipText("retype password");
-
-        CancelButton.setText("Cancel");
+        Uname = new javax.swing.JTextField();
+        Pass = new javax.swing.JPasswordField();
+        email = new javax.swing.JTextField();
+        Nick = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        Lname = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        Fname = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
 
         RegButton.setText("Register");
         RegButton.addActionListener(new java.awt.event.ActionListener() {
@@ -94,10 +55,45 @@ public class RegisterFrame extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        rePass.setToolTipText("retype password");
+
+        CancelButton.setText("Cancel");
+
+        Uname.setToolTipText("username for login purposes");
+
+        Pass.setColumns(8);
+        Pass.setToolTipText("the password must be 8 characters");
+
+        email.setColumns(15);
+        email.setToolTipText("email");
+
+        Nick.setToolTipText("your nickname in the forum");
+
+        jLabel2.setText("Last Name:");
+
+        jLabel1.setText("First Name:");
+
+        Lname.setColumns(10);
+        Lname.setToolTipText("your family name");
+
+        jLabel6.setText("Password:");
+
+        jLabel5.setText("Username:");
+
+        jLabel4.setText("Nickname:");
+
+        jLabel3.setText("Email:");
+
+        Fname.setColumns(10);
+        Fname.setToolTipText("your first name");
+
+        jLabel7.setText("Re-enter Password:");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 336, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -128,10 +124,11 @@ public class RegisterFrame extends javax.swing.JFrame {
                                 .addComponent(Uname)
                                 .addComponent(rePass, 0, 0, Short.MAX_VALUE)
                                 .addComponent(Pass, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)))))
-                .addContainerGap(159, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -165,42 +162,15 @@ public class RegisterFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CancelButton)
                     .addComponent(RegButton))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegButtonActionPerformed
-        if(correctInput()){
-        }
-        
+    //    if(correctInput()){
+//        }
     }//GEN-LAST:event_RegButtonActionPerformed
 
-private boolean correctInput(){
-    
-            if(this.Fname.getText().compareTo("") ==0) { 
-                  JOptionPane.showMessageDialog(this,   "please enter a first name",    "Error",    JOptionPane.WARNING_MESSAGE);
-                  return false;
-            }
-             /*  if(this.=Lname.getText().compareTo("") ==0) {
-                  JOptionPane.showMessageDialog(this,   "please enter a first name",    "Error",    JOptionPane.WARNING_MESSAGE);
-                  return false;
-            }*/
-
-    return true;
-}
-
-    /**
-    * @param args the command line arguments
-    */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RegisterFrame().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CancelButton;
