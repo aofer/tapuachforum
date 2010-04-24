@@ -40,6 +40,8 @@ public abstract class ControllerHandler extends Observable {
      */
     public abstract void modifyMessage(long id, String subject,String body, Component comp);
 
+    public abstract void modifyMessage(long id,String content, Component comp);
+
     /**
      * Adds a reply message.
      *
@@ -59,4 +61,43 @@ public abstract class ControllerHandler extends Observable {
      * Adds a new message to the forum.
      */
     public abstract void addNewMessage(String subject,String body, Component comp);
+
+    /**
+     *  searches
+     * @param nickname
+     * @param from
+     * @param to
+     * @param comp
+     */
+    public abstract void searchByAuthor(String nickname,int from,int to,Component comp);
+
+    /**
+     *
+     * @param phrase
+     * @param from
+     * @param to
+     * @param comp
+     */
+    public abstract void searchByContent(String phrase,int from,int to,Component comp);
+
+      /**
+       *
+       * @param username
+       * @param password
+       * @param comp
+       */
+      public abstract void login(String username,String password,Component comp);
+
+      /**
+       *
+       * @param firstName
+       * @param lastName
+       * @param nickname
+       * @param email
+       * @param username
+       * @param password
+       * @param comp
+       */
+      public abstract void register(String firstName,String lastName,String nickname, String email, String username, String password,Component comp);
+
 }
