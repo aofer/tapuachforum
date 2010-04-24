@@ -1,8 +1,5 @@
 package Forum.Client.ControllerLayer;
 
-import Forum.Client.ui.events.ForumTreeRefreshEvent;
-import Forum.Client.ui.events.ForumTreeErrorEvent;
-import Forum.Client.ControllerLayer.ClientConnectionController;
 import Forum.TCPCommunicationLayer.AddMessageMessage;
 import Forum.TCPCommunicationLayer.AddReplyMessage;
 import Forum.TCPCommunicationLayer.ClientMessage;
@@ -12,6 +9,10 @@ import Forum.TCPCommunicationLayer.ServerResponse;
 import java.awt.Component;
 
 import Forum.Client.ui.events.*;
+import Forum.TCPCommunicationLayer.LoginMessage;
+import Forum.TCPCommunicationLayer.RegisterMessage;
+import Forum.TCPCommunicationLayer.SearchByAuthorMessage;
+import Forum.TCPCommunicationLayer.SearchByContentMessage;
 
 /**
  * You need to delete all the code in here and implement it yourself.<br>
@@ -30,25 +31,56 @@ public class ControllerHandlerImpl extends ControllerHandler {
 
     @Override
     public void modifyMessage(long id, String  subject,String body, Component comp) {
-        hanndleEvent(new ModifyMessageMessage(id, subject, body),comp);
+        handleEvent(new ModifyMessageMessage(id, subject, body),comp);
     }
 
     @Override
     public void addReplyToMessage(long id, String subject,String body, Component comp) {
-        hanndleEvent(new AddReplyMessage(id, subject, body),comp);
+        handleEvent(new AddReplyMessage(id, subject, body),comp);
     }
 
     @Override
     public void deleteMessage(long id, Component comp) {
-        hanndleEvent(new DeleteMessageMessage(id),comp);
+        handleEvent(new DeleteMessageMessage(id),comp);
     }
 
     @Override
     public void addNewMessage(String subject,String body, Component comp) {
-        hanndleEvent(new AddMessageMessage(subject, body),comp);
+        handleEvent(new AddMessageMessage(subject, body),comp);
+    }
+    @Override
+    public void searchByAuthor(String nickname,int from,int to,Component comp)
+    {
+       handleEvent(new SearchByAuthorMessage(nickname,from,to),comp);
     }
 
-    private void hanndleEvent(ClientMessage msg, Component comp) {
+    @Override
+     public void searchByContent(String phrase,int from,int to,Component comp)
+    {
+       handleEvent(new SearchByContentMessage(phrase,from,to),comp);
+    }
+    
+    @Override
+     public void login(String username,String password,Component comp)
+    {
+       handleEvent(new LoginMessage(username,password),comp);
+    }
+
+    @Override
+     public void register (String firstName,String lastName,String nickname, String email, String username, String password,Component comp)
+    {
+       handleEvent(new RegisterMessage(firstName,lastName,nickname,email,username,password),comp);
+    }
+
+    @Override
+    public void modifyMessage(long id, String content, Component comp) {
+       this.modifyMessage(id,"", content, comp);
+    }
+
+
+
+
+    private void handleEvent(ClientMessage msg, Component comp) {
         ServerResponse res;
         _connectionController.send(msg);
         res = _connectionController.listen();
@@ -58,4 +90,5 @@ public class ControllerHandlerImpl extends ControllerHandler {
             notifyObservers(new ForumTreeErrorEvent(res.getResponse()));
         }
     }
+
 }
