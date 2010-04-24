@@ -57,7 +57,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lAuther" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="tSearchAuther" pref="204" max="32767" attributes="0"/>
+                  <Component id="tSearchAuther" pref="218" max="32767" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>

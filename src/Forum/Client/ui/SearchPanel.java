@@ -13,7 +13,7 @@ package Forum.Client.ui;
 
 /**
  *
- * @author Eden
+ * @author Liron
  */
 public class SearchPanel extends javax.swing.JPanel {
 
