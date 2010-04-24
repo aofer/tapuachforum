@@ -23,67 +23,63 @@ import Forum.TCPCommunicationLayer.ViewForumMessage;
  */
 public class ControllerHandlerImpl extends ControllerHandler {
 
-    private ClientConnectionController _connectionController;
+    public ControllerHandlerImpl() {
+        super();
+
+    }
 
     @Override
     public String getForumView() {
-        return "";
+        ServerResponse res;
+        _connectionController.send(new ViewForumMessage());
+        res = _connectionController.listen();
+        return res.getResponse();
     }
 
     @Override
-    public void modifyMessage(long id, String  subject,String body, Component comp) {
-        handleEvent(new ModifyMessageMessage(id, subject, body),comp);
+    public void modifyMessage(long id, String subject, String body, Component comp) {
+        handleEvent(new ModifyMessageMessage(id, subject, body), comp);
     }
 
     @Override
-    public void addReplyToMessage(long id, String subject,String body, Component comp) {
-        handleEvent(new AddReplyMessage(id, subject, body),comp);
+    public void addReplyToMessage(long id, String subject, String body, Component comp) {
+        handleEvent(new AddReplyMessage(id, subject, body), comp);
     }
 
     @Override
     public void deleteMessage(long id, Component comp) {
-        handleEvent(new DeleteMessageMessage(id),comp);
+        handleEvent(new DeleteMessageMessage(id), comp);
     }
 
     @Override
-    public void addNewMessage(String subject,String body, Component comp) {
-        handleEvent(new AddMessageMessage(subject, body),comp);
-    }
-    @Override
-    public void searchByAuthor(String nickname,int from,int to,Component comp)
-    {
-       handleEvent(new SearchByAuthorMessage(nickname,from,to),comp);
+    public void addNewMessage(String subject, String body, Component comp) {
+        handleEvent(new AddMessageMessage(subject, body), comp);
     }
 
     @Override
-     public void searchByContent(String phrase,int from,int to,Component comp)
-    {
-       handleEvent(new SearchByContentMessage(phrase,from,to),comp);
-    }
-    
-    @Override
-     public void login(String username,String password,Component comp)
-    {
-       handleEvent(new LoginMessage(username,password),comp);
+    public void searchByAuthor(String nickname, int from, int to, Component comp) {
+        handleEvent(new SearchByAuthorMessage(nickname, from, to), comp);
     }
 
     @Override
-     public void register (String firstName,String lastName,String nickname, String email, String username, String password,Component comp)
-    {
-       handleEvent(new RegisterMessage(firstName,lastName,nickname,email,username,password),comp);
+    public void searchByContent(String phrase, int from, int to, Component comp) {
+        handleEvent(new SearchByContentMessage(phrase, from, to), comp);
+    }
+
+    @Override
+    public void login(String username, String password, Component comp) {
+        handleEvent(new LoginMessage(username, password), comp);
+    }
+
+    @Override
+    public void register(String firstName, String lastName, String nickname, String email, String username, String password, Component comp) {
+        handleEvent(new RegisterMessage(firstName, lastName, nickname, email, username, password), comp);
     }
 
     @Override
     public void modifyMessage(long id, String content, Component comp) {
-       this.modifyMessage(id,"", content, comp);
+        handleEvent(new ModifyMessageMessage(id, "", content), comp);
     }
-
-
- @Override
-    public void viewForum(Component comp) {
-        handleEvent(new ViewForumMessage(),comp);
-    }
-
 
     private void handleEvent(ClientMessage msg, Component comp) {
         ServerResponse res;
@@ -95,6 +91,4 @@ public class ControllerHandlerImpl extends ControllerHandler {
             notifyObservers(new ForumTreeErrorEvent(res.getResponse()));
         }
     }
-
-
 }
