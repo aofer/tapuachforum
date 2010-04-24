@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2010-03-23T22:16:13</date>
+  <millis>1269375373706</millis>
+  <sequence>0</sequence>
+  <logger>forum</logger>
+  <level>INFO</level>
+  <class>Forum.Client.ControllerLayer.ClientConnectionController</class>
+  <method>connect</method>
+  <thread>10</thread>
+  <message>The client is connected to the server.</message>
+</record>
+<record>
+  <date>2010-03-23T22:16:19</date>
+  <millis>1269375379571</millis>
+  <sequence>1</sequence>
+  <logger>forum</logger>
+  <level>SEVERE</level>
+  <class>Forum.Client.ControllerLayer.ClientConnectionController</class>
+  <method>run</method>
+  <thread>11</thread>
+  <message>Lost connection to server.</message>
+</record>
+<record>
+  <date>2010-03-23T22:16:19</date>
+  <millis>1269375379575</millis>
+  <sequence>2</sequence>
+  <logger>forum</logger>
+  <level>INFO</level>
+  <class>Forum.Client.ControllerLayer.ClientConnectionController</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>Exiting...</message>
+</record>
+</log>
