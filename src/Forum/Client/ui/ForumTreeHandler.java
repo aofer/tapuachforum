@@ -1,4 +1,4 @@
-package forum.client.ui;
+package Forum.Client.ui;
 
 /**
  * @author Tomer Heber
