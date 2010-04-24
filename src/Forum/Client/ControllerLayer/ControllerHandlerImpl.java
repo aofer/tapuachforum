@@ -1,5 +1,7 @@
-package forum.client.controllerlayer;
+package Forum.Client.ControllerLayer;
 
+import Forum.Client.ui.events.ForumTreeRefreshEvent;
+import Forum.Client.ui.events.ForumTreeErrorEvent;
 import Forum.Client.ControllerLayer.ClientConnectionController;
 import Forum.TCPCommunicationLayer.AddMessageMessage;
 import Forum.TCPCommunicationLayer.AddReplyMessage;
@@ -9,7 +11,7 @@ import Forum.TCPCommunicationLayer.ModifyMessageMessage;
 import Forum.TCPCommunicationLayer.ServerResponse;
 import java.awt.Component;
 
-import forum.client.ui.events.*;
+import Forum.Client.ui.events.*;
 
 /**
  * You need to delete all the code in here and implement it yourself.<br>

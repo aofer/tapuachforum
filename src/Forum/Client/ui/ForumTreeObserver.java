@@ -1,9 +1,9 @@
-package forum.client.ui;
+package Forum.Client.ui;
 
 import java.util.Observable;
 import java.util.Observer;
 
-import forum.client.ui.events.ForumTreeEvent;
+import Forum.Client.ui.events.ForumTreeEvent;
 
 /**
  * @author Tomer Heber

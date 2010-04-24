@@ -1,4 +1,4 @@
-package forum.client.ui;
+package Forum.Client.ui;
 
 import java.awt.Color;
 import java.awt.Dimension;
