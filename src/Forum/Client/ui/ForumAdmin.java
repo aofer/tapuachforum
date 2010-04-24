@@ -45,7 +45,7 @@ public class ForumAdmin extends javax.swing.JFrame {
 
         btnUpgrade.setText("Upgrade");
 
-        lblAuthorization.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblAuthorization.setFont(new java.awt.Font("Tahoma", 0, 12));
         lblAuthorization.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAuthorization.setText("member \\ moderator");
         lblAuthorization.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);

@@ -1,7 +1,7 @@
-package forum.client.ui.events;
+package Forum.Client.ui.events;
 
 import java.awt.Component;
-import forum.client.ui.ForumTreeHandler;
+import Forum.Client.ui.ForumTreeHandler;
 
 /**
  * This event enables a component (if there is one). And updates the forum view in the GUI.
