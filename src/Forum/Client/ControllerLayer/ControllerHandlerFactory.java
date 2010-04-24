@@ -1,4 +1,4 @@
-package forum.client.controllerlayer;
+package Forum.Client.ControllerLayer;
 
 
 /**

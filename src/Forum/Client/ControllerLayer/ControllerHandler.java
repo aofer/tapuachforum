@@ -1,4 +1,4 @@
-package forum.client.controllerlayer;
+package Forum.Client.ControllerLayer;
 
 import java.awt.Component;
 import java.util.Observable;

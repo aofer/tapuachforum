@@ -1,4 +1,4 @@
-package forum.client.ui;
+package Forum.Client.ui;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -21,14 +21,14 @@ import javax.swing.plaf.basic.BasicTreeUI;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
-import forum.client.controllerlayer.ControllerHandler;
-import forum.client.controllerlayer.ControllerHandlerFactory;
+import Forum.Client.ControllerLayer.ControllerHandler;
+import Forum.Client.ControllerLayer.ControllerHandlerFactory;
 
 /**
  * @author Tomer Heber
  *
  */
-public class ForumTree implements ForumTreeHandler {
+public class ForumTree  implements ForumTreeHandler {
 	
 	/**
 	 * The JTree GUI component.
@@ -167,7 +167,7 @@ public class ForumTree implements ForumTreeHandler {
 			public void run() {
 				DefaultMutableTreeNode node = (DefaultMutableTreeNode)m_tree.getSelectionPath().getLastPathComponent();
 				ForumCell cell = (ForumCell) node.getUserObject();				
-				m_pipe.modifyMessage(cell.getId(),newContent,button);				
+			//	m_pipe.modifyMessage(cell.getId(),newContent,button);
 			}
 		});
 	}
@@ -183,7 +183,7 @@ public class ForumTree implements ForumTreeHandler {
 			public void run() {
 				DefaultMutableTreeNode node = (DefaultMutableTreeNode)m_tree.getSelectionPath().getLastPathComponent();
 				ForumCell cell = (ForumCell) node.getUserObject();				
-				m_pipe.addReplyToMessage(cell.getId(),"",button);					
+		//		m_pipe.addReplyToMessage(cell.getId(),"",button);
 			}
 		});			
 	}
@@ -213,27 +213,22 @@ public class ForumTree implements ForumTreeHandler {
 			
 			@Override
 			public void run() {				
-				m_pipe.addNewMessage(button);				
+			//	m_pipe.addNewMessage(button);
 			}
 		});
 	}
 
-	/**
-	 * This is for testing purposes only! <br>
-	 * Delete when done testing!
-	 * 
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		ForumTree tree = new ForumTree();
-		
-		JFrame frame = new JFrame("test");
-		frame.setSize(new Dimension(640,480));
-		
-		frame.getContentPane().add(tree.getForumTreeUI());	
-		frame.setVisible(true);		
-		
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
-
+        
+        /**This is for testing purposes only! <br>
+          * Delete when done testing!
+ 	 * @param args
+ 	 */
+ 	/*public static void main(String[] args) {
+ 		ForumTree tree = new ForumTree();
+ 		JFrame frame = new JFrame("test");
+        	frame.setSize(new Dimension(640,480));
+ 		frame.getContentPane().add(tree.getForumTreeUI());
+ 		frame.setVisible(true);
+        	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+   	}*/
 }
