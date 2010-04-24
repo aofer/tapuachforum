@@ -8,6 +8,7 @@ package Forum.TCPCommunicationLayer;
 import Forum.DomainLayer.Interfaces.MessageInterface;
 import Forum.DomainLayer.Message;
 import Forum.PersistentLayer.Data.MessageData;
+import java.util.Vector;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -51,17 +52,17 @@ public class MessagesParserTest {
         
         String result = instance.Encode(msg1);
 
-        MessageInterface rmsg1 = instance.Decode(result);
+        Vector<Message> rmsg1 = instance.Decode(result);
 
-        assertEquals(msg1, rmsg1);
+        assertEquals(msg1, rmsg1.firstElement());
 
         Message msg2 = new Message(new MessageData("amit", "blah blah", "hello friends", null, null), null);
         Message msg3 = new Message(new MessageData("liron", "ha ha ha", "she said ha ha..", null, null), null);
         msg1.addReply( msg3);
 
         result = instance.Encode(msg1);
-        MessageInterface rmsg2 = instance.Decode(result);
-        assertEquals(msg1,rmsg2);
+        Vector<Message> rmsg2 = instance.Decode(result);
+        assertEquals(msg1,rmsg2.firstElement());
 
 
         msg1.getReplies().firstElement().addReply(msg2);
@@ -69,7 +70,7 @@ public class MessagesParserTest {
 
         result = instance.Encode(msg1) ;
         rmsg2 = instance.Decode(result);
-        assertEquals(msg1,rmsg2);
+        assertEquals(msg1,rmsg2.firstElement());
 
 
 
