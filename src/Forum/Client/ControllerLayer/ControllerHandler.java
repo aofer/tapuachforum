@@ -104,6 +104,8 @@ public abstract class ControllerHandler extends Observable {
        */
       public abstract void login(String username,String password,Component comp);
 
+       public abstract void logoff(Component comp);
+
       /**
        *
        * @param firstName

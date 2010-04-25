@@ -10,6 +10,7 @@ import java.awt.Component;
 
 import Forum.Client.ui.events.*;
 import Forum.TCPCommunicationLayer.LoginMessage;
+import Forum.TCPCommunicationLayer.LogoffMessage;
 import Forum.TCPCommunicationLayer.MembersMessage;
 import Forum.TCPCommunicationLayer.RegisterMessage;
 import Forum.TCPCommunicationLayer.SearchByAuthorMessage;
@@ -125,5 +126,9 @@ public class ControllerHandlerImpl extends ControllerHandler {
         } else {
             notifyObservers(new ForumTreeErrorEvent(res.getResponse()));
         }
+    }
+    @Override
+    public  void logoff(Component comp){
+        handleMemberEvents(new LogoffMessage(),comp);
     }
 }
