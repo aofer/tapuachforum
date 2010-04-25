@@ -67,6 +67,19 @@
         <isModerator>false</isModerator>
         <isAdmin>true</isAdmin>
     </members>
+    <members>
+        <userName>admin</userName>
+        <nickName>adminy</nickName>
+        <password>21232f297a57a5a743894a0e4a801fc3</password>
+        <eMail>thebestadmin@gmail.com</eMail>
+        <dateJoined>2010-04-25T15:20:42.910+03:00</dateJoined>
+        <firstName>ad</firstName>
+        <LastName>min</LastName>
+        <dateOfBirth>2010-04-25+03:00</dateOfBirth>
+        <status>false</status>
+        <isModerator>false</isModerator>
+        <isAdmin>true</isAdmin>
+    </members>
     <messages>
         <messageId>1</messageId>
         <parentId>0</parentId>
