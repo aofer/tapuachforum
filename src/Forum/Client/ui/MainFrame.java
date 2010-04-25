@@ -13,7 +13,9 @@ package Forum.Client.ui;
 
 import Forum.Client.ControllerLayer.ControllerHandler;
 import java.awt.Dimension;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 /**
@@ -30,6 +32,8 @@ public ControllerHandler m_pipe;
         ForumTree tree = new ForumTree(this);
         this.loginLabel.setVisible(false);
         this.LogoutB.setVisible(false);
+        this.AdminPanel.setVisible(false);
+
         TreePane.setViewportView(tree.getForumTreeUI());
         this.RegPanel.setVisible(false);
         this.m_pipe = tree.getPipe();
@@ -97,6 +101,10 @@ public ControllerHandler m_pipe;
         rePass = new javax.swing.JPasswordField();
         RegButton = new javax.swing.JButton();
         CancelButton = new javax.swing.JButton();
+        AdminPanel = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        Ulist = new javax.swing.JList();
+        Jupgrade = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -123,9 +131,12 @@ public ControllerHandler m_pipe;
 
         lUsername.setText("Username:");
 
-        loginLabel.setText("Welcome ");
-
         LogoutB.setText("Logout");
+        LogoutB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LogoutBActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout LoginPanelLayout = new javax.swing.GroupLayout(LoginPanel);
         LoginPanel.setLayout(LoginPanelLayout);
@@ -480,7 +491,38 @@ public ControllerHandler m_pipe;
                 .addGroup(RegPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CancelButton)
                     .addComponent(RegButton))
-                .addContainerGap(115, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jScrollPane2.setViewportView(Ulist);
+
+        Jupgrade.setText("Upgrade");
+        Jupgrade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JupgradeActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout AdminPanelLayout = new javax.swing.GroupLayout(AdminPanel);
+        AdminPanel.setLayout(AdminPanelLayout);
+        AdminPanelLayout.setHorizontalGroup(
+            AdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AdminPanelLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Jupgrade)
+                .addGap(20, 20, 20))
+        );
+        AdminPanelLayout.setVerticalGroup(
+            AdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AdminPanelLayout.createSequentialGroup()
+                .addGroup(AdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(AdminPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Jupgrade))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -493,7 +535,9 @@ public ControllerHandler m_pipe;
                         .addContainerGap()
                         .addComponent(TreePane, javax.swing.GroupLayout.PREFERRED_SIZE, 648, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(RegPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(AdminPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(RegPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(BottomPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TopPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 988, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -505,7 +549,10 @@ public ControllerHandler m_pipe;
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TreePane, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(RegPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(RegPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(AdminPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BottomPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
@@ -536,16 +583,37 @@ public ControllerHandler m_pipe;
     {
         this.lUsername.setVisible(false);
         this.tUsername.setVisible(false);
+        this.tUsername.setText("");
         this.tPassL.setVisible(false);
         this.tPassword.setVisible(false);
+        this.tPassword.setText("");
         this.bLogin.setVisible(false);
         this.bRegister.setVisible(false);
-        this.loginLabel.setText(this.loginLabel.getText()+" "+user);
+        this.loginLabel.setText("welcome "+user);
         this.loginLabel.setVisible(true);
         this.LogoutB.setVisible(true);
 
+        if(user.compareTo("admin") ==0){
+               this.AdminPanel.setVisible(true);
+               this.m_pipe.getMembers(this);
+        }
+
     }
 
+
+    public void RefreshUMembers( String lm)
+    {
+         DefaultListModel dm = new DefaultListModel();
+        String[] st = lm.split(";");
+
+        for(int i=0;i<st.length;i++){
+            dm.addElement(st[i]);
+        }
+        Ulist.setModel(dm);
+        
+
+    }
+    
 
 
 
@@ -610,7 +678,8 @@ public ControllerHandler m_pipe;
                   return false;
             }
 
-             if(this.Pass.getPassword().equals(this.rePass.getPassword())){
+            String p1 = new String(this.Pass.getPassword()); String p2 = new String(this.rePass.getPassword());
+             if(p1.compareTo(p2)!=0){
                   JOptionPane.showMessageDialog(this,   "passwords don't match",    "Error",    JOptionPane.WARNING_MESSAGE);
                   return false;
              }
@@ -635,10 +704,6 @@ public void RegSuccess()
         this.LoginPanel.setVisible(true);
 }
 
-public void RegFail()
-{
-
-}
 
 
 
@@ -657,7 +722,35 @@ public void RegFail()
         this.LoginPanel.setVisible(true);
     }//GEN-LAST:event_CancelButtonActionPerformed
 
+    private void LogoutBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutBActionPerformed
+    m_pipe.logoff(this);
+    }//GEN-LAST:event_LogoutBActionPerformed
+
+ 
+
+    private void JupgradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JupgradeActionPerformed
+        m_pipe.UpgradeUser(((String)(Ulist.getSelectedValue())), null);
+
+    }//GEN-LAST:event_JupgradeActionPerformed
+
+    public void upgradeSuccess()
+    {
+         JOptionPane.showMessageDialog(this,   "Upgrade Successful",    "Success",    JOptionPane.INFORMATION_MESSAGE);
+    }
     
+    public void LogoutSuccess(){
+         this.lUsername.setVisible(true);
+        this.tUsername.setVisible(true);
+        this.tPassL.setVisible(true);
+        this.tPassword.setVisible(true);
+        this.bLogin.setVisible(true);
+        this.bRegister.setVisible(true);
+        this.loginLabel.setText("");
+        this.loginLabel.setVisible(false);
+        this.LogoutB.setVisible(false);
+        this.Ulist.setModel(new DefaultListModel());
+        this.AdminPanel.setVisible(false);
+    }
 
     /**
     * @param args the command line arguments
@@ -675,9 +768,11 @@ public void RegFail()
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel AdminPanel;
     private javax.swing.JPanel BottomPanel;
     private javax.swing.JButton CancelButton;
     private javax.swing.JTextField Fname;
+    private javax.swing.JButton Jupgrade;
     private javax.swing.JTextField Lname;
     private javax.swing.JPanel LoginPanel;
     private javax.swing.JButton LogoutB;
@@ -689,6 +784,7 @@ public void RegFail()
     private javax.swing.JPanel StatusPanel;
     private javax.swing.JPanel TopPanel;
     private javax.swing.JScrollPane TreePane;
+    private javax.swing.JList Ulist;
     private javax.swing.JTextField Uname;
     private javax.swing.JButton bLogin;
     private javax.swing.JButton bRegister;
@@ -709,6 +805,7 @@ public void RegFail()
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
