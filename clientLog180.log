@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2010-04-04T15:35:29</date>
+  <millis>1270384529198</millis>
+  <sequence>0</sequence>
+  <logger>forum</logger>
+  <level>INFO</level>
+  <class>Forum.Client.ControllerLayer.ClientConnectionController</class>
+  <method>connect</method>
+  <thread>10</thread>
+  <message>The client is connected to the server.</message>
+</record>
+<record>
+  <date>2010-04-04T15:35:34</date>
+  <millis>1270384534035</millis>
+  <sequence>1</sequence>
+  <logger>forum</logger>
+  <level>SEVERE</level>
+  <class>Forum.Client.ControllerLayer.ClientConnectionController</class>
+  <method>run</method>
+  <thread>11</thread>
+  <message>IOException occured while trying to read/send/write.</message>
+</record>
+<record>
+  <date>2010-04-04T15:35:34</date>
+  <millis>1270384534045</millis>
+  <sequence>2</sequence>
+  <logger>forum</logger>
+  <level>INFO</level>
+  <class>Forum.Client.ControllerLayer.ClientConnectionController</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>Exiting...</message>
+</record>
+</log>

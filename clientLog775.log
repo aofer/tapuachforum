@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2010-04-04T15:48:53</date>
+  <millis>1270385333885</millis>
+  <sequence>0</sequence>
+  <logger>forum</logger>
+  <level>INFO</level>
+  <class>Forum.Client.ControllerLayer.ClientConnectionController</class>
+  <method>connect</method>
+  <thread>10</thread>
+  <message>The client is connected to the server.</message>
+</record>
+<record>
+  <date>2010-04-04T15:48:57</date>
+  <millis>1270385337150</millis>
+  <sequence>1</sequence>
+  <logger>forum</logger>
+  <level>INFO</level>
+  <class>Forum.Client.ControllerLayer.ClientConnectionController</class>
+  <method>run</method>
+  <thread>11</thread>
+  <message>The user has inputed an invalid command.</message>
+</record>
+<record>
+  <date>2010-04-04T15:49:11</date>
+  <millis>1270385351540</millis>
+  <sequence>2</sequence>
+  <logger>forum</logger>
+  <level>INFO</level>
+  <class>Forum.Client.ControllerLayer.ClientConnectionController</class>
+  <method>run</method>
+  <thread>11</thread>
+  <message>The user has inputed an invalid command.</message>
+</record>
+<record>
+  <date>2010-04-04T15:49:26</date>
+  <millis>1270385366172</millis>
+  <sequence>3</sequence>
+  <logger>forum</logger>
+  <level>INFO</level>
+  <class>Forum.Client.ControllerLayer.ClientConnectionController</class>
+  <method>run</method>
+  <thread>11</thread>
+  <message>The user has inputed an invalid command.</message>
+</record>
