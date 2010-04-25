@@ -70,12 +70,24 @@ public class ControllerHandlerImpl extends ControllerHandler {
 
     @Override
     public void login(String username, String password, Component comp) {
-        handleMemberEvents(new LoginMessage(username, password), comp);
+        _connectionController.send(new LoginMessage(username, password));
+        ServerResponse res = _connectionController.listen();
+        if (res.hasExecuted()) {
+            notifyObservers(new LoginEvent(comp, username));
+        } else {
+            notifyObservers(new ForumTreeErrorEvent(res.getResponse()));
+        }
     }
 
     @Override
     public void register(String firstName, String lastName, String nickname, String email, String username, String password, Component comp) {
-        handleMemberEvents(new RegisterMessage(firstName, lastName, nickname, email, username, password), comp);
+        _connectionController.send(new RegisterMessage(firstName, lastName, nickname, email, username, password));
+        ServerResponse res = _connectionController.listen();
+        if (res.hasExecuted()) {
+            notifyObservers(new RegisterEvent(comp));
+        } else {
+            notifyObservers(new ForumTreeErrorEvent(res.getResponse()));
+        }
     }
 
     @Override
@@ -83,16 +95,16 @@ public class ControllerHandlerImpl extends ControllerHandler {
         handleTreeEvents(new ModifyMessageMessage(id, "", content), comp);
     }
 
-        private void handleMemberEvents(ClientMessage msg, Component comp) {
-            ServerResponse res;
-            _connectionController.send(msg);
-            res = _connectionController.listen();
-            if (res.hasExecuted()) {
-                notifyObservers(new ForumTreeRefreshEvent(comp, getForumView()));
-            } else {
-                notifyObservers(new ForumTreeErrorEvent(res.getResponse()));
-            }
+    private void handleMemberEvents(ClientMessage msg, Component comp) {
+        ServerResponse res;
+        _connectionController.send(msg);
+        res = _connectionController.listen();
+        if (res.hasExecuted()) {
+            notifyObservers(new ForumTreeRefreshEvent(comp, getForumView()));
+        } else {
+            notifyObservers(new ForumTreeErrorEvent(res.getResponse()));
         }
+    }
 
     private void handleTreeEvents(ClientMessage msg, Component comp) {
         ServerResponse res;
@@ -117,7 +129,7 @@ public class ControllerHandlerImpl extends ControllerHandler {
     }
 
     @Override
-    public void getMembers (Component comp) {
+    public void getMembers(Component comp) {
         ServerResponse res;
         _connectionController.send(new MembersMessage());
         res = _connectionController.listen();
@@ -127,9 +139,9 @@ public class ControllerHandlerImpl extends ControllerHandler {
             notifyObservers(new ForumTreeErrorEvent(res.getResponse()));
         }
     }
-    
+
     @Override
-    public  void logoff(Component comp){
-        handleMemberEvents(new LogoffMessage(),comp);
+    public void logoff(Component comp) {
+        handleMemberEvents(new LogoffMessage(), comp);
     }
 }
