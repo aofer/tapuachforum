@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <forumType>
     <forumName>Tapuach</forumName>
-    <messageCounter>3</messageCounter>
+    <messageCounter>23</messageCounter>
     <members>
         <userName>userToCheckLogInandLogOut</userName>
         <nickName>nowOut</nickName>
@@ -37,7 +37,7 @@
         <firstName>ad</firstName>
         <LastName>min</LastName>
         <dateOfBirth>2010-04-25+03:00</dateOfBirth>
-        <status>false</status>
+        <status>true</status>
         <isModerator>false</isModerator>
         <isAdmin>true</isAdmin>
     </members>
@@ -106,22 +106,181 @@
         <isModerator>false</isModerator>
         <isAdmin>false</isAdmin>
     </members>
+    <members>
+        <userName>admin</userName>
+        <nickName>adminy</nickName>
+        <password>21232f297a57a5a743894a0e4a801fc3</password>
+        <eMail>thebestadmin@gmail.com</eMail>
+        <dateJoined>2010-04-25T20:20:52.538+03:00</dateJoined>
+        <firstName>ad</firstName>
+        <LastName>min</LastName>
+        <dateOfBirth>2010-04-25+03:00</dateOfBirth>
+        <status>false</status>
+        <isModerator>false</isModerator>
+        <isAdmin>true</isAdmin>
+    </members>
+    <members>
+        <userName>admin</userName>
+        <nickName>adminy</nickName>
+        <password>21232f297a57a5a743894a0e4a801fc3</password>
+        <eMail>thebestadmin@gmail.com</eMail>
+        <dateJoined>2010-04-25T21:19:40.906+03:00</dateJoined>
+        <firstName>ad</firstName>
+        <LastName>min</LastName>
+        <dateOfBirth>2010-04-25+03:00</dateOfBirth>
+        <status>false</status>
+        <isModerator>false</isModerator>
+        <isAdmin>true</isAdmin>
+    </members>
+    <members>
+        <userName>admin</userName>
+        <nickName>adminy</nickName>
+        <password>21232f297a57a5a743894a0e4a801fc3</password>
+        <eMail>thebestadmin@gmail.com</eMail>
+        <dateJoined>2010-04-25T21:40:47.789+03:00</dateJoined>
+        <firstName>ad</firstName>
+        <LastName>min</LastName>
+        <dateOfBirth>2010-04-25+03:00</dateOfBirth>
+        <status>false</status>
+        <isModerator>false</isModerator>
+        <isAdmin>true</isAdmin>
+    </members>
+    <members>
+        <userName>admin</userName>
+        <nickName>adminy</nickName>
+        <password>21232f297a57a5a743894a0e4a801fc3</password>
+        <eMail>thebestadmin@gmail.com</eMail>
+        <dateJoined>2010-04-25T21:42:00.759+03:00</dateJoined>
+        <firstName>ad</firstName>
+        <LastName>min</LastName>
+        <dateOfBirth>2010-04-25+03:00</dateOfBirth>
+        <status>false</status>
+        <isModerator>false</isModerator>
+        <isAdmin>true</isAdmin>
+    </members>
+    <members>
+        <userName>admin</userName>
+        <nickName>adminy</nickName>
+        <password>21232f297a57a5a743894a0e4a801fc3</password>
+        <eMail>thebestadmin@gmail.com</eMail>
+        <dateJoined>2010-04-25T21:42:56.411+03:00</dateJoined>
+        <firstName>ad</firstName>
+        <LastName>min</LastName>
+        <dateOfBirth>2010-04-25+03:00</dateOfBirth>
+        <status>false</status>
+        <isModerator>false</isModerator>
+        <isAdmin>true</isAdmin>
+    </members>
+    <members>
+        <userName>admin</userName>
+        <nickName>adminy</nickName>
+        <password>21232f297a57a5a743894a0e4a801fc3</password>
+        <eMail>thebestadmin@gmail.com</eMail>
+        <dateJoined>2010-04-25T21:58:06.224+03:00</dateJoined>
+        <firstName>ad</firstName>
+        <LastName>min</LastName>
+        <dateOfBirth>2010-04-25+03:00</dateOfBirth>
+        <status>false</status>
+        <isModerator>false</isModerator>
+        <isAdmin>true</isAdmin>
+    </members>
     <messages>
-        <messageId>1</messageId>
+        <messageId>11</messageId>
         <parentId>0</parentId>
-        <subject>where is bob</subject>
-        <body>working</body>
-        <createdBy>alex</createdBy>
-        <dateAdded>2010-04-06T09:15:06.514+03:00</dateAdded>
-        <modifiedDate>2010-04-06T09:15:06.514+03:00</modifiedDate>
+        <subject></subject>
+        <body>adminy  --  hgfhgfhgf</body>
+        <createdBy>adminy</createdBy>
+        <dateAdded>2010-04-25T21:43:12.976+03:00</dateAdded>
+        <modifiedDate>2010-04-25T21:43:22.092+03:00</modifiedDate>
         <message>
-            <messageId>2</messageId>
-            <parentId>1</parentId>
-            <subject>it is new now</subject>
-            <body>we are trrrrrrrying to do bstst est ever</body>
-            <createdBy>someuser</createdBy>
-            <dateAdded>2010-04-06T09:15:06.655+03:00</dateAdded>
-            <modifiedDate>2010-04-06T09:15:06.755+03:00</modifiedDate>
+            <messageId>18</messageId>
+            <parentId>11</parentId>
+            <subject></subject>
+            <body>adminy  --  adminy  --  blah blahsafs</body>
+            <createdBy>adminy</createdBy>
+            <dateAdded>2010-04-25T21:54:34.139+03:00</dateAdded>
+            <modifiedDate>2010-04-25T21:59:34.730+03:00</modifiedDate>
         </message>
+        <message>
+            <messageId>19</messageId>
+            <parentId>11</parentId>
+            <subject></subject>
+            <body></body>
+            <createdBy>adminy</createdBy>
+            <dateAdded>2010-04-25T21:54:51.530+03:00</dateAdded>
+            <modifiedDate>2010-04-25T21:54:51.530+03:00</modifiedDate>
+            <message>
+                <messageId>20</messageId>
+                <parentId>19</parentId>
+                <subject></subject>
+                <body></body>
+                <createdBy>adminy</createdBy>
+                <dateAdded>2010-04-25T21:55:01.127+03:00</dateAdded>
+                <modifiedDate>2010-04-25T21:55:01.127+03:00</modifiedDate>
+            </message>
+        </message>
+    </messages>
+    <messages>
+        <messageId>12</messageId>
+        <parentId>0</parentId>
+        <subject></subject>
+        <body>hgf</body>
+        <createdBy>adminy</createdBy>
+        <dateAdded>2010-04-25T21:43:26.889+03:00</dateAdded>
+        <modifiedDate>2010-04-25T21:43:53.378+03:00</modifiedDate>
+    </messages>
+    <messages>
+        <messageId>14</messageId>
+        <parentId>0</parentId>
+        <subject></subject>
+        <body></body>
+        <createdBy>adminy</createdBy>
+        <dateAdded>2010-04-25T21:44:49.119+03:00</dateAdded>
+        <modifiedDate>2010-04-25T21:44:49.119+03:00</modifiedDate>
+    </messages>
+    <messages>
+        <messageId>15</messageId>
+        <parentId>0</parentId>
+        <subject></subject>
+        <body></body>
+        <createdBy>adminy</createdBy>
+        <dateAdded>2010-04-25T21:44:49.880+03:00</dateAdded>
+        <modifiedDate>2010-04-25T21:44:49.880+03:00</modifiedDate>
+        <message>
+            <messageId>16</messageId>
+            <parentId>15</parentId>
+            <subject></subject>
+            <body>adminy  --  tomer sucks</body>
+            <createdBy>adminy</createdBy>
+            <dateAdded>2010-04-25T21:50:27.633+03:00</dateAdded>
+            <modifiedDate>2010-04-25T21:50:37.984+03:00</modifiedDate>
+            <message>
+                <messageId>17</messageId>
+                <parentId>16</parentId>
+                <subject></subject>
+                <body>adminy  --  dsgsd</body>
+                <createdBy>adminy</createdBy>
+                <dateAdded>2010-04-25T21:54:19.095+03:00</dateAdded>
+                <modifiedDate>2010-04-25T21:54:21.565+03:00</modifiedDate>
+            </message>
+        </message>
+    </messages>
+    <messages>
+        <messageId>21</messageId>
+        <parentId>0</parentId>
+        <subject></subject>
+        <body></body>
+        <createdBy>adminy</createdBy>
+        <dateAdded>2010-04-25T21:58:17.392+03:00</dateAdded>
+        <modifiedDate>2010-04-25T21:58:17.392+03:00</modifiedDate>
+    </messages>
+    <messages>
+        <messageId>22</messageId>
+        <parentId>0</parentId>
+        <subject></subject>
+        <body></body>
+        <createdBy>adminy</createdBy>
+        <dateAdded>2010-04-25T21:59:36.021+03:00</dateAdded>
+        <modifiedDate>2010-04-25T21:59:36.021+03:00</modifiedDate>
     </messages>
 </forumType>

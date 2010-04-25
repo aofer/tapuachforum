@@ -179,7 +179,7 @@ public class ForumTree  implements ForumTreeHandler {
 			public void run() {
 				DefaultMutableTreeNode node = (DefaultMutableTreeNode)m_tree.getSelectionPath().getLastPathComponent();
 				ForumCell cell = (ForumCell) node.getUserObject();				
-			//	m_pipe.modifyMessage(cell.getId(),newContent,button);
+				m_pipe.modifyMessage(cell.getId(),newContent,button);
 			}
 		});
 	}
@@ -195,7 +195,7 @@ public class ForumTree  implements ForumTreeHandler {
 			public void run() {
 				DefaultMutableTreeNode node = (DefaultMutableTreeNode)m_tree.getSelectionPath().getLastPathComponent();
 				ForumCell cell = (ForumCell) node.getUserObject();				
-		//		m_pipe.addReplyToMessage(cell.getId(),"",button);
+				m_pipe.addReplyToMessage(cell.getId(),"","",button);
 			}
 		});			
 	}
@@ -220,12 +220,12 @@ public class ForumTree  implements ForumTreeHandler {
 	 * Adds a new message.
 	 */
 	public void addNewMessage(final JButton button) {
-		button.setEnabled(false);
+		//button.setEnabled(false);
 		m_pool.execute(new Runnable() {
 			
 			@Override
 			public void run() {				
-				//m_pipe.addNewMessage(null, null, button)
+				m_pipe.addNewMessage("","", button);
 			}
 		});
 	}
