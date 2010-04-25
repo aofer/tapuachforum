@@ -83,16 +83,16 @@ public class ControllerHandlerImpl extends ControllerHandler {
         handleTreeEvents(new ModifyMessageMessage(id, "", content), comp);
     }
 
-    private void handleMemberEvents(ClientMessage msg, Component comp) {
-        ServerResponse res;
-        _connectionController.send(msg);
-        res = _connectionController.listen();
-        if (res.hasExecuted()) {
-            notifyObservers(new ForumTreeRefreshEvent(comp, getForumView()));
-        } else {
-            notifyObservers(new ForumTreeErrorEvent(res.getResponse()));
+        private void handleMemberEvents(ClientMessage msg, Component comp) {
+            ServerResponse res;
+            _connectionController.send(msg);
+            res = _connectionController.listen();
+            if (res.hasExecuted()) {
+                notifyObservers(new ForumTreeRefreshEvent(comp, getForumView()));
+            } else {
+                notifyObservers(new ForumTreeErrorEvent(res.getResponse()));
+            }
         }
-    }
 
     private void handleTreeEvents(ClientMessage msg, Component comp) {
         ServerResponse res;
@@ -127,6 +127,7 @@ public class ControllerHandlerImpl extends ControllerHandler {
             notifyObservers(new ForumTreeErrorEvent(res.getResponse()));
         }
     }
+    
     @Override
     public  void logoff(Component comp){
         handleMemberEvents(new LogoffMessage(),comp);

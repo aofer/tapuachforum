@@ -28,6 +28,8 @@ public class ForumTreeObserver implements Observer {
 		if (o != null && o instanceof ForumTreeEvent) {
 			((ForumTreeEvent)o).respondToEvent(m_handler);
 		}
+
+
 	}
 
 }
