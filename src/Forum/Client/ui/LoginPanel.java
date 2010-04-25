@@ -109,9 +109,11 @@ public class LoginPanel extends javax.swing.JPanel {
 
     private void bRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegisterActionPerformed
         // TODO add your handling code here:
-   //     RegisterFrame regFrame = new RegisterFrame();
-      //   regFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // regFrame.setVisible(true);
+        //((MainFrame)(this.getParent().getParent())).
+         //regFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        //regFrame.setVisible(true);
+         this.getParent().setVisible(false);
+         
     }//GEN-LAST:event_bRegisterActionPerformed
 
 
