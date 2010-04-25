@@ -20,9 +20,9 @@ public class MembersMessage extends ClientMessage {
     public ServerResponse doOperation(ForumFascade forum) {
         List<Member> members=forum.getMembers();
         String str="";
-        for (Iterator<Member> it = members.iterator(); it.hasNext();) {
-            Member member = it.next();
-            str+= member.getUserName() + ";";
+        for (Member m : members) {
+            
+            str+= m.getUserName() + ";";
         }
         return new ServerResponse(str, true);
     }

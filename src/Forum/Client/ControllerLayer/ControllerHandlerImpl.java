@@ -10,6 +10,7 @@ import Forum.TCPCommunicationLayer.ServerResponse;
 import java.awt.Component;
 
 import Forum.Client.ui.events.*;
+import Forum.DomainLayer.Member;
 import Forum.TCPCommunicationLayer.LoginMessage;
 import Forum.TCPCommunicationLayer.LogoffMessage;
 import Forum.TCPCommunicationLayer.MembersMessage;
@@ -17,7 +18,9 @@ import Forum.TCPCommunicationLayer.OnlineMembersMessage;
 import Forum.TCPCommunicationLayer.RegisterMessage;
 import Forum.TCPCommunicationLayer.SearchByAuthorMessage;
 import Forum.TCPCommunicationLayer.SearchByContentMessage;
+import Forum.TCPCommunicationLayer.UpgradeUserMessage;
 import Forum.TCPCommunicationLayer.ViewForumMessage;
+import java.util.List;
 
 /**
  * You need to delete all the code in here and implement it yourself.<br>
@@ -92,6 +95,17 @@ public class ControllerHandlerImpl extends ControllerHandler {
         }
     }
 
+        @Override
+    public void logoff(Component comp) {
+        _connectionController.send(new LogoffMessage());
+         ServerResponse res = _connectionController.listen();
+        if (res.hasExecuted()) {
+            notifyObservers(new LogoutEvent(comp));
+        } else {
+            notifyObservers(new ForumTreeErrorEvent(res.getResponse()));
+        }
+    }
+
     @Override
     public void modifyMessage(long id, String content, Component comp) {
         handleTreeEvents(new ModifyMessageMessage(id, "", content), comp);
@@ -136,26 +150,40 @@ public class ControllerHandlerImpl extends ControllerHandler {
         _connectionController.send(new MembersMessage());
         res = _connectionController.listen();
         if (res.hasExecuted()) {
-            notifyObservers(new ForumTreeRefreshEvent(comp, res.getResponse()));
+            notifyObservers(new GetMemebersEvent(comp, res.getResponse()));
         } else {
             notifyObservers(new ForumTreeErrorEvent(res.getResponse()));
         }
     }
+
 
         @Override
     public void getOnlineMembers(Component comp) {
         ServerResponse res;
         _connectionController.send(new OnlineMembersMessage());
+
         res = _connectionController.listen();
         if (res.hasExecuted()) {
+
+
             notifyObservers(new OnlineMembersEvent(comp, res.getResponse()));
+
         } else {
             notifyObservers(new ForumTreeErrorEvent(res.getResponse()));
         }
-    }
 
-    @Override
-    public void logoff(Component comp) {
-        handleMemberEvents(new LogoffMessage(), comp);
-    }
+      }  
+
+  @Override
+ public void UpgradeUser(String user,Component comp)
+      {
+           ServerResponse res;
+        _connectionController.send(new UpgradeUserMessage(user));
+        res = _connectionController.listen();
+        if (res.hasExecuted()) {
+            notifyObservers(new UpgradeEvent(comp, res.getResponse()));
+        } else {
+            notifyObservers(new ForumTreeErrorEvent(res.getResponse()));
+        }
+      }
 }
