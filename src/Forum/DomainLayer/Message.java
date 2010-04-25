@@ -6,6 +6,8 @@ package Forum.DomainLayer;
 
 import Forum.DomainLayer.Interfaces.MessageInterface;
 import Forum.PersistentLayer.Data.MessageData;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.Vector;
 
 /**
@@ -97,7 +99,11 @@ public class Message implements MessageInterface {
     public void addReply(Message msg) {
         this._replies.add(msg);
     }
-
+    public void addReply(Vector<Message> msgs) {
+        for (Iterator<Message> it = msgs.iterator(); it.hasNext();) {
+            addReply(it.next());
+        }
+    }
     /**
      * toString method for a message
      * @return
@@ -132,6 +138,13 @@ public class Message implements MessageInterface {
      */
     public void  setIndex(int id) {
         this._data.setId(id);
+    }
+
+    public Date getWriteDate(){
+        return this._data.getWriteDate();
+    }
+        public Date getModifiedDate(){
+        return this._data.getModifiedDate();
     }
 
 }
