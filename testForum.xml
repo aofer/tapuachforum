@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <forumType>
     <forumName>Tapuach</forumName>
-    <messageCounter>23</messageCounter>
+    <messageCounter>3</messageCounter>
     <members>
         <userName>userToCheckLogInandLogOut</userName>
         <nickName>nowOut</nickName>
@@ -37,7 +37,7 @@
         <firstName>ad</firstName>
         <LastName>min</LastName>
         <dateOfBirth>2010-04-25+03:00</dateOfBirth>
-        <status>true</status>
+        <status>false</status>
         <isModerator>false</isModerator>
         <isAdmin>true</isAdmin>
     </members>
@@ -111,7 +111,7 @@
         <nickName>adminy</nickName>
         <password>21232f297a57a5a743894a0e4a801fc3</password>
         <eMail>thebestadmin@gmail.com</eMail>
-        <dateJoined>2010-04-25T20:20:52.538+03:00</dateJoined>
+        <dateJoined>2010-04-25T20:33:43.915+03:00</dateJoined>
         <firstName>ad</firstName>
         <LastName>min</LastName>
         <dateOfBirth>2010-04-25+03:00</dateOfBirth>
@@ -124,7 +124,7 @@
         <nickName>adminy</nickName>
         <password>21232f297a57a5a743894a0e4a801fc3</password>
         <eMail>thebestadmin@gmail.com</eMail>
-        <dateJoined>2010-04-25T21:19:40.906+03:00</dateJoined>
+        <dateJoined>2010-04-25T20:37:37.246+03:00</dateJoined>
         <firstName>ad</firstName>
         <LastName>min</LastName>
         <dateOfBirth>2010-04-25+03:00</dateOfBirth>
@@ -137,7 +137,7 @@
         <nickName>adminy</nickName>
         <password>21232f297a57a5a743894a0e4a801fc3</password>
         <eMail>thebestadmin@gmail.com</eMail>
-        <dateJoined>2010-04-25T21:40:47.789+03:00</dateJoined>
+        <dateJoined>2010-04-25T21:27:55.692+03:00</dateJoined>
         <firstName>ad</firstName>
         <LastName>min</LastName>
         <dateOfBirth>2010-04-25+03:00</dateOfBirth>
@@ -150,7 +150,7 @@
         <nickName>adminy</nickName>
         <password>21232f297a57a5a743894a0e4a801fc3</password>
         <eMail>thebestadmin@gmail.com</eMail>
-        <dateJoined>2010-04-25T21:42:00.759+03:00</dateJoined>
+        <dateJoined>2010-04-25T21:50:30.355+03:00</dateJoined>
         <firstName>ad</firstName>
         <LastName>min</LastName>
         <dateOfBirth>2010-04-25+03:00</dateOfBirth>
@@ -163,7 +163,7 @@
         <nickName>adminy</nickName>
         <password>21232f297a57a5a743894a0e4a801fc3</password>
         <eMail>thebestadmin@gmail.com</eMail>
-        <dateJoined>2010-04-25T21:42:56.411+03:00</dateJoined>
+        <dateJoined>2010-04-25T21:51:08.725+03:00</dateJoined>
         <firstName>ad</firstName>
         <LastName>min</LastName>
         <dateOfBirth>2010-04-25+03:00</dateOfBirth>
@@ -176,111 +176,69 @@
         <nickName>adminy</nickName>
         <password>21232f297a57a5a743894a0e4a801fc3</password>
         <eMail>thebestadmin@gmail.com</eMail>
-        <dateJoined>2010-04-25T21:58:06.224+03:00</dateJoined>
+        <dateJoined>2010-04-25T21:51:46.693+03:00</dateJoined>
         <firstName>ad</firstName>
         <LastName>min</LastName>
         <dateOfBirth>2010-04-25+03:00</dateOfBirth>
         <status>false</status>
         <isModerator>false</isModerator>
         <isAdmin>true</isAdmin>
+    </members>
+    <members>
+        <userName>nir</userName>
+        <nickName>qq</nickName>
+        <password>dd4b21e9ef71e1291183a46b913ae6f2</password>
+        <eMail>q</eMail>
+        <dateJoined>2010-04-25T21:53:19.952+03:00</dateJoined>
+        <firstName>q</firstName>
+        <LastName>q</LastName>
+        <dateOfBirth>2010-04-25+03:00</dateOfBirth>
+        <status>true</status>
+        <isModerator>false</isModerator>
+        <isAdmin>false</isAdmin>
+    </members>
+    <members>
+        <userName>1234</userName>
+        <nickName>t</nickName>
+        <password>d74682ee47c3fffd5dcd749f840fcdd4</password>
+        <eMail>q</eMail>
+        <dateJoined>2010-04-25T21:55:29.852+03:00</dateJoined>
+        <firstName>q</firstName>
+        <LastName>q</LastName>
+        <dateOfBirth>2010-04-25+03:00</dateOfBirth>
+        <status>false</status>
+        <isModerator>false</isModerator>
+        <isAdmin>false</isAdmin>
+    </members>
+    <members>
+        <userName>hit</userName>
+        <nickName>3</nickName>
+        <password>ed2b1f468c5f915f3f1cf75d7068baae</password>
+        <eMail>3</eMail>
+        <dateJoined>2010-04-25T21:57:56.146+03:00</dateJoined>
+        <firstName>3</firstName>
+        <LastName>3</LastName>
+        <dateOfBirth>2010-04-25+03:00</dateOfBirth>
+        <status>false</status>
+        <isModerator>false</isModerator>
+        <isAdmin>false</isAdmin>
     </members>
     <messages>
-        <messageId>11</messageId>
+        <messageId>1</messageId>
         <parentId>0</parentId>
-        <subject></subject>
-        <body>adminy  --  hgfhgfhgf</body>
-        <createdBy>adminy</createdBy>
-        <dateAdded>2010-04-25T21:43:12.976+03:00</dateAdded>
-        <modifiedDate>2010-04-25T21:43:22.092+03:00</modifiedDate>
+        <subject>where is bob</subject>
+        <body>working</body>
+        <createdBy>alex</createdBy>
+        <dateAdded>2010-04-06T09:15:06.514+03:00</dateAdded>
+        <modifiedDate>2010-04-06T09:15:06.514+03:00</modifiedDate>
         <message>
-            <messageId>18</messageId>
-            <parentId>11</parentId>
-            <subject></subject>
-            <body>adminy  --  adminy  --  blah blahsafs</body>
-            <createdBy>adminy</createdBy>
-            <dateAdded>2010-04-25T21:54:34.139+03:00</dateAdded>
-            <modifiedDate>2010-04-25T21:59:34.730+03:00</modifiedDate>
+            <messageId>2</messageId>
+            <parentId>1</parentId>
+            <subject>it is new now</subject>
+            <body>we are trrrrrrrying to do bstst est ever</body>
+            <createdBy>someuser</createdBy>
+            <dateAdded>2010-04-06T09:15:06.655+03:00</dateAdded>
+            <modifiedDate>2010-04-06T09:15:06.755+03:00</modifiedDate>
         </message>
-        <message>
-            <messageId>19</messageId>
-            <parentId>11</parentId>
-            <subject></subject>
-            <body></body>
-            <createdBy>adminy</createdBy>
-            <dateAdded>2010-04-25T21:54:51.530+03:00</dateAdded>
-            <modifiedDate>2010-04-25T21:54:51.530+03:00</modifiedDate>
-            <message>
-                <messageId>20</messageId>
-                <parentId>19</parentId>
-                <subject></subject>
-                <body></body>
-                <createdBy>adminy</createdBy>
-                <dateAdded>2010-04-25T21:55:01.127+03:00</dateAdded>
-                <modifiedDate>2010-04-25T21:55:01.127+03:00</modifiedDate>
-            </message>
-        </message>
-    </messages>
-    <messages>
-        <messageId>12</messageId>
-        <parentId>0</parentId>
-        <subject></subject>
-        <body>hgf</body>
-        <createdBy>adminy</createdBy>
-        <dateAdded>2010-04-25T21:43:26.889+03:00</dateAdded>
-        <modifiedDate>2010-04-25T21:43:53.378+03:00</modifiedDate>
-    </messages>
-    <messages>
-        <messageId>14</messageId>
-        <parentId>0</parentId>
-        <subject></subject>
-        <body></body>
-        <createdBy>adminy</createdBy>
-        <dateAdded>2010-04-25T21:44:49.119+03:00</dateAdded>
-        <modifiedDate>2010-04-25T21:44:49.119+03:00</modifiedDate>
-    </messages>
-    <messages>
-        <messageId>15</messageId>
-        <parentId>0</parentId>
-        <subject></subject>
-        <body></body>
-        <createdBy>adminy</createdBy>
-        <dateAdded>2010-04-25T21:44:49.880+03:00</dateAdded>
-        <modifiedDate>2010-04-25T21:44:49.880+03:00</modifiedDate>
-        <message>
-            <messageId>16</messageId>
-            <parentId>15</parentId>
-            <subject></subject>
-            <body>adminy  --  tomer sucks</body>
-            <createdBy>adminy</createdBy>
-            <dateAdded>2010-04-25T21:50:27.633+03:00</dateAdded>
-            <modifiedDate>2010-04-25T21:50:37.984+03:00</modifiedDate>
-            <message>
-                <messageId>17</messageId>
-                <parentId>16</parentId>
-                <subject></subject>
-                <body>adminy  --  dsgsd</body>
-                <createdBy>adminy</createdBy>
-                <dateAdded>2010-04-25T21:54:19.095+03:00</dateAdded>
-                <modifiedDate>2010-04-25T21:54:21.565+03:00</modifiedDate>
-            </message>
-        </message>
-    </messages>
-    <messages>
-        <messageId>21</messageId>
-        <parentId>0</parentId>
-        <subject></subject>
-        <body></body>
-        <createdBy>adminy</createdBy>
-        <dateAdded>2010-04-25T21:58:17.392+03:00</dateAdded>
-        <modifiedDate>2010-04-25T21:58:17.392+03:00</modifiedDate>
-    </messages>
-    <messages>
-        <messageId>22</messageId>
-        <parentId>0</parentId>
-        <subject></subject>
-        <body></body>
-        <createdBy>adminy</createdBy>
-        <dateAdded>2010-04-25T21:59:36.021+03:00</dateAdded>
-        <modifiedDate>2010-04-25T21:59:36.021+03:00</modifiedDate>
     </messages>
 </forumType>

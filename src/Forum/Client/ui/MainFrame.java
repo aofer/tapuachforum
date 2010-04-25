@@ -20,14 +20,16 @@ import javax.swing.JOptionPane;
  *
  * @author Eden
  */
-public class MainFrame extends javax.swing.JFrame {
+public class MainFrame extends javax.swing.JFrame  {
 public ControllerHandler m_pipe;
 
     /** Creates new form MainFrame */
     public MainFrame(String title) {
         super(title);
         initComponents();
-        ForumTree tree = new ForumTree();
+        ForumTree tree = new ForumTree(this);
+        this.loginLabel.setVisible(false);
+        this.LogoutB.setVisible(false);
         TreePane.setViewportView(tree.getForumTreeUI());
         this.RegPanel.setVisible(false);
         this.m_pipe = tree.getPipe();
@@ -51,8 +53,10 @@ public ControllerHandler m_pipe;
         bLogin = new javax.swing.JButton();
         tUsername = new javax.swing.JTextField();
         tPassword = new javax.swing.JPasswordField();
-        lPassword = new javax.swing.JLabel();
+        tPassL = new javax.swing.JLabel();
         lUsername = new javax.swing.JLabel();
+        loginLabel = new javax.swing.JLabel();
+        LogoutB = new javax.swing.JButton();
         BottomPanel = new javax.swing.JPanel();
         SearchPanel = new javax.swing.JPanel();
         pSearchByAuthor = new javax.swing.JPanel();
@@ -115,27 +119,38 @@ public ControllerHandler m_pipe;
 
         tPassword.setColumns(8);
 
-        lPassword.setText("Password:");
+        tPassL.setText("Password:");
 
         lUsername.setText("Username:");
+
+        loginLabel.setText("Welcome ");
+
+        LogoutB.setText("Logout");
 
         javax.swing.GroupLayout LoginPanelLayout = new javax.swing.GroupLayout(LoginPanel);
         LoginPanel.setLayout(LoginPanelLayout);
         LoginPanelLayout.setHorizontalGroup(
             LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LoginPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lUsername)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lPassword)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(bLogin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(bRegister)
+                .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(LoginPanelLayout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(lUsername)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(tPassL)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(bLogin)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(bRegister))
+                    .addGroup(LoginPanelLayout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(loginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LogoutB)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         LoginPanelLayout.setVerticalGroup(
@@ -143,13 +158,17 @@ public ControllerHandler m_pipe;
             .addGroup(LoginPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lUsername)
-                    .addComponent(tUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lPassword)
+                    .addComponent(tPassL)
                     .addComponent(tPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bLogin)
-                    .addComponent(bRegister))
-                .addContainerGap(29, Short.MAX_VALUE))
+                    .addComponent(bRegister)
+                    .addComponent(tUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lUsername))
+                .addGap(18, 18, 18)
+                .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(loginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LogoutB))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout TopPanelLayout = new javax.swing.GroupLayout(TopPanel);
@@ -165,11 +184,10 @@ public ControllerHandler m_pipe;
         );
         TopPanelLayout.setVerticalGroup(
             TopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
             .addGroup(TopPanelLayout.createSequentialGroup()
                 .addGap(8, 8, 8)
-                .addComponent(LoginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(LoginPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pSearchByAuthor.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Search by Author"));
@@ -280,7 +298,6 @@ public ControllerHandler m_pipe;
         SearchPanel.setLayout(SearchPanelLayout);
         SearchPanelLayout.setHorizontalGroup(
             SearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 624, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SearchPanelLayout.createSequentialGroup()
                 .addGroup(SearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(pSearchByPharse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -396,7 +413,6 @@ public ControllerHandler m_pipe;
         RegPanel.setLayout(RegPanelLayout);
         RegPanelLayout.setHorizontalGroup(
             RegPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 335, Short.MAX_VALUE)
             .addGroup(RegPanelLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(RegPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -431,7 +447,6 @@ public ControllerHandler m_pipe;
         );
         RegPanelLayout.setVerticalGroup(
             RegPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 399, Short.MAX_VALUE)
             .addGroup(RegPanelLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(RegPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -517,6 +532,24 @@ public ControllerHandler m_pipe;
         
     }//GEN-LAST:event_bLoginActionPerformed
 
+    public void loginSuccess(String user)
+    {
+        this.lUsername.setVisible(false);
+        this.tUsername.setVisible(false);
+        this.tPassL.setVisible(false);
+        this.tPassword.setVisible(false);
+        this.bLogin.setVisible(false);
+        this.bRegister.setVisible(false);
+        this.loginLabel.setText(this.loginLabel.getText()+" "+user);
+        this.loginLabel.setVisible(true);
+        this.LogoutB.setVisible(true);
+
+    }
+
+
+
+
+
     private void tSearchAutherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tSearchAutherActionPerformed
         // TODO add your handling code here:
 }//GEN-LAST:event_tSearchAutherActionPerformed
@@ -541,19 +574,9 @@ public ControllerHandler m_pipe;
               String tPass = new String(Pass.getPassword());
 
              m_pipe.register(tFname, tLname, tNick, tEmail, tUname, tPass, null);
+             
          
-         this.Fname.setText("");
-         this.Lname.setText(""); 
-        this.email.setText(""); 
-        this.Nick.setText(""); 
-        this.Uname.setText(""); 
-        this.Pass.setText(""); 
-        this.rePass.setText("");
-        this.RegPanel.setVisible(false);
-        this.SearchPanel.setVisible(true);
-        this.TreePane.setVisible(true);
-        this.StatusPanel.setVisible(true);
-        this.LoginPanel.setVisible(true);
+     
 
 
           }
@@ -595,7 +618,27 @@ public ControllerHandler m_pipe;
             }
 
 
+public void RegSuccess()
+{
+    JOptionPane.showMessageDialog(this,   "Registration Successful",    "Success",    JOptionPane.INFORMATION_MESSAGE);
+        this.Fname.setText("");
+         this.Lname.setText("");
+        this.email.setText("");
+        this.Nick.setText("");
+        this.Uname.setText("");
+        this.Pass.setText("");
+        this.rePass.setText("");
+        this.RegPanel.setVisible(false);
+        this.SearchPanel.setVisible(true);
+        this.TreePane.setVisible(true);
+        this.StatusPanel.setVisible(true);
+        this.LoginPanel.setVisible(true);
+}
 
+public void RegFail()
+{
+
+}
 
 
 
@@ -637,6 +680,7 @@ public ControllerHandler m_pipe;
     private javax.swing.JTextField Fname;
     private javax.swing.JTextField Lname;
     private javax.swing.JPanel LoginPanel;
+    private javax.swing.JButton LogoutB;
     private javax.swing.JTextField Nick;
     private javax.swing.JPasswordField Pass;
     private javax.swing.JButton RegButton;
@@ -671,15 +715,18 @@ public ControllerHandler m_pipe;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JLabel lAuther;
-    private javax.swing.JLabel lPassword;
     private javax.swing.JLabel lPharse;
     private javax.swing.JLabel lUsername;
+    private javax.swing.JLabel loginLabel;
     private javax.swing.JPanel pSearchByAuthor;
     private javax.swing.JPanel pSearchByPharse;
     private javax.swing.JPasswordField rePass;
+    private javax.swing.JLabel tPassL;
     private javax.swing.JPasswordField tPassword;
     private javax.swing.JTextField tSearchAuther;
     private javax.swing.JTextField tSearchPharse;
     private javax.swing.JTextField tUsername;
     // End of variables declaration//GEN-END:variables
+
+
 }

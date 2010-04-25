@@ -70,11 +70,10 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jLabel1" alignment="0" pref="82" max="32767" attributes="0"/>
-              <Group type="102" alignment="0" attributes="0">
+              <Component id="jLabel1" alignment="0" pref="98" max="32767" attributes="0"/>
+              <Group type="102" attributes="0">
                   <EmptySpace min="8" pref="8" max="8" attributes="0"/>
-                  <Component id="LoginPanel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="LoginPanel" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -93,19 +92,29 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lUsername" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tUsername" min="-2" pref="70" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                      <Component id="lPassword" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tPassword" min="-2" pref="97" max="-2" attributes="0"/>
-                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                      <Component id="bLogin" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="bRegister" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                              <Component id="lUsername" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="tUsername" min="-2" pref="70" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Component id="tPassL" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="tPassword" min="-2" pref="97" max="-2" attributes="0"/>
+                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                              <Component id="bLogin" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="bRegister" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                              <Component id="loginLabel" min="-2" pref="98" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="LogoutB" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                       <EmptySpace pref="20" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -115,14 +124,19 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lUsername" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tUsername" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tPassL" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="tPassword" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="bLogin" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="bRegister" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tUsername" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lUsername" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="29" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="loginLabel" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
+                          <Component id="LogoutB" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="15" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -151,7 +165,7 @@
                 <Property name="columns" type="int" value="8"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lPassword">
+            <Component class="javax.swing.JLabel" name="tPassL">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Password:"/>
               </Properties>
@@ -159,6 +173,16 @@
             <Component class="javax.swing.JLabel" name="lUsername">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Username:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="loginLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Welcome "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="LogoutB">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Logout"/>
               </Properties>
             </Component>
           </SubComponents>

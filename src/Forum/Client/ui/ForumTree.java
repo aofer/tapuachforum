@@ -46,6 +46,12 @@ public class ForumTree  implements ForumTreeHandler {
 	 * A pipe interface to communicate with the controller layer.
 	 */
 	private ControllerHandler m_pipe;
+        private MainFrame _mf;
+
+    public MainFrame getMf() {
+        return _mf;
+    }
+        
 
     public ControllerHandler getPipe() {
         return m_pipe;
@@ -56,10 +62,10 @@ public class ForumTree  implements ForumTreeHandler {
 	 */
 	private ExecutorService m_pool = Executors.newCachedThreadPool();
 	
-	public ForumTree() {				
+	public ForumTree(MainFrame mf) {
 		UIManager.put("Tree.collapsedIcon", new ImageIcon("./images/plus-8.png"));
 		UIManager.put("Tree.expandedIcon", new ImageIcon("./images/minus-8.png"));
-		
+		this._mf = mf;
 		m_pipe = ControllerHandlerFactory.getPipe();
 		/* Add an observer to the controller (The observable). */
 		m_pipe.addObserver(new ForumTreeObserver(this));
@@ -108,7 +114,6 @@ public class ForumTree  implements ForumTreeHandler {
 		
 		Stack<DefaultMutableTreeNode> stack = new Stack<DefaultMutableTreeNode>();
 		stack.add(rootNode);
-			
 		while (!stack.isEmpty()) {
 			DefaultMutableTreeNode node = stack.pop();
 			ForumCell cell = (ForumCell)(node.getUserObject());
