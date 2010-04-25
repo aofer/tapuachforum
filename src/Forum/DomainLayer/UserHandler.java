@@ -20,6 +20,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -132,10 +133,10 @@ public class UserHandler {
      */
     public void upgradeUser(String username) throws UserNotExistException {
         this._XmlForum.upgradeUser(username);
-        Forum.getInstance().logout(username);
-        MemberData tData = this._XmlMember.getMember(username);
-        Moderator tModerator = new Moderator(tData);
-        addMember(tModerator);
+        //Forum.getInstance().logout(username);
+        //MemberData tData = this._XmlMember.getMember(username);
+        //Moderator tModerator = new Moderator(tData);
+        //addMember(tModerator);
     }
 
     /**
@@ -226,7 +227,7 @@ public class UserHandler {
 
     }
 
-    public List<Member> getMembers() {
+    public List<Member> getMembers2() {
         List<MemberData> membersData = this._XmlMember.getMember();
         List<Member> members = new ArrayList<Member>();
         Member tMember = null;
@@ -245,5 +246,25 @@ public class UserHandler {
             members.add(tMember);
         }
         return members;
+    }
+    public List<Member> getMembers(){
+        List<MemberData> membersData = this._XmlMember.getMember();
+        List<Member> res = new LinkedList<Member>();
+        eMemberType type;
+        Member tMember = null;
+        for (int i = 0;i < membersData.size();i++){
+            MemberData data = membersData.get(i);
+            type = this._XmlMember.getMemberType(data.getUserName());
+            if (type == eMemberType.Admin){
+            }
+            else if (type == eMemberType.member){
+                tMember = new Member(data);
+                res.add(tMember);
+            }
+            else{
+
+            }
+        }
+        return res;
     }
 }

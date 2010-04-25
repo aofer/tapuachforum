@@ -121,5 +121,9 @@ public abstract class ControllerHandler extends Observable {
 
       public abstract void getMembers( Component comp);
 
+
+      public abstract void UpgradeUser(String user,Component comp);
+
       public abstract void getOnlineMembers(Component comp);
+
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <forumType>
     <forumName>Tapuach</forumName>
-    <messageCounter>7</messageCounter>
+    <messageCounter>4</messageCounter>
     <members>
-        <userName>userToCheckLogInandLogOut</userName>
+        <userName>Gadi</userName>
         <nickName>nowOut</nickName>
         <password>PaSSword</password>
         <eMail>3@sd</eMail>
@@ -37,7 +37,7 @@
         <firstName>ad</firstName>
         <LastName>min</LastName>
         <dateOfBirth>2010-04-25+03:00</dateOfBirth>
-        <status>true</status>
+        <status>false</status>
         <isModerator>false</isModerator>
         <isAdmin>true</isAdmin>
     </members>
@@ -55,172 +55,68 @@
         <isAdmin>true</isAdmin>
     </members>
     <members>
-        <userName>admin</userName>
-        <nickName>adminy</nickName>
-        <password>21232f297a57a5a743894a0e4a801fc3</password>
-        <eMail>thebestadmin@gmail.com</eMail>
-        <dateJoined>2010-04-25T11:33:26.753+03:00</dateJoined>
-        <firstName>ad</firstName>
-        <LastName>min</LastName>
-        <dateOfBirth>2010-04-25+03:00</dateOfBirth>
-        <status>false</status>
-        <isModerator>false</isModerator>
-        <isAdmin>true</isAdmin>
-    </members>
-    <members>
-        <userName>admin</userName>
-        <nickName>adminy</nickName>
-        <password>21232f297a57a5a743894a0e4a801fc3</password>
-        <eMail>thebestadmin@gmail.com</eMail>
-        <dateJoined>2010-04-25T15:20:42.910+03:00</dateJoined>
-        <firstName>ad</firstName>
-        <LastName>min</LastName>
-        <dateOfBirth>2010-04-25+03:00</dateOfBirth>
-        <status>false</status>
-        <isModerator>false</isModerator>
-        <isAdmin>true</isAdmin>
-    </members>
-    <members>
-        <userName>admin</userName>
-        <nickName>adminy</nickName>
-        <password>21232f297a57a5a743894a0e4a801fc3</password>
-        <eMail>thebestadmin@gmail.com</eMail>
-        <dateJoined>2010-04-25T19:07:02.268+03:00</dateJoined>
-        <firstName>ad</firstName>
-        <LastName>min</LastName>
-        <dateOfBirth>2010-04-25+03:00</dateOfBirth>
-        <status>false</status>
-        <isModerator>false</isModerator>
-        <isAdmin>true</isAdmin>
-    </members>
-    <members>
-        <userName>a</userName>
-        <nickName>a</nickName>
-        <password>3dbe00a167653a1aaee01d93e77e730e</password>
-        <eMail>a</eMail>
-        <dateJoined>2010-04-25T19:07:35.041+03:00</dateJoined>
-        <firstName>a</firstName>
-        <LastName>a</LastName>
-        <dateOfBirth>2010-04-25+03:00</dateOfBirth>
-        <status>true</status>
-        <isModerator>false</isModerator>
-        <isAdmin>false</isAdmin>
-    </members>
-    <members>
-        <userName>admin</userName>
-        <nickName>adminy</nickName>
-        <password>21232f297a57a5a743894a0e4a801fc3</password>
-        <eMail>thebestadmin@gmail.com</eMail>
-        <dateJoined>2010-04-25T20:33:43.915+03:00</dateJoined>
-        <firstName>ad</firstName>
-        <LastName>min</LastName>
-        <dateOfBirth>2010-04-25+03:00</dateOfBirth>
-        <status>false</status>
-        <isModerator>false</isModerator>
-        <isAdmin>true</isAdmin>
-    </members>
-    <members>
-        <userName>admin</userName>
-        <nickName>adminy</nickName>
-        <password>21232f297a57a5a743894a0e4a801fc3</password>
-        <eMail>thebestadmin@gmail.com</eMail>
-        <dateJoined>2010-04-25T20:37:37.246+03:00</dateJoined>
-        <firstName>ad</firstName>
-        <LastName>min</LastName>
-        <dateOfBirth>2010-04-25+03:00</dateOfBirth>
-        <status>false</status>
-        <isModerator>false</isModerator>
-        <isAdmin>true</isAdmin>
-    </members>
-    <members>
-        <userName>admin</userName>
-        <nickName>adminy</nickName>
-        <password>21232f297a57a5a743894a0e4a801fc3</password>
-        <eMail>thebestadmin@gmail.com</eMail>
-        <dateJoined>2010-04-25T21:27:55.692+03:00</dateJoined>
-        <firstName>ad</firstName>
-        <LastName>min</LastName>
-        <dateOfBirth>2010-04-25+03:00</dateOfBirth>
-        <status>false</status>
-        <isModerator>false</isModerator>
-        <isAdmin>true</isAdmin>
-    </members>
-    <members>
-        <userName>admin</userName>
-        <nickName>adminy</nickName>
-        <password>21232f297a57a5a743894a0e4a801fc3</password>
-        <eMail>thebestadmin@gmail.com</eMail>
-        <dateJoined>2010-04-25T21:50:30.355+03:00</dateJoined>
-        <firstName>ad</firstName>
-        <LastName>min</LastName>
-        <dateOfBirth>2010-04-25+03:00</dateOfBirth>
-        <status>false</status>
-        <isModerator>false</isModerator>
-        <isAdmin>true</isAdmin>
-    </members>
-    <members>
-        <userName>admin</userName>
-        <nickName>adminy</nickName>
-        <password>21232f297a57a5a743894a0e4a801fc3</password>
-        <eMail>thebestadmin@gmail.com</eMail>
-        <dateJoined>2010-04-25T21:51:08.725+03:00</dateJoined>
-        <firstName>ad</firstName>
-        <LastName>min</LastName>
-        <dateOfBirth>2010-04-25+03:00</dateOfBirth>
-        <status>false</status>
-        <isModerator>false</isModerator>
-        <isAdmin>true</isAdmin>
-    </members>
-    <members>
-        <userName>admin</userName>
-        <nickName>adminy</nickName>
-        <password>21232f297a57a5a743894a0e4a801fc3</password>
-        <eMail>thebestadmin@gmail.com</eMail>
-        <dateJoined>2010-04-25T21:51:46.693+03:00</dateJoined>
-        <firstName>ad</firstName>
-        <LastName>min</LastName>
-        <dateOfBirth>2010-04-25+03:00</dateOfBirth>
-        <status>false</status>
-        <isModerator>false</isModerator>
-        <isAdmin>true</isAdmin>
-    </members>
-    <members>
-        <userName>nir</userName>
-        <nickName>qq</nickName>
-        <password>dd4b21e9ef71e1291183a46b913ae6f2</password>
-        <eMail>q</eMail>
-        <dateJoined>2010-04-25T21:53:19.952+03:00</dateJoined>
-        <firstName>q</firstName>
-        <LastName>q</LastName>
-        <dateOfBirth>2010-04-25+03:00</dateOfBirth>
-        <status>true</status>
-        <isModerator>false</isModerator>
-        <isAdmin>false</isAdmin>
-    </members>
-    <members>
-        <userName>1234</userName>
-        <nickName>t</nickName>
-        <password>d74682ee47c3fffd5dcd749f840fcdd4</password>
-        <eMail>q</eMail>
-        <dateJoined>2010-04-25T21:55:29.852+03:00</dateJoined>
-        <firstName>q</firstName>
-        <LastName>q</LastName>
-        <dateOfBirth>2010-04-25+03:00</dateOfBirth>
-        <status>false</status>
-        <isModerator>false</isModerator>
-        <isAdmin>false</isAdmin>
-    </members>
-    <members>
-        <userName>hit</userName>
-        <nickName>3</nickName>
+        <userName>erez</userName>
+        <nickName>q</nickName>
         <password>ed2b1f468c5f915f3f1cf75d7068baae</password>
-        <eMail>3</eMail>
-        <dateJoined>2010-04-25T21:57:56.146+03:00</dateJoined>
-        <firstName>3</firstName>
-        <LastName>3</LastName>
-        <dateOfBirth>2010-04-25+03:00</dateOfBirth>
+        <eMail>q</eMail>
+        <dateJoined>2010-04-26T02:11:14.726+03:00</dateJoined>
+        <firstName>q</firstName>
+        <LastName>q</LastName>
+        <dateOfBirth>2010-04-26+03:00</dateOfBirth>
         <status>false</status>
-        <isModerator>false</isModerator>
+        <isModerator>true</isModerator>
+        <isAdmin>false</isAdmin>
+    </members>
+    <members>
+        <userName>omer</userName>
+        <nickName>sm dsl</nickName>
+        <password>ed2b1f468c5f915f3f1cf75d7068baae</password>
+        <eMail>q</eMail>
+        <dateJoined>2010-04-26T02:15:51.293+03:00</dateJoined>
+        <firstName>q</firstName>
+        <LastName>q</LastName>
+        <dateOfBirth>2010-04-26+03:00</dateOfBirth>
+        <status>true</status>
+        <isModerator>true</isModerator>
+        <isAdmin>false</isAdmin>
+    </members>
+    <members>
+        <userName>avi</userName>
+        <nickName>b</nickName>
+        <password>ed2b1f468c5f915f3f1cf75d7068baae</password>
+        <eMail>b</eMail>
+        <dateJoined>2010-04-26T02:18:28.576+03:00</dateJoined>
+        <firstName>b</firstName>
+        <LastName>b</LastName>
+        <dateOfBirth>2010-04-26+03:00</dateOfBirth>
+        <status>false</status>
+        <isModerator>true</isModerator>
+        <isAdmin>false</isAdmin>
+    </members>
+    <members>
+        <userName>amit</userName>
+        <nickName>t</nickName>
+        <password>ed2b1f468c5f915f3f1cf75d7068baae</password>
+        <eMail>q</eMail>
+        <dateJoined>2010-04-26T02:48:19.541+03:00</dateJoined>
+        <firstName>q</firstName>
+        <LastName>q</LastName>
+        <dateOfBirth>2010-04-26+03:00</dateOfBirth>
+        <status>false</status>
+        <isModerator>true</isModerator>
+        <isAdmin>false</isAdmin>
+    </members>
+    <members>
+        <userName>liron</userName>
+        <nickName>m</nickName>
+        <password>ed2b1f468c5f915f3f1cf75d7068baae</password>
+        <eMail>m</eMail>
+        <dateJoined>2010-04-26T02:51:11.475+03:00</dateJoined>
+        <firstName>m</firstName>
+        <LastName>m</LastName>
+        <dateOfBirth>2010-04-26+03:00</dateOfBirth>
+        <status>false</status>
+        <isModerator>true</isModerator>
         <isAdmin>false</isAdmin>
     </members>
     <messages>
@@ -231,14 +127,14 @@
         <createdBy>alex</createdBy>
         <dateAdded>2010-04-06T09:15:06.514+03:00</dateAdded>
         <modifiedDate>2010-04-06T09:15:06.514+03:00</modifiedDate>
-        <message>
-            <messageId>6</messageId>
-            <parentId>1</parentId>
-            <subject></subject>
-            <body>adminy  --  MOSHE!!</body>
-            <createdBy>adminy</createdBy>
-            <dateAdded>2010-04-25T23:25:31.137+03:00</dateAdded>
-            <modifiedDate>2010-04-25T23:25:38.748+03:00</modifiedDate>
-        </message>
+    </messages>
+    <messages>
+        <messageId>3</messageId>
+        <parentId>0</parentId>
+        <subject></subject>
+        <body>b -- hello everyone</body>
+        <createdBy>b</createdBy>
+        <dateAdded>2010-04-26T02:19:24.463+03:00</dateAdded>
+        <modifiedDate>2010-04-26T02:19:38.563+03:00</modifiedDate>
     </messages>
 </forumType>
