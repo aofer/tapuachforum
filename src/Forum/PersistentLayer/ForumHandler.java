@@ -442,9 +442,12 @@ public void addMessage(int parentId, String createdBy, String subject, String bo
            xgcal2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(gcal);
            newMember.setDateJoined(xgcal2);
            //    newMember.setDateOfBirth(null);
+         if (!checkUsername(userName)){
            this.xf.getForum().getMembers().add(newMember);
 
        xf.WriteToXML();
+         }
+
        } catch (DatatypeConfigurationException ex) {
            Logger.getLogger(ForumHandler.class.getName()).log(Level.SEVERE, null, ex);
        }
