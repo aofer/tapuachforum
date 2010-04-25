@@ -227,26 +227,7 @@ public class UserHandler {
 
     }
 
-    public List<Member> getMembers2() {
-        List<MemberData> membersData = this._XmlMember.getMember();
-        List<Member> members = new ArrayList<Member>();
-        Member tMember = null;
-        eMemberType type;
-        for (int i = 0; i < membersData.size(); i++) {
-            MemberData data = membersData.get(i);
-            type = this._XmlMember.getMemberType(data.getUserName());
-            switch (type) {
-                case Admin:
-                case Moderator: //not including
-                    break;
-                case member:
-                    tMember = new Member(data);
-                    break;
-            }
-            members.add(tMember);
-        }
-        return members;
-    }
+   
     public List<Member> getMembers(){
         List<MemberData> membersData = this._XmlMember.getMember();
         List<Member> res = new LinkedList<Member>();
