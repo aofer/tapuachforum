@@ -120,4 +120,6 @@ public abstract class ControllerHandler extends Observable {
       public abstract void register(String firstName,String lastName,String nickname, String email, String username, String password,Component comp);
 
       public abstract void getMembers( Component comp);
+
+      public abstract void getOnlineMembers(Component comp);
 }

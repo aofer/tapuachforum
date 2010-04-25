@@ -230,7 +230,7 @@ public class ForumTree  implements ForumTreeHandler {
 			
 			@Override
 			public void run() {				
-				m_pipe.addNewMessage("","", button);
+				getPipe().addNewMessage("","", button);
 			}
 		});
 	}

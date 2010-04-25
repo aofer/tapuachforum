@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <forumType>
     <forumName>Tapuach</forumName>
-    <messageCounter>3</messageCounter>
+    <messageCounter>7</messageCounter>
     <members>
         <userName>userToCheckLogInandLogOut</userName>
         <nickName>nowOut</nickName>
@@ -37,7 +37,7 @@
         <firstName>ad</firstName>
         <LastName>min</LastName>
         <dateOfBirth>2010-04-25+03:00</dateOfBirth>
-        <status>false</status>
+        <status>true</status>
         <isModerator>false</isModerator>
         <isAdmin>true</isAdmin>
     </members>
@@ -232,13 +232,13 @@
         <dateAdded>2010-04-06T09:15:06.514+03:00</dateAdded>
         <modifiedDate>2010-04-06T09:15:06.514+03:00</modifiedDate>
         <message>
-            <messageId>2</messageId>
+            <messageId>6</messageId>
             <parentId>1</parentId>
-            <subject>it is new now</subject>
-            <body>we are trrrrrrrying to do bstst est ever</body>
-            <createdBy>someuser</createdBy>
-            <dateAdded>2010-04-06T09:15:06.655+03:00</dateAdded>
-            <modifiedDate>2010-04-06T09:15:06.755+03:00</modifiedDate>
+            <subject></subject>
+            <body>adminy  --  MOSHE!!</body>
+            <createdBy>adminy</createdBy>
+            <dateAdded>2010-04-25T23:25:31.137+03:00</dateAdded>
+            <modifiedDate>2010-04-25T23:25:38.748+03:00</modifiedDate>
         </message>
     </messages>
 </forumType>

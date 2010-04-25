@@ -6,6 +6,7 @@
 package Forum.DomainLayer;
 
 
+import Forum.DomainLayer.Interfaces.MemberInterface;
 import Forum.DomainLayer.Interfaces.MessageInterface;
 import Forum.DomainLayer.SearchEngine.SearchHit;
 import Forum.Exceptions.*;
@@ -227,5 +228,8 @@ public class ForumFascade {
     }
         public List<Member> getMembers(){
         return Forum.getInstance().getMembers();
+    }
+        public Vector<MemberInterface> getOnlineMembers() {
+            return Forum.getInstance().getOnlineMembers();
     }
 }

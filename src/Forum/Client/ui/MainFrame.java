@@ -13,8 +13,11 @@ package Forum.Client.ui;
 
 import Forum.Client.ControllerLayer.ControllerHandler;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 /**
  *
@@ -30,11 +33,21 @@ public ControllerHandler m_pipe;
         ForumTree tree = new ForumTree(this);
         this.loginLabel.setVisible(false);
         this.LogoutB.setVisible(false);
-        TreePane.setViewportView(tree.getForumTreeUI());
+        TreePane.setViewportView(tree.getForumTreeUI());      
         this.RegPanel.setVisible(false);
         this.m_pipe = tree.getPipe();
+         this.m_pipe.getOnlineMembers(this);
 
+       int delay = 10000; //milliseconds
+       ActionListener taskPerformer = new ActionListener() {
+       public void actionPerformed(ActionEvent evt) {
+          m_pipe.getOnlineMembers(null);
+      }
+  };
+  new Timer(delay, taskPerformer).start();
     }
+
+
 
 
     /** This method is called from within the constructor to
@@ -77,7 +90,7 @@ public ControllerHandler m_pipe;
         jTextField3 = new javax.swing.JTextField();
         StatusPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jOnlineUsersTextArea = new javax.swing.JTextArea();
         jLabel13 = new javax.swing.JLabel();
         TreePane = new javax.swing.JScrollPane();
         RegPanel = new javax.swing.JPanel();
@@ -313,12 +326,13 @@ public ControllerHandler m_pipe;
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setEditable(false);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jOnlineUsersTextArea.setColumns(20);
+        jOnlineUsersTextArea.setEditable(false);
+        jOnlineUsersTextArea.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jOnlineUsersTextArea.setRows(5);
+        jScrollPane1.setViewportView(jOnlineUsersTextArea);
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel13.setText("Online users:");
 
         javax.swing.GroupLayout StatusPanelLayout = new javax.swing.GroupLayout(StatusPanel);
@@ -546,6 +560,12 @@ public ControllerHandler m_pipe;
 
     }
 
+    public void setOnlineUsers(String onlineUsers)
+    {
+       this.jOnlineUsersTextArea.setText(onlineUsers);
+
+    }
+
 
 
 
@@ -708,8 +728,8 @@ public void RegFail()
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextArea jOnlineUsersTextArea;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;

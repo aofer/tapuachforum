@@ -1,5 +1,6 @@
 package Forum.Client.ControllerLayer;
 
+import Forum.Client.ui.events.OnlineMembersEvent;
 import Forum.TCPCommunicationLayer.AddMessageMessage;
 import Forum.TCPCommunicationLayer.AddReplyMessage;
 import Forum.TCPCommunicationLayer.ClientMessage;
@@ -12,6 +13,7 @@ import Forum.Client.ui.events.*;
 import Forum.TCPCommunicationLayer.LoginMessage;
 import Forum.TCPCommunicationLayer.LogoffMessage;
 import Forum.TCPCommunicationLayer.MembersMessage;
+import Forum.TCPCommunicationLayer.OnlineMembersMessage;
 import Forum.TCPCommunicationLayer.RegisterMessage;
 import Forum.TCPCommunicationLayer.SearchByAuthorMessage;
 import Forum.TCPCommunicationLayer.SearchByContentMessage;
@@ -135,6 +137,18 @@ public class ControllerHandlerImpl extends ControllerHandler {
         res = _connectionController.listen();
         if (res.hasExecuted()) {
             notifyObservers(new ForumTreeRefreshEvent(comp, res.getResponse()));
+        } else {
+            notifyObservers(new ForumTreeErrorEvent(res.getResponse()));
+        }
+    }
+
+        @Override
+    public void getOnlineMembers(Component comp) {
+        ServerResponse res;
+        _connectionController.send(new OnlineMembersMessage());
+        res = _connectionController.listen();
+        if (res.hasExecuted()) {
+            notifyObservers(new OnlineMembersEvent(comp, res.getResponse()));
         } else {
             notifyObservers(new ForumTreeErrorEvent(res.getResponse()));
         }
