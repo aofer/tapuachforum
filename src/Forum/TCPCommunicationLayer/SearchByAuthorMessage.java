@@ -36,12 +36,12 @@ public class SearchByAuthorMessage extends ClientMessage{
 
     public ServerResponse doOperation(ForumFascade forum) {
         SearchHit[] tHits = forum.searchByAuthor(m_nickname, m_from, m_to);
-        String tRes = "";
-        for (int i = 0;i < tHits.length;i++){
-            tRes = tRes + tHits[i].toString() + "\n";
-        }
-        ServerResponse tResponse = new ServerResponse(tRes, true);
-        return tResponse;
+               String tForumString = "";
+               for(SearchHit h : tHits) {
+               tForumString += MessagesParser.Encode(h.getMessage());
+               }
+                ServerResponse tResponse = new ServerResponse(tForumString, true);
+		return tResponse;
     }
 
 }
