@@ -625,6 +625,7 @@ public ControllerHandler m_pipe;
       //   mainFrame.RegisterPanel.setVisible(false);
          //mainFrame.TreePane.setViewportView(tree.getForumTreeUI());
          mainFrame.setSize(new Dimension(1200,800));
+         mainFrame.setResizable(false);
          mainFrame.setVisible(true);
          mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
