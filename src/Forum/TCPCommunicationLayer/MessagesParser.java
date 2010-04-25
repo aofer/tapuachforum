@@ -105,8 +105,6 @@ public class MessagesParser {
         Date d1 = null;
         Date d2 = null;
         try {
-            System.out.println(str.substring(tmpIndex2 + 10, tmpIndex1));
-            System.out.println(str.substring(tmpIndex1 + 13));
             d1 = formatter.parse(str.substring(tmpIndex2 + 10, tmpIndex1));
             d2 = formatter.parse(str.substring(tmpIndex1 + 13));
         } catch (ParseException ex) {

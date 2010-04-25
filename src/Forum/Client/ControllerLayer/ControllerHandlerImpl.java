@@ -10,6 +10,7 @@ import java.awt.Component;
 
 import Forum.Client.ui.events.*;
 import Forum.TCPCommunicationLayer.LoginMessage;
+import Forum.TCPCommunicationLayer.MembersMessage;
 import Forum.TCPCommunicationLayer.RegisterMessage;
 import Forum.TCPCommunicationLayer.SearchByAuthorMessage;
 import Forum.TCPCommunicationLayer.SearchByContentMessage;
@@ -38,55 +39,89 @@ public class ControllerHandlerImpl extends ControllerHandler {
 
     @Override
     public void modifyMessage(long id, String subject, String body, Component comp) {
-        handleEvent(new ModifyMessageMessage(id, subject, body), comp);
+        handleTreeEvents(new ModifyMessageMessage(id, subject, body), comp);
     }
 
     @Override
     public void addReplyToMessage(long id, String subject, String body, Component comp) {
-        handleEvent(new AddReplyMessage(id, subject, body), comp);
+        handleTreeEvents(new AddReplyMessage(id, subject, body), comp);
     }
 
     @Override
     public void deleteMessage(long id, Component comp) {
-        handleEvent(new DeleteMessageMessage(id), comp);
+        handleTreeEvents(new DeleteMessageMessage(id), comp);
     }
 
     @Override
     public void addNewMessage(String subject, String body, Component comp) {
-        handleEvent(new AddMessageMessage(subject, body), comp);
+        handleTreeEvents(new AddMessageMessage(subject, body), comp);
     }
 
     @Override
     public void searchByAuthor(String nickname, int from, int to, Component comp) {
-        handleEvent(new SearchByAuthorMessage(nickname, from, to), comp);
+        handleSearchEvents(new SearchByAuthorMessage(nickname, from, to), comp);
     }
 
     @Override
     public void searchByContent(String phrase, int from, int to, Component comp) {
-        handleEvent(new SearchByContentMessage(phrase, from, to), comp);
+        handleSearchEvents(new SearchByContentMessage(phrase, from, to), comp);
     }
 
     @Override
     public void login(String username, String password, Component comp) {
-        handleEvent(new LoginMessage(username, password), comp);
+        handleMemberEvents(new LoginMessage(username, password), comp);
     }
 
     @Override
     public void register(String firstName, String lastName, String nickname, String email, String username, String password, Component comp) {
-        handleEvent(new RegisterMessage(firstName, lastName, nickname, email, username, password), comp);
+        handleMemberEvents(new RegisterMessage(firstName, lastName, nickname, email, username, password), comp);
     }
 
     @Override
     public void modifyMessage(long id, String content, Component comp) {
-        handleEvent(new ModifyMessageMessage(id, "", content), comp);
+        handleTreeEvents(new ModifyMessageMessage(id, "", content), comp);
     }
 
-    private void handleEvent(ClientMessage msg, Component comp) {
+    private void handleMemberEvents(ClientMessage msg, Component comp) {
         ServerResponse res;
         _connectionController.send(msg);
         res = _connectionController.listen();
         if (res.hasExecuted()) {
             notifyObservers(new ForumTreeRefreshEvent(comp, getForumView()));
+        } else {
+            notifyObservers(new ForumTreeErrorEvent(res.getResponse()));
+        }
+    }
+
+    private void handleTreeEvents(ClientMessage msg, Component comp) {
+        ServerResponse res;
+        _connectionController.send(msg);
+        res = _connectionController.listen();
+        if (res.hasExecuted()) {
+            notifyObservers(new ForumTreeRefreshEvent(comp, getForumView()));
+        } else {
+            notifyObservers(new ForumTreeErrorEvent(res.getResponse()));
+        }
+    }
+
+    private void handleSearchEvents(ClientMessage msg, Component comp) {
+        ServerResponse res;
+        _connectionController.send(msg);
+        res = _connectionController.listen();
+        if (res.hasExecuted()) {
+            notifyObservers(new ForumTreeRefreshEvent(comp, res.getResponse()));
+        } else {
+            notifyObservers(new ForumTreeErrorEvent(res.getResponse()));
+        }
+    }
+
+    @Override
+    public void getMembers (Component comp) {
+        ServerResponse res;
+        _connectionController.send(new MembersMessage());
+        res = _connectionController.listen();
+        if (res.hasExecuted()) {
+            notifyObservers(new ForumTreeRefreshEvent(comp, res.getResponse()));
         } else {
             notifyObservers(new ForumTreeErrorEvent(res.getResponse()));
         }

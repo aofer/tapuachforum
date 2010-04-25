@@ -4,8 +4,6 @@ import Forum.DomainLayer.Logger.TapuachLogger;
 import java.awt.Component;
 import java.io.IOException;
 import java.util.Observable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * This abstract class is in charge of the communication between the UI layer and the Controller layer.
@@ -118,4 +116,5 @@ public abstract class ControllerHandler extends Observable {
        */
       public abstract void register(String firstName,String lastName,String nickname, String email, String username, String password,Component comp);
 
+      public abstract void getMembers( Component comp);
 }
