@@ -23,6 +23,8 @@ import javax.swing.tree.DefaultTreeModel;
 
 import Forum.Client.ControllerLayer.ControllerHandler;
 import Forum.Client.ControllerLayer.ControllerHandlerFactory;
+import Forum.DomainLayer.Message;
+import java.util.Vector;
 
 /**
  * @author Tomer Heber
@@ -136,27 +138,20 @@ public class ForumTree  implements ForumTreeHandler {
 	 * 
 	 * @return The tree representing the forum.
 	 */
-	private ForumCell decodeView(String encodedView) {
-            //BIG TODO...
-            // a message from arseny and omri:
-            //use MessagesParser's decode function to receive vector of messages, and do what you need to do to update the gui
+private ForumCell decodeView(String encodedView) {
+        ForumCell root = new ForumCell(0,"lironkatav","testing");
+        String tMessages = m_pipe.getForumView();
+        Vector<Message> messages =Forum.TCPCommunicationLayer.MessagesParser. Decode (tMessages);
+        for (int i=0; i< messages.size(); i++){
+            int tMsgId = messages.elementAt(i).getIndex();
+            String tNickName = messages.elementAt(i).getNickname();
+            String tContent = messages.elementAt(i).getBody();
+            ForumCell tCell = new ForumCell(tMsgId,tNickName,tContent);
+            root.add(tCell);
+        }
+        return root;
+    }
 
-            // TODO implement the decoder (based on the encoding your write.
-		//return null;
-		// Delete the below line codes.
-		ForumCell fc1 = new ForumCell(2,"fsdf","fsdfsd");
-		ForumCell fc2 = new ForumCell(1,"fsdf","fsdfsd");
-		ForumCell fc3 = new ForumCell(5,"fsfsdfsddf","fsdvccxvfsd");
-		ForumCell fc4 = new ForumCell(7,"fsfsdfsddf","fsdvccxvfsd");
-		ForumCell fc5= new ForumCell(0,"bcvfsddf","fsdvccxvfsdcxvcx");
-
-		fc3.add(fc4);
-		fc2.add(fc3);
-		fc1.add(fc2);
-		fc1.add(fc5);
-		
-		return fc1;
-	}
 
 	/**
 	 * Modifies a message, and updates the forum accordingly.
