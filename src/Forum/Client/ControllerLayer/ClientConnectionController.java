@@ -28,7 +28,7 @@ public class ClientConnectionController {
     private ObjectOutputStream out;
     private static Logger log = Logger.getLogger(Settings.loggerName);
 
-    public void ClientConnectionController(String addrres, short port) {
+    public  ClientConnectionController(String addrres, short port) {
         InetAddress addr;
         try {
             addr = InetAddress.getByName(addrres);

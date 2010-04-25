@@ -5,6 +5,7 @@
 package Forum.DomainLayer.Interfaces;
 
 import Forum.DomainLayer.Message;
+import java.util.Date;
 import java.util.Vector;
 
 /**
@@ -19,6 +20,7 @@ public interface MessageInterface {
      */
     void addReply(Message msg);
 
+    void addReply(Vector<Message> msgs);
     /**
      * getter for the body
      * @return
@@ -56,4 +58,7 @@ public interface MessageInterface {
     void setSubject(String subject);
 
      int getIndex();
+
+         Date getWriteDate();
+        Date getModifiedDate();
 }

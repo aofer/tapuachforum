@@ -7,18 +7,10 @@
         <nickName>nowOut</nickName>
         <password>PaSSword</password>
         <eMail>3@sd</eMail>
-<<<<<<< local
-        <dateJoined>2010-04-22T10:53:54.056+03:00</dateJoined>
-=======
         <dateJoined>2010-04-06T09:15:06.224+03:00</dateJoined>
->>>>>>> other
         <firstName>alex</firstName>
         <LastName>iscoll</LastName>
-<<<<<<< local
-        <dateOfBirth>2010-04-22+03:00</dateOfBirth>
-=======
         <dateOfBirth>2010-04-06+03:00</dateOfBirth>
->>>>>>> other
         <status>false</status>
         <isModerator>false</isModerator>
         <isAdmin>false</isAdmin>
@@ -28,18 +20,10 @@
         <nickName>superman</nickName>
         <password>edfr</password>
         <eMail>3@sd</eMail>
-<<<<<<< local
-        <dateJoined>2010-04-22T10:53:54.122+03:00</dateJoined>
-=======
         <dateJoined>2010-04-06T09:15:06.464+03:00</dateJoined>
->>>>>>> other
         <firstName>alex</firstName>
         <LastName>iscoll</LastName>
-<<<<<<< local
-        <dateOfBirth>2010-04-22+03:00</dateOfBirth>
-=======
         <dateOfBirth>2010-04-06+03:00</dateOfBirth>
->>>>>>> other
         <status>false</status>
         <isModerator>true</isModerator>
         <isAdmin>false</isAdmin>
@@ -50,26 +34,16 @@
         <subject>where is bob</subject>
         <body>working</body>
         <createdBy>alex</createdBy>
-<<<<<<< local
-        <dateAdded>2010-04-22T10:53:54.151+03:00</dateAdded>
-        <modifiedDate>2010-04-22T10:53:54.151+03:00</modifiedDate>
-=======
         <dateAdded>2010-04-06T09:15:06.514+03:00</dateAdded>
         <modifiedDate>2010-04-06T09:15:06.514+03:00</modifiedDate>
->>>>>>> other
         <message>
             <messageId>2</messageId>
             <parentId>1</parentId>
             <subject>it is new now</subject>
             <body>we are trrrrrrrying to do bstst est ever</body>
             <createdBy>someuser</createdBy>
-<<<<<<< local
-            <dateAdded>2010-04-22T10:53:54.262+03:00</dateAdded>
-            <modifiedDate>2010-04-22T10:53:54.434+03:00</modifiedDate>
-=======
             <dateAdded>2010-04-06T09:15:06.655+03:00</dateAdded>
             <modifiedDate>2010-04-06T09:15:06.755+03:00</modifiedDate>
->>>>>>> other
         </message>
     </messages>
 </forumType>
