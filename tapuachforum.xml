@@ -7,10 +7,10 @@
         <nickName>nowOut</nickName>
         <password>PaSSword</password>
         <eMail>3@sd</eMail>
-        <dateJoined>2010-04-06T09:15:06.224+03:00</dateJoined>
+        <dateJoined>2010-04-25T16:35:03.521+03:00</dateJoined>
         <firstName>alex</firstName>
         <LastName>iscoll</LastName>
-        <dateOfBirth>2010-04-06+03:00</dateOfBirth>
+        <dateOfBirth>2010-04-25+03:00</dateOfBirth>
         <status>false</status>
         <isModerator>false</isModerator>
         <isAdmin>false</isAdmin>
@@ -20,10 +20,10 @@
         <nickName>superman</nickName>
         <password>edfr</password>
         <eMail>3@sd</eMail>
-        <dateJoined>2010-04-06T09:15:06.464+03:00</dateJoined>
+        <dateJoined>2010-04-25T16:35:04.104+03:00</dateJoined>
         <firstName>alex</firstName>
         <LastName>iscoll</LastName>
-        <dateOfBirth>2010-04-06+03:00</dateOfBirth>
+        <dateOfBirth>2010-04-25+03:00</dateOfBirth>
         <status>false</status>
         <isModerator>true</isModerator>
         <isAdmin>false</isAdmin>
@@ -34,16 +34,16 @@
         <subject>where is bob</subject>
         <body>working</body>
         <createdBy>alex</createdBy>
-        <dateAdded>2010-04-06T09:15:06.514+03:00</dateAdded>
-        <modifiedDate>2010-04-06T09:15:06.514+03:00</modifiedDate>
+        <dateAdded>2010-04-25T16:35:04.343+03:00</dateAdded>
+        <modifiedDate>2010-04-25T16:35:04.343+03:00</modifiedDate>
         <message>
             <messageId>2</messageId>
             <parentId>1</parentId>
             <subject>it is new now</subject>
             <body>we are trrrrrrrying to do bstst est ever</body>
             <createdBy>someuser</createdBy>
-            <dateAdded>2010-04-06T09:15:06.655+03:00</dateAdded>
-            <modifiedDate>2010-04-06T09:15:06.755+03:00</modifiedDate>
+            <dateAdded>2010-04-25T16:35:05.029+03:00</dateAdded>
+            <modifiedDate>2010-04-25T16:35:05.643+03:00</modifiedDate>
         </message>
     </messages>
 </forumType>

@@ -235,12 +235,12 @@ public class ForumTree  implements ForumTreeHandler {
           * Delete when done testing!
  	 * @param args
  	 */
- 	public static void main(String[] args) {
+ /*	public static void main(String[] args) {
  		ForumTree tree = new ForumTree();
  		JFrame frame = new JFrame("test");
         	frame.setSize(new Dimension(640,480));
  		frame.getContentPane().add(tree.getForumTreeUI());
  		frame.setVisible(true);
         	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-   	}
+   	}*/
 }

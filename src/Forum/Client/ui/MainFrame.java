@@ -14,6 +14,7 @@ package Forum.Client.ui;
 import Forum.Client.ControllerLayer.ControllerHandler;
 import java.awt.Dimension;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -148,7 +149,7 @@ public ControllerHandler m_pipe;
                     .addComponent(tPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bLogin)
                     .addComponent(bRegister))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout TopPanelLayout = new javax.swing.GroupLayout(TopPanel);
@@ -156,7 +157,7 @@ public ControllerHandler m_pipe;
         TopPanelLayout.setHorizontalGroup(
             TopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TopPanelLayout.createSequentialGroup()
-                .addContainerGap(54, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(93, 93, 93)
                 .addComponent(LoginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -164,11 +165,11 @@ public ControllerHandler m_pipe;
         );
         TopPanelLayout.setVerticalGroup(
             TopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
             .addGroup(TopPanelLayout.createSequentialGroup()
                 .addGap(8, 8, 8)
                 .addComponent(LoginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11))
+                .addContainerGap())
         );
 
         pSearchByAuthor.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Search by Author"));
@@ -333,7 +334,7 @@ public ControllerHandler m_pipe;
                 .addComponent(SearchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(28, 28, 28)
                 .addComponent(StatusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48))
+                .addGap(23, 23, 23))
         );
         BottomPanelLayout.setVerticalGroup(
             BottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -385,12 +386,17 @@ public ControllerHandler m_pipe;
         });
 
         CancelButton.setText("Cancel");
+        CancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout RegPanelLayout = new javax.swing.GroupLayout(RegPanel);
         RegPanel.setLayout(RegPanelLayout);
         RegPanelLayout.setHorizontalGroup(
             RegPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 399, Short.MAX_VALUE)
+            .addGap(0, 335, Short.MAX_VALUE)
             .addGroup(RegPanelLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(RegPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -413,7 +419,7 @@ public ControllerHandler m_pipe;
                                     .addComponent(jLabel10))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(RegPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Nick, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                            .addComponent(Nick, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
                             .addGroup(RegPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(Fname)
                                 .addComponent(email)
@@ -421,7 +427,7 @@ public ControllerHandler m_pipe;
                                 .addComponent(Uname)
                                 .addComponent(rePass, 0, 0, Short.MAX_VALUE)
                                 .addComponent(Pass, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)))))
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
         RegPanelLayout.setVerticalGroup(
             RegPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -466,26 +472,28 @@ public ControllerHandler m_pipe;
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(TreePane, javax.swing.GroupLayout.PREFERRED_SIZE, 618, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(27, 27, 27)
-                    .addComponent(RegPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addComponent(TopPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(BottomPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(TreePane, javax.swing.GroupLayout.PREFERRED_SIZE, 648, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(RegPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BottomPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TopPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 988, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(TopPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TreePane, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TreePane, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(RegPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BottomPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11))
+                .addGap(16, 16, 16))
         );
 
         pack();
@@ -495,6 +503,9 @@ public ControllerHandler m_pipe;
         // TODO add your handling code here:
         this.RegPanel.setVisible(true);
         this.SearchPanel.setVisible(false);
+        this.TreePane.setVisible(false);
+        this.StatusPanel.setVisible(false);
+        this.LoginPanel.setVisible(false);
     }//GEN-LAST:event_bRegisterActionPerformed
 
     private void bLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLoginActionPerformed
@@ -502,7 +513,8 @@ public ControllerHandler m_pipe;
         tUsername.selectAll();
         String passwordText = new String(tPassword.getPassword());
         tPassword.selectAll();
-        //((MainFrame)this.getParent()).
+        this.m_pipe.login(userNameText, passwordText, this);
+        
     }//GEN-LAST:event_bLoginActionPerformed
 
     private void tSearchAutherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tSearchAutherActionPerformed
@@ -520,9 +532,87 @@ public ControllerHandler m_pipe;
 }//GEN-LAST:event_bSearchPharseActionPerformed
 
     private void RegButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegButtonActionPerformed
-        //    if(correctInput()){
-        //        }
+          if(correctInput()){
+              String tFname = Fname.getText();
+              String tLname = Lname.getText();
+              String tEmail = email.getText();
+              String tUname = Uname.getText();
+              String tNick = Nick.getText();
+              String tPass = new String(Pass.getPassword());
+
+             m_pipe.register(tFname, tLname, tNick, tEmail, tUname, tPass, null);
+         
+         this.Fname.setText("");
+         this.Lname.setText(""); 
+        this.email.setText(""); 
+        this.Nick.setText(""); 
+        this.Uname.setText(""); 
+        this.Pass.setText(""); 
+        this.rePass.setText("");
+        this.RegPanel.setVisible(false);
+        this.SearchPanel.setVisible(true);
+        this.TreePane.setVisible(true);
+        this.StatusPanel.setVisible(true);
+        this.LoginPanel.setVisible(true);
+
+
+          }
+
+
 }//GEN-LAST:event_RegButtonActionPerformed
+
+    private boolean correctInput(){
+
+            if(this.Fname.getText().compareTo("") ==0) {
+                  JOptionPane.showMessageDialog(this,   "please enter a first name",    "Error",    JOptionPane.WARNING_MESSAGE);
+                  return false;
+            }
+               if(this.Lname.getText().compareTo("") ==0) {
+                  JOptionPane.showMessageDialog(this,   "please enter a last name",    "Error",    JOptionPane.WARNING_MESSAGE);
+                  return false;
+            }
+            
+               if(this.email.getText().compareTo("") ==0) {                 //.matches("[a-zA-Z0-9]+@([a-zA-Z0-9]+)[.]{1}([a-zA-Z.]+)")) {
+                  JOptionPane.showMessageDialog(this,   "wrong email adress",    "Error",    JOptionPane.WARNING_MESSAGE);
+                  return false;
+            }
+
+             if(this.Uname.getText().compareTo("") ==0) {
+                  JOptionPane.showMessageDialog(this,   "please enter a username",    "Error",    JOptionPane.WARNING_MESSAGE);
+                  return false;
+            }
+
+             if(this.Nick.getText().compareTo("") ==0) {
+                  JOptionPane.showMessageDialog(this,   "please enter a nickname",    "Error",    JOptionPane.WARNING_MESSAGE);
+                  return false;
+            }
+
+             if(this.Pass.getPassword().equals(this.rePass.getPassword())){
+                  JOptionPane.showMessageDialog(this,   "passwords don't match",    "Error",    JOptionPane.WARNING_MESSAGE);
+                  return false;
+             }
+            return true;
+            }
+
+
+
+
+
+
+    private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
+        this.Fname.setText("");
+        this.Lname.setText(""); 
+        this.email.setText(""); 
+        this.Nick.setText(""); 
+        this.Uname.setText(""); 
+        this.Pass.setText(""); 
+        this.rePass.setText("");
+        this.RegPanel.setVisible(false);
+        this.SearchPanel.setVisible(true);
+        this.TreePane.setVisible(true);
+        this.StatusPanel.setVisible(true);
+        this.LoginPanel.setVisible(true);
+    }//GEN-LAST:event_CancelButtonActionPerformed
 
     
 

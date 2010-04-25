@@ -54,8 +54,8 @@ public class ForumFascadeTest {
     public void testRegister() throws Exception {
 
         System.out.println("register");
-        String username = "BobUser";
-        String password = "bobbobbo";
+        String username = "a";
+        String password = "aaaaaaaa";
         String nickname = "boby";
         String email = "b@b";
         String firstName = "Boooo";
