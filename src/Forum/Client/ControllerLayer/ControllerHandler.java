@@ -4,6 +4,7 @@ import Forum.DomainLayer.Logger.TapuachLogger;
 import java.awt.Component;
 import java.io.IOException;
 import java.util.Observable;
+import javax.swing.JButton;
 
 /**
  * This abstract class is in charge of the communication between the UI layer and the Controller layer.
