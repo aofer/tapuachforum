@@ -46,6 +46,10 @@ public class ForumTree  implements ForumTreeHandler {
 	 * A pipe interface to communicate with the controller layer.
 	 */
 	private ControllerHandler m_pipe;
+
+    public ControllerHandler getPipe() {
+        return m_pipe;
+    }
 	
 	/**
 	 * A thread pool that is used to initiate operations in the controller layer.
@@ -221,7 +225,7 @@ public class ForumTree  implements ForumTreeHandler {
 			
 			@Override
 			public void run() {				
-			//	m_pipe.addNewMessage(button);
+				//m_pipe.addNewMessage(null, null, button)
 			}
 		});
 	}
