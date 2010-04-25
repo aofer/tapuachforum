@@ -18,7 +18,9 @@ import Forum.PersistentLayer.Interfaces.XMLMemberInterface;
 import Forum.PersistentLayer.Interfaces.eMemberType;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -56,9 +58,9 @@ public class UserHandler {
      * @throws UserExistsException
      * @throws NicknameExistsException
      * @throws BadPasswordException
-     */ 
-    public void  register(String username,String password,String nickname,
-            String email,String firstName,String lastName,Date dateOfBirth) throws UserExistsException, NicknameExistsException, BadPasswordException {
+     */
+    public void register(String username, String password, String nickname,
+            String email, String firstName, String lastName, Date dateOfBirth) throws UserExistsException, NicknameExistsException, BadPasswordException {
         //Member newMember = new Member(newMemberData);
         if (this._XmlForum.checkUsername(username)) {
             throw new UserExistsException();
@@ -67,8 +69,8 @@ public class UserHandler {
         } else if (!checkPasswordPolicy(password)) {
             throw new BadPasswordException();
         } else {
-                String encryptedPassword = this.encryptPassword(password);
-                this._XmlForum.register(username, nickname, encryptedPassword, email, firstName, lastName, dateOfBirth);
+            String encryptedPassword = this.encryptPassword(password);
+            this._XmlForum.register(username, nickname, encryptedPassword, email, firstName, lastName, dateOfBirth);
         }
     }
 
@@ -88,20 +90,19 @@ public class UserHandler {
             throw new WrongPasswordException();
         } else {
             MemberData data = this._XmlMember.getMember(username);
-            MemberInterface tMember ;
-            eMemberType type=  this._XmlMember.getMemberType(username);
-            switch (type)
-            {
+            MemberInterface tMember;
+            eMemberType type = this._XmlMember.getMemberType(username);
+            switch (type) {
                 case Admin:
-                    tMember=new Admin(data);
+                    tMember = new Admin(data);
                     this.addMember(tMember);
                     break;
                 case Moderator:
-                    tMember=new Moderator(data);
+                    tMember = new Moderator(data);
                     this.addMember(tMember);
                     break;
                 case member:
-                    tMember=new Member(data);
+                    tMember = new Member(data);
                     this.addMember(tMember);
                     break;
             }
@@ -109,28 +110,26 @@ public class UserHandler {
 
     }
 
-    
     /**
      * This method log out the user
      * @param username
      */
-	 public void logout(String username) {
+    public void logout(String username) {
         for (int i = 0; i < this._onlineMembers.size(); i++) {
             if (this._onlineMembers.elementAt(i).getUserName().equals(username)) {
-                           /// ADD BY NIR.   TO MAKE USER OFFLINE ALSO ON THE XML@@@\@@!!!!!
-                 _XmlForum.logoff(username);
+                /// ADD BY NIR.   TO MAKE USER OFFLINE ALSO ON THE XML@@@\@@!!!!!
+                _XmlForum.logoff(username);
                 this._onlineMembers.removeElementAt(i);
                 break;
             }
         }
     }
 
-	 
-	 /**
-	  * This method allows the admin to upgrade other users
-	  * @param username, the user need to be upgraded
-	  * @throws UserNotExistException
-	  */
+    /**
+     * This method allows the admin to upgrade other users
+     * @param username, the user need to be upgraded
+     * @throws UserNotExistException
+     */
     public void upgradeUser(String username) throws UserNotExistException {
         this._XmlForum.upgradeUser(username);
         Forum.getInstance().logout(username);
@@ -160,8 +159,8 @@ public class UserHandler {
      *add an online  member to the forum
      * @param member
      */
-  private void addMember(MemberInterface member) {
-             /// ADD BY NIR.   TO MAKE USER ONLINE ALSO ON THE XML@@@\@@!!!!!
+    private void addMember(MemberInterface member) {
+        /// ADD BY NIR.   TO MAKE USER ONLINE ALSO ON THE XML@@@\@@!!!!!
         _XmlForum.login(member.getUserName());
         this._onlineMembers.add(member);
     }
@@ -187,30 +186,29 @@ public class UserHandler {
             return password;
         }
     }
-    
+
     /**
      * This method gets a memeber instance by it's username
      * @param username 
      */
-    public MemberInterface getMember(String username){
+    public MemberInterface getMember(String username) {
         MemberData data = this._XmlMember.getMember(username);
-        MemberInterface tMember  = null;
-        eMemberType type=  this._XmlMember.getMemberType(username);
-        switch (type)
-        {
+        MemberInterface tMember = null;
+        eMemberType type = this._XmlMember.getMemberType(username);
+        switch (type) {
             case Admin:
-                tMember=new Admin(data);
+                tMember = new Admin(data);
                 break;
             case Moderator:
-                tMember=new Moderator(data);
+                tMember = new Moderator(data);
                 break;
             case member:
-                tMember=new Member(data);
+                tMember = new Member(data);
                 break;
         }
         return tMember;
     }
-    
+
     /**
      * This method adds a new admin to the forum
      * @param username
@@ -221,10 +219,31 @@ public class UserHandler {
      * @param lastName
      * @param dateOfBirth
      */
-    public void addAdmin(String username,String password,String nickname,
-            String email,String firstName,String lastName,Date dateOfBirth) {
-            String encryptedPassword = encryptPassword(password);
-            this._XmlForum.registerAdmin(username, nickname, encryptedPassword , email, firstName, lastName, dateOfBirth);
-        
+    public void addAdmin(String username, String password, String nickname,
+            String email, String firstName, String lastName, Date dateOfBirth) {
+        String encryptedPassword = encryptPassword(password);
+        this._XmlForum.registerAdmin(username, nickname, encryptedPassword, email, firstName, lastName, dateOfBirth);
+
+    }
+
+    public List<Member> getMembers() {
+        List<MemberData> membersData = this._XmlMember.getMember();
+        List<Member> members = new ArrayList<Member>();
+        Member tMember = null;
+        eMemberType type;
+        for (int i = 0; i < membersData.size(); i++) {
+            MemberData data = membersData.get(i);
+            type = this._XmlMember.getMemberType(data.getUserName());
+            switch (type) {
+                case Admin:
+                case Moderator: //not including
+                    break;
+                case member:
+                    tMember = new Member(data);
+                    break;
+            }
+            members.add(tMember);
+        }
+        return members;
     }
 }

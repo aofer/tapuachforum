@@ -17,6 +17,7 @@ import Forum.PersistentLayer.Interfaces.XMLMessageInterface;
 import java.util.Date;
 import java.util.Vector;
 import Forum.DomainLayer.Logger.*;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -264,5 +265,8 @@ public class Forum implements ForumInterface {
             String email, String firstName, String lastName, Date dateOfBirth) {
         TapuachLogger.getInstance().info(username + " registered to the forum as Admin");
         this._userHandler.addAdmin(username, password, nickname, email, firstName, lastName, dateOfBirth);
+    }
+    public List<Member> getMembers(){
+        return this._userHandler.getMembers();
     }
 }

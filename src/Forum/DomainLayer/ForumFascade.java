@@ -6,15 +6,12 @@
 package Forum.DomainLayer;
 
 
-import Forum.DomainLayer.Interfaces.MemberInterface;
 import Forum.DomainLayer.Interfaces.MessageInterface;
 import Forum.DomainLayer.SearchEngine.SearchHit;
 import Forum.Exceptions.*;
-import Forum.PersistentLayer.ForumHandler;
 import Forum.PersistentLayer.Interfaces.eMemberType;
-import Forum.PersistentLayer.XMLMemberHandler;
-import Forum.PersistentLayer.XMLMessageHandler;
 import java.util.Date;
+import java.util.List;
 import java.util.Vector;
 
 /**
@@ -227,5 +224,8 @@ public class ForumFascade {
      */
     public SearchHit[] searchByContent(String m_phrase, int m_from, int m_to) {
         return Forum.getInstance().searchByContent(m_phrase, m_from, m_to);
+    }
+        public List<Member> getMembers(){
+        return Forum.getInstance().getMembers();
     }
 }

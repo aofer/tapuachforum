@@ -23,7 +23,6 @@ public class ViewForumMessage extends ClientMessage {
                String tForumString = "";
                for(MessageInterface m : tForum) {
                tForumString += MessagesParser.Encode(m);
-               System.out.println(tForumString);
                }
                 ServerResponse tResponse = new ServerResponse(tForumString, true);
 		return tResponse;
