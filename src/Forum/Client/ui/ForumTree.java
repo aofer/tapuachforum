@@ -135,7 +135,7 @@ public class ForumTree  implements ForumTreeHandler {
 	/**
 	 * Receives an encoding describing the forum tree.<br>
 	 * It decodes the description and returns the tree representation in a ForumCell instance.
-	 * 
+	 *
 	 * @return The tree representing the forum.
 	 */
 	private ForumCell decodeView(String encodedView) {
