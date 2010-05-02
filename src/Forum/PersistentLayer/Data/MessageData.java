@@ -6,6 +6,8 @@
 package Forum.PersistentLayer.Data;
 
 import java.util.Date;
+import org.compass.annotations.SearchableId;
+import org.compass.annotations.SearchableProperty;
 
 
 /**
@@ -13,11 +15,16 @@ import java.util.Date;
  */
 public class MessageData {
 
- private String _nickname;
+@SearchableProperty (name = "name")
+private String _nickname;
+
+@SearchableProperty (name = "contents")
  private String _subject;
  private String _body;
  private Date _writeDate;
  private Date _modifiedDate;
+
+ @SearchableId
  private int _id;
 
  public MessageData(String nickname , String subject,String body,Date writeDate,Date modifedDate)
