@@ -5,21 +5,12 @@
 package Forum.PersistentLayer;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Session;
 import org.hibernate.Transaction;
 import Forum.Exceptions.MessageNotFoundException;
 import Forum.Exceptions.UserNotExistException;
 import Forum.PersistentLayer.Interfaces.ForumHandlerInterface;
-import java.lang.reflect.Member;
-import java.math.BigInteger;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -29,14 +20,13 @@ import org.hibernate.Session;
  */
 public class SQLForumHandler implements ForumHandlerInterface {
 
-    Session session = null;
-    private XMLFileHandler xf;
+    public Session session = null;
 
     /**
      *
      * @param xf
      */
-    public SQLForumHandler(XMLFileHandler xf) {
+    public SQLForumHandler() {
         this.session = SessionFactoryUtil.getInstance().getCurrentSession();
 
     }

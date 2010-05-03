@@ -79,7 +79,7 @@ public class SQLMessageHandler implements XMLMessageInterface {
       if (MeseggesList != null)
                  for (Message  m :MeseggesList){
                  if (m != null)
-                   listReplies.add(new Integer(m.getIdFather()));
+                   listReplies.add(new Integer(m.getNumber()));
              }
                   return (listReplies);
       }
