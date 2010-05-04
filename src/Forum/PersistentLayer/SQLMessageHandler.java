@@ -9,8 +9,10 @@ import Forum.PersistentLayer.Interfaces.XMLMessageInterface;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -18,7 +20,7 @@ import org.hibernate.Session;
  */
 public class SQLMessageHandler implements XMLMessageInterface {
 
-        Session session = null;
+
 
 
 
@@ -27,18 +29,29 @@ public class SQLMessageHandler implements XMLMessageInterface {
 
 
     public SQLMessageHandler() {
-      this.session = SessionFactoryUtil.getInstance().getCurrentSession();
+
     }
 
      private Message findMessage(int messageID) {
                   Message   oneMessage = null;
-    try {
-        org.hibernate.Transaction tx = session.beginTransaction();
+        Transaction tx = null;
+        Session session = SessionFactoryUtil.getInstance().getCurrentSession();
+        try {
+            tx = session.beginTransaction();
         Query q = session.createQuery ("from Message as message where message.number is '"+messageID+"'");
         oneMessage = (Message) q.uniqueResult();
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
+        } catch (RuntimeException e) {
+            if (tx != null && tx.isActive()) {
+                try {
+                    // Second try catch as the rollback could fail as well
+                    tx.rollback();
+                } catch (HibernateException e1) {
+                    // add logging
+                }
+                // throw again the first exception
+                throw e;
+            }
+        }
         return oneMessage;
      }
 
@@ -51,7 +64,7 @@ public class SQLMessageHandler implements XMLMessageInterface {
                     String nick=m.getAuthor();
                     String sub=m.getTitle();
                     String body = m.getBody();
-                    Date created=m.getDataOfAdd();
+                    Date created=m.getDateOfAdd();
                     Date modified =m.getDateOfEdit();
                     int indexId = m.getNumber();
                     //****************************************//
@@ -67,13 +80,24 @@ public class SQLMessageHandler implements XMLMessageInterface {
     public List<Integer> getRepliesIds(int messageID) {
         List<Integer> listReplies =  new ArrayList<Integer>();
           List< Message>    MeseggesList = null;
-    try {
-        org.hibernate.Transaction tx = session.beginTransaction();
-        Query q = session.createQuery ("from Members as members where  message.IdFather is  '"+messageID+"'");
+        Transaction tx = null;
+        Session session = SessionFactoryUtil.getInstance().getCurrentSession();
+        try {
+            tx = session.beginTransaction();
+        Query q = session.createQuery ("from Message as message where  message.idFather is  '"+messageID+"'");
         MeseggesList = (List<Message>) q.list();
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
+        } catch (RuntimeException e) {
+            if (tx != null && tx.isActive()) {
+                try {
+                    // Second try catch as the rollback could fail as well
+                    tx.rollback();
+                } catch (HibernateException e1) {
+                    // add logging
+                }
+                // throw again the first exception
+                throw e;
+            }
+        }
 
 
       if (MeseggesList != null)

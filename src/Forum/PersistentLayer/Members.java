@@ -1,5 +1,5 @@
 package Forum.PersistentLayer;
-// Generated 02:47:58 02/05/2010 by Hibernate Tools 3.2.1.GA
+// Generated 00:53:19 05/05/2010 by Hibernate Tools 3.2.1.GA
 
 
 import java.util.Date;
@@ -20,12 +20,13 @@ public class Members  implements java.io.Serializable {
      private String email;
      private boolean isAdmin;
      private boolean isModerator;
+     private boolean isLogin;
 
     public Members() {
     }
 
 	
-    public Members(String userName, String firstName, String lastName, String password, Date dateOfJoin, boolean isAdmin, boolean isModerator) {
+    public Members(String userName, String firstName, String lastName, String password, Date dateOfJoin, boolean isAdmin, boolean isModerator, boolean isLogin) {
         this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -33,8 +34,9 @@ public class Members  implements java.io.Serializable {
         this.dateOfJoin = dateOfJoin;
         this.isAdmin = isAdmin;
         this.isModerator = isModerator;
+        this.isLogin = isLogin;
     }
-    public Members(String userName, String firstName, String lastName, String password, Date dataOfBirth, String nickName, Date dateOfJoin, String email, boolean isAdmin, boolean isModerator) {
+    public Members(String userName, String firstName, String lastName, String password, Date dataOfBirth, String nickName, Date dateOfJoin, String email, boolean isAdmin, boolean isModerator, boolean isLogin) {
        this.userName = userName;
        this.firstName = firstName;
        this.lastName = lastName;
@@ -45,6 +47,7 @@ public class Members  implements java.io.Serializable {
        this.email = email;
        this.isAdmin = isAdmin;
        this.isModerator = isModerator;
+       this.isLogin = isLogin;
     }
    
     public String getUserName() {
@@ -116,6 +119,13 @@ public class Members  implements java.io.Serializable {
     
     public void setIsModerator(boolean isModerator) {
         this.isModerator = isModerator;
+    }
+    public boolean isIsLogin() {
+        return this.isLogin;
+    }
+    
+    public void setIsLogin(boolean isLogin) {
+        this.isLogin = isLogin;
     }
 
 

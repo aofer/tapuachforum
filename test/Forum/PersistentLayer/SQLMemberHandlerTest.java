@@ -48,11 +48,8 @@ public class SQLMemberHandlerTest {
     @Test
     public void testGetMember_0args() {
         System.out.println("getMember");
-        List<MemberData> expResult = null;
         List<MemberData> result = instance.getMember();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertNotNull(result);
     }
 
     /**
@@ -61,7 +58,7 @@ public class SQLMemberHandlerTest {
     @Test
     public void testGetMember_String() {
         System.out.println("getMember");
-        String userName = "userToCheckLogInandLogOut";
+        String userName = "userToCheck2";
         String expResult = "nowOut";
         MemberData result = instance.getMember(userName);
         assertEquals(expResult, result.getNickName());
@@ -76,12 +73,13 @@ public class SQLMemberHandlerTest {
     @Test
     public void testGetMemberType() {
         System.out.println("getMemberType");
-        String userName = "";
-        eMemberType expResult = null;
+        String userName = "userToCheck2";
+        eMemberType expResult = eMemberType.member;
         eMemberType result = instance.getMemberType(userName);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+           expResult = eMemberType.Moderator;
+         result = instance.getMemberType("alexSup");
+        assertEquals(expResult, result);
     }
 
 }

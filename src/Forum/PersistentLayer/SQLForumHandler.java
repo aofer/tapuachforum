@@ -20,14 +20,12 @@ import org.hibernate.Session;
  */
 public class SQLForumHandler implements ForumHandlerInterface {
 
-    public Session session = null;
 
     /**
      *
      * @param xf
      */
     public SQLForumHandler() {
-        this.session = SessionFactoryUtil.getInstance().getCurrentSession();
 
     }
 
@@ -165,15 +163,26 @@ public class SQLForumHandler implements ForumHandlerInterface {
      */
     public void login(String username) {
         Members oneOfMembers = null;
+        Transaction tx = null;
+        Session session = SessionFactoryUtil.getInstance().getCurrentSession();
+
         try {
-            org.hibernate.Transaction tx = session.beginTransaction();
-            Query q = session.createQuery("from Members as members where members.UserName is '" + username + "'");
+            tx = session.beginTransaction();
+            Query q = session.createQuery("from Members as members where members.userName is '" + username + "'");
             oneOfMembers = (Members) q.uniqueResult();
-            //TODO change Admin to statos login
-            oneOfMembers.setIsAdmin(true);
+            oneOfMembers.setIsLogin(true);
             updateMember(oneOfMembers);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (RuntimeException e) {
+            if (tx != null && tx.isActive()) {
+                try {
+                    // Second try catch as the rollback could fail as well
+                    tx.rollback();
+                } catch (HibernateException e1) {
+                    // add logging
+                }
+                // throw again the first exception
+                throw e;
+            }
         }
 
     }
@@ -183,33 +192,60 @@ public class SQLForumHandler implements ForumHandlerInterface {
      * @param username a message id */
     public void logoff(String username) {
         Members oneOfMembers = null;
+        Transaction tx = null;
+        Session session = SessionFactoryUtil.getInstance().getCurrentSession();
+
         try {
-            org.hibernate.Transaction tx = session.beginTransaction();
-            Query q = session.createQuery("from Members as members where members.UserName is '" + username + "'");
+            tx = session.beginTransaction();
+            Query q = session.createQuery("from Members as members where members.userName is '" + username + "'");
             oneOfMembers = (Members) q.uniqueResult();
-            //TODO change Admin to statos login
-            oneOfMembers.setIsAdmin(false);
+            oneOfMembers.setIsLogin(false);
             updateMember(oneOfMembers);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (RuntimeException e) {
+            if (tx != null && tx.isActive()) {
+                try {
+                    // Second try catch as the rollback could fail as well
+                    tx.rollback();
+                } catch (HibernateException e1) {
+                    // add logging
+                }
+                // throw again the first exception
+                throw e;
+            }
         }
     }
 
     // this function is helping to add ONE to the number of messeages in the forum
     private int getCounter() {
-        Message oneMessage = null;
+        Foruminfo tForum = null;
+        Session session = SessionFactoryUtil.getInstance().getCurrentSession();
+        Transaction tx = null;
         try {
-            org.hibernate.Transaction tx = session.beginTransaction();
+            tx = session.beginTransaction();
             //TODO change to good query to get message with max
-            Query q = session.createQuery("from Message as message where max");
-            oneMessage = (Message) q.uniqueResult();
-        } catch (Exception e) {
-            e.printStackTrace();
+            Query q = session.createQuery("from Foruminfo as foruminfo where foruminfo.name is 'Tapuach'");
+            tForum = (Foruminfo) q.uniqueResult();
+        } catch (RuntimeException e) {
+            if (tx != null && tx.isActive()) {
+                try {
+                    // Second try catch as the rollback could fail as well
+                    tx.rollback();
+                } catch (HibernateException e1) {
+                    // add logging
+                }
+                // throw again the first exception
+                throw e;
+            }
         }
-        if (oneMessage == null)
+        if (tForum == null) {
             return 0;
-        else
-            return oneMessage.getNumber();
+
+        } else {
+            int res = tForum.getNumOfMessages();
+            tForum.setNumOfMessages(res + 1);
+            return tForum.getNumOfMessages();
+
+        }
     }
 
     /**
@@ -218,19 +254,33 @@ public class SQLForumHandler implements ForumHandlerInterface {
      * @return username password if exists or NULL if not*/
     public String userExist(String username) {
         Members oneOfMembers = null;
-        try {
-            org.hibernate.Transaction tx = session.beginTransaction();
-            Query q = session.createQuery("from Members as members where members.UserName is '" + username + "'");
-            oneOfMembers = (Members) q.uniqueResult();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Session session = SessionFactoryUtil.getInstance().getCurrentSession();
 
-        if (oneOfMembers != null) {
-            return oneOfMembers.getPassword();
-        } else {
-            return null;
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            Query q = session.createQuery("from Members as members where members.userName is '" + username + "'");
+            oneOfMembers = (Members) q.uniqueResult();
+            System.out.println("see");
+            if (oneOfMembers != null) {
+                return oneOfMembers.getPassword();
+            } else {
+                return null;
+            }
+        } catch (RuntimeException e) {
+            if (tx != null && tx.isActive()) {
+                try {
+                    // Second try catch as the rollback could fail as well
+                    tx.rollback();
+                } catch (HibernateException e1) {
+                    // add logging
+                }
+                // throw again the first exception
+                throw e;
+            }
         }
+        return null;
+
 
 
     }
@@ -238,46 +288,86 @@ public class SQLForumHandler implements ForumHandlerInterface {
     // this function giving back member by his userName
     private Members findMember(String username) {
         Members oneOfMembers = null;
+        Transaction tx = null;
+        Session session = SessionFactoryUtil.getInstance().getCurrentSession();
         try {
-            org.hibernate.Transaction tx = session.beginTransaction();
-            Query q = session.createQuery("from Members as members where members.UserName is '" + username + "'");
+            tx = session.beginTransaction();
+            Query q = session.createQuery("from Members as members where members.userName is '" + username + "'");
             oneOfMembers = (Members) q.uniqueResult();
+            if (oneOfMembers != null) {
+                System.out.println(oneOfMembers.getUserName());
+
+            }
+            tx.rollback();
             return oneOfMembers;
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (RuntimeException e) {
+            if (tx != null && tx.isActive()) {
+                try {
+                    // Second try catch as the rollback could fail as well
+                    tx.rollback();
+                } catch (HibernateException e1) {
+                    // add logging
+                }
+                // throw again the first exception
+                throw e;
+            }
         }
         return null;
     }
-
 
     // this function giving back   Message from the main level of the tree if exist. Null outher wise;
     // it is not in use!
     private Message findMessageAtMain(int messageID) {
         Message oneMessage = null;
+        Transaction tx = null;
+        Session session = SessionFactoryUtil.getInstance().getCurrentSession();
+
         try {
-            org.hibernate.Transaction tx = session.beginTransaction();
+            tx = session.beginTransaction();
             Query q = session.createQuery("from Message as message where message.number is '" + messageID + "'");
             oneMessage = (Message) q.uniqueResult();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (RuntimeException e) {
+            if (tx != null && tx.isActive()) {
+                try {
+                    // Second try catch as the rollback could fail as well
+                    tx.rollback();
+                } catch (HibernateException e1) {
+                    // add logging
+                }
+                // throw again the first exception
+                throw e;
+            }
         }
         return oneMessage;
     }
+
     ;
 
     // this function giving back   Message from the tree if exist. Null outher wise;
     // it is using the next helf-recorsivic function.
     private Message findMessage(int messageID) {
         Message oneMessage = null;
+        Transaction tx = null;
+        Session session = SessionFactoryUtil.getInstance().getCurrentSession();
         try {
-            org.hibernate.Transaction tx = session.beginTransaction();
+            tx = session.beginTransaction();
             Query q = session.createQuery("from Message as message where message.number is '" + messageID + "'");
             oneMessage = (Message) q.uniqueResult();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (RuntimeException e) {
+            if (tx != null && tx.isActive()) {
+                try {
+                    // Second try catch as the rollback could fail as well
+                    tx.rollback();
+                } catch (HibernateException e1) {
+                    // add logging
+                }
+                // throw again the first exception
+                throw e;
+            }
         }
         return oneMessage;
     }
+
     ;
 
     // recursivis function to find Messeage;
@@ -352,10 +442,10 @@ public class SQLForumHandler implements ForumHandlerInterface {
         newMessage.setAuthor(createdBy);
         newMessage.setTitle(subject);
         newMessage.setBody(body);
-        newMessage.setDataOfAdd(DateAdded);
-        Date tDate = new Date();
-        newMessage.setDateOfEdit(tDate);
-        newMessage.setNumber(getCounter() + 1);
+        newMessage.setDateOfAdd(DateAdded);
+        //   Date tDate = new Date();
+        newMessage.setDateOfEdit(DateAdded);
+        newMessage.setNumber(getCounter());
         if (parentId == 0) {
             createMessage(newMessage);
         } else {
@@ -372,12 +462,24 @@ public class SQLForumHandler implements ForumHandlerInterface {
 
     public boolean checkNickname(String nickname) {
         Members oneOfMembers = null;
+        Transaction tx = null;
+        Session session = SessionFactoryUtil.getInstance().getCurrentSession();
+
         try {
-            org.hibernate.Transaction tx = session.beginTransaction();
-            Query q = session.createQuery("from Members as members where members.NickName is '" + nickname + "'");
+            tx = session.beginTransaction();
+            Query q = session.createQuery("from Members as members where members.nickName is '" + nickname + "'");
             oneOfMembers = (Members) q.uniqueResult();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (RuntimeException e) {
+            if (tx != null && tx.isActive()) {
+                try {
+                    // Second try catch as the rollback could fail as well
+                    tx.rollback();
+                } catch (HibernateException e1) {
+                    // add logging
+                }
+                // throw again the first exception
+                throw e;
+            }
         }
         if (oneOfMembers != null) {
             return true;
@@ -385,16 +487,29 @@ public class SQLForumHandler implements ForumHandlerInterface {
             return false;
         }
     }
+
     ;
 
     public boolean checkPassword(String password) {
         Members oneOfMembers = null;
+        Transaction tx = null;
+        Session session = SessionFactoryUtil.getInstance().getCurrentSession();
+
         try {
-            org.hibernate.Transaction tx = session.beginTransaction();
-            Query q = session.createQuery("from Members as members where members.Password is '" + password + "'");
+            tx = session.beginTransaction();
+            Query q = session.createQuery("from Members as members where members.password is '" + password + "'");
             oneOfMembers = (Members) q.uniqueResult();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (RuntimeException e) {
+            if (tx != null && tx.isActive()) {
+                try {
+                    // Second try catch as the rollback could fail as well
+                    tx.rollback();
+                } catch (HibernateException e1) {
+                    // add logging
+                }
+                // throw again the first exception
+                throw e;
+            }
         }
         if (oneOfMembers != null) {
             return true;
@@ -402,6 +517,7 @@ public class SQLForumHandler implements ForumHandlerInterface {
             return false;
         }
     }
+
     ;
 
     public int addMessage(int parentId, String createdBy, String subject, String body, Date DateAdded, Date modifyDate) {
@@ -409,12 +525,12 @@ public class SQLForumHandler implements ForumHandlerInterface {
         Message newMessage = new Message();
         newMessage.setIdFather(parentId);
         newMessage.setAuthor(createdBy);
-        newMessage.setAuthor(subject);
+        newMessage.setTitle(subject);
         newMessage.setBody(body);
-        newMessage.setDataOfAdd(DateAdded);
+        newMessage.setDateOfAdd(DateAdded);
         newMessage.setDateOfEdit(modifyDate);
-        int id = getCounter() + 1;
-        newMessage.setNumber(getCounter() + 1);
+        int id = getCounter();
+        newMessage.setNumber(id);
 
         // add messega to MAIN
         if (parentId == 0) {
@@ -438,12 +554,24 @@ public class SQLForumHandler implements ForumHandlerInterface {
 
     public String userExists(String username) {
         Members oneOfMembers = null;
+        Transaction tx = null;
+        Session session = SessionFactoryUtil.getInstance().getCurrentSession();
+
         try {
-            org.hibernate.Transaction tx = session.beginTransaction();
-            Query q = session.createQuery("from Members as members where members.UserName is '" + username + "'");
+            tx = session.beginTransaction();
+            Query q = session.createQuery("from Members as members where members.userName is '" + username + "'");
             oneOfMembers = (Members) q.uniqueResult();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (RuntimeException e) {
+            if (tx != null && tx.isActive()) {
+                try {
+                    // Second try catch as the rollback could fail as well
+                    tx.rollback();
+                } catch (HibernateException e1) {
+                    // add logging
+                }
+                // throw again the first exception
+                throw e;
+            }
         }
         if (oneOfMembers != null) {
             return oneOfMembers.getPassword();
@@ -451,16 +579,29 @@ public class SQLForumHandler implements ForumHandlerInterface {
             return null;
         }
     }
+
     ;
 
     public boolean checkUsername(String username) {
         Members oneOfMembers = null;
+        Transaction tx = null;
+        Session session = SessionFactoryUtil.getInstance().getCurrentSession();
+
         try {
-            org.hibernate.Transaction tx = session.beginTransaction();
-            Query q = session.createQuery("from Members as members where members.UserName is '" + username + "'");
+            tx = session.beginTransaction();
+            Query q = session.createQuery("from Members as members where members.userName is '" + username + "'");
             oneOfMembers = (Members) q.uniqueResult();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (RuntimeException e) {
+            if (tx != null && tx.isActive()) {
+                try {
+                    // Second try catch as the rollback could fail as well
+                    tx.rollback();
+                } catch (HibernateException e1) {
+                    // add logging
+                }
+                // throw again the first exception
+                throw e;
+            }
         }
         if (oneOfMembers != null) {
             return true;
@@ -514,43 +655,115 @@ public class SQLForumHandler implements ForumHandlerInterface {
         }
     }
 
+    public void initForum2() {
+
+        Foruminfo tForum = new Foruminfo();
+        tForum.setName("Tapuach");
+        tForum.setNumOfMessages(0);
+        Transaction tx = null;
+        Session session = SessionFactoryUtil.getInstance().getCurrentSession();
+        try {
+            tx = session.beginTransaction();
+            session.save(tForum);
+            tx.commit();
+        } catch (RuntimeException e) {
+            if (tx != null && tx.isActive()) {
+                try {
+                    // Second try catch as the rollback could fail as well
+                    tx.rollback();
+                } catch (HibernateException e1) {
+                    // add logging
+                }
+                // throw again the first exception
+                throw e;
+            }
+        }
+    }
+
     /**
      *  this is just help funtion. It is taking at exsisting forum and clean it;
      */
     public void initForum() {
-        List< Members>    MembersList = null;
-    try {
-        org.hibernate.Transaction tx = session.beginTransaction();
-        Query q = session.createQuery ("from Members as members where * '");
-        MembersList = (List<Members>) q.list();
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
 
+        List<Members> MembersList = null;
+        Foruminfo foruminfo = null;
+        String password = "nir";
+        Transaction tx = null;
+        Session session = SessionFactoryUtil.getInstance().getCurrentSession();
+        try {
+            tx = session.beginTransaction();
+            Query q = session.createQuery("from Foruminfo as foruminfo  where foruminfo.name  is 'Tapuach'");
+            foruminfo = (Foruminfo) q.uniqueResult();
+            foruminfo.setNumOfMessages(0);
+        } catch (RuntimeException e) {
+            if (tx != null && tx.isActive()) {
+                try {
+                    // Second try catch as the rollback could fail as well
+                    tx.rollback();
+                } catch (HibernateException e1) {
+                    // add logging
+                }
+                // throw again the first exception
+                throw e;
+            }
+        }
+
+
+        /////////////////////////
+        try {
+            tx = session.beginTransaction();
+            Query q = session.createQuery("from Members as members");
+            System.out.println("cookl");
+            MembersList = (List<Members>) q.list();
+        } catch (RuntimeException e) {
+            if (tx != null && tx.isActive()) {
+                try {
+                    // Second try catch as the rollback could fail as well
+                    tx.rollback();
+                } catch (HibernateException e1) {
+                    // add logging
+                }
+                // throw again the first exception
+                throw e;
+            }
+        }
         for (Members m : MembersList) {
             deleteMember(m);
         }
-          List< Message>    MessagesList = null;
-    try {
-        org.hibernate.Transaction tx = session.beginTransaction();
-        Query q = session.createQuery ("from Message as message where * '");
-        MessagesList = (List<Message>) q.list();
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
 
-        for (Message m : MessagesList) {
-            deleteMessage(m);
+/////////////////////////////////////////
+        List<Message> MessagesList = null;
+        tx =null;
+        session =  SessionFactoryUtil.getInstance().getCurrentSession();
+        try {
+            tx = session.beginTransaction();
+            Query q = session.createQuery("from Message as message");
+            MessagesList = (List<Message>) q.list();
+            System.out.println(MessagesList.size() + "sdf");
+        } catch (RuntimeException e) {
+            if (tx != null && tx.isActive()) {
+                try {
+                    // Second try catch as the rollback could fail as well
+                    tx.rollback();
+                } catch (HibernateException e1) {
+                    // add logging
+                }
+                // throw again the first exception
+                throw e;
+            }
+        }
+        if (MessagesList != null) {
+            for (Message m : MessagesList) {
+                deleteMessage(m);
+            }
         }
     }
 
     /*
      *    this function giving back member by his userName
      */
-
     public boolean getStatus(String username) {
-        //  TODO change the admin check to status check
-        return findMember(username).isIsAdmin();
+        return findMember(username).isIsLogin();
     }
 
     /* add a Admin to the forum
@@ -563,21 +776,21 @@ public class SQLForumHandler implements ForumHandlerInterface {
      * @param dateOfBirth
      */
     public void registerAdmin(String userName, String nickName, String password, String eMail, String firstName, String lastName, Date dateOfBirth) {
-            // Create a new member
-            Members newMember = new Members();
-            newMember.setUserName(userName);
-            newMember.setNickName(nickName);
-            newMember.setPassword(password);
-            newMember.setEmail(eMail);
-            newMember.setFirstName(firstName);
-            newMember.setLastName(lastName);
-            newMember.setDataOfBirth(dateOfBirth);
-            newMember.setIsAdmin(true);
-            Date nowT = new Date();
-            newMember.setDateOfJoin(nowT);
-            //    newMember.setDateOfBirth(null);
-            if (!checkUsername(userName)) {
-               createMember(newMember);
-            }
+        // Create a new member
+        Members newMember = new Members();
+        newMember.setUserName(userName);
+        newMember.setNickName(nickName);
+        newMember.setPassword(password);
+        newMember.setEmail(eMail);
+        newMember.setFirstName(firstName);
+        newMember.setLastName(lastName);
+        newMember.setDataOfBirth(dateOfBirth);
+        newMember.setIsAdmin(true);
+        Date nowT = new Date();
+        newMember.setDateOfJoin(nowT);
+        //    newMember.setDateOfBirth(null);
+        if (!checkUsername(userName)) {
+            createMember(newMember);
+        }
     }
-    }
+}

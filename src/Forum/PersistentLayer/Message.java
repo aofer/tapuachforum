@@ -1,5 +1,5 @@
 package Forum.PersistentLayer;
-// Generated 02:47:58 02/05/2010 by Hibernate Tools 3.2.1.GA
+// Generated 00:53:19 05/05/2010 by Hibernate Tools 3.2.1.GA
 
 
 import java.util.Date;
@@ -10,37 +10,40 @@ import java.util.Date;
 public class Message  implements java.io.Serializable {
 
 
-     private Integer number;
+     private int number;
      private String title;
      private String body;
      private String author;
-     private Date dataOfAdd;
+     private int idFather;
+     private Date dateOfAdd;
      private Date dateOfEdit;
-     private Integer idFather;
 
     public Message() {
     }
 
 	
-    public Message(String author, Date dataOfAdd, Date dateOfEdit) {
+    public Message(int number, String author, int idFather, Date dateOfAdd, Date dateOfEdit) {
+        this.number = number;
         this.author = author;
-        this.dataOfAdd = dataOfAdd;
+        this.idFather = idFather;
+        this.dateOfAdd = dateOfAdd;
         this.dateOfEdit = dateOfEdit;
     }
-    public Message(String title, String body, String author, Date dataOfAdd, Date dateOfEdit, Integer idFather) {
+    public Message(int number, String title, String body, String author, int idFather, Date dateOfAdd, Date dateOfEdit) {
+       this.number = number;
        this.title = title;
        this.body = body;
        this.author = author;
-       this.dataOfAdd = dataOfAdd;
-       this.dateOfEdit = dateOfEdit;
        this.idFather = idFather;
+       this.dateOfAdd = dateOfAdd;
+       this.dateOfEdit = dateOfEdit;
     }
    
-    public Integer getNumber() {
+    public int getNumber() {
         return this.number;
     }
     
-    public void setNumber(Integer number) {
+    public void setNumber(int number) {
         this.number = number;
     }
     public String getTitle() {
@@ -64,12 +67,19 @@ public class Message  implements java.io.Serializable {
     public void setAuthor(String author) {
         this.author = author;
     }
-    public Date getDataOfAdd() {
-        return this.dataOfAdd;
+    public int getIdFather() {
+        return this.idFather;
     }
     
-    public void setDataOfAdd(Date dataOfAdd) {
-        this.dataOfAdd = dataOfAdd;
+    public void setIdFather(int idFather) {
+        this.idFather = idFather;
+    }
+    public Date getDateOfAdd() {
+        return this.dateOfAdd;
+    }
+    
+    public void setDateOfAdd(Date dateOfAdd) {
+        this.dateOfAdd = dateOfAdd;
     }
     public Date getDateOfEdit() {
         return this.dateOfEdit;
@@ -77,13 +87,6 @@ public class Message  implements java.io.Serializable {
     
     public void setDateOfEdit(Date dateOfEdit) {
         this.dateOfEdit = dateOfEdit;
-    }
-    public Integer getIdFather() {
-        return this.idFather;
-    }
-    
-    public void setIdFather(Integer idFather) {
-        this.idFather = idFather;
     }
 
 
