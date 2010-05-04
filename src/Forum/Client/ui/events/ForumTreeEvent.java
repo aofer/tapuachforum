@@ -1,6 +1,6 @@
 package Forum.Client.ui.events;
 
-import Forum.Client.ui.ForumTreeHandler;
+import Forum.Client.ui.TreeView.ForumTreeHandler;
 
 /**
  * Classes that implement this interface are events related to the ForumTree.

@@ -12,6 +12,7 @@
 package Forum.Client.ui;
 
 import Forum.Client.ControllerLayer.ControllerHandler;
+import Forum.Client.ui.TreeView.ForumTree;
 import java.awt.Dimension;
 
 import javax.swing.DefaultListModel;

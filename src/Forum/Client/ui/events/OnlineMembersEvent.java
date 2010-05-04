@@ -5,8 +5,8 @@
 
 package Forum.Client.ui.events;
 
-import Forum.Client.ui.ForumTree;
-import Forum.Client.ui.ForumTreeHandler;
+import Forum.Client.ui.TreeView.ForumTree;
+import Forum.Client.ui.TreeView.ForumTreeHandler;
 import java.awt.Component;
 
 /**
