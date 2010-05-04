@@ -17,9 +17,15 @@ package Forum.Client.ui;
  */
 public class SearchPanel extends javax.swing.JPanel {
 
+     private Main _parent ;
+
     /** Creates new form SearchPanel */
     public SearchPanel() {
         initComponents();
+    }
+
+    void addParent(Main main) {
+          this._parent = main;
     }
 
     /** This method is called from within the constructor to
@@ -189,6 +195,12 @@ public class SearchPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_tSearchAutherActionPerformed
 
+        /**
+     * @return the _parent
+     */
+    public Main getMain() {
+        return _parent;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bSearchAuthor;

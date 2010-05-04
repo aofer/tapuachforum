@@ -17,9 +17,15 @@ package Forum.Client.ui;
  */
 public class StatusPanel extends javax.swing.JPanel {
 
+    private Main _parent ;
+
     /** Creates new form StatusPanel */
     public StatusPanel() {
         initComponents();
+    }
+
+      void addParent(Main main) {
+          this._parent = main;
     }
 
     /** This method is called from within the constructor to
@@ -66,6 +72,26 @@ public class StatusPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
 
+    /**
+     * @return the jTextArea1
+     */
+    public javax.swing.JTextArea getJTextArea1() {
+        return jTextArea1;
+    }
+
+    /**
+     * @param jTextArea1 the jTextArea1 to set
+     */
+    public void setJTextArea1(javax.swing.JTextArea jTextArea1) {
+        this.jTextArea1 = jTextArea1;
+    }
+
+     /**
+     * @return the _parent
+     */
+    public Main getMain() {
+        return _parent;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
