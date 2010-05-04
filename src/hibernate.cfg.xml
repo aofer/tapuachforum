@@ -9,14 +9,8 @@
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
-    <mapping resource="Forum.PersistentLayer/Message.hbm.xml"/>
-    <mapping resource="Forum.PersistentLayer/Members.hbm.xml"/>
-    <mapping resource="Forum.PersistentLayer/Message.hbm.xml"/>
-    <mapping resource="Forum.PersistentLayer/Members.hbm.xml"/>
-    <mapping resource="Forum.PersistentLayer/Message.hbm.xml"/>
-    <mapping resource="Forum/PersistentLayer/Message.hbm.xml"/>
-    <mapping resource="Forum/PersistentLayer/Members.hbm.xml"/>
-    <mapping resource="Forum/PersistentLayer/Message.hbm.xml"/>
-    <mapping resource="Forum/PersistentLayer/Members.hbm.xml"/>
+    <mapping resource="Message.hbm.xml"/>
+    <mapping resource="Members.hbm.xml"/>
+    <mapping resource="Foruminfo.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

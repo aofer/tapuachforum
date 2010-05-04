@@ -50,20 +50,23 @@ public class SQLForumHandlerTest {
      */
     @Test
     public void testInitForum() {
+        
         System.out.println("initForum");
-        SQLForumHandler instance = null;
+        // initFOrum2 use only to build in the first time Tapuach Forum;
+        // Don't use if it is in the table
+      //      instance.initForum2();
         instance.initForum();
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+     //   fail("The test case is a prototype.");
     }
 
     /**
      * Test of login method, of class SQLForumHandler.
      */
-    @Test
+   @Test
     public void testLogin() {
         System.out.println("login");
-         String userName = "userToCheckLogInandLogOut";
+         String userName = "userToCheck2";
         String nickName = "nowOut";
         String password = "PaSSword";
         String eMail = "3@sd";
@@ -71,12 +74,13 @@ public class SQLForumHandlerTest {
         String lastName = "iscoll";
         Date dateOfBirth = new Date();
      instance.register(userName, nickName, password, eMail, firstName, lastName, dateOfBirth);
-       boolean oldStatus = instance.getStatus(userName);
+
+        System.out.println("344");
+           boolean oldStatus = instance.getStatus(userName);
            assertFalse(oldStatus);
             instance.login(userName);
-           boolean newStatus = instance.getStatus(userName);
+          boolean newStatus = instance.getStatus(userName);
            assertTrue(newStatus);
-        instance.login(userName);
     }
 
     /**
@@ -86,7 +90,7 @@ public class SQLForumHandlerTest {
     public void testLogoff() {
         System.out.println("logoff");
                   System.out.println("logoff");
-            String username = "userToCheckLogInandLogOut";
+            String username = "userToCheck2";
            boolean oldStatus = instance.getStatus(username);
            assertTrue(oldStatus);
             instance.logoff(username);
@@ -97,13 +101,13 @@ public class SQLForumHandlerTest {
     /**
      * Test of userExist method, of class SQLForumHandler.
      */
-    @Test
+   @Test
      public void testUserExists() {
         System.out.println("userExist");
         String username = "notSUchUser";
         String result = instance.userExist(username);
         assertNull(result);
-         result = instance.userExist("userToCheckLogInandLogOut");
+         result = instance.userExist("userToCheck2");
         assertEquals(result, "PaSSword");
 
    }
@@ -111,7 +115,7 @@ public class SQLForumHandlerTest {
       /**
      * Test of register method, of class SQLForumHandler.
      */
-    @Test
+   @Test
     public void testRegister() {
          System.out.println("register");
         String userName = "alexSup";
@@ -121,7 +125,7 @@ public class SQLForumHandlerTest {
         String firstName = "alex";
         String lastName = "iscoll";
         Date dateOfBirth = new Date();
-          instance.register(userName, nickName, password, eMail, firstName, lastName, dateOfBirth);
+          instance.register(userName, nickName,password, eMail, firstName, lastName, dateOfBirth);
            String result = instance.userExist(userName);
         assertEquals(result,password);
 
@@ -154,7 +158,7 @@ public class SQLForumHandlerTest {
     /**
      * Test of checkNickname method, of class SQLForumHandler.
      */
-    @Test
+   @Test
     public void testCheckNickname() {
         System.out.println("checkNickname");
         String nickname = "arsenik";
@@ -163,7 +167,7 @@ public class SQLForumHandlerTest {
         assertEquals(expResult, result);
         result = instance.checkNickname("nowOut");
         expResult = true;
-        assertEquals(expResult, result);
+       assertEquals(expResult, result);
 }
 
     /**
@@ -185,7 +189,7 @@ public class SQLForumHandlerTest {
     /**
      * Test of addMessage method, of class ForumHandler.
      */
-    @Test
+   @Test
     public void testAddMessage_6args() {
         System.out.println("addMessage");
 
@@ -217,7 +221,7 @@ public class SQLForumHandlerTest {
     /**
      * Test of checkUsername method, of class ForumHandler.
      */
-    @Test
+   @Test
     public void testCheckUsername() {
         System.out.println("checkUsername");
         String username = "neverCallmeLikeThat";
@@ -225,7 +229,7 @@ public class SQLForumHandlerTest {
         boolean result = instance.checkUsername(username);
         assertEquals(expResult, result);
           expResult = true;
-         result = instance.checkUsername("userToCheckLogInandLogOut");
+         result = instance.checkUsername("userToCheck2");
         assertEquals(expResult, result);
     }
 
@@ -256,7 +260,7 @@ public class SQLForumHandlerTest {
         String newSubject = "it is new now";
         String subNow = instance.getSubject(messageId);
         assertEquals(newSubject, subNow);
-//        instance.deleteMessage(messageId);
+        instance.deleteMessage(messageId);
         subNow = instance.getSubject(messageId);
         assertNotSame(newSubject, subNow);
     }

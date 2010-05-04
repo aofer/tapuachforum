@@ -10,8 +10,10 @@ import Forum.PersistentLayer.Interfaces.eMemberType;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 
 /**
@@ -25,24 +27,35 @@ public class SQLMemberHandler implements XMLMemberInterface {
      * @return
      */
 
-    Session session = null;
+
 
 
 
     public SQLMemberHandler() {
-         this.session = SessionFactoryUtil.getInstance().getCurrentSession();
+
     }
 
     public List<MemberData> getMember() {
         List<MemberData> members = new ArrayList<MemberData>();
     List< Members>    MembersList = null;
-    try {
-        org.hibernate.Transaction tx = session.beginTransaction();
-        Query q = session.createQuery ("from Members as members where * '");
+        Transaction tx = null;
+        Session session = SessionFactoryUtil.getInstance().getCurrentSession();
+        try {
+            tx = session.beginTransaction();
+        Query q = session.createQuery ("from Members as members");
         MembersList = (List<Members>) q.list();
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
+        } catch (RuntimeException e) {
+            if (tx != null && tx.isActive()) {
+                try {
+                    // Second try catch as the rollback could fail as well
+                    tx.rollback();
+                } catch (HibernateException e1) {
+                    // add logging
+                }
+                // throw again the first exception
+                throw e;
+            }
+        }
 
         for (Members m : MembersList) {
             Date joined = m.getDateOfJoin();
@@ -55,13 +68,24 @@ public class SQLMemberHandler implements XMLMemberInterface {
 
     public MemberData getMember(String userName) {
            Members   oneOfMembers = null;
-    try {
-        org.hibernate.Transaction tx = session.beginTransaction();
-        Query q = session.createQuery ("from Members as members where members.UserName is '"+userName+"'");
+        Transaction tx = null;
+        Session session = SessionFactoryUtil.getInstance().getCurrentSession();
+        try {
+            tx = session.beginTransaction();
+        Query q = session.createQuery ("from Members as members where members.userName is '"+userName+"'");
         oneOfMembers = (Members) q.uniqueResult();
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
+        } catch (RuntimeException e) {
+            if (tx != null && tx.isActive()) {
+                try {
+                    // Second try catch as the rollback could fail as well
+                    tx.rollback();
+                } catch (HibernateException e1) {
+                    // add logging
+                }
+                // throw again the first exception
+                throw e;
+            }
+        }
    
             if (oneOfMembers != null ) {
                 Date joined = oneOfMembers.getDateOfJoin();
@@ -75,13 +99,24 @@ public class SQLMemberHandler implements XMLMemberInterface {
 
     public eMemberType getMemberType(String userName) {
                  Members   oneOfMembers = null;
-    try {
-        org.hibernate.Transaction tx = session.beginTransaction();
-        Query q = session.createQuery ("from Members as members where members.UserName is '"+userName+"'");
+        Transaction tx = null;
+        Session session = SessionFactoryUtil.getInstance().getCurrentSession();
+        try {
+            tx = session.beginTransaction();
+        Query q = session.createQuery ("from Members as members where members.userName is '"+userName+"'");
         oneOfMembers = (Members) q.uniqueResult();
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
+        } catch (RuntimeException e) {
+            if (tx != null && tx.isActive()) {
+                try {
+                    // Second try catch as the rollback could fail as well
+                    tx.rollback();
+                } catch (HibernateException e1) {
+                    // add logging
+                }
+                // throw again the first exception
+                throw e;
+            }
+        }
                if (oneOfMembers != null ) {
                 if (oneOfMembers.isIsAdmin()) {
                     return (eMemberType.Admin);
@@ -92,6 +127,7 @@ public class SQLMemberHandler implements XMLMemberInterface {
                 }
             
         }
+
         return (null);
     }
 }
