@@ -11,17 +11,21 @@
 
 package Forum.Client.ui;
 
-import javax.swing.JFrame;
-
 /**
  *
  * @author Eden
  */
 public class LoginPanel extends javax.swing.JPanel {
 
+    private Main _parent ;
+
     /** Creates new form LoginPanel */
     public LoginPanel() {
         initComponents();
+    }
+
+    void addParent(Main main) {
+          this._parent = main;
     }
 
     /** This method is called from within the constructor to
@@ -66,20 +70,18 @@ public class LoginPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lUsername)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(bLogin))
+                .addComponent(lUsername)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lPassword)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(bRegister))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lPassword)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(bLogin)
+                .addGap(18, 18, 18)
+                .addComponent(bRegister)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,22 +91,19 @@ public class LoginPanel extends javax.swing.JPanel {
                     .addComponent(lUsername)
                     .addComponent(tUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lPassword)
-                    .addComponent(tPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bRegister)
                     .addComponent(bLogin))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void bLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLoginActionPerformed
-        String userNameText = tUsername.getText();
-        tUsername.selectAll();
-	String passwordText = new String(tPassword.getPassword());
-	tPassword.selectAll();
-       //((MainFrame)this.getParent()).
-
+        String userNameText = getTUsername().getText();
+        getTUsername().selectAll();
+        String passwordText = new String(getTPassword().getPassword());
+	   getTPassword().selectAll();
+       this.getMain().getM_pipe().login(userNameText, passwordText, this);       
     }//GEN-LAST:event_bLoginActionPerformed
 
     private void bRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegisterActionPerformed
@@ -115,6 +114,41 @@ public class LoginPanel extends javax.swing.JPanel {
          this.getParent().setVisible(false);
          
     }//GEN-LAST:event_bRegisterActionPerformed
+
+/**
+     * @return the tPassword
+     */
+    public javax.swing.JPasswordField getTPassword() {
+        return tPassword;
+    }
+
+    /**
+     * @param tPassword the tPassword to set
+     */
+    public void setTPassword(javax.swing.JPasswordField tPassword) {
+        this.tPassword = tPassword;
+    }
+
+    /**
+     * @return the tUsername
+     */
+    public javax.swing.JTextField getTUsername() {
+        return tUsername;
+    }
+
+    /**
+     * @param tUsername the tUsername to set
+     */
+    public void setTUsername(javax.swing.JTextField tUsername) {
+        this.tUsername = tUsername;
+    }
+
+        /**
+     * @return the _parent
+     */
+    public Main getMain() {
+        return _parent;
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

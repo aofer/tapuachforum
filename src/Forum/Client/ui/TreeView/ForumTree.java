@@ -47,9 +47,9 @@ public class ForumTree implements ForumTreeHandler {
      * A pipe interface to communicate with the controller layer.
      */
     private ControllerHandler m_pipe;
-    private MainFrame _mf;
+    private Main _mf;
 
-    public MainFrame getMf() {
+    public Main getMf() {
         return _mf;
     }
 
@@ -61,7 +61,7 @@ public class ForumTree implements ForumTreeHandler {
      */
     private ExecutorService m_pool = Executors.newCachedThreadPool();
 
-    public ForumTree(MainFrame mf) {
+    public ForumTree(Main mf) {
         UIManager.put("Tree.collapsedIcon", new ImageIcon("./images/plus-8.png"));
         UIManager.put("Tree.expandedIcon", new ImageIcon("./images/minus-8.png"));
         this._mf = mf;
