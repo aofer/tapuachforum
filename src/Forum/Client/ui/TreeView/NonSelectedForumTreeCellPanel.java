@@ -1,4 +1,4 @@
-package Forum.Client.ui;
+package Forum.Client.ui.TreeView;
 
 
 import java.awt.Color;
@@ -24,7 +24,7 @@ public class NonSelectedForumTreeCellPanel extends JPanel {
 	private JTextArea m_area;
 	
 	public void updatePanel(ForumCell cell) {
-		m_area.setText(cell.toString());
+		m_area.setText("User: "+ cell.getUserName()+ "      Subject: " + cell.getSubject());
 	}
 
 	public NonSelectedForumTreeCellPanel() {

@@ -1,4 +1,4 @@
-package Forum.Client.ui;
+package Forum.Client.ui.TreeView;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -37,5 +37,8 @@ public class ForumTreeRootPanel extends JPanel {
 		
 		m_forumTree = forumTree;
 	}
+    public JButton getAddButton(){
+        return m_addMessageButton;
+    }
 
 }

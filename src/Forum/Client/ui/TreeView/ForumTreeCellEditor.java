@@ -1,4 +1,4 @@
-package Forum.Client.ui;
+package Forum.Client.ui.TreeView;
 
 import java.awt.Component;
 

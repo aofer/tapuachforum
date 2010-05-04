@@ -1,6 +1,6 @@
 package Forum.Client.ui.events;
 
-import Forum.Client.ui.ForumTreeHandler;
+import Forum.Client.ui.TreeView.ForumTreeHandler;
 
 /**
  * @author Tomer Heber

@@ -1,4 +1,4 @@
-package Forum.Client.ui;
+package Forum.Client.ui.TreeView;
 
 import java.util.Observable;
 import java.util.Observer;
