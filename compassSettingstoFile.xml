@@ -7,9 +7,9 @@
       <connection>
           <file path="./index-data"/>
       </connection>
-   
+
       <mappings>
-          <class name="Forum.PersistentLayer.Data.MessageData" />
+          <class name="Forum.DomainLayer.Message" />
       </mappings>
    
    </compass>

@@ -16,15 +16,18 @@ package Forum.Client.ui;
  */
 public class LoginPanel extends javax.swing.JPanel {
 
+
     private Main _parent;
+
 
     /** Creates new form LoginPanel */
     public LoginPanel() {
         initComponents();
     }
 
+
     void addParent(Main main) {
-        this._parent = main;
+          this._parent = main;
     }
 
     /** This method is called from within the constructor to

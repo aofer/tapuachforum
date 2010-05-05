@@ -9,15 +9,41 @@ import Forum.PersistentLayer.Data.MessageData;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Vector;
+import org.compass.annotations.Cascade;
+import org.compass.annotations.Searchable;
+import org.compass.annotations.SearchableCascading;
+import org.compass.annotations.SearchableComponent;
+import org.compass.annotations.SearchableId;
+import org.compass.annotations.SearchableIdComponent;
 
 /**
  *
  * @author Amit Ofer
  */
+@Searchable
 public class Message implements MessageInterface {
-
+    @SearchableIdComponent
     private MessageData _data;
+    @SearchableCascading(cascade = {Cascade.ALL})
     private Vector<Message> _replies;
+
+    public Message(){
+
+    }
+
+    public  MessageData getData() {
+        return _data;
+    }
+
+    public void setData(MessageData _data) {
+        this._data = _data;
+    }
+
+    public void setReplies(Vector<Message> _replies) {
+        this._replies = _replies;
+    }
+
+
 
     /**
      *constructor
