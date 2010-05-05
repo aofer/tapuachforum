@@ -60,24 +60,25 @@ public class LogoutPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(280, 280, 280)
+                .addGap(23, 23, 23)
                 .addComponent(lWellcom)
-                .addGap(29, 29, 29)
+                .addGap(27, 27, 27)
                 .addComponent(bLogOut)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bLogOut)
-                    .addComponent(lWellcom))
+                    .addComponent(lWellcom)
+                    .addComponent(bLogOut))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void bLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLogOutActionPerformed
+        this.getMain().getUpgradeUsersPanel().setVisible(false);
         this.getMain().getM_pipe().logoff(this);
 }//GEN-LAST:event_bLogOutActionPerformed
 

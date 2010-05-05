@@ -15,8 +15,9 @@ import Forum.Client.ui.TreeView.ForumTree;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.ImageIcon;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 /**
@@ -34,21 +35,28 @@ public class Main extends javax.swing.JFrame {
         ForumTree tree = new ForumTree(this);
         this.TreePanel.setViewportView(tree.getForumTreeUI());
         this.m_pipe = tree.getPipe();
-        this.loginPanel.addParent(this);
-        this.statusPanel.addParent(this);
-        this.searchPanel.addParent(this);
-        this.logoutPanel.addParent(this);
+        this.addMainToPanels();
+        this.upgradeUsersPanel.setVisible(false);
         this.logoutPanel.setVisible(false);
+        this.registrationPanel.setVisible(false);
         this.m_pipe.getOnlineMembers(this);
         int delay = 10000; //milliseconds
         ActionListener taskPerformer = new ActionListener() {
-
             public void actionPerformed(ActionEvent evt) {
                 m_pipe.getOnlineMembers(null);
             }
         };
         new Timer(delay, taskPerformer).start();
 
+    }
+
+    private void addMainToPanels(){
+        this.loginPanel.addParent(this);
+        this.statusPanel.addParent(this);
+        this.searchPanel.addParent(this);
+        this.logoutPanel.addParent(this);
+        this.registrationPanel.addParent(this);
+        this.upgradeUsersPanel.addParent(this);
     }
 
     public void LogoutSuccess() {
@@ -59,11 +67,22 @@ public class Main extends javax.swing.JFrame {
     }
 
     public void RefreshUMembers(String _lm) {
-        throw new UnsupportedOperationException("Not yet implemented");
+        DefaultListModel dm = new DefaultListModel();
+        String[] st = _lm.split(";");
+
+        for(int i=0;i<st.length;i++){
+            dm.addElement(st[i]);
+        }
+        this.upgradeUsersPanel.getMemberList().setModel(dm);
     }
 
     public void RegSuccess() {
-        throw new UnsupportedOperationException("Not yet implemented");
+        JOptionPane.showMessageDialog(this,   "Registration Successful",    "Success",    JOptionPane.INFORMATION_MESSAGE);
+        this.getRegistrationPanel().clearFields();
+        this.getRegistrationPanel().setVisible(false);
+        this.TreePanel.setVisible(true);
+        this.searchPanel.setVisible(true);
+        this.statusPanel.setVisible(true);
     }
 
     public void loginSuccess(String user) {
@@ -77,7 +96,8 @@ public class Main extends javax.swing.JFrame {
     }
 
     public void upgradeSuccess() {
-        throw new UnsupportedOperationException("Not yet implemented");
+        JOptionPane.showMessageDialog(this,   "Upgrade Successful",    "Success",    JOptionPane.INFORMATION_MESSAGE);
+        this. m_pipe.getMembers(this);
     }
 
     /** This method is called from within the constructor to
@@ -91,15 +111,17 @@ public class Main extends javax.swing.JFrame {
 
         forumLabel = new javax.swing.JLabel();
         loginPanel = new Forum.Client.ui.LoginPanel();
-        searchPanel = new Forum.Client.ui.SearchPanel();
+        registrationPanel = new Forum.Client.ui.RegistrationPanel();
         TreePanel = new javax.swing.JScrollPane();
-        statusPanel = new Forum.Client.ui.StatusPanel();
         logoutPanel = new Forum.Client.ui.LogoutPanel();
+        searchPanel = new Forum.Client.ui.SearchPanel();
+        statusPanel = new Forum.Client.ui.StatusPanel();
+        upgradeUsersPanel = new Forum.Client.ui.upgradeUsersPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         forumLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
-        forumLabel.setIcon(new javax.swing.ImageIcon("C:\\Documents and Settings\\windows\\My Documents\\NetBeansProjects\\test\\test\\images\\tapuachLogo2.gif")); // NOI18N
+        forumLabel.setIcon(new javax.swing.ImageIcon("C:\\Documents and Settings\\windows\\My Documents\\NetBeansProjects\\tapuachforum\\images\\tapuachLogo4.gif")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -107,41 +129,50 @@ public class Main extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(forumLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(logoutPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(loginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(71, 71, 71))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(statusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(257, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(TreePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 987, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(statusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(TreePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 950, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(upgradeUsersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(forumLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(78, 78, 78)
+                        .addComponent(loginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(logoutPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(491, 491, 491))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(191, 191, 191)
+                    .addComponent(registrationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(1233, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(logoutPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(TreePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(forumLabel)
+                    .addComponent(loginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(logoutPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(upgradeUsersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TreePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(statusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
-                .addComponent(forumLabel)
-                .addGap(703, 703, 703))
+                .addGap(41, 41, 41))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(134, 134, 134)
+                    .addComponent(registrationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(270, Short.MAX_VALUE)))
         );
 
         pack();
@@ -151,9 +182,7 @@ public class Main extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-         Main main = new Main("Tapuach Forum");
-      //   mainFrame.RegisterPanel.setVisible(false);
-         //mainFrame.TreePane.setViewportView(tree.getForumTreeUI());
+         Main main = new Main("Tapuach Forum v1.0");
          main.setSize(new Dimension(1200,800));
          main.setResizable(false);
          main.setVisible(true);
@@ -164,8 +193,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel forumLabel;
     private Forum.Client.ui.LoginPanel loginPanel;
     private Forum.Client.ui.LogoutPanel logoutPanel;
+    private Forum.Client.ui.RegistrationPanel registrationPanel;
     private Forum.Client.ui.SearchPanel searchPanel;
     private Forum.Client.ui.StatusPanel statusPanel;
+    private Forum.Client.ui.upgradeUsersPanel upgradeUsersPanel;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -194,5 +225,26 @@ public class Main extends javax.swing.JFrame {
      */
     public Forum.Client.ui.StatusPanel getStatusPanel1() {
         return statusPanel;
+    }
+
+    /**
+     * @return the registrationPanel
+     */
+    public Forum.Client.ui.RegistrationPanel getRegistrationPanel() {
+        return registrationPanel;
+    }
+
+    /**
+     * @return the TreePanel
+     */
+    public javax.swing.JScrollPane getTreePanel() {
+        return TreePanel;
+    }
+
+    /**
+     * @return the upgradeUsersPanel
+     */
+    public Forum.Client.ui.upgradeUsersPanel getUpgradeUsersPanel() {
+        return upgradeUsersPanel;
     }
 }
