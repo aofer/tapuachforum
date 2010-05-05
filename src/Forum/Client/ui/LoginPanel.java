@@ -8,7 +8,6 @@
  *
  * Created on 23/04/2010, 17:49:32
  */
-
 package Forum.Client.ui;
 
 /**
@@ -17,7 +16,7 @@ package Forum.Client.ui;
  */
 public class LoginPanel extends javax.swing.JPanel {
 
-    private Main _parent ;
+    private Main _parent;
 
     /** Creates new form LoginPanel */
     public LoginPanel() {
@@ -25,7 +24,7 @@ public class LoginPanel extends javax.swing.JPanel {
     }
 
     void addParent(Main main) {
-          this._parent = main;
+        this._parent = main;
     }
 
     /** This method is called from within the constructor to
@@ -102,20 +101,24 @@ public class LoginPanel extends javax.swing.JPanel {
         String userNameText = getTUsername().getText();
         getTUsername().selectAll();
         String passwordText = new String(getTPassword().getPassword());
-	   getTPassword().selectAll();
-       this.getMain().getM_pipe().login(userNameText, passwordText, this);       
+        getTPassword().selectAll();
+        this.getMain().getM_pipe().login(userNameText, passwordText, this);
+        if(userNameText.compareTo( "admin") == 0){
+            this.getMain().getUpgradeUsersPanel().setVisible(true);
+            this.getMain().getM_pipe().getMembers(this);
+        }
+
     }//GEN-LAST:event_bLoginActionPerformed
 
     private void bRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegisterActionPerformed
-        // TODO add your handling code here:
-        //((MainFrame)(this.getParent().getParent())).
-         //regFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        //regFrame.setVisible(true);
-         this.getParent().setVisible(false);
-         
+        this.getMain().getTreePanel().setVisible(false);
+        this.getMain().getSearchPanel1().setVisible(false);
+        this.getMain().getStatusPanel1().setVisible(false);
+        this.getMain().getLoginPanel1().setVisible(false);
+        this.getMain().getRegistrationPanel().setVisible(true);
     }//GEN-LAST:event_bRegisterActionPerformed
 
-/**
+    /**
      * @return the tPassword
      */
     public javax.swing.JPasswordField getTPassword() {
@@ -143,14 +146,12 @@ public class LoginPanel extends javax.swing.JPanel {
         this.tUsername = tUsername;
     }
 
-        /**
+    /**
      * @return the _parent
      */
     public Main getMain() {
         return _parent;
     }
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bLogin;
     private javax.swing.JButton bRegister;
@@ -159,5 +160,4 @@ public class LoginPanel extends javax.swing.JPanel {
     private javax.swing.JPasswordField tPassword;
     private javax.swing.JTextField tUsername;
     // End of variables declaration//GEN-END:variables
-
 }
