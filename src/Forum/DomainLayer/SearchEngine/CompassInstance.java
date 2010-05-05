@@ -44,6 +44,7 @@ public class CompassInstance {
         /* The genData directory is where the search engine will save its data */
         CompassConfiguration conf = CompassConfigurationFactory
                 .newConfiguration().configure(file);
+         conf.setSetting("compass.engine.store.jdbc.dialect", "Forum.DomainLayer.SearchEngine.MyDriver");
 
         Compass compass = conf.buildCompass();
         return compass;

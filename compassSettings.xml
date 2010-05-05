@@ -5,15 +5,16 @@
 
    <compass name="default">
       <connection>
-         <jdbc dialect="org.apache.lucene.store.jdbc.dialect.HSQLDialect">
+         <jdbc dialect="org.apache.lucene.store.jdbc.dialect.MySQLDialect">
              <dataSourceProvider>
-                 <driverManager url="jdbc:hsqldb:hsql://localhost/xdb" username="sa" password="" 
-                                driverClass="org.hsqldb.jdbcDriver" />
+                 <driverManager url="jdbc:mysql://localhost:3306/mesdata?simulateLocators=true" username="root" password="1234"
+                                driverClass="com.mysql.jdbc.Driver" />
              </dataSourceProvider>             
          </jdbc>
      </connection>
    
       <mappings>
+          <class name="Forum.DomainLayer.Message" />
           <class name="Forum.PersistentLayer.Data.MessageData" />
       </mappings>
    

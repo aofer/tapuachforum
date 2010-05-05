@@ -91,9 +91,9 @@ public class MessageHandlerTest {
         String body = "Bob is WORKING all DAY!!!";
          int sizeFirst =xf.getForum().getMessages().get(0).getMessage().size();
        instance.addReply(parentId, nickname, subject, body);
-      
+
        int sizeAfter =xf.getForum().getMessages().get(0).getMessage().size();
-         assertTrue(sizeAfter- sizeFirst == 1); 
+         assertTrue(sizeAfter- sizeFirst == 1);
     }
 
     /**
@@ -132,7 +132,7 @@ public class MessageHandlerTest {
         System.out.println("viewForum");
 
         Vector result = instance.viewForum();
-       for(  int i = 0; i < result.size(); i++ )         
+       for(  int i = 0; i < result.size(); i++ )
         System.out.println(result.elementAt(i).toString());
            System.out.println("end view");
         assertTrue( result.size()>=1);
