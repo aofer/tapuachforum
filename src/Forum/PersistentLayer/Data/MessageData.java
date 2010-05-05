@@ -6,6 +6,7 @@
 package Forum.PersistentLayer.Data;
 
 import java.util.Date;
+import org.compass.annotations.Searchable;
 import org.compass.annotations.SearchableId;
 import org.compass.annotations.SearchableProperty;
 
@@ -13,19 +14,23 @@ import org.compass.annotations.SearchableProperty;
 /**
  * Contain all the data that a Domain class Message needed from the PersistentLayer
  */
+@Searchable(root = false)
 public class MessageData {
-
-@SearchableProperty (name = "name")
-private String _nickname;
-
-@SearchableProperty (name = "contents")
- private String _subject;
- private String _body;
+@SearchableProperty(name = "author")
+    private String _nickname;
+@SearchableProperty(name = "subject")
+private String _subject;
+@SearchableProperty(name = "content")
+private String _body;
  private Date _writeDate;
  private Date _modifiedDate;
 
  @SearchableId
  private int _id;
+
+ public MessageData(){
+     
+ }
 
  public MessageData(String nickname , String subject,String body,Date writeDate,Date modifedDate)
  {
