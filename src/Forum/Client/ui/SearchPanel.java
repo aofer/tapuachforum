@@ -41,18 +41,18 @@ public class SearchPanel extends javax.swing.JPanel {
         tSearchAuther = new javax.swing.JTextField();
         bSearchAuthor = new javax.swing.JButton();
         lAuther = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        tFromAuther = new javax.swing.JTextField();
+        lFrom1 = new javax.swing.JLabel();
+        lTo1 = new javax.swing.JLabel();
+        tToAuther = new javax.swing.JTextField();
         pSearchByPharse = new javax.swing.JPanel();
         tSearchPharse = new javax.swing.JTextField();
         bSearchPharse = new javax.swing.JButton();
         lPharse = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        lFrom2 = new javax.swing.JLabel();
+        lTo2 = new javax.swing.JLabel();
+        tToPharse = new javax.swing.JTextField();
+        tFromPharse = new javax.swing.JTextField();
 
         pSearchByAuthor.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Search by Author"));
 
@@ -71,9 +71,9 @@ public class SearchPanel extends javax.swing.JPanel {
 
         lAuther.setText("Author:");
 
-        jLabel5.setText("From:");
+        lFrom1.setText("From:");
 
-        jLabel6.setText("To:");
+        lTo1.setText("To:");
 
         javax.swing.GroupLayout pSearchByAuthorLayout = new javax.swing.GroupLayout(pSearchByAuthor);
         pSearchByAuthor.setLayout(pSearchByAuthorLayout);
@@ -84,13 +84,13 @@ public class SearchPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tSearchAuther, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
+                .addComponent(lFrom1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tFromAuther, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel6)
+                .addComponent(lTo1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tToAuther, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bSearchAuthor)
                 .addContainerGap())
@@ -101,10 +101,10 @@ public class SearchPanel extends javax.swing.JPanel {
                 .addGroup(pSearchByAuthorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lAuther)
                     .addComponent(tSearchAuther, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lFrom1)
+                    .addComponent(tFromAuther, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lTo1)
+                    .addComponent(tToAuther, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bSearchAuthor))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
@@ -120,9 +120,9 @@ public class SearchPanel extends javax.swing.JPanel {
 
         lPharse.setText("Pharse:");
 
-        jLabel3.setText("From:");
+        lFrom2.setText("From:");
 
-        jLabel4.setText("To:");
+        lTo2.setText("To:");
 
         javax.swing.GroupLayout pSearchByPharseLayout = new javax.swing.GroupLayout(pSearchByPharse);
         pSearchByPharse.setLayout(pSearchByPharseLayout);
@@ -133,13 +133,13 @@ public class SearchPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tSearchPharse, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addComponent(lFrom2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tFromPharse, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel4)
+                .addComponent(lTo2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tToPharse, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
                 .addComponent(bSearchPharse)
                 .addContainerGap())
@@ -148,10 +148,10 @@ public class SearchPanel extends javax.swing.JPanel {
             pSearchByPharseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pSearchByPharseLayout.createSequentialGroup()
                 .addGroup(pSearchByPharseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lFrom2)
+                    .addComponent(tFromPharse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lTo2)
+                    .addComponent(tToPharse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bSearchPharse)
                     .addComponent(tSearchPharse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lPharse))
@@ -176,14 +176,14 @@ public class SearchPanel extends javax.swing.JPanel {
                 .addComponent(pSearchByPharse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        pSearchByAuthor.getAccessibleContext().setAccessibleName("Search by Author");
         pSearchByAuthor.getAccessibleContext().setAccessibleDescription("Search by Author");
     }// </editor-fold>//GEN-END:initComponents
 
     private void bSearchAuthorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSearchAuthorActionPerformed
-        String autherText = tSearchAuther.getText();
-        tSearchAuther.selectAll();
-      
+        String autherText = this.tSearchAuther.getText();
+        int  from = Integer.parseInt(this.tFromAuther.getText());
+        int to = Integer.parseInt(this.tToAuther.getText());
+        //this.getMain().getM_pipe().searchByAuthor(autherText,from,to, this);
     }//GEN-LAST:event_bSearchAuthorActionPerformed
 
     private void bSearchPharseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSearchPharseActionPerformed
@@ -205,20 +205,20 @@ public class SearchPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bSearchAuthor;
     private javax.swing.JButton bSearchPharse;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JLabel lAuther;
+    private javax.swing.JLabel lFrom1;
+    private javax.swing.JLabel lFrom2;
     private javax.swing.JLabel lPharse;
+    private javax.swing.JLabel lTo1;
+    private javax.swing.JLabel lTo2;
     private javax.swing.JPanel pSearchByAuthor;
     private javax.swing.JPanel pSearchByPharse;
+    private javax.swing.JTextField tFromAuther;
+    private javax.swing.JTextField tFromPharse;
     private javax.swing.JTextField tSearchAuther;
     private javax.swing.JTextField tSearchPharse;
+    private javax.swing.JTextField tToAuther;
+    private javax.swing.JTextField tToPharse;
     // End of variables declaration//GEN-END:variables
 
 }

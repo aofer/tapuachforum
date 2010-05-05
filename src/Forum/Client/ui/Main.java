@@ -100,6 +100,10 @@ public class Main extends javax.swing.JFrame {
         this. m_pipe.getMembers(this);
     }
 
+
+    public void showResults(String results){
+       //TO-DO
+    }
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is

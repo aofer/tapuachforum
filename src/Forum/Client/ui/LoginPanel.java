@@ -103,7 +103,7 @@ public class LoginPanel extends javax.swing.JPanel {
         String passwordText = new String(getTPassword().getPassword());
         getTPassword().selectAll();
         this.getMain().getM_pipe().login(userNameText, passwordText, this);
-        if(userNameText.compareTo( "admin") == 0){
+        if (userNameText.compareTo("admin") == 0) {
             this.getMain().getUpgradeUsersPanel().setVisible(true);
             this.getMain().getM_pipe().getMembers(this);
         }
