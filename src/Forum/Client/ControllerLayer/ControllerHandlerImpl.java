@@ -78,12 +78,11 @@ public class ControllerHandlerImpl extends ControllerHandler {
     public void login(String username, String password, Component comp) {
         _connectionController.send(new LoginMessage(username, password));
         ServerResponse res = _connectionController.listen();
-        String resStr=res.getResponse();
-        String[] resStrSplit=resStr.split(";");
-
-        eMemberType membertype= eMemberType.valueOf(resStrSplit[0]);
         if (res.hasExecuted()) {
-            notifyObservers(new LoginEvent(comp, username,membertype,resStrSplit[1]));
+            String resStr = res.getResponse();
+            String[] resStrSplit = resStr.split(";");
+            eMemberType membertype = eMemberType.valueOf(resStrSplit[0]);
+            notifyObservers(new LoginEvent(comp, username, membertype, resStrSplit[1]));
         } else {
             notifyObservers(new ForumTreeErrorEvent(res.getResponse()));
         }
@@ -100,10 +99,10 @@ public class ControllerHandlerImpl extends ControllerHandler {
         }
     }
 
-        @Override
+    @Override
     public void logoff(Component comp) {
         _connectionController.send(new LogoffMessage());
-         ServerResponse res = _connectionController.listen();
+        ServerResponse res = _connectionController.listen();
         if (res.hasExecuted()) {
             notifyObservers(new LogoutEvent(comp));
         } else {
@@ -161,8 +160,7 @@ public class ControllerHandlerImpl extends ControllerHandler {
         }
     }
 
-
-        @Override
+    @Override
     public void getOnlineMembers(Component comp) {
         ServerResponse res;
         _connectionController.send(new OnlineMembersMessage());
@@ -177,12 +175,11 @@ public class ControllerHandlerImpl extends ControllerHandler {
             notifyObservers(new ForumTreeErrorEvent(res.getResponse()));
         }
 
-      }  
+    }
 
-  @Override
- public void UpgradeUser(String user,Component comp)
-      {
-           ServerResponse res;
+    @Override
+    public void UpgradeUser(String user, Component comp) {
+        ServerResponse res;
         _connectionController.send(new UpgradeUserMessage(user));
         res = _connectionController.listen();
         if (res.hasExecuted()) {
@@ -190,5 +187,5 @@ public class ControllerHandlerImpl extends ControllerHandler {
         } else {
             notifyObservers(new ForumTreeErrorEvent(res.getResponse()));
         }
-      }
+    }
 }
