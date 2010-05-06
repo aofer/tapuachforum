@@ -12,9 +12,12 @@ package Forum.Client.ui;
 
 import Forum.Client.ControllerLayer.ControllerHandler;
 import Forum.Client.ui.TreeView.ForumTree;
+import Forum.DomainLayer.Message;
+import Forum.PersistentLayer.Interfaces.eMemberType;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -27,21 +30,24 @@ import javax.swing.Timer;
 public class Main extends javax.swing.JFrame {
 
     private ControllerHandler m_pipe;
+    private  ForumTree _tree;
 
     /** Creates new form Main */
     public Main(String title) {
-           super(title);
+        super(title);
         initComponents();
-        ForumTree tree = new ForumTree(this);
-        this.TreePanel.setViewportView(tree.getForumTreeUI());
-        this.m_pipe = tree.getPipe();
+        _tree = new ForumTree(this);
+        this.TreePanel.setViewportView(_tree.getForumTreeUI());
+        this.m_pipe = _tree.getPipe();
         this.addMainToPanels();
         this.upgradeUsersPanel.setVisible(false);
         this.logoutPanel.setVisible(false);
         this.registrationPanel.setVisible(false);
+        this.searchResultPanel1.setVisible(false);
         this.m_pipe.getOnlineMembers(this);
         int delay = 10000; //milliseconds
         ActionListener taskPerformer = new ActionListener() {
+
             public void actionPerformed(ActionEvent evt) {
                 m_pipe.getOnlineMembers(null);
             }
@@ -50,13 +56,14 @@ public class Main extends javax.swing.JFrame {
 
     }
 
-    private void addMainToPanels(){
+    private void addMainToPanels() {
         this.loginPanel.addParent(this);
         this.statusPanel.addParent(this);
         this.searchPanel.addParent(this);
         this.logoutPanel.addParent(this);
         this.registrationPanel.addParent(this);
         this.upgradeUsersPanel.addParent(this);
+        this.getSearchResultPanel1().addParent(this);
     }
 
     public void LogoutSuccess() {
@@ -70,14 +77,14 @@ public class Main extends javax.swing.JFrame {
         DefaultListModel dm = new DefaultListModel();
         String[] st = _lm.split(";");
 
-        for(int i=0;i<st.length;i++){
+        for (int i = 0; i < st.length; i++) {
             dm.addElement(st[i]);
         }
         this.upgradeUsersPanel.getMemberList().setModel(dm);
     }
 
     public void RegSuccess() {
-        JOptionPane.showMessageDialog(this,   "Registration Successful",    "Success",    JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Registration Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
         this.getRegistrationPanel().clearFields();
         this.getRegistrationPanel().setVisible(false);
         this.TreePanel.setVisible(true);
@@ -85,10 +92,11 @@ public class Main extends javax.swing.JFrame {
         this.statusPanel.setVisible(true);
     }
 
-    public void loginSuccess(String user) {
+    public void loginSuccess(String user, eMemberType member,String nick) {
         this.loginPanel.setVisible(false);
         this.logoutPanel.setuser(user);
         logoutPanel.setVisible(true);
+        _tree.setViewer(member, nick);
     }
 
     public void setOnlineUsers(String onlineUsers) {
@@ -96,14 +104,22 @@ public class Main extends javax.swing.JFrame {
     }
 
     public void upgradeSuccess() {
-        JOptionPane.showMessageDialog(this,   "Upgrade Successful",    "Success",    JOptionPane.INFORMATION_MESSAGE);
-        this. m_pipe.getMembers(this);
+        JOptionPane.showMessageDialog(this, "Upgrade Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
+        this.m_pipe.getMembers(this);
     }
 
-
-    public void showResults(String results){
-       //TO-DO
+    public void showResults(String results) {
+        this.TreePanel.setVisible(false);
+        this.searchPanel.setVisible(false);
+        this.statusPanel.setVisible(false);
+        this.upgradeUsersPanel.setVisible(false);
+        Vector<Message> messages = Forum.TCPCommunicationLayer.MessagesParser.Decode(results);
+         for (int i=0; i<  messages.size(); i++) {
+            this.getSearchResultPanel1().addMessageToTable( i,messages.elementAt(i));
+        }
+        this.getSearchResultPanel1().setVisible(true);
     }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -113,71 +129,42 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        registrationPanel = new Forum.Client.ui.RegistrationPanel();
         forumLabel = new javax.swing.JLabel();
         loginPanel = new Forum.Client.ui.LoginPanel();
-        registrationPanel = new Forum.Client.ui.RegistrationPanel();
-        TreePanel = new javax.swing.JScrollPane();
         logoutPanel = new Forum.Client.ui.LogoutPanel();
+        TreePanel = new javax.swing.JScrollPane();
+        searchResultPanel1 = new Forum.Client.ui.SearchResultPanel();
         searchPanel = new Forum.Client.ui.SearchPanel();
         statusPanel = new Forum.Client.ui.StatusPanel();
         upgradeUsersPanel = new Forum.Client.ui.upgradeUsersPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1200, 825));
+        getContentPane().setLayout(null);
+        getContentPane().add(registrationPanel);
+        registrationPanel.setBounds(58, 180, 380, 394);
 
         forumLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
-        forumLabel.setIcon(new javax.swing.ImageIcon("C:\\Documents and Settings\\windows\\My Documents\\NetBeansProjects\\tapuachforum\\images\\tapuachLogo4.gif")); // NOI18N
+        forumLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forum/Client/ui/tapuachLogo4.gif"))); // NOI18N
+        getContentPane().add(forumLabel);
+        forumLabel.setBounds(10, 10, 400, 120);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(statusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(TreePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 950, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(upgradeUsersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(forumLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(78, 78, 78)
-                        .addComponent(loginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(logoutPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(491, 491, 491))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(191, 191, 191)
-                    .addComponent(registrationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(1233, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(forumLabel)
-                    .addComponent(loginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(logoutPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(upgradeUsersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TreePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(statusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(134, 134, 134)
-                    .addComponent(registrationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(270, Short.MAX_VALUE)))
-        );
+        loginPanel.setMinimumSize(new java.awt.Dimension(580, 45));
+        getContentPane().add(loginPanel);
+        loginPanel.setBounds(430, 70, 560, 45);
+        getContentPane().add(logoutPanel);
+        logoutPanel.setBounds(544, 70, 230, 45);
+        getContentPane().add(TreePanel);
+        TreePanel.setBounds(20, 140, 790, 480);
+        getContentPane().add(searchResultPanel1);
+        searchResultPanel1.setBounds(71, 210, 480, 351);
+        getContentPane().add(searchPanel);
+        searchPanel.setBounds(20, 620, 624, 150);
+        getContentPane().add(statusPanel);
+        statusPanel.setBounds(640, 620, 344, 140);
+        getContentPane().add(upgradeUsersPanel);
+        upgradeUsersPanel.setBounds(800, 140, 186, 260);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -186,11 +173,10 @@ public class Main extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-         Main main = new Main("Tapuach Forum v1.0");
-         main.setSize(new Dimension(1200,800));
-         main.setResizable(false);
-         main.setVisible(true);
-         main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Main main = new Main("Tapuach Forum v1.0");
+        main.setResizable(false);
+        main.setVisible(true);
+        main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane TreePanel;
@@ -199,6 +185,7 @@ public class Main extends javax.swing.JFrame {
     private Forum.Client.ui.LogoutPanel logoutPanel;
     private Forum.Client.ui.RegistrationPanel registrationPanel;
     private Forum.Client.ui.SearchPanel searchPanel;
+    private Forum.Client.ui.SearchResultPanel searchResultPanel1;
     private Forum.Client.ui.StatusPanel statusPanel;
     private Forum.Client.ui.upgradeUsersPanel upgradeUsersPanel;
     // End of variables declaration//GEN-END:variables
@@ -250,5 +237,19 @@ public class Main extends javax.swing.JFrame {
      */
     public Forum.Client.ui.upgradeUsersPanel getUpgradeUsersPanel() {
         return upgradeUsersPanel;
+    }
+
+    /**
+     * @return the searchResultPanel1
+     */
+    public Forum.Client.ui.SearchResultPanel getSearchResultPanel1() {
+        return searchResultPanel1;
+    }
+
+     /**
+     * @return the _tree
+     */
+     public ForumTree getForumTree() {
+        return _tree;
     }
 }

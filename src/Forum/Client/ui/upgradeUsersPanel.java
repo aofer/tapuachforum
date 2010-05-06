@@ -89,7 +89,7 @@ public class upgradeUsersPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bUpgradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bUpgradeActionPerformed
-        this.getMain().getM_pipe().UpgradeUser(((String)(this.getMemberList().getSelectedValue())), null);        // TODO add your handling code here:
+        this.getMain().getM_pipe().UpgradeUser(((String)(this.getMemberList().getSelectedValue())), null);   
     }//GEN-LAST:event_bUpgradeActionPerformed
 
     public Main getMain() {
