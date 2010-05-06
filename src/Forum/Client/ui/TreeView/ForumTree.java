@@ -27,7 +27,12 @@ import Forum.Client.ControllerLayer.ControllerHandlerFactory;
 import Forum.Client.ui.TreeView.Interfaces.CellViewInterface;
 import Forum.DomainLayer.Message;
 import Forum.PersistentLayer.Interfaces.eMemberType;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
+import javax.swing.tree.TreeModel;
+import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
 
 /**
  * @author Tomer Heber
@@ -35,6 +40,7 @@ import java.util.Vector;
  */
 public class ForumTree implements ForumTreeHandler {
 
+    TreePath _path = null;
     /**
      * The JTree GUI component.
      */
@@ -92,10 +98,30 @@ public class ForumTree implements ForumTreeHandler {
         m_panel = new JPanel();
         m_panel.setBackground(Color.WHITE);
         JScrollPane pane = new JScrollPane(m_tree);
-        pane.setPreferredSize(new Dimension(610, 435));
+        pane.setPreferredSize(new Dimension(770, 450));
         m_panel.add(pane);
+        m_panel.setPreferredSize(new Dimension(780, 475));
+    }
 
-        m_panel.setPreferredSize(new Dimension(620, 460));
+    public void setPath(long msgID) {
+        TreeNode[] nodePath= getPath((DefaultMutableTreeNode)m_tree.getModel().getRoot(),msgID);
+        TreePath treePath= new TreePath(nodePath);
+        m_tree.setSelectionPath(treePath);
+    }
+
+    private TreeNode[] getPath(DefaultMutableTreeNode parent, long msgID) {
+        DefaultMutableTreeNode child;
+        TreeNode[] childPath = null;
+
+        if (((ForumCell) parent.getUserObject()).getId() == msgID) {
+            childPath = parent.getPath();
+        } else {
+            for (int i = 0; i < parent.getChildCount() & childPath == null; i++) {
+                child = (DefaultMutableTreeNode) parent.getChildAt(i);
+                childPath = getPath(child, msgID);
+            }
+        }
+        return childPath;
     }
 
     /**
@@ -134,6 +160,7 @@ public class ForumTree implements ForumTreeHandler {
     @Override
     public void NotifyError(final String errorMessage) {
         m_pool.execute(new Runnable() {
+
             @Override
             public void run() {
                 JFrame frame = new JFrame();

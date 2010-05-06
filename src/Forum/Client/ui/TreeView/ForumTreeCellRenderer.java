@@ -22,7 +22,7 @@ public class ForumTreeCellRenderer implements TreeCellRenderer {
         m_nonselectedPanel = new NonSelectedForumTreeCellPanel();
         m_selectedPanel = new ForumCellView(forumTree);
         m_rootPanel = new ForumTreeRootPanel(forumTree);
-       setViwer(eMemberType.Admin, "a");
+       setViwer(eMemberType.guest, "a");
     }
 
     /* (non-Javadoc)

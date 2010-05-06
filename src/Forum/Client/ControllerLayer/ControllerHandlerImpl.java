@@ -11,6 +11,7 @@ import java.awt.Component;
 
 import Forum.Client.ui.events.*;
 import Forum.DomainLayer.Member;
+import Forum.PersistentLayer.Interfaces.eMemberType;
 import Forum.TCPCommunicationLayer.LoginMessage;
 import Forum.TCPCommunicationLayer.LogoffMessage;
 import Forum.TCPCommunicationLayer.MembersMessage;
@@ -77,8 +78,12 @@ public class ControllerHandlerImpl extends ControllerHandler {
     public void login(String username, String password, Component comp) {
         _connectionController.send(new LoginMessage(username, password));
         ServerResponse res = _connectionController.listen();
+        String resStr=res.getResponse();
+        String[] resStrSplit=resStr.split(";");
+
+        eMemberType membertype= eMemberType.valueOf(resStrSplit[0]);
         if (res.hasExecuted()) {
-            notifyObservers(new LoginEvent(comp, username));
+            notifyObservers(new LoginEvent(comp, username,membertype,resStrSplit[1]));
         } else {
             notifyObservers(new ForumTreeErrorEvent(res.getResponse()));
         }
@@ -138,7 +143,7 @@ public class ControllerHandlerImpl extends ControllerHandler {
         _connectionController.send(msg);
         res = _connectionController.listen();
         if (res.hasExecuted()) {
-            notifyObservers(new ForumTreeRefreshEvent(comp, res.getResponse()));
+            notifyObservers(new SearchByAutherResultsEvent(comp, res.getResponse()));
         } else {
             notifyObservers(new ForumTreeErrorEvent(res.getResponse()));
         }

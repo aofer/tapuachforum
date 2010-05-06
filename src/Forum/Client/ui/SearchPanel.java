@@ -8,7 +8,6 @@
  *
  * Created on 24/04/2010, 10:54:43
  */
-
 package Forum.Client.ui;
 
 /**
@@ -17,7 +16,7 @@ package Forum.Client.ui;
  */
 public class SearchPanel extends javax.swing.JPanel {
 
-     private Main _parent ;
+    private Main _parent;
 
     /** Creates new form SearchPanel */
     public SearchPanel() {
@@ -25,7 +24,7 @@ public class SearchPanel extends javax.swing.JPanel {
     }
 
     void addParent(Main main) {
-          this._parent = main;
+        this._parent = main;
     }
 
     /** This method is called from within the constructor to
@@ -181,9 +180,18 @@ public class SearchPanel extends javax.swing.JPanel {
 
     private void bSearchAuthorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSearchAuthorActionPerformed
         String autherText = this.tSearchAuther.getText();
-        int  from = Integer.parseInt(this.tFromAuther.getText());
-        int to = Integer.parseInt(this.tToAuther.getText());
-        //this.getMain().getM_pipe().searchByAuthor(autherText,from,to, this);
+        int from, to;
+        if (this.tFromAuther.getText().compareTo("") == 0) {
+            from = 0;
+        } else {
+            from = Integer.parseInt(this.tFromAuther.getText());
+        }
+        if (this.tToAuther.getText().compareTo("") == 0) {
+            to = 0;
+        } else {
+            to = Integer.parseInt(this.tToAuther.getText());
+        }
+        this.getMain().getM_pipe().searchByAuthor(autherText, from, to, this);
     }//GEN-LAST:event_bSearchAuthorActionPerformed
 
     private void bSearchPharseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSearchPharseActionPerformed
@@ -195,13 +203,12 @@ public class SearchPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_tSearchAutherActionPerformed
 
-        /**
+    /**
      * @return the _parent
      */
     public Main getMain() {
         return _parent;
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bSearchAuthor;
     private javax.swing.JButton bSearchPharse;
@@ -220,5 +227,4 @@ public class SearchPanel extends javax.swing.JPanel {
     private javax.swing.JTextField tToAuther;
     private javax.swing.JTextField tToPharse;
     // End of variables declaration//GEN-END:variables
-
 }

@@ -93,7 +93,7 @@ public class ForumCell {
     }
     @Override
     public String toString(){
-        return "abc";
+        return _id + " " +_userName+ " " + _subject + " "+ _body;
     }
 
 }
