@@ -141,11 +141,16 @@ public class Main extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1200, 825));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(null);
         getContentPane().add(registrationPanel);
-        registrationPanel.setBounds(58, 180, 380, 394);
+        registrationPanel.setBounds(58, 180, 380, 399);
 
-        forumLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
+        forumLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 36));
         forumLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forum/Client/ui/tapuachLogo4.gif"))); // NOI18N
         getContentPane().add(forumLabel);
         forumLabel.setBounds(10, 10, 400, 120);
@@ -164,10 +169,14 @@ public class Main extends javax.swing.JFrame {
         getContentPane().add(statusPanel);
         statusPanel.setBounds(640, 620, 344, 140);
         getContentPane().add(upgradeUsersPanel);
-        upgradeUsersPanel.setBounds(800, 140, 186, 260);
+        upgradeUsersPanel.setBounds(800, 140, 166, 260);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+       getM_pipe().logoff(this);
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
