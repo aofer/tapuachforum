@@ -48,13 +48,13 @@ public class Forum implements ForumInterface {
     /**
      * private constructor for the Singleton design
      */
-    private Forum() {   //added stuff to the constructor in order to make it work
-        XMLFileHandler xf = new XMLFileHandler("testforum.xml"); //currently using the testforum xml file
-        ForumHandlerInterface xmlForumHandler = new ForumHandler(xf);
-        XMLMessageInterface xmlMessageHandler = new XMLMessageHandler(xf);
-        XMLMemberInterface xmlMemberHandler = new XMLMemberHandler(xf);
-        this._messageHandler = new MessageHandler(xmlForumHandler, xmlMessageHandler);
-        this._userHandler = new UserHandler(xmlForumHandler, xmlMemberHandler);
+     private Forum() {   //added stuff to the constructor in order to make it work
+        //XMLFileHandler xf = new XMLFileHandler("testforum.xml"); //currently using the testforum xml file
+        ForumHandlerInterface sqlForumHandler = new SQLForumHandler();
+        XMLMessageInterface sqlMessageHandler = new SQLMessageHandler();
+        XMLMemberInterface sqlMemberHandler = new SQLMemberHandler();
+        this._messageHandler = new MessageHandler(sqlForumHandler, sqlMessageHandler);
+        this._userHandler = new UserHandler(sqlForumHandler, sqlMemberHandler);
         this._searchHandler = new SearchEngineHandler();
         Date tDate = new Date();
         addAdmin("admin", "admin", "adminy", "thebestadmin@gmail.com", "ad", "min", tDate);

@@ -78,25 +78,25 @@ public class MessagesParserTest {
         Message msgFromStr = rmsg1.firstElement();//1
         assertEquals("arseny", msgFromStr.getNickname());
 
-        Message msgFromStr1 = msgFromStr.getReplies().elementAt(0);//2
+        Message msgFromStr1 = msgFromStr.getReplies().get(0);//2
         assertEquals(msg2.getNickname(), msgFromStr1.getNickname());
 
-        msgFromStr1 = msgFromStr.getReplies().elementAt(2);//8
+        msgFromStr1 = msgFromStr.getReplies().get(2);//8
         assertEquals(msg8.getNickname(), msgFromStr1.getNickname());
 
-        msgFromStr1 = msgFromStr.getReplies().elementAt(1);//3
+        msgFromStr1 = msgFromStr.getReplies().get(1);//3
         assertEquals(msg3.getNickname(), msgFromStr1.getNickname());
 
-        msgFromStr = msgFromStr1.getReplies().elementAt(0);//4
+        msgFromStr = msgFromStr1.getReplies().get(0);//4
         assertEquals(msg4.getNickname(), msgFromStr.getNickname());
 
-        msgFromStr1 = msgFromStr.getReplies().elementAt(1);//6
+        msgFromStr1 = msgFromStr.getReplies().get(1);//6
         assertEquals(msg6.getNickname(), msgFromStr1.getNickname());
 
-        msgFromStr1 = msgFromStr.getReplies().elementAt(0);//5
+        msgFromStr1 = msgFromStr.getReplies().get(0);//5
         assertEquals(msg5.getNickname(), msgFromStr1.getNickname());
 
-        msgFromStr1 = msgFromStr1.getReplies().elementAt(0);//7
+        msgFromStr1 = msgFromStr1.getReplies().get(0);//7
         assertEquals(msg7.getNickname(), msgFromStr1.getNickname());
 
 

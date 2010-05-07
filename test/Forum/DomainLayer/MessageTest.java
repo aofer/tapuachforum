@@ -10,6 +10,7 @@ import Forum.PersistentLayer.ForumHandler;
 import Forum.PersistentLayer.XMLFileHandler;
 import Forum.PersistentLayer.XMLMemberHandler;
 import Forum.PersistentLayer.XMLMessageHandler;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
 import org.junit.After;
@@ -102,9 +103,9 @@ public class MessageTest {
         int preSize = instance.getReplies().size();
         instance.addReply(instance2);
         assertEquals(instance.getReplies().size(), preSize + 1);
-        Message tMessage = instance.getReplies().elementAt(0);
-        assertEquals(instance.getReplies().elementAt(0).getSubject(),"theMesSubject2222");
-        assertEquals(instance.getReplies().elementAt(0).getBody(),"the Mes Body222222");
+        Message tMessage = instance.getReplies().get(0);
+        assertEquals(instance.getReplies().get(0).getSubject(),"theMesSubject2222");
+        assertEquals(instance.getReplies().get(0).getBody(),"the Mes Body222222");
 
 
     }
@@ -122,8 +123,8 @@ public class MessageTest {
          assertNotSame(instance2, this);
        //  assertNotSame(instance.getReplies().elementAt(0).getBody(),"the Mes Body222222");
         instance.addReply(instance2);
-        Vector result = instance.getReplies();
-       assertEquals(instance.getReplies().elementAt(0).getBody(),"the Mes Body222222");
+        ArrayList result = instance.getReplies();
+       assertEquals(instance.getReplies().get(0).getBody(),"the Mes Body222222");
     }
 
     /**

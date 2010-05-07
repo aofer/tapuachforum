@@ -192,6 +192,9 @@ public class SearchPanel extends javax.swing.JPanel {
             to = Integer.parseInt(this.tToAuther.getText());
         }
         this.getMain().getM_pipe().searchByAuthor(autherText, from, to, this);
+        tFromAuther.setText("");
+        tToAuther.setText("");
+        tToAuther.setText("");
     }//GEN-LAST:event_bSearchAuthorActionPerformed
 
     private void bSearchPharseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSearchPharseActionPerformed

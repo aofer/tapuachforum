@@ -8,8 +8,11 @@ package Forum.DomainLayer.SearchEngine;
 import Forum.DomainLayer.Forum;
 import Forum.DomainLayer.Interfaces.MessageInterface;
 import Forum.DomainLayer.Logger.TapuachLogger;
+import Forum.DomainLayer.Message;
 import Forum.Exceptions.MessageNotFoundException;
 import Forum.PersistentLayer.Data.MessageData;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.compass.core.CompassHit;
 import org.compass.core.CompassHits;
 import org.compass.core.CompassSession;
@@ -25,6 +28,7 @@ public class CompassSearchHandler implements SearchEngineInterface {
         CompassSession cs = CompassInstance.getInstance().openSession();
         cs.beginTransaction();
                cs. save(msg);
+
           cs.commit();
           cs.close();
     }
@@ -46,11 +50,9 @@ public class CompassSearchHandler implements SearchEngineInterface {
         CompassHit[] detachedHits = hits.detach(from, to).getHits();
         SearchHit[] sh = new SearchHit[detachedHits.length];
         for(int i = 0; i<detachedHits.length;i++){
-            try {
-                sh[i] = new SearchHit((MessageInterface) Forum.getInstance().getMessage(((MessageData)(detachedHits[i])).getId()), detachedHits[i].score());
-            } catch (MessageNotFoundException ex) {
-                TapuachLogger.getInstance().severe("can't happen - no mesage found");
-            }
+            
+                sh[i] = new SearchHit(((MessageInterface)detachedHits[i].data()), detachedHits[i].score());
+                     
         }
           cs.commit();
         cs.close();
@@ -59,16 +61,17 @@ public class CompassSearchHandler implements SearchEngineInterface {
 
     
     public SearchHit[] searchByContent(String phrase, int from, int to) {
-         CompassHits hits =  CompassInstance.getInstance().openSession().find("content:\"" + phrase  + "\"");
+        CompassSession cs = CompassInstance.getInstance().openSession();
+        cs.beginTransaction();
+        CompassHits hits =  cs.find("content: " + phrase + " OR subject:" + phrase );
         CompassHit[] detachedHits = hits.detach(from, to).getHits();
         SearchHit[] sh = new SearchHit[detachedHits.length];
         for(int i = 0; i<detachedHits.length;i++){
-      try {
-                sh[i] = new SearchHit((MessageInterface) Forum.getInstance().getMessage(((MessageData)(detachedHits[i])).getId()), detachedHits[i].score());
-            } catch (MessageNotFoundException ex) {
-                TapuachLogger.getInstance().severe("can't happen - no mesage found");
-            }
+             sh[i] = new SearchHit(((MessageInterface)detachedHits[i].data()), detachedHits[i].score());
+                      
         }
+          cs.commit();
+        cs.close();
         return sh;
     }
 

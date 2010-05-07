@@ -37,7 +37,7 @@ public class SearchEngineHandler implements SearchEngineInterface {
 
     public void addMessage(MessageInterface msg) {
         _searchData.addMessage(msg);
-        Vector<Message> rep = msg.getReplies();
+        ArrayList<Message> rep = msg.getReplies();
         if (!rep.isEmpty()) {
             for (Message m : rep) {
                 addMessage(m);
