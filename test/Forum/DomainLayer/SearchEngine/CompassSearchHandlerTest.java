@@ -41,7 +41,10 @@ public class CompassSearchHandlerTest {
         Message msg = new Message(new MessageData("Arseny", "1", "hello hello", tDate, tDate,1));
         instance.addMessage(msg);
         msg = new Message(new MessageData("Arseny", "2", "hola hola", tDate, tDate,2));
-        msg.addReply(new Message(new MessageData("Liron", "2.1", "aloha aloha", tDate, tDate,3)));
+        Message Msg2 = new Message(new MessageData("Liron", "2.1", "aloha aloha", tDate, tDate,3));
+        Message Msg3 = new Message(new MessageData("Amit", "2.1.1", "bom dia", tDate, tDate,10));
+        Msg2.addReply(Msg3);
+        msg.addReply(Msg2);
         instance.addMessage(msg);
     }
 
@@ -57,10 +60,13 @@ public class CompassSearchHandlerTest {
         System.out.println("addMessage");
         Date tDate = new Date();
         Message msg = new Message(new MessageData("Omri", "3", "marhaba marhaba", tDate, tDate,4));
+        
+        msg.addReply( new Message(new MessageData("Nir", "3", "bonjour bonjour", tDate, tDate,5)));
+
         instance.addMessage(msg);
-        SearchHit[] sh = instance.searchByAuthor("Omri", 0, 2);
+        SearchHit[] sh = instance.searchByAuthor("Omri", 0, 1);
         MessageInterface retMsg = sh[0].getMessage();
-        assertEquals(msg.getIndex(), retMsg);
+        assertEquals(msg.getIndex(), retMsg.getIndex());
         // TODO review the generated test code and remove the default call to fail.
 
     }
@@ -71,11 +77,19 @@ public class CompassSearchHandlerTest {
     @Test
     public void testUpdateMessage() {
         System.out.println("updateMessage");
-        MessageInterface msg = null;
+         SearchHit[] sh = instance.searchByAuthor("Nir", 0, 1);
+         MessageInterface retMsg = sh[0].getMessage();
+         retMsg.setBody("ni hao");
+         instance.updateMessage(retMsg);
+         sh = instance.searchByAuthor("Nir", 0, 1);
+         retMsg = sh[0].getMessage();
+         assertEquals("ni hao",retMsg.getBody() );
+
         
-        instance.updateMessage(msg);
+        
+  
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -84,11 +98,15 @@ public class CompassSearchHandlerTest {
     @Test
     public void testRemoveMessage() {
         System.out.println("removeMessage");
-        MessageInterface msg = null;
-        
-        instance.removeMessage(msg);
+        SearchHit[] sh = instance.searchByAuthor("Omri", 0, 1);
+        MessageInterface retMsg = sh[0].getMessage();
+        instance.removeMessage(retMsg);
+        sh = instance.searchByAuthor("Omri", 0, 1);
+        assertEquals(0, sh.length);
+        sh = instance.searchByAuthor("Nir", 0, 1);
+        assertEquals(0, sh.length);
+
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -97,14 +115,18 @@ public class CompassSearchHandlerTest {
     @Test
     public void testSearchByAuthor() {
         System.out.println("searchByAuthor");
-        String username = "";
+        String username = "Amit";
         int from = 0;
-        int to = 0;
-        SearchHit[] expResult = null;
+        int to = 1;
         SearchHit[] result = instance.searchByAuthor(username, from, to);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        MessageInterface retMsg = result[0].getMessage();
+        assertEquals(10, retMsg.getIndex());
+        username = "Arseny";
+        from = 1; to =  2 ;
+        result = instance.searchByAuthor(username, from, to);
+        assertEquals(1, result.length);
+
+
     }
 
     /**
@@ -113,14 +135,24 @@ public class CompassSearchHandlerTest {
     @Test
     public void testSearchByContent() {
         System.out.println("searchByContent");
-        String phrase = "";
+        Date tDate = new Date();
+        Message msg = new Message(new MessageData("Alex", "Black Mirror 2", "Angelina also catches the eye of Darren’s despotic, unpopular boss", tDate, tDate,7));
+        instance.addMessage(msg);
+        String phrase = "also";
         int from = 0;
-        int to = 0;
-        SearchHit[] expResult = null;
+        int to = 1;
         SearchHit[] result = instance.searchByContent(phrase, from, to);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        MessageInterface retMsg = result[0].getMessage();
+        assertEquals(7, retMsg.getIndex());
+
+         phrase = "also";
+         from = 0;
+         to = 1;
+        result = instance.searchByContent(phrase, from, to);
+         retMsg = result[0].getMessage();
+        assertEquals(7, retMsg.getIndex());
+  
+        
     }
 
 }

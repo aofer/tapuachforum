@@ -6,15 +6,16 @@ package Forum.DomainLayer;
 
 import Forum.DomainLayer.Interfaces.MessageInterface;
 import Forum.PersistentLayer.Data.MessageData;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Vector;
 import org.compass.annotations.Cascade;
 import org.compass.annotations.Searchable;
 import org.compass.annotations.SearchableCascading;
-import org.compass.annotations.SearchableComponent;
-import org.compass.annotations.SearchableId;
 import org.compass.annotations.SearchableIdComponent;
+import org.compass.annotations.SearchableProperty;
+import org.compass.annotations.SearchableReference;
 
 /**
  *
@@ -24,8 +25,10 @@ import org.compass.annotations.SearchableIdComponent;
 public class Message implements MessageInterface {
     @SearchableIdComponent
     private MessageData _data;
-    @SearchableCascading(cascade = {Cascade.ALL})
-    private Vector<Message> _replies;
+
+
+    @SearchableReference(cascade = {Cascade.ALL})
+    private ArrayList<Message> _replies;
 
     public Message(){
 
@@ -39,7 +42,7 @@ public class Message implements MessageInterface {
         this._data = _data;
     }
 
-    public void setReplies(Vector<Message> _replies) {
+    public void setReplies(ArrayList<Message> _replies) {
         this._replies = _replies;
     }
 
@@ -53,7 +56,7 @@ public class Message implements MessageInterface {
      */
     public Message(MessageData data) {
         this._data = data;
-        this._replies = new Vector<Message>();
+        this._replies = new ArrayList<Message>();
     }
 
     /**
@@ -67,7 +70,7 @@ public class Message implements MessageInterface {
      */
     public Message(MessageData data, Vector<Message> replies) {
         this(data);
-        this._replies = new Vector<Message>();
+        this._replies = new ArrayList<Message>();
     }
 
     /**
@@ -98,7 +101,7 @@ public class Message implements MessageInterface {
      *getter for the replies
      * @return
      */
-    public Vector<Message> getReplies() {
+    public ArrayList<Message> getReplies() {
         return _replies;
     }
 
@@ -134,6 +137,7 @@ public class Message implements MessageInterface {
      * toString method for a message
      * @return
      */
+    @Override
     public String toString() {
         String ans = "MessageId: " + _data.getId() + "\nSubject:" + _data.getSubject() + "\nWritten by:"
                 + _data.getNickname() + "\nBody:" + _data.getBody() + "\n";
@@ -141,7 +145,7 @@ public class Message implements MessageInterface {
             ans = ans + "\nReplies:\n\n";
             for (int i = 0; i < _replies.size();i++){
                 ans = ans + "Reply      " + (i+1)  + "\n";
-                ans = ans + _replies.elementAt(i).toString() + "\n";
+                ans = ans + _replies.get(i).toString() + "\n";
             }
        }
         return ans;
@@ -172,5 +176,26 @@ public class Message implements MessageInterface {
         public Date getModifiedDate(){
         return this._data.getModifiedDate();
     }
+ @Override
+    public boolean equals(Object obj) {
+    	if (obj == null) {
+    		return false;
+    	}
+
+    	if (!obj.getClass().equals(this.getClass())) {
+    		return false;
+    	}
+
+    	Message message = (Message)obj;
+
+    	return message.getIndex() == (this.getIndex());
+    }
+
+    @Override
+    public int hashCode() {
+    	Integer Id = new Integer(this.getIndex());
+        return Id.hashCode();
+    }
+
 
 }

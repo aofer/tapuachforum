@@ -5,6 +5,7 @@
 package Forum.DomainLayer.Interfaces;
 
 import Forum.DomainLayer.Message;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
 
@@ -37,7 +38,7 @@ public interface MessageInterface {
      * getter for the replies
      * @return
      */
-    Vector<Message> getReplies();
+    ArrayList<Message> getReplies();
 
     /**
      * getter for the subject
