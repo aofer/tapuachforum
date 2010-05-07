@@ -179,6 +179,7 @@ public class SearchPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bSearchAuthorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSearchAuthorActionPerformed
+
         String autherText = this.tSearchAuther.getText();
         int from, to;
         if (this.tFromAuther.getText().compareTo("") == 0) {

@@ -149,13 +149,12 @@ public class SearchResultPanel extends javax.swing.JPanel {
     }
     private void btnGoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoActionPerformed
         int row = resultTable.getSelectedRow();
-       if (row != -1){
-        Integer id = (Integer) ((DefaultTableModel) resultTable.getModel()).getValueAt(row, 0);
-        this.getMain().getForumTree().setPath(id);
-       }
+        if (row != -1) {
+            Integer id = (Integer) ((DefaultTableModel) resultTable.getModel()).getValueAt(row, 0);
+            this.getMain().getForumTree().setPath(id);
+        }
         back();
 }//GEN-LAST:event_btnGoActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bClose;
     private javax.swing.JButton btnGo;
@@ -168,6 +167,13 @@ public class SearchResultPanel extends javax.swing.JPanel {
      */
     public Main getMain() {
         return _parent;
+    }
+
+    public void resetResults() {
+        int rowCount = ((DefaultTableModel) resultTable.getModel()).getRowCount();
+        for (int i = 0; i < rowCount; i++) {
+            ((DefaultTableModel) resultTable.getModel()).removeRow(0);
+        }
     }
 
     /**

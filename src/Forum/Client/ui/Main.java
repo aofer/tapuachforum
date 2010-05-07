@@ -30,7 +30,7 @@ import javax.swing.Timer;
 public class Main extends javax.swing.JFrame {
 
     private ControllerHandler m_pipe;
-    private  ForumTree _tree;
+    private ForumTree _tree;
 
     /** Creates new form Main */
     public Main(String title) {
@@ -92,7 +92,7 @@ public class Main extends javax.swing.JFrame {
         this.statusPanel.setVisible(true);
     }
 
-    public void loginSuccess(String user, eMemberType member,String nick) {
+    public void loginSuccess(String user, eMemberType member, String nick) {
         this.loginPanel.setVisible(false);
         this.logoutPanel.setuser(user);
         logoutPanel.setVisible(true);
@@ -113,9 +113,10 @@ public class Main extends javax.swing.JFrame {
         this.searchPanel.setVisible(false);
         this.statusPanel.setVisible(false);
         this.upgradeUsersPanel.setVisible(false);
+        this.getSearchResultPanel1().resetResults();
         Vector<Message> messages = Forum.TCPCommunicationLayer.MessagesParser.Decode(results);
-         for (int i=0; i<  messages.size(); i++) {
-            this.getSearchResultPanel1().addMessageToTable( i,messages.elementAt(i));
+        for (int i = 0; i < messages.size(); i++) {
+            this.getSearchResultPanel1().addMessageToTable(i, messages.elementAt(i));
         }
         this.getSearchResultPanel1().setVisible(true);
     }
@@ -175,7 +176,7 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-       getM_pipe().logoff(this);
+        getM_pipe().logoff(this);
     }//GEN-LAST:event_formWindowClosing
 
     /**
@@ -255,10 +256,10 @@ public class Main extends javax.swing.JFrame {
         return searchResultPanel1;
     }
 
-     /**
+    /**
      * @return the _tree
      */
-     public ForumTree getForumTree() {
+    public ForumTree getForumTree() {
         return _tree;
     }
 }
