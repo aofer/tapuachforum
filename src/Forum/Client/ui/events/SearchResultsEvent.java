@@ -13,11 +13,11 @@ import java.awt.Component;
  *
  * @author Arseny
  */
-public class SearchByAutherResultsEvent implements ForumTreeEvent {
+public class SearchResultsEvent implements ForumTreeEvent {
   private Component _comp;
   private String _results;
 
-    public SearchByAutherResultsEvent(Component comp, String results) {
+    public SearchResultsEvent(Component comp, String results) {
         this._comp = comp;
         this._results = results;
     }
