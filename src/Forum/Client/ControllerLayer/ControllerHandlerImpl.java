@@ -142,7 +142,7 @@ public class ControllerHandlerImpl extends ControllerHandler {
         _connectionController.send(msg);
         res = _connectionController.listen();
         if (res.hasExecuted()) {
-            notifyObservers(new SearchByAutherResultsEvent(comp, res.getResponse()));
+            notifyObservers(new SearchResultsEvent(comp, res.getResponse()));
         } else {
             notifyObservers(new ForumTreeErrorEvent(res.getResponse()));
         }

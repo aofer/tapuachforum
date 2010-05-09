@@ -200,7 +200,21 @@ public class SearchPanel extends javax.swing.JPanel {
 
     private void bSearchPharseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSearchPharseActionPerformed
         String pharseText = tSearchPharse.getText();
-        tSearchPharse.selectAll();
+        int from, to;
+        if (this.tFromPharse.getText().compareTo("") == 0) {
+            from = 0;
+        } else {
+            from = Integer.parseInt(this.tFromPharse.getText());
+        }
+        if (this.tToPharse.getText().compareTo("") == 0) {
+            to = 0;
+        } else {
+            to = Integer.parseInt(this.tToPharse.getText());
+        }
+        this.getMain().getM_pipe().searchByContent(pharseText, from, to, this);
+        tFromAuther.setText("");
+        tToAuther.setText("");
+        tToAuther.setText("");
     }//GEN-LAST:event_bSearchPharseActionPerformed
 
     private void tSearchAutherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tSearchAutherActionPerformed
