@@ -20,13 +20,7 @@ import org.hibernate.Session;
  */
 public class SQLForumHandler implements ForumHandlerInterface {
 
-
-    /**
-     *
-     * @param xf
-     */
     public SQLForumHandler() {
-
     }
 
     private static void deleteMessage(Message msg) {
@@ -733,8 +727,8 @@ public class SQLForumHandler implements ForumHandlerInterface {
 
 /////////////////////////////////////////
         List<Message> MessagesList = null;
-        tx =null;
-        session =  SessionFactoryUtil.getInstance().getCurrentSession();
+        tx = null;
+        session = SessionFactoryUtil.getInstance().getCurrentSession();
         try {
             tx = session.beginTransaction();
             Query q = session.createQuery("from Message as message");
@@ -793,4 +787,29 @@ public class SQLForumHandler implements ForumHandlerInterface {
             createMember(newMember);
         }
     }
-}
+
+    public static void forumInit() {
+        Foruminfo tForum = new Foruminfo();
+        tForum.setName("Tapuach");
+        tForum.setNumOfMessages(0);
+        Transaction tx = null;
+        Session session = SessionFactoryUtil.getInstance().getCurrentSession();
+        try {
+            tx = session.beginTransaction();
+            session.save(tForum);
+            tx.commit();
+        } catch (RuntimeException e) {
+            if (tx != null && tx.isActive()) {
+                try {
+                    // Second try catch as the rollback could fail as well
+                    tx.rollback();
+                } catch (HibernateException e1) {
+                    // add logging
+                }
+                // throw again the first exception
+                throw e;
+            }
+        }
+    }
+
+        }

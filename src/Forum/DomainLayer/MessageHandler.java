@@ -111,7 +111,7 @@ public class MessageHandler {
 
     /**
      * This message returns all the message in the forum
-     * @return Vector<MessageInterface> -  vector of messages
+     * @return Vector<XMLMessageInterface> -  vector of messages
      */
     public Vector<MessageInterface> viewForum() {
         Vector<MessageInterface> entireForum = new Vector<MessageInterface>();

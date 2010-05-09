@@ -1,5 +1,5 @@
 package Forum.PersistentLayer;
-// Generated 00:53:19 05/05/2010 by Hibernate Tools 3.2.1.GA
+// Generated 20:27:56 09/05/2010 by Hibernate Tools 3.2.1.GA
 
 
 

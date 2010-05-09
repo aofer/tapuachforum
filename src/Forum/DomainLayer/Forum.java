@@ -17,6 +17,8 @@ import Forum.PersistentLayer.Interfaces.XMLMessageInterface;
 import java.util.Date;
 import java.util.Vector;
 import Forum.DomainLayer.Logger.*;
+import Forum.DomainLayer.SearchEngine.CompassSearchHandler;
+import Forum.DomainLayer.SearchEngine.SearchEngineInterface;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,7 +32,7 @@ public class Forum implements ForumInterface {
 
     private MessageHandler _messageHandler;
     private UserHandler _userHandler;
-    private SearchEngineHandler _searchHandler;
+    private SearchEngineInterface _searchHandler;
     private static Forum _forum;
 
     /**
@@ -55,9 +57,9 @@ public class Forum implements ForumInterface {
         XMLMemberInterface sqlMemberHandler = new SQLMemberHandler();
         this._messageHandler = new MessageHandler(sqlForumHandler, sqlMessageHandler);
         this._userHandler = new UserHandler(sqlForumHandler, sqlMemberHandler);
-        this._searchHandler = new SearchEngineHandler();
-        Date tDate = new Date();
-        addAdmin("admin", "admin", "adminy", "thebestadmin@gmail.com", "ad", "min", tDate);
+        this._searchHandler = new CompassSearchHandler();
+        //Date tDate = new Date();
+       // addAdmin("admin", "admin", "adminy", "thebestadmin@gmail.com", "ad", "min", tDate);
 
     }
 
@@ -91,7 +93,7 @@ public class Forum implements ForumInterface {
     }
 
 // omri's version
-/*    public MemberInterface register(MemberData newMember) throws UserExistsException, NicknameExistsException, BadPasswordException {
+/*    public XMLMemberInterface register(MemberData newMember) throws UserExistsException, NicknameExistsException, BadPasswordException {
     return _userHandler.register(newMember);
     }*/
 // amit's version
@@ -213,7 +215,7 @@ public class Forum implements ForumInterface {
 
     /**
      * This method returns all the messages in the forum
-     * @return Vector<MessageInterface>
+     * @return Vector<XMLMessageInterface>
      */
     public Vector<MessageInterface> viewForum() {
         return this._messageHandler.viewForum();
@@ -245,7 +247,7 @@ public class Forum implements ForumInterface {
     /**
      * This method transpot the username userHandler class
      *  @param username
-     *  @return MemberInterface
+     *  @return XMLMemberInterface
      *  */
     public MemberInterface getMember(String username) {
         return _userHandler.getMember(username);
@@ -269,4 +271,11 @@ public class Forum implements ForumInterface {
     public List<Member> getMembers(){
         return this._userHandler.getMembers();
     }
+
+    public  void forumSetup(){
+        SQLForumHandler.forumInit();
+        
+    }
+
+
 }
