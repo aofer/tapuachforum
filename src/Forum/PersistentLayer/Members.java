@@ -1,5 +1,5 @@
 package Forum.PersistentLayer;
-// Generated 00:53:19 05/05/2010 by Hibernate Tools 3.2.1.GA
+// Generated 20:27:56 09/05/2010 by Hibernate Tools 3.2.1.GA
 
 
 import java.util.Date;
@@ -25,17 +25,6 @@ public class Members  implements java.io.Serializable {
     public Members() {
     }
 
-	
-    public Members(String userName, String firstName, String lastName, String password, Date dateOfJoin, boolean isAdmin, boolean isModerator, boolean isLogin) {
-        this.userName = userName;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.password = password;
-        this.dateOfJoin = dateOfJoin;
-        this.isAdmin = isAdmin;
-        this.isModerator = isModerator;
-        this.isLogin = isLogin;
-    }
     public Members(String userName, String firstName, String lastName, String password, Date dataOfBirth, String nickName, Date dateOfJoin, String email, boolean isAdmin, boolean isModerator, boolean isLogin) {
        this.userName = userName;
        this.firstName = firstName;

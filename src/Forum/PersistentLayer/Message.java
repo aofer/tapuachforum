@@ -1,5 +1,5 @@
 package Forum.PersistentLayer;
-// Generated 00:53:19 05/05/2010 by Hibernate Tools 3.2.1.GA
+// Generated 20:27:56 09/05/2010 by Hibernate Tools 3.2.1.GA
 
 
 import java.util.Date;
@@ -21,14 +21,6 @@ public class Message  implements java.io.Serializable {
     public Message() {
     }
 
-	
-    public Message(int number, String author, int idFather, Date dateOfAdd, Date dateOfEdit) {
-        this.number = number;
-        this.author = author;
-        this.idFather = idFather;
-        this.dateOfAdd = dateOfAdd;
-        this.dateOfEdit = dateOfEdit;
-    }
     public Message(int number, String title, String body, String author, int idFather, Date dateOfAdd, Date dateOfEdit) {
        this.number = number;
        this.title = title;

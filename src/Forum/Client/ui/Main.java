@@ -149,7 +149,7 @@ public class Main extends javax.swing.JFrame {
         });
         getContentPane().setLayout(null);
         getContentPane().add(registrationPanel);
-        registrationPanel.setBounds(58, 180, 380, 399);
+        registrationPanel.setBounds(58, 180, 380, 394);
 
         forumLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 36));
         forumLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forum/Client/ui/tapuachLogo4.gif"))); // NOI18N
@@ -170,7 +170,7 @@ public class Main extends javax.swing.JFrame {
         getContentPane().add(statusPanel);
         statusPanel.setBounds(640, 620, 344, 140);
         getContentPane().add(upgradeUsersPanel);
-        upgradeUsersPanel.setBounds(800, 140, 166, 260);
+        upgradeUsersPanel.setBounds(800, 140, 200, 260);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

@@ -141,7 +141,7 @@ public class UserHandler {
 
     /**
      * This method getting all the online members
-     * @return Vector<MemberInterface>
+     * @return Vector<XMLMemberInterface>
      */
     public Vector<MemberInterface> getOnlineMembers() {
         return _onlineMembers;

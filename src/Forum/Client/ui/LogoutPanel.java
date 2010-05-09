@@ -31,7 +31,7 @@ public class LogoutPanel extends javax.swing.JPanel {
 
 
     void setuser(String user) {
-        this.lWellcom.setText("wellcom  " + user);
+        this.lWellcom.setText("welcome  " + user);
     }
 
     /** This method is called from within the constructor to

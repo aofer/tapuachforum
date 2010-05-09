@@ -42,11 +42,6 @@ public class upgradeUsersPanel extends javax.swing.JPanel {
         bUpgrade = new javax.swing.JButton();
         lMember = new javax.swing.JLabel();
 
-        memberList.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         JScrollPane1.setViewportView(memberList);
 
         bUpgrade.setText("Upgrade");
@@ -56,7 +51,7 @@ public class upgradeUsersPanel extends javax.swing.JPanel {
             }
         });
 
-        lMember.setFont(new java.awt.Font("Cooper Black", 0, 24)); // NOI18N
+        lMember.setFont(new java.awt.Font("Cooper Black", 0, 24));
         lMember.setText("Members' List");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -74,7 +69,7 @@ public class upgradeUsersPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(52, 52, 52)
                         .addComponent(bUpgrade)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
