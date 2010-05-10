@@ -14,7 +14,6 @@ import Forum.Client.ControllerLayer.ControllerHandler;
 import Forum.Client.ui.TreeView.ForumTree;
 import Forum.DomainLayer.Message;
 import Forum.PersistentLayer.Interfaces.eMemberType;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
@@ -31,6 +30,7 @@ public class Main extends javax.swing.JFrame {
 
     private ControllerHandler m_pipe;
     private ForumTree _tree;
+    private boolean isAdmin;
 
     /** Creates new form Main */
     public Main(String title) {
@@ -71,6 +71,8 @@ public class Main extends javax.swing.JFrame {
         this.loginPanel.getTUsername().setText("");
         this.loginPanel.getTPassword().setText("");
         this.loginPanel.setVisible(true);
+        isAdmin = false;
+        _tree.setViewer(eMemberType.guest, "a");
     }
 
     public void RefreshUMembers(String _lm) {
@@ -97,6 +99,9 @@ public class Main extends javax.swing.JFrame {
         this.logoutPanel.setuser(user);
         logoutPanel.setVisible(true);
         _tree.setViewer(member, nick);
+        if (member == eMemberType.Admin) {
+            isAdmin = true;
+        }
     }
 
     public void setOnlineUsers(String onlineUsers) {
@@ -121,6 +126,16 @@ public class Main extends javax.swing.JFrame {
         this.getSearchResultPanel1().setVisible(true);
     }
 
+    public void hideResults() {
+        TreePanel.setVisible(true);
+        searchPanel.setVisible(true);
+        statusPanel.setVisible(true);
+        searchResultPanel1.setVisible(false);
+        if (isAdmin) {
+            upgradeUsersPanel.setVisible(true);
+        }
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -139,6 +154,7 @@ public class Main extends javax.swing.JFrame {
         searchPanel = new Forum.Client.ui.SearchPanel();
         statusPanel = new Forum.Client.ui.StatusPanel();
         upgradeUsersPanel = new Forum.Client.ui.upgradeUsersPanel();
+        btnRefresh = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1200, 825));
@@ -149,7 +165,7 @@ public class Main extends javax.swing.JFrame {
         });
         getContentPane().setLayout(null);
         getContentPane().add(registrationPanel);
-        registrationPanel.setBounds(58, 180, 380, 394);
+        registrationPanel.setBounds(58, 180, 380, 399);
 
         forumLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 36));
         forumLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forum/Client/ui/tapuachLogo4.gif"))); // NOI18N
@@ -172,12 +188,25 @@ public class Main extends javax.swing.JFrame {
         getContentPane().add(upgradeUsersPanel);
         upgradeUsersPanel.setBounds(800, 140, 200, 260);
 
+        btnRefresh.setText("Refresh forum");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnRefresh);
+        btnRefresh.setBounds(820, 580, 160, 40);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         getM_pipe().logoff(this);
     }//GEN-LAST:event_formWindowClosing
+
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        this.getM_pipe().refreshForum(this);
+    }//GEN-LAST:event_btnRefreshActionPerformed
 
     /**
      * @param args the command line arguments
@@ -190,6 +219,7 @@ public class Main extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane TreePanel;
+    private javax.swing.JButton btnRefresh;
     private javax.swing.JLabel forumLabel;
     private Forum.Client.ui.LoginPanel loginPanel;
     private Forum.Client.ui.LogoutPanel logoutPanel;
