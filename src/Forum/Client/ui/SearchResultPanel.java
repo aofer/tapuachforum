@@ -10,11 +10,11 @@
  */
 package Forum.Client.ui;
 
+import Forum.DomainLayer.Interfaces.MessageInterface;
 import Forum.DomainLayer.Message;
+import Forum.DomainLayer.SearchEngine.SearchHit;
 import java.util.Date;
 import javax.swing.JTable;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -34,14 +34,15 @@ public class SearchResultPanel extends javax.swing.JPanel {
         CreateTable();
     }
 
-    public void addMessageToTable(int index, Message m) {
+    public void addMessageToTable(SearchHit hit) {
+        MessageInterface m = hit.getMessage();
         int id = m.getIndex();
         String auther = m.getNickname();
         String subject = m.getSubject();
         String context = m.getBody();
         Date dateAdded = m.getWriteDate();
         TableModel model = this.resultTable.getModel();
-        ((DefaultTableModel) model).addRow(new Object[]{id, auther, subject, context, dateAdded});
+        ((DefaultTableModel) model).addRow(new Object[]{id, auther, subject, context, dateAdded,hit.getScore()});
     }
 
     void addParent(Main main) {
@@ -49,7 +50,7 @@ public class SearchResultPanel extends javax.swing.JPanel {
     }
 
     private void CreateTable() {
-        String col[] = {"Auther", "Subject", "Context", "Date added"};
+        String col[] = {"Auther", "Subject", "Context", "Date added","score"};
         this._tableModel = new DefaultTableModel(null, col);
         this._resultTable = new JTable(this._tableModel);
         this.tablePanel.add(this._resultTable);
@@ -82,14 +83,14 @@ public class SearchResultPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "", "Auther", "Subject", "Context", "Date Added"
+                "", "Auther", "Subject", "Context", "Date Added", "Score"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {

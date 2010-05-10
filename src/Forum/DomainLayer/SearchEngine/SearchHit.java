@@ -7,7 +7,7 @@ import Forum.DomainLayer.Interfaces.MessageInterface;
  * 
  * @author Tomer Heber
  */
-public class SearchHit {
+public class SearchHit implements Comparable<SearchHit>{
 	
 	private MessageInterface m_message;
 	private double m_score;
@@ -28,4 +28,8 @@ public class SearchHit {
         public String toString(){
             return "Score:" + this.m_score + "\n" + this.m_message.toString();
         }
+
+    public int compareTo(SearchHit o) {
+        return Double.compare(m_score, o.getScore());
+    }
 }

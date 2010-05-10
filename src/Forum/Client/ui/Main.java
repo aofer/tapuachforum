@@ -12,10 +12,12 @@ package Forum.Client.ui;
 
 import Forum.Client.ControllerLayer.ControllerHandler;
 import Forum.Client.ui.TreeView.ForumTree;
-import Forum.DomainLayer.Message;
+import Forum.DomainLayer.SearchEngine.SearchHit;
 import Forum.PersistentLayer.Interfaces.eMemberType;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.Vector;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
@@ -119,9 +121,10 @@ public class Main extends javax.swing.JFrame {
         this.statusPanel.setVisible(false);
         this.upgradeUsersPanel.setVisible(false);
         this.getSearchResultPanel1().resetResults();
-        Vector<Message> messages = Forum.TCPCommunicationLayer.MessagesParser.Decode(results);
-        for (int i = 0; i < messages.size(); i++) {
-            this.getSearchResultPanel1().addMessageToTable(i, messages.elementAt(i));
+        Vector<SearchHit> hits = Forum.TCPCommunicationLayer.MessagesParser.DecodeHits(results);
+        Collections.sort(hits);
+        for (Iterator<SearchHit> it = hits.iterator(); it.hasNext();) {
+            this.getSearchResultPanel1().addMessageToTable( it.next());
         }
         this.getSearchResultPanel1().setVisible(true);
     }
