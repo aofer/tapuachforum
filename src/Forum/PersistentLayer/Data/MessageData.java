@@ -22,7 +22,9 @@ public class MessageData {
 private String _subject;
 @SearchableProperty(name = "content")
 private String _body;
- private Date _writeDate;
+ @SearchableProperty
+private Date _writeDate;
+ @SearchableProperty
  private Date _modifiedDate;
 
  @SearchableId
