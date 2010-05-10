@@ -58,8 +58,9 @@ public class Forum implements ForumInterface {
         this._messageHandler = new MessageHandler(sqlForumHandler, sqlMessageHandler);
         this._userHandler = new UserHandler(sqlForumHandler, sqlMemberHandler);
         this._searchHandler = new CompassSearchHandler();
-        //Date tDate = new Date();
-       // addAdmin("admin", "admin", "adminy", "thebestadmin@gmail.com", "ad", "min", tDate);
+        Date tDate = new Date();
+       addAdmin("admin", "admin", "adminy", "thebestadmin@gmail.com", "ad", "min", tDate);
+
 
     }
 
@@ -88,7 +89,7 @@ public class Forum implements ForumInterface {
      * @return message
      * @throws MessageNotFoundException
      */
-    public MessageInterface getMessage(int messageId) throws MessageNotFoundException {
+    public synchronized MessageInterface getMessage(int messageId) throws MessageNotFoundException {
         return this._messageHandler.getMessage(messageId);
     }
 
@@ -110,7 +111,7 @@ public class Forum implements ForumInterface {
      * @throws NicknameExistsException
      * @throws BadPasswordException
      */
-    public void register(String username, String password, String nickname,
+    public synchronized void register(String username, String password, String nickname,
             String email, String firstName, String lastName, Date dateOfBirth) throws UserExistsException, NicknameExistsException, BadPasswordException {
         TapuachLogger.getInstance().info("user:  " + username + " registered to the forum");
         this._userHandler.register(username, password, nickname, email, firstName, lastName, dateOfBirth);
@@ -124,7 +125,7 @@ public class Forum implements ForumInterface {
      * @throws NoSuchUserException
      * @throws WrongPasswordException
      */
-    public void login(String username, String password) throws NoSuchUserException, WrongPasswordException {
+    public synchronized void login(String username, String password) throws NoSuchUserException, WrongPasswordException {
         TapuachLogger.getInstance().info("user:  " + username + " logged in");
         this._userHandler.login(username, password);
     }
@@ -133,7 +134,7 @@ public class Forum implements ForumInterface {
      * This method transpot the username for logout to the userHandler class
      * @param username
      */
-    public void logout(String username) {
+    public synchronized void logout(String username) {
         TapuachLogger.getInstance().info("user:  " + username + " logged out");
         this._userHandler.logout(username);
     }
@@ -144,7 +145,7 @@ public class Forum implements ForumInterface {
      * @param Subject
      * @param body
      */
-    public int addMessage(String nickname, String Subject, String body) { //might needs to throw NoSuchUserException in case there is no user with that nickname
+    public synchronized int addMessage(String nickname, String Subject, String body) { //might needs to throw NoSuchUserException in case there is no user with that nickname
         TapuachLogger.getInstance().info("nickname: " + nickname + " added new message");
         int id = this._messageHandler.addMessage(nickname, Subject, body);
         try {
@@ -163,7 +164,7 @@ public class Forum implements ForumInterface {
      * @param body
      * @throws MessageNotFoundException
      */
-    public void addReply(int parentId, String nickname, String Subject, String body) throws MessageNotFoundException {
+    public synchronized void addReply(int parentId, String nickname, String Subject, String body) throws MessageNotFoundException {
         TapuachLogger.getInstance().info("nickname: " + nickname + " add reply to message number:" + parentId);
         int id=this._messageHandler.addReply(parentId, nickname, Subject, body);
                 try {
@@ -182,7 +183,7 @@ public class Forum implements ForumInterface {
      * @throws MessageNotFoundException
      * @throws MessageOwnerException
      */
-    public void editMessage(String nickname, int messageId, String newSubject, String newBody) throws MessageNotFoundException, MessageOwnerException {
+    public synchronized void editMessage(String nickname, int messageId, String newSubject, String newBody) throws MessageNotFoundException, MessageOwnerException {
         TapuachLogger.getInstance().info("nickname: " + nickname + " edit message number:" + messageId);
         this._messageHandler.editMessage(nickname, messageId, newSubject, newBody);
         Message msg = this._messageHandler.getMessage(messageId);
@@ -195,7 +196,7 @@ public class Forum implements ForumInterface {
      *  @param messageId
      *  @throws MessageNotFoundException
      */
-    public void deleteMessage(int messageId) throws MessageNotFoundException {
+    public synchronized void deleteMessage(int messageId) throws MessageNotFoundException {
         TapuachLogger.getInstance().info("message number:" + messageId + " deleted");
         Message msg = _messageHandler.getMessage(messageId);
         this._searchHandler.removeMessage(msg);
@@ -208,7 +209,7 @@ public class Forum implements ForumInterface {
      *  @param username
      *  @throws UserNotExistException
      */
-    public void upgradeUser(String username) throws UserNotExistException {
+    public synchronized void upgradeUser(String username) throws UserNotExistException {
         TapuachLogger.getInstance().info("user:  " + username + " has been upgraded");
         this._userHandler.upgradeUser(username);
     }
@@ -217,7 +218,7 @@ public class Forum implements ForumInterface {
      * This method returns all the messages in the forum
      * @return Vector<XMLMessageInterface>
      */
-    public Vector<MessageInterface> viewForum() {
+    public synchronized Vector<MessageInterface> viewForum() {
         return this._messageHandler.viewForum();
     }
 
@@ -229,7 +230,7 @@ public class Forum implements ForumInterface {
      * @param to
      * @return SearchHit[]
      */
-    public SearchHit[] searchByContent(String phrase, int from, int to) {
+    public synchronized SearchHit[] searchByContent(String phrase, int from, int to) {
         return _searchHandler.searchByContent(phrase, from, to);
     }
 
@@ -240,7 +241,7 @@ public class Forum implements ForumInterface {
      * @param to
      * @return SearchHit[]
      */
-    public SearchHit[] searchByAuthor(String username, int from, int to) {
+    public synchronized SearchHit[] searchByAuthor(String username, int from, int to) {
         return _searchHandler.searchByAuthor(username, from, to);
     }
 
@@ -249,7 +250,7 @@ public class Forum implements ForumInterface {
      *  @param username
      *  @return XMLMemberInterface
      *  */
-    public MemberInterface getMember(String username) {
+    public synchronized MemberInterface getMember(String username) {
         return _userHandler.getMember(username);
     }
 
@@ -268,7 +269,7 @@ public class Forum implements ForumInterface {
         TapuachLogger.getInstance().info(username + " registered to the forum as Admin");
         this._userHandler.addAdmin(username, password, nickname, email, firstName, lastName, dateOfBirth);
     }
-    public List<Member> getMembers(){
+    public synchronized List<Member> getMembers(){
         return this._userHandler.getMembers();
     }
 

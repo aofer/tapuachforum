@@ -31,6 +31,9 @@ public class MessagesParser {
         str += "user:" + msg.getNickname();
         str += "subject:" + msg.getSubject();
         str += "body:" + msg.getBody();
+        if (msg.getWriteDate() == null)
+                str += "WriteDate:" + formatter.format(new Date());
+        else
         str += "WriteDate:" + formatter.format(msg.getWriteDate());
         str += "ModifiedDate:" + formatter.format(msg.getModifiedDate());
 

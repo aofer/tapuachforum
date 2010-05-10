@@ -40,12 +40,17 @@ public class CompassSearchHandlerTest {
         Date tDate = new Date();
         Message msg = new Message(new MessageData("Arseny", "1", "hello hello", tDate, tDate,1));
         instance.addMessage(msg);
-        msg = new Message(new MessageData("Arseny", "2", "hola hola", tDate, tDate,2));
+        msg = new Message(new MessageData("Arseny", "", "", tDate, tDate,2));
         Message Msg2 = new Message(new MessageData("Liron", "2.1", "aloha aloha", tDate, tDate,3));
         Message Msg3 = new Message(new MessageData("Amit", "2.1.1", "bom dia", tDate, tDate,10));
         Msg2.addReply(Msg3);
         msg.addReply(Msg2);
         instance.addMessage(msg);
+        msg = new Message(new MessageData("Tal", "", "", tDate, tDate,111));
+        instance.addMessage(msg);
+        msg.setBody("foo boo goo");
+        instance.addMessage(msg);
+
     }
 
     @After
@@ -115,12 +120,12 @@ public class CompassSearchHandlerTest {
     @Test
     public void testSearchByAuthor() {
         System.out.println("searchByAuthor");
-        String username = "Amit";
+        String username = "Tal";
         int from = 0;
         int to = 1;
         SearchHit[] result = instance.searchByAuthor(username, from, to);
         MessageInterface retMsg = result[0].getMessage();
-        assertEquals(10, retMsg.getIndex());
+        assertEquals(111, retMsg.getIndex());
         username = "Arseny";
         from = 1; to =  2 ;
         result = instance.searchByAuthor(username, from, to);
