@@ -49,6 +49,7 @@ public abstract class ControllerHandler extends Observable {
      */
     public abstract String getForumView();
 
+     public abstract void refreshForum(Component comp);
     /**
      * Tries to modify a message.
      *

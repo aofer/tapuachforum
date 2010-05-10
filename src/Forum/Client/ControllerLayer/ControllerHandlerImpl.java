@@ -1,6 +1,5 @@
 package Forum.Client.ControllerLayer;
 
-import Forum.Client.ui.events.OnlineMembersEvent;
 import Forum.TCPCommunicationLayer.AddMessageMessage;
 import Forum.TCPCommunicationLayer.AddReplyMessage;
 import Forum.TCPCommunicationLayer.ClientMessage;
@@ -10,7 +9,6 @@ import Forum.TCPCommunicationLayer.ServerResponse;
 import java.awt.Component;
 
 import Forum.Client.ui.events.*;
-import Forum.DomainLayer.Member;
 import Forum.PersistentLayer.Interfaces.eMemberType;
 import Forum.TCPCommunicationLayer.LoginMessage;
 import Forum.TCPCommunicationLayer.LogoffMessage;
@@ -21,7 +19,6 @@ import Forum.TCPCommunicationLayer.SearchByAuthorMessage;
 import Forum.TCPCommunicationLayer.SearchByContentMessage;
 import Forum.TCPCommunicationLayer.UpgradeUserMessage;
 import Forum.TCPCommunicationLayer.ViewForumMessage;
-import java.util.List;
 
 /**
  * You need to delete all the code in here and implement it yourself.<br>
@@ -42,6 +39,11 @@ public class ControllerHandlerImpl extends ControllerHandler {
         _connectionController.send(new ViewForumMessage());
         res = _connectionController.listen();
         return res.getResponse();
+    }
+
+    @Override
+    public void refreshForum(Component comp) {
+        notifyObservers(new ForumTreeRefreshEvent(comp, getForumView()));
     }
 
     @Override
@@ -113,17 +115,6 @@ public class ControllerHandlerImpl extends ControllerHandler {
     @Override
     public void modifyMessage(long id, String content, Component comp) {
         handleTreeEvents(new ModifyMessageMessage(id, "", content), comp);
-    }
-
-    private void handleMemberEvents(ClientMessage msg, Component comp) {
-        ServerResponse res;
-        _connectionController.send(msg);
-        res = _connectionController.listen();
-        if (res.hasExecuted()) {
-            notifyObservers(new ForumTreeRefreshEvent(comp, getForumView()));
-        } else {
-            notifyObservers(new ForumTreeErrorEvent(res.getResponse()));
-        }
     }
 
     private void handleTreeEvents(ClientMessage msg, Component comp) {
