@@ -47,7 +47,7 @@ public class Main extends javax.swing.JFrame {
         this.registrationPanel.setVisible(false);
         this.searchResultPanel1.setVisible(false);
         this.m_pipe.getOnlineMembers(this);
-        int delay = 10000; //milliseconds
+        int delay = 5000; //milliseconds
         ActionListener taskPerformer = new ActionListener() {
 
             public void actionPerformed(ActionEvent evt) {

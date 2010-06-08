@@ -33,6 +33,7 @@ import java.util.Vector;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 /**
  * @author Tomer Heber
@@ -49,6 +50,7 @@ public class ForumTree implements ForumTreeHandler {
      * The JPanel GUI component.
      */
     private JPanel m_panel;
+    private final Object m_treelock;
     /**
      * A pipe interface to communicate with the controller layer.
      */
@@ -74,7 +76,7 @@ public class ForumTree implements ForumTreeHandler {
         m_pipe = ControllerHandlerFactory.getPipe();
         /* Add an observer to the controller (The observable). */
         m_pipe.addObserver(new ForumTreeObserver(this));
-
+        m_treelock = new Object();
         m_tree = new JTree();
         m_tree.putClientProperty("JTree.lineStyle", "None");
 
@@ -104,9 +106,11 @@ public class ForumTree implements ForumTreeHandler {
     }
 
     public void setPath(long msgID) {
-        TreeNode[] nodePath= getPath((DefaultMutableTreeNode)m_tree.getModel().getRoot(),msgID);
-        TreePath treePath= new TreePath(nodePath);
-        m_tree.setSelectionPath(treePath);
+        synchronized (m_treelock) {
+            TreeNode[] nodePath = getPath((DefaultMutableTreeNode) m_tree.getModel().getRoot(), msgID);
+            TreePath treePath = new TreePath(nodePath);
+            m_tree.setSelectionPath(treePath);
+        }
     }
 
     private TreeNode[] getPath(DefaultMutableTreeNode parent, long msgID) {
@@ -148,13 +152,13 @@ public class ForumTree implements ForumTreeHandler {
                 stack.add(sonNode);
             }
         }
-
-        DefaultTreeModel model = new DefaultTreeModel(rootNode);
-        m_tree.setModel(model);
-        for (int i = 0; i < m_tree.getRowCount(); i++) {
-            m_tree.expandRow(i);
+        TreeModel model = new DefaultTreeModel(rootNode);
+        synchronized (m_treelock) {
+            m_tree.setModel(model);
+            for (int i = 0; i < m_tree.getRowCount(); i++) {
+                m_tree.expandRow(i);
+            }
         }
-
     }
 
     @Override

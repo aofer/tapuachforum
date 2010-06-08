@@ -149,7 +149,6 @@ public class ForumCellView extends javax.swing.JPanel implements CellViewInterfa
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         _forumTree.deleteMessage();
     }//GEN-LAST:event_btnDeleteActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnModify;
@@ -180,7 +179,7 @@ public class ForumCellView extends javax.swing.JPanel implements CellViewInterfa
                 break;
             case member:
                 btnReply.setEnabled(true);
-                if (_cell!=null && _nick.equals(_cell.getUserName())) {
+                if (_cell != null && _nick.equals(_cell.getUserName())) {
                     btnModify.setEnabled(true);
                     txtBody.setEditable(true);
                     txtSubject.setEditable(true);
@@ -191,7 +190,7 @@ public class ForumCellView extends javax.swing.JPanel implements CellViewInterfa
                 btnModify.setEnabled(true);
                 txtBody.setEditable(true);
                 txtSubject.setEditable(true);
-                if (_cell!=null && _nick.equals(_cell.getUserName())) {
+                if (_cell != null && _nick.equals(_cell.getUserName())) {
                     btnDelete.setEnabled(true);
                 }
                 break;

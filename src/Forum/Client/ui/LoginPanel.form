@@ -67,6 +67,9 @@
       <Properties>
         <Property name="columns" type="int" value="8"/>
       </Properties>
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tPasswordKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="bLogin">
       <Properties>
