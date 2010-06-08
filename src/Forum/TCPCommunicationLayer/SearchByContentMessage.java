@@ -38,7 +38,7 @@ public class SearchByContentMessage extends ClientMessage {
         SearchHit[] tHits = forum.searchByContent(m_phrase, m_from, m_to);
                String tForumString = "";
                for(SearchHit h : tHits) {
-               tForumString += MessagesParser.Encode(h.getMessage());
+               tForumString += MessagesParser.Encode(h);
                }
                 ServerResponse tResponse = new ServerResponse(tForumString, true);
 		return tResponse;

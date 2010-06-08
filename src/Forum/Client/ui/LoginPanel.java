@@ -16,18 +16,15 @@ package Forum.Client.ui;
  */
 public class LoginPanel extends javax.swing.JPanel {
 
-
     private Main _parent;
-
 
     /** Creates new form LoginPanel */
     public LoginPanel() {
         initComponents();
     }
 
-
     void addParent(Main main) {
-          this._parent = main;
+        this._parent = main;
     }
 
     /** This method is called from within the constructor to
@@ -51,6 +48,11 @@ public class LoginPanel extends javax.swing.JPanel {
         lPassword.setText("Password:");
 
         tPassword.setColumns(8);
+        tPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tPasswordKeyTyped(evt);
+            }
+        });
 
         bLogin.setText("Log in");
         bLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -101,6 +103,9 @@ public class LoginPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLoginActionPerformed
+        Login();
+    }//GEN-LAST:event_bLoginActionPerformed
+    private void Login() {
         String userNameText = getTUsername().getText();
         getTUsername().selectAll();
         String passwordText = new String(getTPassword().getPassword());
@@ -110,9 +115,7 @@ public class LoginPanel extends javax.swing.JPanel {
             this.getMain().getUpgradeUsersPanel().setVisible(true);
             this.getMain().getM_pipe().getMembers(this);
         }
-
-    }//GEN-LAST:event_bLoginActionPerformed
-
+    }
     private void bRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegisterActionPerformed
         this.getMain().getTreePanel().setVisible(false);
         this.getMain().getSearchPanel1().setVisible(false);
@@ -120,6 +123,12 @@ public class LoginPanel extends javax.swing.JPanel {
         this.getMain().getLoginPanel1().setVisible(false);
         this.getMain().getRegistrationPanel().setVisible(true);
     }//GEN-LAST:event_bRegisterActionPerformed
+
+    private void tPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tPasswordKeyTyped
+        if (evt.getKeyChar() == '\n') {
+            Login();
+        }
+    }//GEN-LAST:event_tPasswordKeyTyped
 
     /**
      * @return the tPassword
