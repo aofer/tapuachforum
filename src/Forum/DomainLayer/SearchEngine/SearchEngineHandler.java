@@ -59,13 +59,15 @@ public class SearchEngineHandler implements SearchEngineInterface {
         return getSearchHits(msgIndexs, from, to);
     }
 
-
     public SearchHit[] searchByContent(String phrase, int from, int to) {
         String[] body = phrase.split(" ");
-        List<Integer> msgIndexs=new LinkedList<Integer>();
-        for (int i=0;i<body.length;i++){
-// Have been change from "body[0]" to "body[i]" by NIr;
-            msgIndexs.addAll( this._searchData.getByContent(body[i]));
+        List<Integer> msgIndexs = new LinkedList<Integer>();
+        List<Integer> res;
+        for (int i = 0; i < body.length; i++) {
+            res = this._searchData.getByContent(body[i]);
+            if (res != null) {
+                msgIndexs.addAll(res);
+            }
         }
         return getSearchHits(msgIndexs, from, to);
     }

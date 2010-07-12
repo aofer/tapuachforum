@@ -122,6 +122,7 @@ public class LoginPanel extends javax.swing.JPanel {
         this.getMain().getStatusPanel1().setVisible(false);
         this.getMain().getLoginPanel1().setVisible(false);
         this.getMain().getRegistrationPanel().setVisible(true);
+        this.getMain().getRefreshButton().setVisible(false);
     }//GEN-LAST:event_bRegisterActionPerformed
 
     private void tPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tPasswordKeyTyped

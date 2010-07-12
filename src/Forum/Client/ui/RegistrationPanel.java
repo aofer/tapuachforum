@@ -187,18 +187,17 @@ public class RegistrationPanel extends javax.swing.JPanel {
             String tNickname = this.gettNickName().getText();
             String tPass = new String(this.gettPassword().getPassword());
             this.getMain().getM_pipe().register(tFirstname, tLastname, tNickname, temail, tUsername, tPass, null);
-             this.getMain().getLoginPanel1().setVisible(true);
         }
-       
     }//GEN-LAST:event_RegButtonActionPerformed
 
     private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
-      
+
         this.getMain().getSearchPanel1().setVisible(true);
         this.getMain().getStatusPanel1().setVisible(true);
         this.getMain().getTreePanel().setVisible(true);
-         this.getMain().getLoginPanel1().setVisible(true);
-         this.getMain().getRegistrationPanel().setVisible(false);
+        this.getMain().getLoginPanel1().setVisible(true);
+        this.getMain().getRegistrationPanel().setVisible(false);
+        this.getMain().getRefreshButton().setVisible(true);
     }//GEN-LAST:event_CancelButtonActionPerformed
 
     /**
@@ -209,49 +208,72 @@ public class RegistrationPanel extends javax.swing.JPanel {
     }
 
     private boolean correctInput() {
-        if (this.gettFirstName().getText().compareTo("") == 0) {
+        if (this.gettFirstName().getText().length()==0){
             JOptionPane.showMessageDialog(this, "please enter a first name", "Error", JOptionPane.WARNING_MESSAGE);
             return false;
         }
-        if (this.gettLastName().getText().compareTo("") == 0) {
+        if (!this.gettFirstName().getText().matches("[a-zA-Z]{3,20}")) {
+            JOptionPane.showMessageDialog(this, "first name should be only between 3 to 20 letters ", "Error", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        if (this.gettLastName().getText().length()==0){
             JOptionPane.showMessageDialog(this, "please enter a last name", "Error", JOptionPane.WARNING_MESSAGE);
             return false;
         }
-
-        if (this.gettEmail().getText().compareTo("") == 0) {                 //.matches("[a-zA-Z0-9]+@([a-zA-Z0-9]+)[.]{1}([a-zA-Z.]+)")) {
-            JOptionPane.showMessageDialog(this, "wrong email adress", "Error", JOptionPane.WARNING_MESSAGE);
+        if (!this.gettLastName().getText().matches("[a-zA-Z]{3,20}")) {
+            JOptionPane.showMessageDialog(this, "last name should be only between 3 to 20 letters ", "Error", JOptionPane.WARNING_MESSAGE);
             return false;
         }
-
-        if (this.gettUserName().getText().compareTo("") == 0) {
-            JOptionPane.showMessageDialog(this, "please enter a username", "Error", JOptionPane.WARNING_MESSAGE);
+        if (this.gettEmail().getText().length()==0){
+            JOptionPane.showMessageDialog(this, "please enter an email adress", "Error", JOptionPane.WARNING_MESSAGE);
             return false;
         }
-
-        if (this.gettNickName().getText().compareTo("") == 0) {
+        if (!this.gettEmail().getText().matches("[a-zA-Z0-9]+@([a-zA-Z0-9]+)[.]{1}([a-zA-Z.]+)")){
+            JOptionPane.showMessageDialog(this, "invalid email ", "Error", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        if (this.gettUserName().getText().length()==0){
+            JOptionPane.showMessageDialog(this, "please enter a user name", "Error", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        if (!this.gettUserName().getText().matches("[a-zA-Z0-9]+")){
+            JOptionPane.showMessageDialog(this, "invalid user name ", "Error", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        if (this.gettNickName().getText().length()==0){
             JOptionPane.showMessageDialog(this, "please enter a nickname", "Error", JOptionPane.WARNING_MESSAGE);
             return false;
         }
-
+        if (!this.gettNickName().getText().matches("[a-zA-Z0-9]+")){
+            JOptionPane.showMessageDialog(this, "invalid nickname  ", "Error", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
         String p1 = new String(this.gettPassword().getPassword());
         String p2 = new String(this.getRePass().getPassword());
+        if (p1.length()==0 | p2.length()==0){
+            JOptionPane.showMessageDialog(this, "please enter a password", "Error", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
         if (p1.compareTo(p2) != 0) {
             JOptionPane.showMessageDialog(this, "passwords don't match", "Error", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        if (p1.length()<8){
+            JOptionPane.showMessageDialog(this, "password to short  ", "Error", JOptionPane.WARNING_MESSAGE);
             return false;
         }
         return true;
     }
 
-    public void clearFields (){
+    public void clearFields() {
         this.tFirstName.setText("");
         this.tLastName.setText("");
         this.tEmail.setText("");
         this.tNickName.setText("");
-         this.tUserName.setText("");
-         this.tPassword.setText("");
-         this.rePass.setText("");
+        this.tUserName.setText("");
+        this.tPassword.setText("");
+        this.rePass.setText("");
     }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CancelButton;
     private javax.swing.JButton RegButton;

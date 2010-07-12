@@ -14,12 +14,14 @@ import Forum.Client.ControllerLayer.ControllerHandler;
 import Forum.Client.ui.TreeView.ForumTree;
 import Forum.DomainLayer.SearchEngine.SearchHit;
 import Forum.PersistentLayer.Interfaces.eMemberType;
+import java.awt.Button;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Vector;
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
@@ -75,6 +77,7 @@ public class Main extends javax.swing.JFrame {
         this.loginPanel.setVisible(true);
         isAdmin = false;
         _tree.setViewer(eMemberType.guest, "a");
+        this.getM_pipe().refreshForum(this);
     }
 
     public void RefreshUMembers(String _lm) {
@@ -91,9 +94,11 @@ public class Main extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Registration Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
         this.getRegistrationPanel().clearFields();
         this.getRegistrationPanel().setVisible(false);
+        this.loginPanel.setVisible(true);
         this.TreePanel.setVisible(true);
         this.searchPanel.setVisible(true);
         this.statusPanel.setVisible(true);
+        this.btnRefresh.setVisible(true);
     }
 
     public void loginSuccess(String user, eMemberType member, String nick) {
@@ -104,6 +109,7 @@ public class Main extends javax.swing.JFrame {
         if (member == eMemberType.Admin) {
             isAdmin = true;
         }
+        this.getM_pipe().refreshForum(this);
     }
 
     public void setOnlineUsers(String onlineUsers) {
@@ -294,5 +300,8 @@ public class Main extends javax.swing.JFrame {
      */
     public ForumTree getForumTree() {
         return _tree;
+    }
+    public JButton getRefreshButton(){
+        return this.btnRefresh;
     }
 }

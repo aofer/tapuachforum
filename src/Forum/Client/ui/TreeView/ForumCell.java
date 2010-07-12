@@ -9,46 +9,46 @@ import java.util.Vector;
  * @author Tomer Heber
  */
 public class ForumCell {
-	
-	/**
-	 * A unique identifier of a message. 
-	 */
-	private long _id;
-	
-	private String _userName;
-	private String _subject;
-    private String _body;
-	
-	/**
-	 * The sons of this ForumCell.
-	 */
-	private Vector<ForumCell> m_sons;
 
-    public ForumCell(Message msg){
+    /**
+     * A unique identifier of a message.
+     */
+    private long _id;
+    private String _userName;
+    private String _subject;
+    private String _body;
+    /**
+     * The sons of this ForumCell.
+     */
+    private Vector<ForumCell> m_sons;
+
+    public ForumCell(Message msg) {
         this(msg.getIndex(), msg.getNickname(), msg.getSubject(), msg.getBody());
         for (Message m : msg.getReplies()) {
             add(new ForumCell(m));
         }
     }
-	public ForumCell(long id, String userName, String subject,String body) {
-		_id = id;
-		_userName = userName;
-		_subject = subject;
-        _body=body;
-		m_sons = new Vector<ForumCell>();
-	}
 
-	public Vector<ForumCell> getSons() {
-		return m_sons;
-	}
-	/**
-	 * Add a ForumCell cell to the the sons vector of this cell.
-	 * 
-	 * @param cell The cell to be added as a son to this cell.
-	 */
-	public void add(ForumCell cell) {
-		m_sons.add(cell);
-	}
+    public ForumCell(long id, String userName, String subject, String body) {
+        _id = id;
+        _userName = userName;
+        _subject = subject;
+        _body = body;
+        m_sons = new Vector<ForumCell>();
+    }
+
+    public Vector<ForumCell> getSons() {
+        return m_sons;
+    }
+
+    /**
+     * Add a ForumCell cell to the the sons vector of this cell.
+     *
+     * @param cell The cell to be added as a son to this cell.
+     */
+    public void add(ForumCell cell) {
+        m_sons.add(cell);
+    }
 
     /**
      * @return the _subject
@@ -91,9 +91,9 @@ public class ForumCell {
     public long getId() {
         return _id;
     }
-    @Override
-    public String toString(){
-        return _id + " " +_userName+ " " + _subject + " "+ _body;
-    }
 
+    @Override
+    public String toString() {
+        return _id + " " + _userName + " " + _subject + " " + _body;
+    }
 }
