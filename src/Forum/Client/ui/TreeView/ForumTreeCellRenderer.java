@@ -36,7 +36,7 @@ public class ForumTreeCellRenderer implements TreeCellRenderer {
             return m_rootPanel;
         }
 
-        if (selected) {
+        if (selected){
             m_selectedPanel.updateView((ForumCell) node.getUserObject());
             return m_selectedPanel;
         } else {
@@ -46,7 +46,10 @@ public class ForumTreeCellRenderer implements TreeCellRenderer {
     }
 
     public void setViwer(eMemberType member, String nick) {
-        m_rootPanel.getAddButton().setEnabled(member != eMemberType.guest); //set the add new message button if the user is not a guest
+        m_rootPanel.setAddButton(member != eMemberType.guest); //set the add new message button if the user is not a guest
         m_selectedPanel.setViewer(member, nick);
+    }
+    public void setAddButton(boolean enable){
+        m_rootPanel.setAddButton(enable);
     }
 }

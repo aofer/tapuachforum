@@ -136,9 +136,9 @@ public class ForumCellView extends javax.swing.JPanel implements CellViewInterfa
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
+        btnModify.setEnabled(false);
         _cell.setBody(txtBody.getText());
         _cell.setSubject(txtSubject.getText());
-        btnModify.setEnabled(false);
         _forumTree.modifyMessage(this);
     }//GEN-LAST:event_btnModifyActionPerformed
 
@@ -147,6 +147,7 @@ public class ForumCellView extends javax.swing.JPanel implements CellViewInterfa
     }//GEN-LAST:event_btnReplyActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        btnDelete.setEnabled(false);
         _forumTree.deleteMessage();
     }//GEN-LAST:event_btnDeleteActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables

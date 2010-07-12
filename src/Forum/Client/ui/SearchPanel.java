@@ -55,12 +55,6 @@ public class SearchPanel extends javax.swing.JPanel {
 
         pSearchByAuthor.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Search by Author"));
 
-        tSearchAuther.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tSearchAutherActionPerformed(evt);
-            }
-        });
-
         bSearchAuthor.setText("Search");
         bSearchAuthor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -216,10 +210,6 @@ public class SearchPanel extends javax.swing.JPanel {
         tToAuther.setText("");
         tToAuther.setText("");
     }//GEN-LAST:event_bSearchPharseActionPerformed
-
-    private void tSearchAutherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tSearchAutherActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tSearchAutherActionPerformed
 
     /**
      * @return the _parent

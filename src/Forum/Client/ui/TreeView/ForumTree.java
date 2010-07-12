@@ -4,12 +4,12 @@ import Forum.Client.ui.*;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
 import java.util.Stack;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -27,13 +27,12 @@ import Forum.Client.ControllerLayer.ControllerHandlerFactory;
 import Forum.Client.ui.TreeView.Interfaces.CellViewInterface;
 import Forum.DomainLayer.Message;
 import Forum.PersistentLayer.Interfaces.eMemberType;
-import java.util.ArrayList;
-import java.util.List;
+import java.awt.event.ActionListener;
 import java.util.Vector;
+import javax.swing.Timer;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 /**
  * @author Tomer Heber
@@ -50,13 +49,16 @@ public class ForumTree implements ForumTreeHandler {
      * The JPanel GUI component.
      */
     private JPanel m_panel;
-    private final Object m_treelock;
     /**
      * A pipe interface to communicate with the controller layer.
      */
     private ControllerHandler m_pipe;
     private Main _mf;
-
+    private DefaultMutableTreeNode m_root;
+    private Boolean m_needRefresh;
+    private String m_nick;
+    private boolean m_popupShown;
+    
     public Main getMf() {
         return _mf;
     }
@@ -76,12 +78,18 @@ public class ForumTree implements ForumTreeHandler {
         m_pipe = ControllerHandlerFactory.getPipe();
         /* Add an observer to the controller (The observable). */
         m_pipe.addObserver(new ForumTreeObserver(this));
-        m_treelock = new Object();
         m_tree = new JTree();
         m_tree.putClientProperty("JTree.lineStyle", "None");
 
         refreshForum(m_pipe.getForumView());
 
+        TreeModel model = new DefaultTreeModel(m_root);
+        m_tree.setModel(model);
+        for (int i = 0; i < m_tree.getRowCount(); i++) {
+            m_tree.expandRow(i);
+        }
+
+        //m_listen
         ForumTreeCellRenderer renderer = new ForumTreeCellRenderer(this);
         m_tree.setCellRenderer(renderer);
         m_tree.setCellEditor(new ForumTreeCellEditor(renderer));
@@ -103,14 +111,28 @@ public class ForumTree implements ForumTreeHandler {
         pane.setPreferredSize(new Dimension(770, 450));
         m_panel.add(pane);
         m_panel.setPreferredSize(new Dimension(780, 475));
+
+        ActionListener taskPerformer = new ActionListener() {
+
+            public void actionPerformed(ActionEvent evt) {
+                if (m_needRefresh) {
+                    TreeModel model = new DefaultTreeModel(m_root);
+                    m_tree.setModel(model);
+                    for (int i = 0; i < m_tree.getRowCount(); i++) {
+                        m_tree.expandRow(i);
+                    }
+                    m_needRefresh = false;
+                }
+            }
+        };
+        new Timer(1000, taskPerformer).start();
+        m_needRefresh = true;
     }
 
     public void setPath(long msgID) {
-        synchronized (m_treelock) {
-            TreeNode[] nodePath = getPath((DefaultMutableTreeNode) m_tree.getModel().getRoot(), msgID);
-            TreePath treePath = new TreePath(nodePath);
-            m_tree.setSelectionPath(treePath);
-        }
+        TreeNode[] nodePath = getPath((DefaultMutableTreeNode) m_tree.getModel().getRoot(), msgID);
+        TreePath treePath = new TreePath(nodePath);
+        m_tree.setSelectionPath(treePath);
     }
 
     private TreeNode[] getPath(DefaultMutableTreeNode parent, long msgID) {
@@ -152,13 +174,8 @@ public class ForumTree implements ForumTreeHandler {
                 stack.add(sonNode);
             }
         }
-        TreeModel model = new DefaultTreeModel(rootNode);
-        synchronized (m_treelock) {
-            m_tree.setModel(model);
-            for (int i = 0; i < m_tree.getRowCount(); i++) {
-                m_tree.expandRow(i);
-            }
-        }
+        m_root = rootNode;
+        m_needRefresh = true;
     }
 
     @Override
@@ -198,6 +215,7 @@ public class ForumTree implements ForumTreeHandler {
             public void run() {
                 DefaultMutableTreeNode node = (DefaultMutableTreeNode) m_tree.getSelectionPath().getLastPathComponent();
                 ForumCell cell = (ForumCell) node.getUserObject();
+
                 m_pipe.modifyMessage(cell.getId(), cell.getSubject(), cell.getBody(), null);
                 cellView.Modified();
             }
@@ -214,7 +232,7 @@ public class ForumTree implements ForumTreeHandler {
             public void run() {
                 DefaultMutableTreeNode node = (DefaultMutableTreeNode) m_tree.getSelectionPath().getLastPathComponent();
                 ForumCell cell = (ForumCell) node.getUserObject();
-                m_pipe.addReplyToMessage(cell.getId(), "", "", m_panel);
+                addNewMessagePopup(cell.getId());
             }
         });
     }
@@ -238,17 +256,43 @@ public class ForumTree implements ForumTreeHandler {
     /**
      * Adds a new message.
      */
-    public void addNewMessage(final JButton button) {
+    public void addNewMessagePopup() {
+        addNewMessagePopup(0);
+    }
+
+    public void addNewMessagePopup(long id) {
+        if (!m_popupShown){
+        ((ForumTreeCellRenderer) m_tree.getCellRenderer()).setAddButton(false);
+        addNewMessage frm = new addNewMessage(this, m_nick, id);
+        frm.setVisible(true);
+        m_popupShown=true;
+        }
+        else
+            JOptionPane.showMessageDialog(this.getForumTreeUI(),"Only 1 popup is allowed");
+    }
+
+    public void PopupDone() {
+        ((ForumTreeCellRenderer) m_tree.getCellRenderer()).setAddButton(true);
+        m_popupShown=false;
+    }
+
+    public void addNewMessage(final String subject, final String body, final long id) {
+
         m_pool.execute(new Runnable() {
 
             @Override
             public void run() {
-                getPipe().addNewMessage("", "", button);
+                if (id == 0) {
+                    getPipe().addNewMessage(subject, body, null);
+                } else {
+                    getPipe().addReplyToMessage(id, subject, body, null);
+                }
             }
         });
     }
 
-    public void setViewer(eMemberType memebr, String user) {
-        ((ForumTreeCellRenderer) m_tree.getCellRenderer()).setViwer(memebr, user);
+    public void setViewer(eMemberType memebr, String nick) {
+        m_nick = nick;
+        ((ForumTreeCellRenderer) m_tree.getCellRenderer()).setViwer(memebr, nick);
     }
 }

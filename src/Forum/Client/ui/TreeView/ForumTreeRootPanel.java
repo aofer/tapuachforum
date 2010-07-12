@@ -12,33 +12,33 @@ import javax.swing.JPanel;
  *
  */
 public class ForumTreeRootPanel extends JPanel {
-	
 
-	private static final long serialVersionUID = -6952266542697445089L;
-	private ForumTree m_forumTree;
-	private JButton m_addMessageButton;
-	
-	public ForumTreeRootPanel(ForumTree forumTree) {
-		super();
-		
-		//this.setPreferredSize(new Dimension(400,30));	
-		this.setBackground(Color.WHITE);
-		
-		m_addMessageButton = new JButton("Add New Message");
-		m_addMessageButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {				
-				m_forumTree.addNewMessage(m_addMessageButton);
-			}
-		});
-		
-		this.add(m_addMessageButton);
-		
-		m_forumTree = forumTree;
-	}
-    public JButton getAddButton(){
-        return m_addMessageButton;
+    private static final long serialVersionUID = -6952266542697445089L;
+    private ForumTree m_forumTree;
+    private JButton m_addMessageButton;
+
+    public ForumTreeRootPanel(ForumTree forumTree) {
+        super();
+
+        //this.setPreferredSize(new Dimension(400,30));
+        this.setBackground(Color.WHITE);
+
+        m_addMessageButton = new JButton("Add New Message");
+        m_addMessageButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                m_addMessageButton.setEnabled(false);
+                m_forumTree.addNewMessagePopup();
+            }
+        });
+
+        this.add(m_addMessageButton);
+
+        m_forumTree = forumTree;
     }
 
+    public void setAddButton(boolean enable) {
+        m_addMessageButton.setEnabled(enable);
+    }
 }
