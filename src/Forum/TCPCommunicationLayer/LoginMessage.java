@@ -8,8 +8,6 @@ import Forum.Exceptions.NoSuchUserException;
 import Forum.Exceptions.UserPrivilegeException;
 import Forum.Exceptions.WrongPasswordException;
 import Forum.PersistentLayer.Interfaces.eMemberType;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * @author Tomer Heber
@@ -41,13 +39,14 @@ public class LoginMessage extends ClientMessage {
         try {
             forum.login(m_username, m_password);
             forum.setUser((User) Forum.getInstance().getMember(m_username));
-            eMemberType memberType=forum.getUser().getType();
+            eMemberType memberType = forum.getUser().getType();
             String tAns = memberType.toString();
-            if (memberType!=eMemberType.guest)
-                tAns+= ";" + ((Member)forum.getUser()).getNickName();
-            else
-                tAns+= ";Null";
-            
+            if (memberType != eMemberType.guest) {
+                tAns += ";" + ((Member) forum.getUser()).getNickName();
+            } else {
+                tAns += ";Null";
+            }
+
             tResponse = new ServerResponse(tAns, true);
         } catch (NoSuchUserException ex) {
             String tAns = m_username + " does not exist.";

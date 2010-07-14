@@ -5,9 +5,9 @@ package Forum;
  *
  */
 public class Settings {
-	
-	public static final String loggerName = "forum";
 
-	private Settings() {}
-	
+    public static final String loggerName = "forum";
+
+    private Settings() {
+    }
 }

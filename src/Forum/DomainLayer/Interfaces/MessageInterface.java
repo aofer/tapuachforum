@@ -22,6 +22,7 @@ public interface MessageInterface {
     void addReply(Message msg);
 
     void addReply(Vector<Message> msgs);
+
     /**
      * getter for the body
      * @return
@@ -58,8 +59,9 @@ public interface MessageInterface {
      */
     void setSubject(String subject);
 
-     int getIndex();
+    int getIndex();
 
-         Date getWriteDate();
-        Date getModifiedDate();
+    Date getWriteDate();
+
+    Date getModifiedDate();
 }

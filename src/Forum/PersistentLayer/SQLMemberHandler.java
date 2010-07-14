@@ -15,7 +15,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-
 /**
  *
  * @author Nir
@@ -26,24 +25,18 @@ public class SQLMemberHandler implements XMLMemberInterface {
      *
      * @return
      */
-
-
-
-
-
     public SQLMemberHandler() {
-
     }
 
     public List<MemberData> getMember() {
         List<MemberData> members = new ArrayList<MemberData>();
-    List< Members>    MembersList = null;
+        List<Members> MembersList = null;
         Transaction tx = null;
         Session session = SessionFactoryUtil.getInstance().getCurrentSession();
         try {
             tx = session.beginTransaction();
-        Query q = session.createQuery ("from Members as members");
-        MembersList = (List<Members>) q.list();
+            Query q = session.createQuery("from Members as members");
+            MembersList = (List<Members>) q.list();
         } catch (RuntimeException e) {
             if (tx != null && tx.isActive()) {
                 try {
@@ -67,13 +60,13 @@ public class SQLMemberHandler implements XMLMemberInterface {
     }
 
     public MemberData getMember(String userName) {
-           Members   oneOfMembers = null;
+        Members oneOfMembers = null;
         Transaction tx = null;
         Session session = SessionFactoryUtil.getInstance().getCurrentSession();
         try {
             tx = session.beginTransaction();
-        Query q = session.createQuery ("from Members as members where members.userName is '"+userName+"'");
-        oneOfMembers = (Members) q.uniqueResult();
+            Query q = session.createQuery("from Members as members where members.userName is '" + userName + "'");
+            oneOfMembers = (Members) q.uniqueResult();
         } catch (RuntimeException e) {
             if (tx != null && tx.isActive()) {
                 try {
@@ -86,25 +79,25 @@ public class SQLMemberHandler implements XMLMemberInterface {
                 throw e;
             }
         }
-   
-            if (oneOfMembers != null ) {
-                Date joined = oneOfMembers.getDateOfJoin();
-                Date birth = oneOfMembers.getDataOfBirth();
-                return new MemberData(oneOfMembers.getUserName(), oneOfMembers.getNickName(), oneOfMembers.getPassword(),
-                        oneOfMembers.getFirstName(), oneOfMembers.getLastName(), oneOfMembers.getEmail(), joined, birth);
-            }
-        
+
+        if (oneOfMembers != null) {
+            Date joined = oneOfMembers.getDateOfJoin();
+            Date birth = oneOfMembers.getDataOfBirth();
+            return new MemberData(oneOfMembers.getUserName(), oneOfMembers.getNickName(), oneOfMembers.getPassword(),
+                    oneOfMembers.getFirstName(), oneOfMembers.getLastName(), oneOfMembers.getEmail(), joined, birth);
+        }
+
         return null;
     }
 
     public eMemberType getMemberType(String userName) {
-                 Members   oneOfMembers = null;
+        Members oneOfMembers = null;
         Transaction tx = null;
         Session session = SessionFactoryUtil.getInstance().getCurrentSession();
         try {
             tx = session.beginTransaction();
-        Query q = session.createQuery ("from Members as members where members.userName is '"+userName+"'");
-        oneOfMembers = (Members) q.uniqueResult();
+            Query q = session.createQuery("from Members as members where members.userName is '" + userName + "'");
+            oneOfMembers = (Members) q.uniqueResult();
         } catch (RuntimeException e) {
             if (tx != null && tx.isActive()) {
                 try {
@@ -117,15 +110,15 @@ public class SQLMemberHandler implements XMLMemberInterface {
                 throw e;
             }
         }
-               if (oneOfMembers != null ) {
-                if (oneOfMembers.isIsAdmin()) {
-                    return (eMemberType.Admin);
-                } else if (oneOfMembers.isIsModerator()) {
-                    return (eMemberType.Moderator);
-                } else {
-                    return eMemberType.member;
-                }
-            
+        if (oneOfMembers != null) {
+            if (oneOfMembers.isIsAdmin()) {
+                return (eMemberType.Admin);
+            } else if (oneOfMembers.isIsModerator()) {
+                return (eMemberType.Moderator);
+            } else {
+                return eMemberType.member;
+            }
+
         }
 
         return (null);

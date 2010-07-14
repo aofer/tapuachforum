@@ -2,15 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Forum.TCPCommunicationLayer;
 
-import Forum.DomainLayer.Forum;
 import Forum.DomainLayer.ForumFascade;
 import Forum.Exceptions.UserNotExistException;
 import Forum.Exceptions.UserPrivilegeException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -20,7 +16,7 @@ public class UpgradeUserMessage extends ClientMessage {
 
     private String m_username;
 
-    public UpgradeUserMessage(String username){
+    public UpgradeUserMessage(String username) {
         this.m_username = username;
     }
 
@@ -37,5 +33,4 @@ public class UpgradeUserMessage extends ClientMessage {
         }
         return tResponse;
     }
-
 }

@@ -10,31 +10,29 @@ import Forum.Client.ui.TreeView.ForumTreeHandler;
  */
 public class ForumTreeRefreshEvent implements ForumTreeEvent {
 
-	private Component m_comp;
-	private String m_forumView;
-	
-	
-	public ForumTreeRefreshEvent(String forumView) {
-		m_forumView = forumView;
-		m_comp = null;
-	}
-	
-	public ForumTreeRefreshEvent(Component comp, String forumView) {
-		m_forumView = forumView;
-		m_comp = comp;
-	}
-	
-	/* (non-Javadoc)
-	 * @see forumtree.contol.ForumTreeEvent#respondToEvent(forumtree.ForumTree)
-	 */
-	@Override
-	public void respondToEvent(ForumTreeHandler handler) {
-		if (m_comp != null) {
-			m_comp.setEnabled(true);
-		}
-		
-		handler.refreshForum(m_forumView);
+    private Component m_comp;
+    private String m_forumView;
 
-	}
+    public ForumTreeRefreshEvent(String forumView) {
+        m_forumView = forumView;
+        m_comp = null;
+    }
 
+    public ForumTreeRefreshEvent(Component comp, String forumView) {
+        m_forumView = forumView;
+        m_comp = comp;
+    }
+
+    /* (non-Javadoc)
+     * @see forumtree.contol.ForumTreeEvent#respondToEvent(forumtree.ForumTree)
+     */
+    @Override
+    public void respondToEvent(ForumTreeHandler handler) {
+        if (m_comp != null) {
+            m_comp.setEnabled(true);
+        }
+
+        handler.refreshForum(m_forumView);
+
+    }
 }

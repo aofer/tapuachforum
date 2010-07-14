@@ -8,10 +8,9 @@ import Forum.Client.ui.TreeView.ForumTreeHandler;
  * @author Tomer Heber
  */
 public interface ForumTreeEvent {
-	
-	/**	 	 	 
-	 * @param handler The handler for the forum tree GUI.
-	 */
-	public void respondToEvent(ForumTreeHandler handler);
 
+    /**
+     * @param handler The handler for the forum tree GUI.
+     */
+    public void respondToEvent(ForumTreeHandler handler);
 }

@@ -811,5 +811,4 @@ public class SQLForumHandler implements ForumHandlerInterface {
             }
         }
     }
-
-        }
+}

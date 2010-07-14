@@ -58,7 +58,7 @@ public class ForumTree implements ForumTreeHandler {
     private Boolean m_needRefresh;
     private String m_nick;
     private boolean m_popupShown;
-    
+
     public Main getMf() {
         return _mf;
     }
@@ -261,19 +261,19 @@ public class ForumTree implements ForumTreeHandler {
     }
 
     public void addNewMessagePopup(long id) {
-        if (!m_popupShown){
-        ((ForumTreeCellRenderer) m_tree.getCellRenderer()).setAddButton(false);
-        addNewMessage frm = new addNewMessage(this, m_nick, id);
-        frm.setVisible(true);
-        m_popupShown=true;
+        if (!m_popupShown) {
+            ((ForumTreeCellRenderer) m_tree.getCellRenderer()).setAddButton(false);
+            addNewMessage frm = new addNewMessage(this, m_nick, id);
+            frm.setVisible(true);
+            m_popupShown = true;
+        } else {
+            JOptionPane.showMessageDialog(this.getForumTreeUI(), "Only 1 popup is allowed");
         }
-        else
-            JOptionPane.showMessageDialog(this.getForumTreeUI(),"Only 1 popup is allowed");
     }
 
     public void PopupDone() {
         ((ForumTreeCellRenderer) m_tree.getCellRenderer()).setAddButton(true);
-        m_popupShown=false;
+        m_popupShown = false;
     }
 
     public void addNewMessage(final String subject, final String body, final long id) {

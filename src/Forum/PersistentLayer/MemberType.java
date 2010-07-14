@@ -4,8 +4,6 @@
 // Any modifications to this file will be lost upon recompilation of the source schema.
 // Generated on: 2010.03.23 at 03:35:22 PM IST
 //
-
-
 package Forum.PersistentLayer;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -14,7 +12,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
-
 
 /**
  * <p>Java class for memberType complex type.
@@ -328,5 +325,4 @@ public class MemberType {
     public void setIsAdmin(boolean value) {
         this.isAdmin = value;
     }
-
 }

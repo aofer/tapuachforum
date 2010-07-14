@@ -22,7 +22,7 @@ public class ForumTreeCellRenderer implements TreeCellRenderer {
         m_nonselectedPanel = new NonSelectedForumTreeCellPanel();
         m_selectedPanel = new ForumCellView(forumTree);
         m_rootPanel = new ForumTreeRootPanel(forumTree);
-       setViwer(eMemberType.guest, "a");
+        setViwer(eMemberType.guest, "a");
     }
 
     /* (non-Javadoc)
@@ -35,8 +35,8 @@ public class ForumTreeCellRenderer implements TreeCellRenderer {
         if (row == 0) {
             return m_rootPanel;
         }
-
-        if (selected){
+        System.out.println(value.toString() + " is " + selected);
+        if (selected && hasFocus) {
             m_selectedPanel.updateView((ForumCell) node.getUserObject());
             return m_selectedPanel;
         } else {
@@ -49,7 +49,8 @@ public class ForumTreeCellRenderer implements TreeCellRenderer {
         m_rootPanel.setAddButton(member != eMemberType.guest); //set the add new message button if the user is not a guest
         m_selectedPanel.setViewer(member, nick);
     }
-    public void setAddButton(boolean enable){
+
+    public void setAddButton(boolean enable) {
         m_rootPanel.setAddButton(enable);
     }
 }

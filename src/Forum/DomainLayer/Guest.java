@@ -38,16 +38,16 @@ public class Guest extends User implements GuestInterface {
     // omri's version
     /*
     public MemberInterface register(MemberData data)
-            throws UserExistsException, NicknameExistsException, BadPasswordException {
-        return Forum.getInstance().register(data);
+    throws UserExistsException, NicknameExistsException, BadPasswordException {
+    return Forum.getInstance().register(data);
     }*/
-
     //amit's version
-    public void register(String username,String password,String nickname,String email,
-            String firstName,String lastName,Date dateOfBirth)
+    public void register(String username, String password, String nickname, String email,
+            String firstName, String lastName, Date dateOfBirth)
             throws UserExistsException, NicknameExistsException, BadPasswordException {
-        Forum.getInstance().register(username,password,nickname,email,firstName,lastName,dateOfBirth);
+        Forum.getInstance().register(username, password, nickname, email, firstName, lastName, dateOfBirth);
     }
+
     /**
      * this method is used when a user wants to log into the forum
      * @param username - the user's username

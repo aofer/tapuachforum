@@ -4,12 +4,9 @@
 // Any modifications to this file will be lost upon recompilation of the source schema.
 // Generated on: 2010.03.23 at 03:35:22 PM IST
 //
-
-
 package Forum.PersistentLayer;
 
 import javax.xml.bind.annotation.XmlRegistry;
-
 
 /**
  * This object contains factory methods for each
@@ -27,7 +24,6 @@ import javax.xml.bind.annotation.XmlRegistry;
  */
 @XmlRegistry
 public class ObjectFactory {
-
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: example
@@ -59,5 +55,4 @@ public class ObjectFactory {
     public ForumType createForumType() {
         return new ForumType();
     }
-
 }

@@ -17,11 +17,8 @@ import Forum.PersistentLayer.Interfaces.XMLMessageInterface;
 import java.util.Date;
 import java.util.Vector;
 import Forum.DomainLayer.Logger.*;
-import Forum.DomainLayer.SearchEngine.CompassSearchHandler;
 import Forum.DomainLayer.SearchEngine.SearchEngineInterface;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *this class is the main logics of our forum
@@ -50,7 +47,7 @@ public class Forum implements ForumInterface {
     /**
      * private constructor for the Singleton design
      */
-     private Forum() {   //added stuff to the constructor in order to make it work
+    private Forum() {   //added stuff to the constructor in order to make it work
         XMLFileHandler xf = new XMLFileHandler("testforum.xml"); //currently using the testforum xml file
         ForumHandlerInterface sqlForumHandler = new ForumHandler(xf);
         XMLMessageInterface sqlMessageHandler = new XMLMessageHandler(xf);
@@ -59,7 +56,7 @@ public class Forum implements ForumInterface {
         this._userHandler = new UserHandler(sqlForumHandler, sqlMemberHandler);
         this._searchHandler = new SearchEngineHandler();
         Date tDate = new Date();
-       addAdmin("admin", "admin", "adminy", "thebestadmin@gmail.com", "ad", "min", tDate);
+        addAdmin("admin", "admin", "adminy", "thebestadmin@gmail.com", "ad", "min", tDate);
 
 
     }
@@ -166,8 +163,8 @@ public class Forum implements ForumInterface {
      */
     public synchronized void addReply(int parentId, String nickname, String Subject, String body) throws MessageNotFoundException {
         TapuachLogger.getInstance().info("nickname: " + nickname + " add reply to message number:" + parentId);
-        int id=this._messageHandler.addReply(parentId, nickname, Subject, body);
-                try {
+        int id = this._messageHandler.addReply(parentId, nickname, Subject, body);
+        try {
             Message msg = this._messageHandler.getMessage(id);
             this._searchHandler.addMessage(msg);
         } catch (MessageNotFoundException ex) {
@@ -269,14 +266,13 @@ public class Forum implements ForumInterface {
         TapuachLogger.getInstance().info(username + " registered to the forum as Admin");
         this._userHandler.addAdmin(username, password, nickname, email, firstName, lastName, dateOfBirth);
     }
-    public synchronized List<Member> getMembers(){
+
+    public synchronized List<Member> getMembers() {
         return this._userHandler.getMembers();
     }
 
-    public  void forumSetup(){
+    public void forumSetup() {
         SQLForumHandler.forumInit();
-        
+
     }
-
-
 }

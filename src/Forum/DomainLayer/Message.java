@@ -12,9 +12,7 @@ import java.util.Iterator;
 import java.util.Vector;
 import org.compass.annotations.Cascade;
 import org.compass.annotations.Searchable;
-import org.compass.annotations.SearchableCascading;
 import org.compass.annotations.SearchableIdComponent;
-import org.compass.annotations.SearchableProperty;
 import org.compass.annotations.SearchableReference;
 
 /**
@@ -23,18 +21,16 @@ import org.compass.annotations.SearchableReference;
  */
 @Searchable
 public class Message implements MessageInterface {
+
     @SearchableIdComponent
     private MessageData _data;
-
-
     @SearchableReference(cascade = {Cascade.ALL})
     private ArrayList<Message> _replies;
 
-    public Message(){
-
+    public Message() {
     }
 
-    public  MessageData getData() {
+    public MessageData getData() {
         return _data;
     }
 
@@ -45,8 +41,6 @@ public class Message implements MessageInterface {
     public void setReplies(ArrayList<Message> _replies) {
         this._replies = _replies;
     }
-
-
 
     /**
      *constructor
@@ -128,11 +122,13 @@ public class Message implements MessageInterface {
     public void addReply(Message msg) {
         this._replies.add(msg);
     }
+
     public void addReply(Vector<Message> msgs) {
         for (Iterator<Message> it = msgs.iterator(); it.hasNext();) {
             addReply(it.next());
         }
     }
+
     /**
      * toString method for a message
      * @return
@@ -141,16 +137,16 @@ public class Message implements MessageInterface {
     public String toString() {
         String ans = "MessageId: " + _data.getId() + "\nSubject:" + _data.getSubject() + "\nWritten by:"
                 + _data.getNickname() + "\nBody:" + _data.getBody() + "\n";
-       if (_replies.size() > 0){
+        if (_replies.size() > 0) {
             ans = ans + "\nReplies:\n\n";
-            for (int i = 0; i < _replies.size();i++){
-                ans = ans + "Reply      " + (i+1)  + "\n";
+            for (int i = 0; i < _replies.size(); i++) {
+                ans = ans + "Reply      " + (i + 1) + "\n";
                 ans = ans + _replies.get(i).toString() + "\n";
             }
-       }
+        }
         return ans;
-     //   return "\nSubject:" + _data.getSubject() + "\nWritten by:" + _data.getNickname()
-      //          + "\n Number of replies:" + _replies.size() + "\nBody:" + _data.getBody() + "\n";
+        //   return "\nSubject:" + _data.getSubject() + "\nWritten by:" + _data.getNickname()
+        //          + "\n Number of replies:" + _replies.size() + "\nBody:" + _data.getBody() + "\n";
     }
 
     /**
@@ -160,42 +156,41 @@ public class Message implements MessageInterface {
     public int getIndex() {
         return this._data.getId();
     }
-        
 
     /**
      * index setter - should not be used; used only for tests.
      * @param id - the index of the message
      */
-    public void  setIndex(int id) {
+    public void setIndex(int id) {
         this._data.setId(id);
     }
 
-    public Date getWriteDate(){
+    public Date getWriteDate() {
         return this._data.getWriteDate();
     }
-        public Date getModifiedDate(){
+
+    public Date getModifiedDate() {
         return this._data.getModifiedDate();
     }
- @Override
+
+    @Override
     public boolean equals(Object obj) {
-    	if (obj == null) {
-    		return false;
-    	}
+        if (obj == null) {
+            return false;
+        }
 
-    	if (!obj.getClass().equals(this.getClass())) {
-    		return false;
-    	}
+        if (!obj.getClass().equals(this.getClass())) {
+            return false;
+        }
 
-    	Message message = (Message)obj;
+        Message message = (Message) obj;
 
-    	return message.getIndex() == (this.getIndex());
+        return message.getIndex() == (this.getIndex());
     }
 
     @Override
     public int hashCode() {
-    	Integer Id = new Integer(this.getIndex());
+        Integer Id = new Integer(this.getIndex());
         return Id.hashCode();
     }
-
-
 }

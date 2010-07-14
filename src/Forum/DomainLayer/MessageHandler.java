@@ -5,19 +5,14 @@
 package Forum.DomainLayer;
 
 import Forum.DomainLayer.Interfaces.MessageInterface;
-import Forum.DomainLayer.Logger.TapuachLogger;
 import Forum.Exceptions.MessageNotFoundException;
 import Forum.Exceptions.MessageOwnerException;
 import Forum.PersistentLayer.Data.MessageData;
 import Forum.PersistentLayer.Interfaces.ForumHandlerInterface;
 import Forum.PersistentLayer.Interfaces.XMLMessageInterface;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

@@ -10,26 +10,25 @@ import Forum.Client.ui.events.ForumTreeEvent;
  *
  */
 public class ForumTreeObserver implements Observer {
-	
-	private ForumTreeHandler m_handler;
 
-	public ForumTreeObserver(ForumTreeHandler handler) {
-		m_handler = handler;
-	}
-	
-	/* (non-Javadoc)
-	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
-	 * 
-	 * This implementation is not OO/Modular. instance of is usually bad programming.
-	 * If you add more code to update then consider changing this. 
-	 */
-	@Override
-	public void update(Observable obs, Object o) {
-		if (o != null && o instanceof ForumTreeEvent) {
-			((ForumTreeEvent)o).respondToEvent(m_handler);
-		}
+    private ForumTreeHandler m_handler;
+
+    public ForumTreeObserver(ForumTreeHandler handler) {
+        m_handler = handler;
+    }
+
+    /* (non-Javadoc)
+     * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+     *
+     * This implementation is not OO/Modular. instance of is usually bad programming.
+     * If you add more code to update then consider changing this.
+     */
+    @Override
+    public void update(Observable obs, Object o) {
+        if (o != null && o instanceof ForumTreeEvent) {
+            ((ForumTreeEvent) o).respondToEvent(m_handler);
+        }
 
 
-	}
-
+    }
 }

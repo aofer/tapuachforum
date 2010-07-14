@@ -15,10 +15,10 @@ import Forum.PersistentLayer.Interfaces.eMemberType;
  */
 public class Moderator extends Member implements ModeratorInterface {
 
-	/**
-	 * Constructor for the Moderator class
-	 * @param data
-	 */
+    /**
+     * Constructor for the Moderator class
+     * @param data
+     */
     public Moderator(MemberData data) {
         super(data);
     }
@@ -26,7 +26,7 @@ public class Moderator extends Member implements ModeratorInterface {
     /**
      * This method allows the Moderator to delete messages
      * @param messageId, the messageId need to be deleted
-    */
+     */
     public void deleteMessage(int messageId) throws MessageNotFoundException {
         Forum.getInstance().deleteMessage(messageId);
     }
