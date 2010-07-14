@@ -29,5 +29,5 @@ public interface GuestInterface extends UserInterface {
      * @param username
      * @param password
      */
-    public void logIn(String username, String password) throws NoSuchUserException, WrongPasswordException;
+    public void logIn(String username, String password) throws NoSuchUserException, WrongPasswordException,UserLoggedException;
 }

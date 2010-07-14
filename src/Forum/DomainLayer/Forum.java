@@ -122,7 +122,7 @@ public class Forum implements ForumInterface {
      * @throws NoSuchUserException
      * @throws WrongPasswordException
      */
-    public synchronized void login(String username, String password) throws NoSuchUserException, WrongPasswordException {
+    public synchronized void login(String username, String password) throws NoSuchUserException, WrongPasswordException,UserLoggedException {
         TapuachLogger.getInstance().info("user:  " + username + " logged in");
         this._userHandler.login(username, password);
     }

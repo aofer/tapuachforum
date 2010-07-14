@@ -61,10 +61,10 @@ public class RegisterMessage extends ClientMessage {
             forum.register(m_username, m_password, m_nickname, m_email, m_firstName, m_lastName, tDate);
             tResponse = new ServerResponse("Registeration was successful.", true);
         } catch (UserExistsException ex) {
-            String tAns = m_username + " already exist.";
+            String tAns = "Username: "+m_username + " already exist.";
             tResponse = new ServerResponse(tAns, false);
         } catch (NicknameExistsException ex) {
-            String tAns = "nicknameTBA" + " already exist.";
+            String tAns = "Nickname: " + m_nickname+ " already exist.";
             tResponse = new ServerResponse(tAns, false);
         } catch (BadPasswordException ex) {
             tResponse = new ServerResponse("password does not meet the policy, please choose a different password.", false);

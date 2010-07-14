@@ -14,7 +14,6 @@ import Forum.Client.ControllerLayer.ControllerHandler;
 import Forum.Client.ui.TreeView.ForumTree;
 import Forum.DomainLayer.SearchEngine.SearchHit;
 import Forum.PersistentLayer.Interfaces.eMemberType;
-import java.awt.Button;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Collections;
@@ -108,6 +107,8 @@ public class Main extends javax.swing.JFrame {
         _tree.setViewer(member, nick);
         if (member == eMemberType.Admin) {
             isAdmin = true;
+            getUpgradeUsersPanel().setVisible(true);
+            getM_pipe().getMembers(this);
         }
         this.getM_pipe().refreshForum(this);
     }
@@ -130,7 +131,7 @@ public class Main extends javax.swing.JFrame {
         Vector<SearchHit> hits = Forum.TCPCommunicationLayer.MessagesParser.DecodeHits(results);
         Collections.sort(hits);
         for (Iterator<SearchHit> it = hits.iterator(); it.hasNext();) {
-            this.getSearchResultPanel1().addMessageToTable( it.next());
+            this.getSearchResultPanel1().addMessageToTable(it.next());
         }
         this.getSearchResultPanel1().setVisible(true);
     }
@@ -301,7 +302,8 @@ public class Main extends javax.swing.JFrame {
     public ForumTree getForumTree() {
         return _tree;
     }
-    public JButton getRefreshButton(){
+
+    public JButton getRefreshButton() {
         return this.btnRefresh;
     }
 }
