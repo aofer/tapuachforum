@@ -2,17 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Forum.DomainLayer;
 
-import Forum.DomainLayer.Interfaces.ForumInterface;
 import Forum.PersistentLayer.Data.MemberData;
-import Forum.PersistentLayer.ForumHandler;
+import Forum.PersistentLayer.Interfaces.ForumHandlerInterface;
 import Forum.PersistentLayer.Interfaces.eMemberType;
-import Forum.PersistentLayer.MemberType;
-import Forum.PersistentLayer.XMLFileHandler;
-import Forum.PersistentLayer.XMLMemberHandler;
-import Forum.PersistentLayer.XMLMessageHandler;
+import Forum.PersistentLayer.SQLForumHandler;
 import java.util.Date;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -45,14 +40,8 @@ public class AdminTest {
     @After
     public void tearDown() {
     }
-
-               XMLFileHandler xf = new XMLFileHandler("testForum.xml");
-        ForumHandler fH = new ForumHandler(xf);
-       XMLMemberHandler memH = new XMLMemberHandler(xf);
-       Forum  instanceForum = Forum.getInstance();
-        XMLMessageHandler mseH = new XMLMessageHandler(xf);
-
-
+    ForumHandlerInterface fH = new SQLForumHandler();
+    Forum instanceForum = Forum.getInstance();
 
     /**
      * Test of upgradeUser method, of class Admin.
@@ -60,23 +49,23 @@ public class AdminTest {
     @Test
     public void testUpgradeUser() throws Exception {
         System.out.println("upgradeUser");
-       instanceForum.setDBHandlers(mseH, fH, memH);
-       fH.initForum();
-       Date tDate = new Date();
-        MemberData memD = new MemberData("membUserName", "membNickName", "memiPass","membFirstName","membLastName","memb@agr",tDate);
+
+        fH.initForum();
+        Date tDate = new Date();
+        MemberData memD = new MemberData("membUserName", "membNickName", "memiPass", "membFirstName", "membLastName", "memb@agr", tDate);
         Member memb = new Member(memD);
-        fH.register("membUserName", "membNickName", "memiPass","membFirstName","membLastName","memb@agr",tDate);
-      String username = "membUserName";
-          MemberData adminD = new MemberData("AdminUserName", "AdNickName", "memiPass","AdembFirstName","membLastName","memb@agr",tDate);
-           eMemberType expResult = eMemberType.member;
+        fH.register("membUserName", "membNickName", "memiPass", "membFirstName", "membLastName", "memb@agr", tDate);
+        String username = "membUserName";
+        MemberData adminD = new MemberData("AdminUserName", "AdNickName", "memiPass", "AdembFirstName", "membLastName", "memb@agr", tDate);
+        eMemberType expResult = eMemberType.member;
         eMemberType result = memb.getType();
         assertEquals(expResult, result);
-      Admin instance = new Admin(adminD);
+        Admin instance = new Admin(adminD);
         instance.upgradeUser(username);
-       result =memH.getMemberType(username);
+        result = Forum.getInstance().getMember(username).getType();
         expResult = eMemberType.Moderator;
-     assertEquals(expResult, result);
-     }
+        assertEquals(expResult, result);
+    }
 
     /**
      * Test of getType method, of class Admin.
@@ -84,12 +73,11 @@ public class AdminTest {
     @Test
     public void testGetType() {
         System.out.println("getType");
-            Date tDate = new Date();
-              MemberData adminD = new MemberData("AdminUserName", "AdNickName", "memiPass","AdembFirstName","membLastName","memb@agr",tDate);
-      Admin instance = new Admin(adminD);
+        Date tDate = new Date();
+        MemberData adminD = new MemberData("AdminUserName", "AdNickName", "memiPass", "AdembFirstName", "membLastName", "memb@agr", tDate);
+        Admin instance = new Admin(adminD);
         eMemberType expResult = eMemberType.Admin;
         eMemberType result = instance.getType();
         assertEquals(expResult, result);
     }
-
 }

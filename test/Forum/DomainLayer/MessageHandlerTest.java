@@ -4,12 +4,8 @@
  */
 
 package Forum.DomainLayer;
-
-
-import Forum.PersistentLayer.ForumHandler;
-import Forum.PersistentLayer.XMLFileHandler;
-
-import Forum.PersistentLayer.XMLMessageHandler;
+import Forum.PersistentLayer.Interfaces.ForumHandlerInterface;
+import Forum.PersistentLayer.SQLForumHandler;
 import java.util.Date;
 import java.util.Vector;
 import org.junit.After;
@@ -47,18 +43,16 @@ public class MessageHandlerTest {
     /**
      * Test of getMessage method, of class MessageHandler.
      */
-                  XMLFileHandler xf = new XMLFileHandler("tapuachforum.xml");
-      ForumHandler fH = new ForumHandler(xf);
-       XMLMessageHandler mesH = new XMLMessageHandler(xf);
+      
+      ForumHandlerInterface fH = new SQLForumHandler();
          Date tDate = new Date();
-       Forum  instanceForum = Forum.getInstance();
-       MessageHandler instance = new MessageHandler(fH,mesH);
+       Forum  instance = Forum.getInstance();
 
     @Test
     public void testGetMessage() throws Exception {
         System.out.println("getMessage");
         int messageId = 1;
-        String expResult = "where is bob";
+        String expResult = "member try";
         String result = instance.getMessage(messageId).getSubject();
         assertEquals(expResult, result);
     }
@@ -69,12 +63,12 @@ public class MessageHandlerTest {
     @Test
     public void testAddMessage() {
         System.out.println("addMessage");
-        String _nickName = "userToCheckLogInandLogOut";
+        String _nickName = "userToCheckLo";
         String subject = "adding mwssage from domain layer";
         String body = "yeapy hi hoo!";
-        int sizeFirst =xf.getForum().getMessages().size();
+        int sizeFirst =instance.viewForum().size();
         instance.addMessage(_nickName, subject, body);
-         int sizeAfter =xf.getForum().getMessages().size();
+         int sizeAfter =instance.viewForum().size();
          assertTrue(sizeAfter- sizeFirst == 1);
 
     }
@@ -86,14 +80,14 @@ public class MessageHandlerTest {
     public void testAddReply() throws Exception {
         System.out.println("addReply");
         int parentId = 1;
-        String nickname = "userToCheckLogInandLogOut";
+        String nickname = "userToCheckLo";
         String subject = "replay to where is Bob";
         String body = "Bob is WORKING all DAY!!!";
-         int sizeFirst =xf.getForum().getMessages().get(0).getMessage().size();
+         int sizeFirst = instance.viewForum().get(0).getReplies().size();
        instance.addReply(parentId, nickname, subject, body);
 
-       int sizeAfter =xf.getForum().getMessages().get(0).getMessage().size();
-         assertTrue(sizeAfter- sizeFirst == 1);
+       int sizeAfter = instance.viewForum().get(0).getReplies().size();
+         assertEquals(sizeAfter, sizeFirst+ 1);
     }
 
     /**
@@ -107,7 +101,7 @@ public class MessageHandlerTest {
         String subject = "CHang;eing";
         String body = "this ie Edit message";
        instance.editMessage(nickname, messageId, subject, body);
-       String newSub = xf.getForum().getMessages().get(0).getSubject();
+       String newSub = instance.viewForum().get(0).getSubject();
        assertEquals(newSub, "CHang;eing");
         }
 
