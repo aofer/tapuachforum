@@ -49,7 +49,7 @@ public interface ForumInterface {
      * @throws NoSuchUserException - is thrown when there is no such user
      * @throws WrongPasswordException - is thrown when the password doesn't match
      */
-    public void login(String username, String password) throws NoSuchUserException, WrongPasswordException;
+    public void login(String username, String password) throws NoSuchUserException, WrongPasswordException,UserLoggedException;
 
     /**
      * this method is used for logging out of the forum

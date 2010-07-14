@@ -9,6 +9,7 @@ import Forum.Exceptions.BadPasswordException;
 import Forum.Exceptions.NicknameExistsException;
 import Forum.Exceptions.NoSuchUserException;
 import Forum.Exceptions.UserExistsException;
+import Forum.Exceptions.UserLoggedException;
 import Forum.Exceptions.UserNotExistException;
 import Forum.Exceptions.WrongPasswordException;
 import Forum.PersistentLayer.Data.MemberData;
@@ -18,6 +19,7 @@ import Forum.PersistentLayer.Interfaces.eMemberType;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
@@ -78,13 +80,15 @@ public class UserHandler {
      * @throws NoSuchUserException
      * @throws WrongPasswordException
      */
-    public void login(String username, String password) throws NoSuchUserException, WrongPasswordException {
+    public void login(String username, String password) throws NoSuchUserException, WrongPasswordException, UserLoggedException {
         String encryptedPassword = this.encryptPassword(password);
         String tPassword = this._XmlForum.userExists(username);
         if (tPassword == null) {
             throw new NoSuchUserException(username);
         } else if (!tPassword.equals(encryptedPassword)) {
             throw new WrongPasswordException();
+        }else if (isLogged(username)){
+                throw new UserLoggedException();
         } else {
             MemberData data = this._XmlMember.getMember(username);
             MemberInterface tMember;
@@ -239,5 +243,13 @@ public class UserHandler {
             }
         }
         return res;
+    }
+    private boolean  isLogged(String username){
+        for (Iterator<MemberInterface> it = _onlineMembers.iterator(); it.hasNext();) {
+            MemberInterface member = it.next();
+            if(member.getUserName().equals(username))
+                return true;
+        }
+        return false;
     }
 }

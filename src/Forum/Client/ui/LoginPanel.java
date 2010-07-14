@@ -111,10 +111,6 @@ public class LoginPanel extends javax.swing.JPanel {
         String passwordText = new String(getTPassword().getPassword());
         getTPassword().selectAll();
         this.getMain().getM_pipe().login(userNameText, passwordText, this);
-        if (userNameText.compareTo("admin") == 0) {
-            this.getMain().getUpgradeUsersPanel().setVisible(true);
-            this.getMain().getM_pipe().getMembers(this);
-        }
     }
     private void bRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegisterActionPerformed
         this.getMain().getTreePanel().setVisible(false);

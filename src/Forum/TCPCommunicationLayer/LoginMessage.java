@@ -5,6 +5,7 @@ import Forum.DomainLayer.ForumFascade;
 import Forum.DomainLayer.Member;
 import Forum.DomainLayer.User;
 import Forum.Exceptions.NoSuchUserException;
+import Forum.Exceptions.UserLoggedException;
 import Forum.Exceptions.UserPrivilegeException;
 import Forum.Exceptions.WrongPasswordException;
 import Forum.PersistentLayer.Interfaces.eMemberType;
@@ -56,6 +57,9 @@ public class LoginMessage extends ClientMessage {
             tResponse = new ServerResponse(tAns, false);
         } catch (UserPrivilegeException ex) {
             tResponse = new ServerResponse(ex.getMessage(), false);
+        }
+        catch(UserLoggedException ex){
+             tResponse = new ServerResponse("The user you are logging in is allready in use",false);
         }
         return tResponse;
     }
