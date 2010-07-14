@@ -2,16 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Forum.DomainLayer;
 
 //import Forum.PersistentLayer.Data.MemberData;
-import Forum.PersistentLayer.ForumHandler;
-//import Forum.PersistentLayer.Interfaces.XMLMemberInterface;
-import Forum.PersistentLayer.XMLFileHandler;
-import Forum.PersistentLayer.XMLMemberHandler;
-import Forum.PersistentLayer.XMLMessageHandler;
-//import com.sun.xml.internal.ws.encoding.xml.XMLMessage;
+import Forum.PersistentLayer.Interfaces.ForumHandlerInterface;
+import Forum.PersistentLayer.SQLForumHandler;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -50,19 +45,18 @@ public class UserTest {
     @Test
     public void testReadMessage() throws Exception {
         System.out.println("readMessage");
-            XMLFileHandler xf = new XMLFileHandler("tapuachforum.xml");
-        ForumHandler fH = new ForumHandler(xf);
-       XMLMemberHandler memH = new XMLMemberHandler(xf);
-       Forum  instanceForum = Forum.getInstance();
-        XMLMessageHandler mseH = new XMLMessageHandler(xf);
-        instanceForum.setDBHandlers(mseH, fH, memH);
-
-        int messageId = 1;
+        Forum instanceForum = Forum.getInstance();
+        ForumHandlerInterface fork = new SQLForumHandler();
+        //fork.initForum();
+        String _nickName = "userToCheckLo";
+        String subject = "adding mwssage from domain layer";
+        String body = "yeapy hi hoo!";
+        instanceForum.addMessage(_nickName, subject, body);
+        int messageId = instanceForum.viewForum().size();
+         System.out.println(messageId);
         User instance = new Guest();
-        String expResult = "Subject:CHang;ei";
+        String expResult = "Subject:adding m";
         String result = instance.readMessage(messageId);
-   //     System.out.println("****"+ expResult+ "****" +result.substring(1, 17)+"****");
-        assertEquals(expResult , result.substring(13, 29));
-     }
-
+        assertEquals(expResult, result.substring(13, 29));
+    }
 }

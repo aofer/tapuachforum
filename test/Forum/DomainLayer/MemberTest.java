@@ -2,18 +2,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Forum.DomainLayer;
 
 import Forum.Exceptions.BadPasswordException;
 import Forum.Exceptions.NicknameExistsException;
 import Forum.Exceptions.UserExistsException;
 import Forum.PersistentLayer.Data.MemberData;
-import Forum.PersistentLayer.ForumHandler;
+import Forum.PersistentLayer.Interfaces.ForumHandlerInterface;
 import Forum.PersistentLayer.Interfaces.eMemberType;
-import Forum.PersistentLayer.XMLFileHandler;
-import Forum.PersistentLayer.XMLMemberHandler;
-import Forum.PersistentLayer.XMLMessageHandler;
+import Forum.PersistentLayer.SQLForumHandler;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -48,27 +45,19 @@ public class MemberTest {
     @After
     public void tearDown() {
     }
-
-          XMLFileHandler xf = new XMLFileHandler("testForum.xml");
-       XMLMessageHandler msgH = new XMLMessageHandler(xf);
-       ForumHandler fH = new ForumHandler(xf);
-       XMLMemberHandler memH = new XMLMemberHandler(xf);
-       Forum  instanceForum = Forum.getInstance();
-
-
-
-
+    ForumHandlerInterface fH = new SQLForumHandler();
+    Forum instanceForum = Forum.getInstance();
 
     /**
      * Test of getUserName method, of class Member.
      */
     @Test
     public void testGetUserName() {
-        instanceForum.setDBHandlers(msgH, fH, memH);
+
         fH.initForum();
         System.out.println("getUserName");
         Date tDate = new Date();
-        MemberData memD = new MemberData("membUserName", "membNickName", "memiPass","membFirstName","membLastName","memb@agr",tDate);
+        MemberData memD = new MemberData("membUserName", "membNickName", "memiPass", "membFirstName", "membLastName", "memb@agr", tDate);
         Member instance = new Member(memD);
         String expResult = "membUserName";
         String result = instance.getUserName();
@@ -81,8 +70,8 @@ public class MemberTest {
     @Test
     public void testGetPassword() {
         System.out.println("getPassword");
-           Date tDate = new Date();
-        MemberData memD = new MemberData("membUserName", "membNickName", "memiPass","membFirstName","membLastName","memb@agr",tDate);
+        Date tDate = new Date();
+        MemberData memD = new MemberData("membUserName", "membNickName", "memiPass", "membFirstName", "membLastName", "memb@agr", tDate);
         Member instance = new Member(memD);
         String expResult = "memiPass";
         String result = instance.getPassword();
@@ -95,8 +84,8 @@ public class MemberTest {
     @Test
     public void testGetNickName() {
         System.out.println("getNickName");
-             Date tDate = new Date();
-        MemberData memD = new MemberData("membUserName", "membNickName", "memiPass","membFirstName","membLastName","memb@agr",tDate);
+        Date tDate = new Date();
+        MemberData memD = new MemberData("membUserName", "membNickName", "memiPass", "membFirstName", "membLastName", "memb@agr", tDate);
         Member instance = new Member(memD);
         String expResult = "membNickName";
         String result = instance.getNickName();
@@ -109,8 +98,8 @@ public class MemberTest {
     @Test
     public void testGetLastName() {
         System.out.println("getLastName");
-          Date tDate = new Date();
-        MemberData memD = new MemberData("membUserName", "membNickName", "memiPass","membFirstName","membLastName","memb@agr",tDate);
+        Date tDate = new Date();
+        MemberData memD = new MemberData("membUserName", "membNickName", "memiPass", "membFirstName", "membLastName", "memb@agr", tDate);
         Member instance = new Member(memD);
         String expResult = "membLastName";
         String result = instance.getLastName();
@@ -123,8 +112,8 @@ public class MemberTest {
     @Test
     public void testGetFirstName() {
         System.out.println("getFirstName");
-      Date tDate = new Date();
-        MemberData memD = new MemberData("membUserName", "membNickName", "memiPass","membFirstName","membLastName","memb@agr",tDate);
+        Date tDate = new Date();
+        MemberData memD = new MemberData("membUserName", "membNickName", "memiPass", "membFirstName", "membLastName", "memb@agr", tDate);
         Member instance = new Member(memD);
         String expResult = "membFirstName";
         String result = instance.getFirstName();
@@ -137,8 +126,8 @@ public class MemberTest {
     @Test
     public void testGetEmail() {
         System.out.println("getEmail");
-           Date tDate = new Date();
-        MemberData memD = new MemberData("membUserName", "membNickName", "memiPass","membFirstName","membLastName","memb@agr",tDate);
+        Date tDate = new Date();
+        MemberData memD = new MemberData("membUserName", "membNickName", "memiPass", "membFirstName", "membLastName", "memb@agr", tDate);
         Member instance = new Member(memD);
         String expResult = "memb@agr";
         String result = instance.getEmail();
@@ -151,8 +140,8 @@ public class MemberTest {
     @Test
     public void testGetDateOfBirth() {
         System.out.println("getDateOfBirth");
-       Date tDate = new Date();
-        MemberData memD = new MemberData("membUserName", "membNickName", "memiPass","membFirstName","membLastName","memb@agr",tDate);
+        Date tDate = new Date();
+        MemberData memD = new MemberData("membUserName", "membNickName", "memiPass", "membFirstName", "membLastName", "memb@agr", tDate);
         Member instance = new Member(memD);
         Date expResult = tDate;
         Date result = instance.getDateOfBirth();
@@ -165,8 +154,8 @@ public class MemberTest {
     @Test
     public void testGetDateJoined() {
         System.out.println("getDateJoined");
-          Date tDate = new Date();
-        MemberData memD = new MemberData("membUserName", "membNickName", "memiPass","membFirstName","membLastName","memb@agr",tDate);
+        Date tDate = new Date();
+        MemberData memD = new MemberData("membUserName", "membNickName", "memiPass", "membFirstName", "membLastName", "memb@agr", tDate);
         Member instance = new Member(memD);
         Date result = instance.getDateJoined();
         assertNotNull(result);
@@ -180,12 +169,12 @@ public class MemberTest {
         System.out.println("writeMessage");
         String subject = "member try";
         String body = "this is a test. Specipiuc memebr write the message";
-          Date tDate = new Date();
-        MemberData memD = new MemberData("membUserName", "membNickName", "memiPass","membFirstName","membLastName","memb@agr",tDate);
+        Date tDate = new Date();
+        MemberData memD = new MemberData("membUserName", "membNickName", "memiPass", "membFirstName", "membLastName", "memb@agr", tDate);
         Member instance = new Member(memD);
         instance.writeMessage(subject, body);
-        assertEquals(instanceForum.getMessage(1).getSubject(),subject);
-       System.out.print(instanceForum.getMessage(1));
+        assertEquals(instanceForum.getMessage(1).getSubject(), subject);
+        System.out.print(instanceForum.getMessage(1));
     }
 
     /**
@@ -198,11 +187,11 @@ public class MemberTest {
 
         String subject = "replay to 1";
         String body = "this is 2nd test on message";
-             Date tDate = new Date();
-        MemberData memD = new MemberData("membUserName", "membNickName", "memiPass","membFirstName","membLastName","memb@agr",tDate);
+        Date tDate = new Date();
+        MemberData memD = new MemberData("membUserName", "membNickName", "memiPass", "membFirstName", "membLastName", "memb@agr", tDate);
         Member instance = new Member(memD);
         instance.writeReply(parentId, subject, body);
-        assertEquals(instanceForum.getMessage(2).getSubject(),subject);
+        assertEquals(instanceForum.getMessage(2).getSubject(), subject);
     }
 
     /**
@@ -214,12 +203,12 @@ public class MemberTest {
         int messageId = 2;
         String subject = "NEW SUBJECT";
         String body = "here it is edited message.";
-               Date tDate = new Date();
-        MemberData memD = new MemberData("membUserName", "membNickName", "memiPass","membFirstName","membLastName","memb@agr",tDate);
+        Date tDate = new Date();
+        MemberData memD = new MemberData("membUserName", "membNickName", "memiPass", "membFirstName", "membLastName", "memb@agr", tDate);
         Member instance = new Member(memD);
-        assertNotSame(instanceForum.getMessage(2).getSubject(),subject);
+        assertNotSame(instanceForum.getMessage(2).getSubject(), subject);
         instance.editMessage(messageId, subject, body);
-      assertEquals(instanceForum.getMessage(2).getSubject(),subject);
+        assertEquals(instanceForum.getMessage(2).getSubject(), subject);
     }
 
     /**
@@ -228,36 +217,35 @@ public class MemberTest {
     @Test
     public void testGetType() {
         System.out.println("getType");
-              Date tDate = new Date();
-        MemberData memD = new MemberData("membUserName", "membNickName", "memiPass","membFirstName","membLastName","memb@agr",tDate);
+        Date tDate = new Date();
+        MemberData memD = new MemberData("membUserName", "membNickName", "memiPass", "membFirstName", "membLastName", "memb@agr", tDate);
         Member instance = new Member(memD);
         eMemberType expResult = eMemberType.member;
         eMemberType result = instance.getType();
         assertEquals(expResult, result);
     }
 
-        /**
+    /**
      * Test of logOut method, of class Member.
      */
     @Test
     public void testLogOut() {
-       try {
+        try {
 
             System.out.println("logOut");
             Date tDate = new Date();
             MemberData instance = new MemberData("liron", "blah", "87654321", "liron", "katav", "lirrr@l.c", tDate);
             Member memb = new Member(instance);
             instanceForum.register("liron", "blah", "87654321", "liron", "katav", "lirrr@l.c", tDate);
-             assertEquals(instanceForum.getOnlineMembers().size() , 1);
+            assertEquals(instanceForum.getOnlineMembers().size(), 1);
             memb.logOut();
-            assertEquals(instanceForum.getOnlineMembers().size() , 0);
+            assertEquals(instanceForum.getOnlineMembers().size(), 0);
         } catch (UserExistsException ex) {
             Logger.getLogger(MemberTest.class.getName()).log(Level.SEVERE, null, ex);
-       } catch (NicknameExistsException ex) {
+        } catch (NicknameExistsException ex) {
             Logger.getLogger(MemberTest.class.getName()).log(Level.SEVERE, null, ex);
         } catch (BadPasswordException ex) {
-           Logger.getLogger(MemberTest.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MemberTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 }

@@ -2,22 +2,16 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Forum.DomainLayer;
 
 import Forum.DomainLayer.Interfaces.MemberInterface;
-import Forum.Exceptions.NoSuchUserException;
-import Forum.Exceptions.WrongPasswordException;
 import Forum.PersistentLayer.Data.MemberData;
-import Forum.PersistentLayer.ForumHandler;
+import Forum.PersistentLayer.Interfaces.ForumHandlerInterface;
 import Forum.PersistentLayer.Interfaces.XMLMemberInterface;
 import Forum.PersistentLayer.Interfaces.eMemberType;
-import Forum.PersistentLayer.XMLFileHandler;
-import Forum.PersistentLayer.XMLMemberHandler;
+import Forum.PersistentLayer.SQLForumHandler;
+import Forum.PersistentLayer.SQLMemberHandler;
 import java.util.Date;
-import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -49,17 +43,12 @@ public class UserHandlerTest {
     @After
     public void tearDown() {
     }
-
-              XMLFileHandler xf = new XMLFileHandler("testForum.xml");
-        ForumHandler fH = new ForumHandler(xf);
-       XMLMemberHandler memH = new XMLMemberHandler(xf);
-         Date tDate = new Date();
-       Forum  instanceForum = Forum.getInstance();
-          MemberData newMemberData = new MemberData("membUserNameToRegister", "membNickName", "memiPass","membFirstName","membLastName","memb@agr",tDate);
-   //       XMLMemberInterface memHXml = new XMLMemberInterface();
-
-        UserHandler instance = new UserHandler (fH,memH);
-
+    ForumHandlerInterface fH = new SQLForumHandler();
+    XMLMemberInterface memH = new SQLMemberHandler();
+    Date tDate = new Date();
+    Forum instanceForum = Forum.getInstance();
+    MemberData newMemberData = new MemberData("membUserNameToRegister", "membNickName", "memiPass", "membFirstName", "membLastName", "memb@agr", tDate);
+    UserHandler instance = new UserHandler(fH, memH);
 
     /**
      * Test of register method, of class UserHandler.
@@ -69,12 +58,12 @@ public class UserHandlerTest {
         System.out.println("register");
         fH.initForum();
         String expResult = "membUserNameToRegister";
-      // Should be by Omri way.
-        instance.register("membUserNameToRegister", "memiPass", "membNickName","membFirstName","membLastName","memb@agr",tDate);
+        // Should be by Omri way.
+        instance.register("membUserNameToRegister", "memiPass", "membNickName", "membFirstName", "membLastName", "memb@agr", tDate);
 
-       MemberInterface result = instance.getMember("membUserNameToRegister");
+        MemberInterface result = instance.getMember("membUserNameToRegister");
         assertEquals(expResult, result.getUserName());
-  }     
+    }
 
     /**
      * Test of login method, of class UserHandler.
@@ -83,26 +72,26 @@ public class UserHandlerTest {
     public void testLogin() throws Exception {
         System.out.println("login");
         String username = "membUserNameToRegister";
-         String password = "memiPass";
+        String password = "memiPass";
         int def = (instance.getOnlineMembers().size());
-              instance.login(username, password);
-         def = instance.getOnlineMembers().size() -def;
-         assertTrue(def == 1);
+        instance.login(username, password);
+        def = instance.getOnlineMembers().size() - def;
+        assertTrue(def == 1);
     }
 
     /**
      * Test of logout method, of class UserHandler.
      */
     @Test
-    public void testLogout()  throws Exception{
+    public void testLogout() throws Exception {
         System.out.println("logout");
-     String username = "membUserNameToRegister";
-     String password = "memiPass";
-     instance.login(username, password);
-     int def = (instance.getOnlineMembers().size());
-     instance.logout(username);
-     def = instance.getOnlineMembers().size() -def;
-     assertTrue(def == -1);
+        String username = "membUserNameToRegister";
+        String password = "memiPass";
+        instance.login(username, password);
+        int def = (instance.getOnlineMembers().size());
+        instance.logout(username);
+        def = instance.getOnlineMembers().size() - def;
+        assertTrue(def == -1);
     }
 
     /**
@@ -112,7 +101,7 @@ public class UserHandlerTest {
     public void testUpgradeUser() throws Exception {
         System.out.println("upgradeUser");
         String username = "membUserNameToRegister";
-      
+
         assertTrue(memH.getMemberType(username) == eMemberType.member);
         instance.upgradeUser(username);
         assertTrue(memH.getMemberType(username) == eMemberType.Moderator);
@@ -126,13 +115,10 @@ public class UserHandlerTest {
     public void testGetOnlineMembers() throws Exception {
         System.out.println("getOnlineMembers");
         String username = "membUserNameToRegister";
-         String password = "memiPass";
+        String password = "memiPass";
         int def = (instance.getOnlineMembers().size());
-              instance.login(username, password);
-         def = instance.getOnlineMembers().size() -def;
-         assertTrue(def == 1);
-    xf.WriteToXML();
+        instance.login(username, password);
+        def = instance.getOnlineMembers().size() - def;
+        assertTrue(def == 1);
     }
-
-  
 }
