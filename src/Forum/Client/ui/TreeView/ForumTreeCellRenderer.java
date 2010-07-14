@@ -17,6 +17,7 @@ public class ForumTreeCellRenderer implements TreeCellRenderer {
     private NonSelectedForumTreeCellPanel m_nonselectedPanel;
     private ForumCellView m_selectedPanel;
     private ForumTreeRootPanel m_rootPanel;
+    private Object _selected;
 
     public ForumTreeCellRenderer(ForumTree forumTree) {
         m_nonselectedPanel = new NonSelectedForumTreeCellPanel();
@@ -35,14 +36,24 @@ public class ForumTreeCellRenderer implements TreeCellRenderer {
         if (row == 0) {
             return m_rootPanel;
         }
-        System.out.println(value.toString() + " is " + selected);
-        if (selected && hasFocus) {
+
+
+        if (selected) {
+            //System.out.println(value.toString() + " is selected and have focus:" + hasFocus + " exp:" +expanded );
+            if (_selected != null) {
+                if (_selected.equals(value) && !hasFocus) {
+                    //m_nonselectedPanel.updatePanel((ForumCell) node.getUserObject());
+                    //return m_nonselectedPanel;
+                }
+            }
+            _selected = value;
             m_selectedPanel.updateView((ForumCell) node.getUserObject());
             return m_selectedPanel;
         } else {
             m_nonselectedPanel.updatePanel((ForumCell) node.getUserObject());
             return m_nonselectedPanel;
         }
+
     }
 
     public void setViwer(eMemberType member, String nick) {

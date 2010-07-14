@@ -145,7 +145,8 @@ public class SearchResultPanel extends javax.swing.JPanel {
         main.getTreePanel().setVisible(true);
         main.getSearchPanel1().setVisible(true);
         main.getStatusPanel1().setVisible(true);
-        main.getUpgradeUsersPanel().setVisible(true);
+        if (main.isAdminLogged())
+            main.getUpgradeUsersPanel().setVisible(true);
         main.getSearchResultPanel1().setVisible(false);
     }
     private void btnGoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoActionPerformed

@@ -79,6 +79,10 @@ public class Main extends javax.swing.JFrame {
         this.getM_pipe().refreshForum(this);
     }
 
+    public boolean isAdminLogged() {
+        return isAdmin;
+    }
+
     public void RefreshUMembers(String _lm) {
         DefaultListModel dm = new DefaultListModel();
         String[] st = _lm.split(";");
