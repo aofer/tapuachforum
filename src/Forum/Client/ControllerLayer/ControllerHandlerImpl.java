@@ -121,7 +121,7 @@ public class ControllerHandlerImpl extends ControllerHandler {
         ServerResponse res;
         _connectionController.send(msg);
         res = _connectionController.listen();
-        if (res!=null && res.hasExecuted()) {
+        if (res != null && res.hasExecuted()) {
             notifyObservers(new ForumTreeRefreshEvent(comp, getForumView()));
         } else {
             notifyObservers(new ForumTreeErrorEvent(res.getResponse()));

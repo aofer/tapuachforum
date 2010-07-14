@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Forum.DomainLayer.SearchEngine;
 
 import org.apache.lucene.store.jdbc.dialect.MySQLDialect;
@@ -15,12 +14,11 @@ public class MyDriver extends MySQLDialect {
 
     @Override
     public String openBlobSelectQuote() {
-return "`";
-}
+        return "`";
+    }
 
     @Override
-public String closeBlobSelectQuote() {
-return "`";
-}
-
+    public String closeBlobSelectQuote() {
+        return "`";
+    }
 }

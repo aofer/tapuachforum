@@ -4,11 +4,8 @@
  */
 package Forum.DomainLayer.Interfaces;
 
-import Forum.DomainLayer.Message;
 import Forum.Exceptions.*;
-import Forum.PersistentLayer.Data.MemberData;
 import Forum.PersistentLayer.ForumHandler;
-import Forum.PersistentLayer.Interfaces.XMLMessageInterface;
 import Forum.PersistentLayer.XMLMemberHandler;
 import Forum.PersistentLayer.XMLMessageHandler;
 import java.util.Date;
@@ -35,13 +32,16 @@ public interface ForumInterface {
      * @throws MessageNotFoundException - is thrown when the message does not exist
      */
     public MessageInterface getMessage(int messageId) throws MessageNotFoundException;
+
     /**
-    * used for reading all of the forum messages (might be replaced later when we decide how many messages the forum keeps in memory)
-    * @return
-    */
+     * used for reading all of the forum messages (might be replaced later when we decide how many messages the forum keeps in memory)
+     * @return
+     */
     public Vector<MessageInterface> viewForum();
-   public void register(String username,String password,String nickname,
-            String email,String firstName,String lastName,Date dateOfBirth) throws UserExistsException, NicknameExistsException, BadPasswordException ;
+
+    public void register(String username, String password, String nickname,
+            String email, String firstName, String lastName, Date dateOfBirth) throws UserExistsException, NicknameExistsException, BadPasswordException;
+
     /**
      * this method is used when the user wants to log in
      * @param username -  the user name for the login

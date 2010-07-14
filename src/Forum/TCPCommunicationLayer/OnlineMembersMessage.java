@@ -7,9 +7,7 @@ package Forum.TCPCommunicationLayer;
 
 import Forum.DomainLayer.ForumFascade;
 import Forum.DomainLayer.Interfaces.MemberInterface;
-import Forum.DomainLayer.Member;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Vector;
 
 /**

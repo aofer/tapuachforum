@@ -45,14 +45,14 @@ public class SearchData implements SearchDataInterface {
         return _authors.get(author);
     }
 
-  // that is the new version that Arsenik wrote.
-       private void removeValue(HashMap<String, List<Integer>> hash, Integer value) {
-         Set<String> ks = hash.keySet();
-        for(String s : ks){
+    // that is the new version that Arsenik wrote.
+    private void removeValue(HashMap<String, List<Integer>> hash, Integer value) {
+        Set<String> ks = hash.keySet();
+        for (String s : ks) {
             List<Integer> ls = hash.get(s);
             ls.remove(value);
             hash.put(s, ls);
-           }
+        }
     }
 
     private void addWord(String word, MessageInterface msg) {

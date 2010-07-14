@@ -4,8 +4,6 @@
 // Any modifications to this file will be lost upon recompilation of the source schema.
 // Generated on: 2010.03.23 at 03:35:22 PM IST
 //
-
-
 package Forum.PersistentLayer;
 
 import java.math.BigInteger;
@@ -16,7 +14,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-
 
 /**
  * <p>Java class for anonymous complex type.
@@ -164,6 +161,5 @@ public class ForumType {
         }
         return this.messages;
     }
-
 }
 

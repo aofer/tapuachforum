@@ -5,7 +5,6 @@
 package Forum.DomainLayer;
 
 import Forum.DomainLayer.Interfaces.MemberInterface;
-import Forum.DomainLayer.Logger.TapuachLogger;
 import Forum.Exceptions.BadPasswordException;
 import Forum.Exceptions.NicknameExistsException;
 import Forum.Exceptions.NoSuchUserException;
@@ -18,13 +17,10 @@ import Forum.PersistentLayer.Interfaces.XMLMemberInterface;
 import Forum.PersistentLayer.Interfaces.eMemberType;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -227,23 +223,19 @@ public class UserHandler {
 
     }
 
-   
-    public List<Member> getMembers(){
+    public List<Member> getMembers() {
         List<MemberData> membersData = this._XmlMember.getMember();
         List<Member> res = new LinkedList<Member>();
         eMemberType type;
         Member tMember = null;
-        for (int i = 0;i < membersData.size();i++){
+        for (int i = 0; i < membersData.size(); i++) {
             MemberData data = membersData.get(i);
             type = this._XmlMember.getMemberType(data.getUserName());
-            if (type == eMemberType.Admin){
-            }
-            else if (type == eMemberType.member){
+            if (type == eMemberType.Admin) {
+            } else if (type == eMemberType.member) {
                 tMember = new Member(data);
                 res.add(tMember);
-            }
-            else{
-
+            } else {
             }
         }
         return res;

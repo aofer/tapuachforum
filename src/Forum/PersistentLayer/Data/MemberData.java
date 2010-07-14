@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Forum.PersistentLayer.Data;
 
 import java.util.Date;
@@ -12,39 +11,42 @@ import java.util.Date;
  * @author Kipi
  */
 public class MemberData {
+
     private String _userName;
     private String _nickName;
     private String _password;
     private String _firstName;
-    private String _lastName;;
+    private String _lastName;
+
+    ;
     private String _email;
     private Date _dateJoined;
     private Date _dateOfBirth;
     private boolean _status;
-        /**
+
+    /**
      * constractor for testing
      */
-    public MemberData(String userName,String nickName,String password)
-    {
+    public MemberData(String userName, String nickName, String password) {
         this(userName, nickName, password, "", "", "", null, null);
     }
-    
-    public MemberData(String userName,String nickName,String password, String firstName,String lastName, String email,Date birthday)
-    {
+
+    public MemberData(String userName, String nickName, String password, String firstName, String lastName, String email, Date birthday) {
         this(userName, nickName, password, firstName, lastName, email, null, birthday);
     }
-    public MemberData(String userName,String nickName,String password, String firstName,String lastName, String email, Date joined, Date birthday)
-    {
-        this._userName=userName;
-        this._nickName=nickName;
-        this._password=password;
-        this._firstName=firstName;
-        this._lastName=lastName;
-        this._email=email;
-        this._dateJoined=joined;
-        this._dateOfBirth=birthday;
+
+    public MemberData(String userName, String nickName, String password, String firstName, String lastName, String email, Date joined, Date birthday) {
+        this._userName = userName;
+        this._nickName = nickName;
+        this._password = password;
+        this._firstName = firstName;
+        this._lastName = lastName;
+        this._email = email;
+        this._dateJoined = joined;
+        this._dateOfBirth = birthday;
     }
     //Getters
+
     /**
      * 
      * @return the _userName
@@ -165,6 +167,4 @@ public class MemberData {
     public void setStatus(boolean status) {
         this._status = status;
     }
-
-    
 }

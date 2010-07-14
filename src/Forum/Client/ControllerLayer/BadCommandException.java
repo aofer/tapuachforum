@@ -6,11 +6,10 @@ package Forum.Client.ControllerLayer;
  * @author Tomer Heber
  */
 public class BadCommandException extends Exception {
-	
-	private static final long serialVersionUID = -7397323378113203424L;
 
-	public BadCommandException(String msg) {
-		super(msg);
-	}
+    private static final long serialVersionUID = -7397323378113203424L;
 
+    public BadCommandException(String msg) {
+        super(msg);
+    }
 }

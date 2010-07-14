@@ -11,7 +11,7 @@ import Forum.PersistentLayer.Interfaces.eMemberType;
  *
  * @author Kipi
  */
-public  abstract class User {
+public abstract class User {
 
     public User() {
     }
@@ -26,7 +26,7 @@ public  abstract class User {
     public String readMessage(int messageId) throws MessageNotFoundException {
         return Forum.getInstance().getMessage(messageId).toString();
     }
-    
+
     /**
      * This method returns the type of the user
      */

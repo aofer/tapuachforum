@@ -59,7 +59,7 @@ public class MessagesParser {
         int pos = 1;
         int msgStart;
         int msgEnd;
-         Vector<SearchHit> hitVec = new Vector<SearchHit>();
+        Vector<SearchHit> hitVec = new Vector<SearchHit>();
         SearchHit hit;
 
         while (pos < len) {
@@ -136,7 +136,7 @@ public class MessagesParser {
     }
 
     private static Message getMessage(String str) {
-        int tmpIndex2= str.indexOf("id:");
+        int tmpIndex2 = str.indexOf("id:");
         int tmpIndex1 = str.indexOf("user:");
 
         int id = Integer.parseInt(str.substring(tmpIndex2 + 3, tmpIndex1));

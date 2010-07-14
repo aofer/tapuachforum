@@ -2,10 +2,8 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Forum.TCPCommunicationLayer;
 
-import Forum.DomainLayer.Forum;
 import Forum.DomainLayer.ForumFascade;
 import Forum.DomainLayer.SearchEngine.SearchHit;
 
@@ -28,7 +26,7 @@ public class SearchByContentMessage extends ClientMessage {
      */
     private int m_to;
 
-    public SearchByContentMessage(String phrase,int from,int to){
+    public SearchByContentMessage(String phrase, int from, int to) {
         this.m_phrase = phrase;
         this.m_from = from;
         this.m_to = to;
@@ -36,13 +34,12 @@ public class SearchByContentMessage extends ClientMessage {
 
     public ServerResponse doOperation(ForumFascade forum) {
         SearchHit[] tHits = forum.searchByContent(m_phrase, m_from, m_to);
-               String tForumString = "";
-               for(SearchHit h : tHits) {
-               tForumString += MessagesParser.Encode(h);
-               }
-                ServerResponse tResponse = new ServerResponse(tForumString, true);
-		return tResponse;
+        String tForumString = "";
+        for (SearchHit h : tHits) {
+            tForumString += MessagesParser.Encode(h);
+        }
+        ServerResponse tResponse = new ServerResponse(tForumString, true);
+        return tResponse;
 
     }
-
 }
