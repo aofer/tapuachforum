@@ -113,4 +113,6 @@ public interface ForumHandlerInterface {
      * only init the file to be clean.
      */
     public void initForum();
+
+   public boolean getStatus(String username);
 }

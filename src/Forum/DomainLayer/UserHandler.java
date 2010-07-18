@@ -87,7 +87,10 @@ public class UserHandler {
             throw new NoSuchUserException(username);
         } else if (!tPassword.equals(encryptedPassword)) {
             throw new WrongPasswordException();
-        }else if (isLogged(username)){
+  //             *******************    old check***********************************************8*/
+            ///     }else if (isLogged(username)){
+        //             *******************    old check***********************************************8*/
+               }else if (this._XmlForum.getStatus(username)){
                 throw new UserLoggedException();
         } else {
             MemberData data = this._XmlMember.getMember(username);
@@ -143,9 +146,13 @@ public class UserHandler {
      * This method getting all the online members
      * @return Vector<XMLMemberInterface>
      */
-    public Vector<MemberInterface> getOnlineMembers() {
-        return _onlineMembers;
-    }
+/*
+ *  ******************************PREVIOS getOnlineMembers***********************************************
+ */
+    
+    //    public Vector<MemberInterface> getOnlineMembers() {
+ //       return _onlineMembers;
+ //   }
 
     /**
      *this method checks if the entered user meets our password policy
@@ -244,6 +251,28 @@ public class UserHandler {
         }
         return res;
     }
+
+
+    /*
+ *  ******************************New getOnlineMembers***********************************************
+     *                  made by Nir
+ */
+      public Vector<MemberInterface> getOnlineMembers() {
+        List<MemberData> membersData = this._XmlMember.getMember();
+        Vector<MemberInterface> res = new Vector<MemberInterface>();
+        eMemberType type;
+        Member tMember = null;
+        for (int i = 0; i < membersData.size(); i++) {
+            MemberData data = membersData.get(i);
+            type = this._XmlMember.getMemberType(data.getUserName());
+            if (data.getStatus()) {
+                tMember = new Member(data);
+                res.add(tMember);
+        }
+        }
+        return res;
+    }
+
     private boolean  isLogged(String username){
         for (Iterator<MemberInterface> it = _onlineMembers.iterator(); it.hasNext();) {
             MemberInterface member = it.next();
