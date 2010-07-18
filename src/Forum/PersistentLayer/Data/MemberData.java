@@ -45,6 +45,18 @@ public class MemberData {
         this._dateJoined = joined;
         this._dateOfBirth = birthday;
     }
+
+        public MemberData(String userName, String nickName, String password, String firstName, String lastName, String email, Date joined, Date birthday, boolean status) {
+        this._userName = userName;
+        this._nickName = nickName;
+        this._password = password;
+        this._firstName = firstName;
+        this._lastName = lastName;
+        this._email = email;
+        this._dateJoined = joined;
+        this._dateOfBirth = birthday;
+        this._status = status;
+    }
     //Getters
 
     /**
@@ -104,6 +116,9 @@ public class MemberData {
         return _dateOfBirth;
     }
 
+    public boolean getStatus(){
+        return _status;
+    }
     //Setters
     /**
      * @param userName the _userName to set
