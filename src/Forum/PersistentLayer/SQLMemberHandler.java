@@ -54,7 +54,7 @@ public class SQLMemberHandler implements XMLMemberInterface {
             Date joined = m.getDateOfJoin();
             Date birth = m.getDateOfJoin();
             members.add(new MemberData(m.getUserName(), m.getNickName(), m.getPassword(),
-                    m.getFirstName(), m.getLastName(), m.getEmail(), joined, birth));
+                    m.getFirstName(), m.getLastName(), m.getEmail(), joined, birth, m.isIsLogin()));
         }
         return members;
     }
@@ -84,7 +84,7 @@ public class SQLMemberHandler implements XMLMemberInterface {
             Date joined = oneOfMembers.getDateOfJoin();
             Date birth = oneOfMembers.getDataOfBirth();
             return new MemberData(oneOfMembers.getUserName(), oneOfMembers.getNickName(), oneOfMembers.getPassword(),
-                    oneOfMembers.getFirstName(), oneOfMembers.getLastName(), oneOfMembers.getEmail(), joined, birth);
+                    oneOfMembers.getFirstName(), oneOfMembers.getLastName(), oneOfMembers.getEmail(), joined, birth, oneOfMembers.isIsLogin());
         }
 
         return null;
