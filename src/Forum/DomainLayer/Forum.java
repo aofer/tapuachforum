@@ -17,6 +17,7 @@ import Forum.PersistentLayer.Interfaces.XMLMessageInterface;
 import java.util.Date;
 import java.util.Vector;
 import Forum.DomainLayer.Logger.*;
+import Forum.DomainLayer.SearchEngine.CompassSearchHandler;
 import Forum.DomainLayer.SearchEngine.SearchEngineInterface;
 import java.util.List;
 
@@ -48,13 +49,26 @@ public class Forum implements ForumInterface {
      * private constructor for the Singleton design
      */
     private Forum() {   //added stuff to the constructor in order to make it work
+/////************************************************************************************************************************/////////
+//                              THIS IS FOR USING XML
         XMLFileHandler xf = new XMLFileHandler("testforum.xml"); //currently using the testforum xml file
         ForumHandlerInterface sqlForumHandler = new ForumHandler(xf);
         XMLMessageInterface sqlMessageHandler = new XMLMessageHandler(xf);
         XMLMemberInterface sqlMemberHandler = new XMLMemberHandler(xf);
+        this._searchHandler = new SearchEngineHandler();
+  /////************************************************************************************************************************/////////
+        
+/////************************************************************************************************************************/////////
+ //                              THIS IS FOR USING SQL
+ //       ForumHandlerInterface sqlForumHandler = new SQLForumHandler();
+ //       XMLMessageInterface sqlMessageHandler = new SQLMessageHandler();
+ //       XMLMemberInterface sqlMemberHandler = new SQLMemberHandler();
+ //        this._searchHandler = new CompassSearchHandler();
+ /////************************************************************************************************************************/////////
+
         this._messageHandler = new MessageHandler(sqlForumHandler, sqlMessageHandler);
         this._userHandler = new UserHandler(sqlForumHandler, sqlMemberHandler);
-        this._searchHandler = new SearchEngineHandler();
+       
         Date tDate = new Date();
         addAdmin("admin", "admin", "adminy", "thebestadmin@gmail.com", "ad", "min", tDate);
 
@@ -197,7 +211,7 @@ public class Forum implements ForumInterface {
         TapuachLogger.getInstance().info("message number:" + messageId + " deleted");
         Message msg = _messageHandler.getMessage(messageId);
         this._searchHandler.removeMessage(msg);
-        this._messageHandler.deleteMessage(messageId);
+        //this._messageHandler.deleteMessage(messageId);
     }
 
     /**
