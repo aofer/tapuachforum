@@ -7,7 +7,7 @@
       <connection>
          <jdbc dialect="org.apache.lucene.store.jdbc.dialect.MySQLDialect">
              <dataSourceProvider>
-                 <driverManager url="jdbc:mysql://localhost:3306/mesdata?emulateLocators=true" username="root" password="1234"
+                 <driverManager url="jdbc:mysql://localhost:3306/mesdata?emulateLocators=true" username="root" password="1"
                                 driverClass="com.mysql.jdbc.Driver" autoCommit="false" />
              </dataSourceProvider>             
          </jdbc>

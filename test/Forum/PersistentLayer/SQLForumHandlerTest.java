@@ -54,8 +54,8 @@ public class SQLForumHandlerTest {
         System.out.println("initForum");
         //initFOrum2 use only to build in the first time Tapuach Forum;
         // Don't use if it is in the table
-    //   instance.initForum2();
-        instance.initForum();
+       instance.initForum2();
+     //instance.initForum();
         // TODO review the generated test code and remove the default call to fail.
      //   fail("The test case is a prototype.");
     }
@@ -105,9 +105,9 @@ public class SQLForumHandlerTest {
      public void testUserExists() {
         System.out.println("userExist");
         String username = "notSUchUser";
-        String result = instance.userExist(username);
+        String result = instance.findMember(username).getPassword();
         assertNull(result);
-         result = instance.userExist("userToCheck2");
+         result = instance.findMember("userToCheck2").getPassword();
         assertEquals(result, "PaSSword");
 
    }
@@ -126,7 +126,7 @@ public class SQLForumHandlerTest {
         String lastName = "iscoll";
         Date dateOfBirth = new Date();
           instance.register(userName, nickName,password, eMail, firstName, lastName, dateOfBirth);
-           String result = instance.userExist(userName);
+           String result = instance.findMember(userName).getPassword();
         assertEquals(result,password);
 
     }
