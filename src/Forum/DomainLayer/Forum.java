@@ -47,22 +47,18 @@ public class Forum implements ForumInterface {
     /**
      * private constructor for the Singleton design
      */
-    private Forum() {
-/////************************************************************************************************************************/////////
- //                              THIS IS FOR USING SQL
+    private Forum() {   //added stuff to the constructor in order to make it work
+
         ForumHandlerInterface sqlForumHandler = new SQLForumHandler();
         XMLMessageInterface sqlMessageHandler = new SQLMessageHandler();
         XMLMemberInterface sqlMemberHandler = new SQLMemberHandler();
          this._searchHandler = new CompassSearchHandler();
- /////************************************************************************************************************************/////////
 
         this._messageHandler = new MessageHandler(sqlForumHandler, sqlMessageHandler);
         this._userHandler = new UserHandler(sqlForumHandler, sqlMemberHandler);
 
         Date tDate = new Date();
         addAdmin("admin", "admin", "adminy", "thebestadmin@gmail.com", "ad", "min", tDate);
-
-
     }
 
     /**
@@ -201,7 +197,7 @@ public class Forum implements ForumInterface {
         TapuachLogger.getInstance().info("message number:" + messageId + " deleted");
         Message msg = _messageHandler.getMessage(messageId);
         this._searchHandler.removeMessage(msg);
-        this._messageHandler.deleteMessage(messageId);
+        //this._messageHandler.deleteMessage(messageId);
     }
 
     /**
