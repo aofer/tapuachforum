@@ -34,6 +34,8 @@ public class Main extends javax.swing.JFrame {
     private ControllerHandler m_pipe;
     private ForumTree _tree;
     private boolean isAdmin;
+    private javax.swing.Timer m_pageTimer;
+    private javax.swing.Timer m_onlineTimer;
 
     /** Creates new form Main */
     public Main(String title) {
@@ -55,8 +57,18 @@ public class Main extends javax.swing.JFrame {
                 m_pipe.getOnlineMembers(null);
             }
         };
-        new Timer(delay, taskPerformer).start();
+        m_onlineTimer= new Timer(delay, taskPerformer);
+        m_onlineTimer.start();
+        
+        ActionListener taskPerformer2 = new ActionListener() {
 
+            public void actionPerformed(ActionEvent e) {
+                pagingPanel1.UpdateView();
+                m_pageTimer.stop();
+            }
+        };
+        m_pageTimer = new Timer(2, taskPerformer2);
+        m_pageTimer.start();
     }
 
     private void addMainToPanels() {
@@ -66,6 +78,7 @@ public class Main extends javax.swing.JFrame {
         this.logoutPanel.addParent(this);
         this.registrationPanel.addParent(this);
         this.upgradeUsersPanel.addParent(this);
+        this.pagingPanel1.setMain(this);
         this.getSearchResultPanel1().addParent(this);
     }
 
@@ -102,6 +115,7 @@ public class Main extends javax.swing.JFrame {
         this.searchPanel.setVisible(true);
         this.statusPanel.setVisible(true);
         this.btnRefresh.setVisible(true);
+        this.pagingPanel1.setVisible(true);
     }
 
     public void loginSuccess(String user, eMemberType member, String nick) {
@@ -131,6 +145,7 @@ public class Main extends javax.swing.JFrame {
         this.searchPanel.setVisible(false);
         this.statusPanel.setVisible(false);
         this.upgradeUsersPanel.setVisible(false);
+        this.pagingPanel1.setVisible(false);
         this.getSearchResultPanel1().resetResults();
         Vector<SearchHit> hits = Forum.TCPCommunicationLayer.MessagesParser.DecodeHits(results);
         Collections.sort(hits);
@@ -169,6 +184,7 @@ public class Main extends javax.swing.JFrame {
         statusPanel = new Forum.Client.ui.StatusPanel();
         upgradeUsersPanel = new Forum.Client.ui.upgradeUsersPanel();
         btnRefresh = new javax.swing.JButton();
+        pagingPanel1 = new Forum.Client.ui.PagingPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1200, 825));
@@ -179,26 +195,27 @@ public class Main extends javax.swing.JFrame {
         });
         getContentPane().setLayout(null);
         getContentPane().add(registrationPanel);
-        registrationPanel.setBounds(58, 180, 380, 399);
+        registrationPanel.setBounds(58, 180, 380, 425);
 
-        forumLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 36));
+        forumLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
+        forumLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         forumLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forum/Client/ui/tapuachLogo4.gif"))); // NOI18N
         getContentPane().add(forumLabel);
-        forumLabel.setBounds(10, 10, 400, 120);
+        forumLabel.setBounds(10, -50, 400, 120);
 
         loginPanel.setMinimumSize(new java.awt.Dimension(580, 45));
         getContentPane().add(loginPanel);
-        loginPanel.setBounds(430, 70, 560, 45);
+        loginPanel.setBounds(420, 20, 580, 51);
         getContentPane().add(logoutPanel);
-        logoutPanel.setBounds(544, 70, 230, 45);
+        logoutPanel.setBounds(540, 20, 330, 51);
         getContentPane().add(TreePanel);
-        TreePanel.setBounds(20, 140, 790, 480);
+        TreePanel.setBounds(10, 90, 790, 480);
         getContentPane().add(searchResultPanel1);
-        searchResultPanel1.setBounds(71, 210, 480, 351);
+        searchResultPanel1.setBounds(110, 210, 480, 357);
         getContentPane().add(searchPanel);
-        searchPanel.setBounds(20, 620, 624, 150);
+        searchPanel.setBounds(10, 610, 670, 130);
         getContentPane().add(statusPanel);
-        statusPanel.setBounds(640, 620, 344, 140);
+        statusPanel.setBounds(670, 610, 330, 130);
         getContentPane().add(upgradeUsersPanel);
         upgradeUsersPanel.setBounds(800, 140, 200, 260);
 
@@ -209,7 +226,9 @@ public class Main extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnRefresh);
-        btnRefresh.setBounds(820, 580, 160, 40);
+        btnRefresh.setBounds(820, 530, 160, 40);
+        getContentPane().add(pagingPanel1);
+        pagingPanel1.setBounds(330, 580, 230, 27);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -237,6 +256,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel forumLabel;
     private Forum.Client.ui.LoginPanel loginPanel;
     private Forum.Client.ui.LogoutPanel logoutPanel;
+    private Forum.Client.ui.PagingPanel pagingPanel1;
     private Forum.Client.ui.RegistrationPanel registrationPanel;
     private Forum.Client.ui.SearchPanel searchPanel;
     private Forum.Client.ui.SearchResultPanel searchResultPanel1;
@@ -270,6 +290,10 @@ public class Main extends javax.swing.JFrame {
      */
     public Forum.Client.ui.StatusPanel getStatusPanel1() {
         return statusPanel;
+    }
+
+    public Forum.Client.ui.PagingPanel getPagingPanel() {
+        return pagingPanel1;
     }
 
     /**

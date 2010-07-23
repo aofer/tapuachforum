@@ -28,7 +28,7 @@ public class SQLMemberHandler implements XMLMemberInterface {
     public SQLMemberHandler() {
     }
 
-    public List<MemberData> getMember() {
+    public List<MemberData> getMembers() {
         List<MemberData> members = new ArrayList<MemberData>();
         List<Members> MembersList = null;
         Transaction tx = null;
@@ -37,6 +37,7 @@ public class SQLMemberHandler implements XMLMemberInterface {
             tx = session.beginTransaction();
             Query q = session.createQuery("from Members as members");
             MembersList = (List<Members>) q.list();
+            session.close();
         } catch (RuntimeException e) {
             if (tx != null && tx.isActive()) {
                 try {
@@ -50,11 +51,13 @@ public class SQLMemberHandler implements XMLMemberInterface {
             }
         }
 
-        for (Members m : MembersList) {
-            Date joined = m.getDateOfJoin();
-            Date birth = m.getDateOfJoin();
-            members.add(new MemberData(m.getUserName(), m.getNickName(), m.getPassword(),
-                    m.getFirstName(), m.getLastName(), m.getEmail(), joined, birth, m.isIsLogin()));
+        if (MembersList != null) {
+            for (Members m : MembersList) {
+                Date joined = m.getDateOfJoin();
+                Date birth = m.getDateOfJoin();
+                members.add(new MemberData(m.getUserName(), m.getNickName(), m.getPassword(),
+                        m.getFirstName(), m.getLastName(), m.getEmail(), joined, birth, m.isIsLogin()));
+            }
         }
         return members;
     }
@@ -67,6 +70,7 @@ public class SQLMemberHandler implements XMLMemberInterface {
             tx = session.beginTransaction();
             Query q = session.createQuery("from Members as members where members.userName is '" + userName + "'");
             oneOfMembers = (Members) q.uniqueResult();
+            session.close();
         } catch (RuntimeException e) {
             if (tx != null && tx.isActive()) {
                 try {
@@ -98,6 +102,7 @@ public class SQLMemberHandler implements XMLMemberInterface {
             tx = session.beginTransaction();
             Query q = session.createQuery("from Members as members where members.userName is '" + userName + "'");
             oneOfMembers = (Members) q.uniqueResult();
+            session.close();
         } catch (RuntimeException e) {
             if (tx != null && tx.isActive()) {
                 try {

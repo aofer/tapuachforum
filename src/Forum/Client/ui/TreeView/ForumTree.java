@@ -58,6 +58,9 @@ public class ForumTree implements ForumTreeHandler {
     private Boolean m_needRefresh;
     private String m_nick;
     private boolean m_popupShown;
+    private int m_viewFrom = 0;
+    private int m_msgpp = 4; //number of messages per page
+    private int m_viewNumberOfPages = 0; //how many paging are they
 
     public Main getMf() {
         return _mf;
@@ -193,6 +196,18 @@ public class ForumTree implements ForumTreeHandler {
         });
     }
 
+    public void MoveDisplayFrom(boolean forword) {
+        if (forword) {
+            m_viewFrom += m_msgpp;
+        } else {
+            m_viewFrom -= m_msgpp;
+        }
+    }
+
+    public int getNumbmerOfPages() {
+        return m_viewNumberOfPages;
+    }
+
     /**
      * Receives an encoding describing the forum tree.<br>
      * It decodes the description and returns the tree representation in a ForumCell instance.
@@ -202,8 +217,16 @@ public class ForumTree implements ForumTreeHandler {
     private ForumCell decodeView(String encodedView) {
         ForumCell root = new ForumCell(0, "", "", "");
         Vector<Message> messages = Forum.TCPCommunicationLayer.MessagesParser.Decode(encodedView);
-        for (Message m : messages) {
-            root.add(new ForumCell(m));
+        for (int i = m_viewFrom; i < messages.size() & i < m_viewFrom + m_msgpp; i++) {
+            root.add(new ForumCell(messages.get(i)));
+        }
+        m_viewNumberOfPages = messages.size() / m_msgpp;
+        if (messages.size() % m_msgpp != 0) {
+            m_viewNumberOfPages++;
+        }
+        _mf.getPagingPanel().UpdateView();
+        if (_mf.getPagingPanel().isPassMax()) {
+            return decodeView(encodedView);
         }
         return root;
     }

@@ -157,11 +157,10 @@ public class ControllerHandlerImpl extends ControllerHandler {
         _connectionController.send(new OnlineMembersMessage());
 
         res = _connectionController.listen();
-        if (res.hasExecuted()) {
-
-
+        if (res == null) {
+            //notifyObservers(new ForumTreeErrorEvent("erorr in connction"));
+        } else if (res.hasExecuted()) {
             notifyObservers(new OnlineMembersEvent(comp, res.getResponse()));
-
         } else {
             notifyObservers(new ForumTreeErrorEvent(res.getResponse()));
         }

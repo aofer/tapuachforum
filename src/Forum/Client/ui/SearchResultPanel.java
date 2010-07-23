@@ -145,6 +145,7 @@ public class SearchResultPanel extends javax.swing.JPanel {
         main.getTreePanel().setVisible(true);
         main.getSearchPanel1().setVisible(true);
         main.getStatusPanel1().setVisible(true);
+        main.getPagingPanel().setVisible(true);
         if (main.isAdminLogged())
             main.getUpgradeUsersPanel().setVisible(true);
         main.getSearchResultPanel1().setVisible(false);

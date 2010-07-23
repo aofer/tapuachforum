@@ -242,45 +242,8 @@ public class SQLForumHandler implements ForumHandlerInterface {
         }
     }
 
-    /**
-     * check if the username already exist
-     * @param username
-     * @return username password if exists or NULL if not*/
-    public String userExist(String username) {
-        Members oneOfMembers = null;
-        Session session = SessionFactoryUtil.getInstance().getCurrentSession();
-
-        Transaction tx = null;
-        try {
-            tx = session.beginTransaction();
-            Query q = session.createQuery("from Members as members where members.userName is '" + username + "'");
-            oneOfMembers = (Members) q.uniqueResult();
-            System.out.println("see");
-            if (oneOfMembers != null) {
-                return oneOfMembers.getPassword();
-            } else {
-                return null;
-            }
-        } catch (RuntimeException e) {
-            if (tx != null && tx.isActive()) {
-                try {
-                    // Second try catch as the rollback could fail as well
-                    tx.rollback();
-                } catch (HibernateException e1) {
-                    // add logging
-                }
-                // throw again the first exception
-                throw e;
-            }
-        }
-        return null;
-
-
-
-    }
-
     // this function giving back member by his userName
-    private Members findMember(String username) {
+    public Members findMember(String username) {
         Members oneOfMembers = null;
         Transaction tx = null;
         Session session = SessionFactoryUtil.getInstance().getCurrentSession();
@@ -288,10 +251,6 @@ public class SQLForumHandler implements ForumHandlerInterface {
             tx = session.beginTransaction();
             Query q = session.createQuery("from Members as members where members.userName is '" + username + "'");
             oneOfMembers = (Members) q.uniqueResult();
-            if (oneOfMembers != null) {
-                System.out.println(oneOfMembers.getUserName());
-
-            }
             tx.rollback();
             return oneOfMembers;
         } catch (RuntimeException e) {
@@ -309,33 +268,6 @@ public class SQLForumHandler implements ForumHandlerInterface {
         return null;
     }
 
-    // this function giving back   Message from the main level of the tree if exist. Null outher wise;
-    // it is not in use!
-    private Message findMessageAtMain(int messageID) {
-        Message oneMessage = null;
-        Transaction tx = null;
-        Session session = SessionFactoryUtil.getInstance().getCurrentSession();
-
-        try {
-            tx = session.beginTransaction();
-            Query q = session.createQuery("from Message as message where message.number is '" + messageID + "'");
-            oneMessage = (Message) q.uniqueResult();
-        } catch (RuntimeException e) {
-            if (tx != null && tx.isActive()) {
-                try {
-                    // Second try catch as the rollback could fail as well
-                    tx.rollback();
-                } catch (HibernateException e1) {
-                    // add logging
-                }
-                // throw again the first exception
-                throw e;
-            }
-        }
-        return oneMessage;
-    }
-
-    ;
 
     // this function giving back   Message from the tree if exist. Null outher wise;
     // it is using the next helf-recorsivic function.
@@ -361,26 +293,6 @@ public class SQLForumHandler implements ForumHandlerInterface {
         }
         return oneMessage;
     }
-
-    ;
-
-    // recursivis function to find Messeage;
-    // IN SQL we don't need this function!!
-     /*   private MessageType findMessageRec(int messageID, MessageType messageAba) {
-    if(messageAba.getMessageId().intValue() == messageID)
-    return messageAba;
-    else{
-    MessageType tryMesaage = null;
-    for (MessageType m : messageAba.getMessage()) {
-    tryMesaage =  findMessageRec(messageID, m);
-    if (tryMesaage != null)
-    return tryMesaage;
-    }
-    }
-    return null;
-    }
-     * /
-
 
     /**
      * check if the username already exist
