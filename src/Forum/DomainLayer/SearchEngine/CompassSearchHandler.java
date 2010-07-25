@@ -58,19 +58,13 @@ public class CompassSearchHandler implements SearchEngineInterface {
         CompassSession cs = CompassInstance.getInstance();
         cs = CompassInstance.open();
         cs.beginTransaction();
-        CompassHits hits = cs.find("Author:\"" + username + "\"");
-
-        cs.commit();
-        
+        CompassHits hits = cs.find("author:\"" + username + "\"");
         CompassHit[] detachedHits = hits.detach(from, to).getHits();
         SearchHit[] sh = new SearchHit[detachedHits.length];
         for (int i = 0; i < detachedHits.length; i++) {
-
             sh[i] = new SearchHit(((MessageInterface) detachedHits[i].data()), detachedHits[i].score());
-
         }
-        
-
+     cs.commit();
         return sh;
     }
 
