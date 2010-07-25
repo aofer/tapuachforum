@@ -111,11 +111,11 @@ public class MessageHandlerTest {
     @Test
     public void testDeleteMessage() throws Exception {
         System.out.println("deleteMessage");
-        int messageId = 3;
+        int messageId = 1;
        int  sizeFirst=  instance.viewForum().size();
       instance.deleteMessage(messageId);
          int sizeAfter = instance.viewForum().size();
-         assertTrue(sizeFirst- sizeAfter == 1);
+         assertEquals(sizeFirst- sizeAfter,0);
      }
 
     /**
