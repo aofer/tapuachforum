@@ -44,9 +44,6 @@ public class Forum implements ForumInterface {
         return _forum;
     }
 
-    /**
-     * private constructor for the Singleton design
-     */
     private Forum() {   //added stuff to the constructor in order to make it work
 
         ForumHandlerInterface sqlForumHandler = new SQLForumHandler();
