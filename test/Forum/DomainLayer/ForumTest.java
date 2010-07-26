@@ -176,23 +176,23 @@ public class ForumTest {
      */
     @Test
     public void testGetOnlineMembers() throws UserLoggedException {
-            System.out.println("getOnlineMembers");
-            Vector expResult = null;
-            Vector result = instance.getOnlineMembers();
-            assertEquals(result.size(), 0);
-            Date tDate = new Date();
+        System.out.println("getOnlineMembers");
+        Vector expResult = null;
+        Vector result = instance.getOnlineMembers();
+        assertEquals(result.size(), 0);
+        Date tDate = new Date();
         String username = "amitUserName";
         String password = "amiiPass";
         try {
             instance.login(username, password);
-      
+
         } catch (NoSuchUserException ex) {
             Logger.getLogger(ForumTest.class.getName()).log(Level.SEVERE, null, ex);
         } catch (WrongPasswordException ex) {
             Logger.getLogger(ForumTest.class.getName()).log(Level.SEVERE, null, ex);
         }
         result = instance.getOnlineMembers();
-              assertEquals(result.size(), 1);
+        assertEquals(result.size(), 1);
     }
 
     /**
@@ -283,7 +283,7 @@ public class ForumTest {
         System.out.println("viewForum");
         Vector expResult = null;
         Vector result = instance.viewForum();
-        assertEquals(result.size(),3);
+        assertEquals(result.size(), 3);
     }
 
     /**
@@ -314,7 +314,7 @@ public class ForumTest {
         instance.addMessage("liroPass", "subject to index", "body to index IS  COOjL ");
         SearchHit[] result = instance.searchByContent(phrase, from, to);
         assertTrue(result[0] != null);
-        assertEquals(result.length,2);
+        assertEquals(result.length, 2);
     }
 
     /**
@@ -327,7 +327,7 @@ public class ForumTest {
         int indexMes = fH.addMessage(0, "liroPassp", "subject to indexp", "body to index IkkkkkkkS  COOL ", tDate, tDate);
         MessageInterface m = new Message(new MessageData("liroPassp", "subject tpo index", "bpody to index IS COOL", tDate, tDate, indexMes));
         instance.addMessage("liroPassp", "subject to indexp", "body to index IkkkkkkkS  COOL ");
-      assertTrue(instance.searchByAuthor("liroPassp", 0, 1)[0] != null);
+        assertTrue(instance.searchByAuthor("liroPassp", 0, 1)[0] != null);
     }
 
     /**

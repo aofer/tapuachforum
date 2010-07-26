@@ -22,7 +22,7 @@ public class OnlineMembersMessage extends ClientMessage {
         String str="";
         for (Iterator<MemberInterface> it = members.iterator(); it.hasNext();) {
             MemberInterface member = it.next();
-            str+= member.getUserName() +" , ";
+            str+= member.getNickName() +" , ";
         }
         if (str.length() > 2){
             str = str.substring(0, str.length() - 2);

@@ -33,7 +33,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" alignment="0" pref="429" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" alignment="0" pref="472" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -85,6 +85,9 @@
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
           </Properties>
+          <Events>
+            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="txtBodyPropertyChange"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -104,6 +107,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtSubject">
+      <Events>
+        <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="txtSubjectPropertyChange"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnModify">
       <Properties>

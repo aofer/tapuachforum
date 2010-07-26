@@ -79,7 +79,7 @@ public class MessagesParserTest {
         assertEquals("arseny", msgFromStr.getNickname());
 
         Message msgFromStr1 = msgFromStr.getReplies().get(0);//2
-        assertEquals(msg2.getNickname(), msgFromStr1.getNickname());
+        assertEquals("liron8", msgFromStr1.getNickname());
 
         msgFromStr1 = msgFromStr.getReplies().get(2);//8
         assertEquals(msg8.getNickname(), msgFromStr1.getNickname());

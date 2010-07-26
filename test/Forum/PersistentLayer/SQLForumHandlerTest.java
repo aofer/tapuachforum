@@ -148,7 +148,7 @@ public class SQLForumHandlerTest {
         try {
             instance.addMessage(parentId, createdBy, subject, body, DateAdded);
         } catch (MessageNotFoundException ex) {
-            Logger.getLogger(ForumHandlerTest.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
          String result = instance.getSubject(1);
         assertEquals(result, subject);
