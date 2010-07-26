@@ -133,6 +133,7 @@ public class ForumTree implements ForumTreeHandler {
     }
 
     public void setPath(long msgID) {
+
         TreeNode[] nodePath = getPath((DefaultMutableTreeNode) m_tree.getModel().getRoot(), msgID);
         TreePath treePath = new TreePath(nodePath);
         m_tree.setSelectionPath(treePath);
