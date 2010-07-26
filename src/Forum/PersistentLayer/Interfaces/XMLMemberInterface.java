@@ -18,5 +18,5 @@ public interface XMLMemberInterface {
 
     eMemberType getMemberType(String userName);
 
-    List<MemberData> getMember();
+    List<MemberData> getMembers();
 }

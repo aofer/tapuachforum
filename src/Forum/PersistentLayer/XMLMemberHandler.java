@@ -29,7 +29,7 @@ public class XMLMemberHandler implements XMLMemberInterface {
         this.xf = xf;
     }
 
-    public List<MemberData> getMember() {
+    public List<MemberData> getMembers() {
         List<MemberData> members = new ArrayList<MemberData>();
 
         for (MemberType m : this.xf.getForum().getMembers()) {

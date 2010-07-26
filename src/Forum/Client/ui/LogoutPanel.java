@@ -63,8 +63,8 @@ public class LogoutPanel extends javax.swing.JPanel {
                 .addGap(23, 23, 23)
                 .addComponent(lWellcom)
                 .addGap(27, 27, 27)
-                .addComponent(bLogOut)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addComponent(bLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(75, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -81,11 +81,11 @@ public class LoginPanel extends javax.swing.JPanel {
                 .addComponent(lPassword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(bLogin)
-                .addGap(18, 18, 18)
-                .addComponent(bRegister)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,6 +119,7 @@ public class LoginPanel extends javax.swing.JPanel {
         this.getMain().getLoginPanel1().setVisible(false);
         this.getMain().getRegistrationPanel().setVisible(true);
         this.getMain().getRefreshButton().setVisible(false);
+        this.getMain().getPagingPanel().setVisible(false);
     }//GEN-LAST:event_bRegisterActionPerformed
 
     private void tPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tPasswordKeyTyped

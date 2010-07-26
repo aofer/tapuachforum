@@ -16,10 +16,10 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="pSearchByAuthor" alignment="0" max="32767" attributes="1"/>
-                  <Component id="pSearchByPharse" alignment="1" max="32767" attributes="1"/>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="pSearchByAuthor" alignment="1" max="32767" attributes="1"/>
+                  <Component id="pSearchByPharse" alignment="0" max="32767" attributes="1"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -75,17 +75,14 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <Group type="103" groupAlignment="2" attributes="0">
-                      <Component id="lAuther" alignment="2" min="-2" max="-2" attributes="0"/>
-                      <Component id="tSearchAuther" alignment="2" min="-2" max="-2" attributes="0"/>
-                      <Component id="lFrom1" alignment="2" min="-2" max="-2" attributes="0"/>
-                      <Component id="tFromAuther" alignment="2" min="-2" max="-2" attributes="0"/>
-                      <Component id="lTo1" alignment="2" min="-2" max="-2" attributes="0"/>
-                      <Component id="tToAuther" alignment="2" min="-2" max="-2" attributes="0"/>
-                      <Component id="bSearchAuthor" alignment="2" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="15" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="2" attributes="0">
+                  <Component id="lAuther" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="tSearchAuther" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="lFrom1" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="tFromAuther" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="lTo1" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="tToAuther" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="bSearchAuthor" alignment="2" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -141,7 +138,7 @@
               <Group type="102" alignment="1" attributes="0">
                   <Component id="lPharse" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="tSearchPharse" pref="312" max="32767" attributes="0"/>
+                  <Component id="tSearchPharse" pref="315" max="32767" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="lFrom2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
