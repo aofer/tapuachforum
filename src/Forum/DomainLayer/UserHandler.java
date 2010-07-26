@@ -87,11 +87,8 @@ public class UserHandler {
             throw new NoSuchUserException(username);
         } else if (!tPassword.equals(encryptedPassword)) {
             throw new WrongPasswordException();
-  //             *******************    old check***********************************************8*/
-            ///     }else if (isLogged(username)){
-        //             *******************    old check***********************************************8*/
-               }else if (this._XmlForum.getStatus(username)){
-                throw new UserLoggedException();
+        } else if (this._XmlForum.getStatus(username)) {
+            throw new UserLoggedException();
         } else {
             MemberData data = this._XmlMember.getMember(username);
             MemberInterface tMember;
@@ -141,19 +138,6 @@ public class UserHandler {
         //Moderator tModerator = new Moderator(tData);
         //addMember(tModerator);
     }
-
-    /**
-     * This method getting all the online members
-     * @return Vector<XMLMemberInterface>
-     */
-/*
- *  ******************************PREVIOS getOnlineMembers***********************************************
- */
-    
-    //    public Vector<MemberInterface> getOnlineMembers() {
- //       return _onlineMembers;
- //   }
-
     /**
      *this method checks if the entered user meets our password policy
      * @param password
@@ -235,7 +219,7 @@ public class UserHandler {
     }
 
     public List<Member> getMembers() {
-        List<MemberData> membersData = this._XmlMember.getMember();
+        List<MemberData> membersData = this._XmlMember.getMembers();
         List<Member> res = new LinkedList<Member>();
         eMemberType type;
         Member tMember = null;
@@ -252,32 +236,28 @@ public class UserHandler {
         return res;
     }
 
-
-    /*
- *  ******************************New getOnlineMembers***********************************************
-     *                  made by Nir
- */
-      public Vector<MemberInterface> getOnlineMembers() {
-        List<MemberData> membersData = this._XmlMember.getMember();
+    public Vector<MemberInterface> getOnlineMembers() {
+        List<MemberData> membersData = this._XmlMember.getMembers();
         Vector<MemberInterface> res = new Vector<MemberInterface>();
-        eMemberType type;
+        //eMemberType type;
         Member tMember = null;
         for (int i = 0; i < membersData.size(); i++) {
             MemberData data = membersData.get(i);
-            type = this._XmlMember.getMemberType(data.getUserName());
+            //type = this._XmlMember.getMemberType(data.getUserName());
             if (data.getStatus()) {
                 tMember = new Member(data);
                 res.add(tMember);
-        }
+            }
         }
         return res;
     }
 
-    private boolean  isLogged(String username){
+    private boolean isLogged(String username) {
         for (Iterator<MemberInterface> it = _onlineMembers.iterator(); it.hasNext();) {
             MemberInterface member = it.next();
-            if(member.getUserName().equals(username))
+            if (member.getUserName().equals(username)) {
                 return true;
+            }
         }
         return false;
     }

@@ -198,6 +198,7 @@ public class RegistrationPanel extends javax.swing.JPanel {
         this.getMain().getLoginPanel1().setVisible(true);
         this.getMain().getRegistrationPanel().setVisible(false);
         this.getMain().getRefreshButton().setVisible(true);
+        this.getMain().getPagingPanel().setVisible(true);
     }//GEN-LAST:event_CancelButtonActionPerformed
 
     /**

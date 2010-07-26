@@ -127,7 +127,7 @@ public class CompassSearchHandlerTest {
         MessageInterface retMsg = result[0].getMessage();
         assertEquals(111, retMsg.getIndex());
         username = "Arseny";
-        from = 1; to =  2 ;
+        from = 0; to =  2 ;
         result = instance.searchByAuthor(username, from, to);
         assertEquals(1, result.length);
 

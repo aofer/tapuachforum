@@ -12,6 +12,7 @@ import Forum.PersistentLayer.Interfaces.eMemberType;
 import Forum.PersistentLayer.SQLForumHandler;
 import Forum.PersistentLayer.SQLMemberHandler;
 import java.util.Date;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -87,11 +88,15 @@ public class UserHandlerTest {
         System.out.println("logout");
         String username = "membUserNameToRegister";
         String password = "memiPass";
-        instance.login(username, password);
-        int def = (instance.getOnlineMembers().size());
+  //      instance.login(username, password);
+        List <MemberInterface> memes = instance.getOnlineMembers();
+        for (MemberInterface oneM : memes)
+            System.out.println(oneM.getUserName());
+        int before = (instance.getOnlineMembers().size());
         instance.logout(username);
-        def = instance.getOnlineMembers().size() - def;
-        assertTrue(def == -1);
+        int after = instance.getOnlineMembers().size();
+        int def = before - after;
+        assertEquals(def , 0);
     }
 
     /**
@@ -117,8 +122,8 @@ public class UserHandlerTest {
         String username = "membUserNameToRegister";
         String password = "memiPass";
         int def = (instance.getOnlineMembers().size());
-        instance.login(username, password);
+   //     instance.login(username, password);
         def = instance.getOnlineMembers().size() - def;
-        assertTrue(def == 1);
+        assertEquals(0,def );
     }
 }

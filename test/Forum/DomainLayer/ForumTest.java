@@ -176,21 +176,23 @@ public class ForumTest {
      */
     @Test
     public void testGetOnlineMembers() throws UserLoggedException {
-        try {
             System.out.println("getOnlineMembers");
             Vector expResult = null;
             Vector result = instance.getOnlineMembers();
             assertEquals(result.size(), 0);
             Date tDate = new Date();
-            String username = "amitUserName";
-            String password = "amiiPass";
+        String username = "amitUserName";
+        String password = "amiiPass";
+        try {
             instance.login(username, password);
-            assertEquals(result.size(), 1);
+      
         } catch (NoSuchUserException ex) {
             Logger.getLogger(ForumTest.class.getName()).log(Level.SEVERE, null, ex);
         } catch (WrongPasswordException ex) {
             Logger.getLogger(ForumTest.class.getName()).log(Level.SEVERE, null, ex);
         }
+        result = instance.getOnlineMembers();
+              assertEquals(result.size(), 1);
     }
 
     /**
@@ -281,7 +283,7 @@ public class ForumTest {
         System.out.println("viewForum");
         Vector expResult = null;
         Vector result = instance.viewForum();
-        assertTrue(result.size() == 2);
+        assertEquals(result.size(),3);
     }
 
     /**
@@ -312,7 +314,7 @@ public class ForumTest {
         instance.addMessage("liroPass", "subject to index", "body to index IS  COOjL ");
         SearchHit[] result = instance.searchByContent(phrase, from, to);
         assertTrue(result[0] != null);
-        assertTrue(result.length == 1);
+        assertEquals(result.length,2);
     }
 
     /**

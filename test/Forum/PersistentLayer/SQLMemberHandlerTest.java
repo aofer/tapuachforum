@@ -48,7 +48,7 @@ public class SQLMemberHandlerTest {
     @Test
     public void testGetMember_0args() {
         System.out.println("getMember");
-        List<MemberData> result = instance.getMember();
+        List<MemberData> result = instance.getMembers();
         assertNotNull(result);
     }
 

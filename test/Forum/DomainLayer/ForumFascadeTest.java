@@ -166,7 +166,7 @@ public class ForumFascadeTest {
         instance.deleteMessage(messageId);
         System.out.println(" now... ");
         System.out.println(fInstance.viewForum());
-        assertEquals(fInstance.viewForum().size(), 1);
+        assertEquals(fInstance.viewForum().size(), 2);
     }
 
     /**

@@ -86,6 +86,7 @@ public class MessagesParser {
         int msgStart;
         int msgEnd;
         Vector<Message> msgVec = new Vector<Message>();
+        Vector<Message> ret = new Vector<Message>();
         Message msg;
 
         while (pos < len) {
@@ -103,7 +104,9 @@ public class MessagesParser {
                 pos = msgEnd + 11;
             }
         }
-        return msgVec;
+        for (int i=msgVec.size()-1;i>=0;i--)
+            ret.add(msgVec.get(i));
+        return ret;
     }
 
     private static int getClosed(int index, String str) {
