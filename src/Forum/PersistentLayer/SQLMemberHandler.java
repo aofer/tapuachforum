@@ -37,7 +37,6 @@ public class SQLMemberHandler implements XMLMemberInterface {
             tx = session.beginTransaction();
             Query q = session.createQuery("from Members as members");
             MembersList = (List<Members>) q.list();
-            session.close();
         } catch (RuntimeException e) {
             if (tx != null && tx.isActive()) {
                 try {
@@ -48,6 +47,10 @@ public class SQLMemberHandler implements XMLMemberInterface {
                 }
                 // throw again the first exception
                 throw e;
+            }
+        } finally {
+            if (session.isOpen()) {
+                session.close();
             }
         }
 
@@ -70,7 +73,6 @@ public class SQLMemberHandler implements XMLMemberInterface {
             tx = session.beginTransaction();
             Query q = session.createQuery("from Members as members where members.userName is '" + userName + "'");
             oneOfMembers = (Members) q.uniqueResult();
-            session.close();
         } catch (RuntimeException e) {
             if (tx != null && tx.isActive()) {
                 try {
@@ -81,6 +83,10 @@ public class SQLMemberHandler implements XMLMemberInterface {
                 }
                 // throw again the first exception
                 throw e;
+            }
+        } finally {
+            if (session.isOpen()) {
+                session.close();
             }
         }
 
@@ -102,7 +108,6 @@ public class SQLMemberHandler implements XMLMemberInterface {
             tx = session.beginTransaction();
             Query q = session.createQuery("from Members as members where members.userName is '" + userName + "'");
             oneOfMembers = (Members) q.uniqueResult();
-            session.close();
         } catch (RuntimeException e) {
             if (tx != null && tx.isActive()) {
                 try {
@@ -113,6 +118,10 @@ public class SQLMemberHandler implements XMLMemberInterface {
                 }
                 // throw again the first exception
                 throw e;
+            }
+        } finally {
+            if (session.isOpen()) {
+                session.close();
             }
         }
         if (oneOfMembers != null) {

@@ -47,6 +47,11 @@ public class addNewMessage extends javax.swing.JFrame {
 
         txtBody.setColumns(20);
         txtBody.setRows(5);
+        txtBody.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                txtBodyPropertyChange(evt);
+            }
+        });
         jScrollPane1.setViewportView(txtBody);
 
         jLabel1.setText("Nick Name:");
@@ -54,6 +59,12 @@ public class addNewMessage extends javax.swing.JFrame {
         lblNick.setText("********");
 
         jLabel2.setText("Subject:");
+
+        txtSubject.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                txtSubjectPropertyChange(evt);
+            }
+        });
 
         btnModify.setText("Save");
         btnModify.addActionListener(new java.awt.event.ActionListener() {
@@ -83,7 +94,7 @@ public class addNewMessage extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -125,6 +136,22 @@ public class addNewMessage extends javax.swing.JFrame {
         _tree.PopupDone();
         this.dispose();
 }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void txtSubjectPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_txtSubjectPropertyChange
+        checkOK();
+    }//GEN-LAST:event_txtSubjectPropertyChange
+
+    private void txtBodyPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_txtBodyPropertyChange
+        checkOK();
+    }//GEN-LAST:event_txtBodyPropertyChange
+
+    private void checkOK(){
+        if (!txtSubject.getText().isEmpty() &
+                !txtBody.getText().isEmpty())
+            btnModify.setEnabled(true);
+        else
+            btnModify.setEnabled(false);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnModify;

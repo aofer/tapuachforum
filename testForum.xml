@@ -1,248 +1,68 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <forumType>
     <forumName>Tapuach</forumName>
-    <messageCounter>77</messageCounter>
-    <members>
-        <userName>membUserNameToRegister</userName>
-        <nickName>membNickName</nickName>
-        <password>c39cd9c59b8aa2c8a6d0d8d484cdff0d</password>
-        <eMail>membFirstName</eMail>
-        <dateJoined>2010-05-07T12:04:15.636+03:00</dateJoined>
-        <firstName>membLastName</firstName>
-        <LastName>memb@agr</LastName>
-        <dateOfBirth>2010-05-07+03:00</dateOfBirth>
-        <status>true</status>
-        <isModerator>true</isModerator>
-        <isAdmin>false</isAdmin>
-    </members>
-    <members>
-        <userName>admin</userName>
-        <nickName>adminy</nickName>
-        <password>21232f297a57a5a743894a0e4a801fc3</password>
-        <eMail>thebestadmin@gmail.com</eMail>
-        <dateJoined>2010-06-08T11:37:27.537+03:00</dateJoined>
-        <firstName>ad</firstName>
-        <LastName>min</LastName>
-        <dateOfBirth>2010-06-08+03:00</dateOfBirth>
-        <status>false</status>
-        <isModerator>false</isModerator>
-        <isAdmin>true</isAdmin>
-    </members>
-    <members>
-        <userName>aa</userName>
-        <nickName>aa</nickName>
-        <password>25d55ad283aa400af464c76d713c07ad</password>
-        <eMail>a</eMail>
-        <dateJoined>2010-06-08T11:37:56.615+03:00</dateJoined>
-        <firstName>a</firstName>
-        <LastName>a</LastName>
-        <dateOfBirth>2010-06-08+03:00</dateOfBirth>
-        <status>false</status>
-        <isModerator>true</isModerator>
-        <isAdmin>false</isAdmin>
-    </members>
-    <members>
-        <userName>omri</userName>
-        <nickName>om</nickName>
-        <password>25d55ad283aa400af464c76d713c07ad</password>
-        <eMail>fghjk@jifghjk.com</eMail>
-        <dateJoined>2010-07-10T13:15:21.980+03:00</dateJoined>
-        <firstName>fyghujk</firstName>
-        <LastName>fyghujk</LastName>
-        <dateOfBirth>2010-07-10+03:00</dateOfBirth>
-        <status>false</status>
-        <isModerator>true</isModerator>
-        <isAdmin>false</isAdmin>
-    </members>
-    <members>
-        <userName>sad3</userName>
-        <nickName>dasdasd</nickName>
-        <password>25d55ad283aa400af464c76d713c07ad</password>
-        <eMail>asccas@sadas.com</eMail>
-        <dateJoined>2010-07-10T15:04:50.276+03:00</dateJoined>
-        <firstName>ascasc</firstName>
-        <LastName>favasd</LastName>
-        <dateOfBirth>2010-07-10+03:00</dateOfBirth>
-        <status>false</status>
-        <isModerator>true</isModerator>
-        <isAdmin>false</isAdmin>
-    </members>
-    <members>
-        <userName>aavv</userName>
-        <nickName>aavv</nickName>
-        <password>25d55ad283aa400af464c76d713c07ad</password>
-        <eMail>sva@asd.co.il</eMail>
-        <dateJoined>2010-07-12T13:57:56.471+03:00</dateJoined>
-        <firstName>sdfsdf</firstName>
-        <LastName>vsdvsdv</LastName>
-        <dateOfBirth>2010-07-12+03:00</dateOfBirth>
-        <status>false</status>
-        <isModerator>true</isModerator>
-        <isAdmin>false</isAdmin>
-    </members>
-    <members>
-        <userName>sdvsdvsdv</userName>
-        <nickName>sdcsdcsdc</nickName>
-        <password>25d55ad283aa400af464c76d713c07ad</password>
-        <eMail>xvxcv@qwead.com</eMail>
-        <dateJoined>2010-07-12T15:35:25.727+03:00</dateJoined>
-        <firstName>xcvx</firstName>
-        <LastName>vxcvxc</LastName>
-        <dateOfBirth>2010-07-12+03:00</dateOfBirth>
-        <status>false</status>
-        <isModerator>false</isModerator>
-        <isAdmin>false</isAdmin>
-    </members>
-    <members>
-        <userName>sdvsdvs</userName>
-        <nickName>sdvsdvs</nickName>
-        <password>25d55ad283aa400af464c76d713c07ad</password>
-        <eMail>vsdv@asfasf.com</eMail>
-        <dateJoined>2010-07-12T15:46:24.677+03:00</dateJoined>
-        <firstName>vsdv</firstName>
-        <LastName>sdvsdv</LastName>
-        <dateOfBirth>2010-07-12+03:00</dateOfBirth>
-        <status>false</status>
-        <isModerator>false</isModerator>
-        <isAdmin>false</isAdmin>
-    </members>
-    <members>
-        <userName>adminfff</userName>
-        <nickName>aavvvvv</nickName>
-        <password>25d55ad283aa400af464c76d713c07ad</password>
-        <eMail>asda@asdas.com</eMail>
-        <dateJoined>2010-07-14T12:35:35.741+03:00</dateJoined>
-        <firstName>asdasd</firstName>
-        <LastName>asdasd</LastName>
-        <dateOfBirth>2010-07-14+03:00</dateOfBirth>
-        <status>false</status>
-        <isModerator>false</isModerator>
-        <isAdmin>false</isAdmin>
-    </members>
+    <messageCounter>8</messageCounter>
     <messages>
-        <messageId>48</messageId>
+        <messageId>1</messageId>
         <parentId>0</parentId>
-        <subject>aa</subject>
-        <body>bb</body>
-        <createdBy>adminy</createdBy>
-        <dateAdded>2010-07-12T14:12:12.822+03:00</dateAdded>
-        <modifiedDate>2010-07-12T14:12:27.016+03:00</modifiedDate>
-        <message>
-            <messageId>52</messageId>
-            <parentId>48</parentId>
-            <subject>xx</subject>
-            <body>ff</body>
-            <createdBy>adminy</createdBy>
-            <dateAdded>2010-07-12T14:12:52.919+03:00</dateAdded>
-            <modifiedDate>2010-07-12T14:12:58.589+03:00</modifiedDate>
-        </message>
+        <subject>i just love aly and fila</subject>
+        <body>their latest future sound of egypt is great </body>
+        <createdBy>Arseny</createdBy>
+        <dateAdded>2010-07-26T22:31:36.594+03:00</dateAdded>
+        <modifiedDate>2010-07-26T22:31:36.594+03:00</modifiedDate>
     </messages>
     <messages>
-        <messageId>51</messageId>
+        <messageId>2</messageId>
         <parentId>0</parentId>
-        <subject>ddxcvxc</subject>
-        <body>eevxcvxc</body>
-        <createdBy>adminy</createdBy>
-        <dateAdded>2010-07-12T14:12:18.740+03:00</dateAdded>
-        <modifiedDate>2010-07-12T14:17:34.454+03:00</modifiedDate>
-        <message>
-            <messageId>69</messageId>
-            <parentId>51</parentId>
-            <subject>cvbcv</subject>
-            <body>bcvbcvb</body>
-            <createdBy>aa</createdBy>
-            <dateAdded>2010-07-12T16:03:10.777+03:00</dateAdded>
-            <modifiedDate>2010-07-12T16:03:10.777+03:00</modifiedDate>
-            <message>
-                <messageId>71</messageId>
-                <parentId>69</parentId>
-                <subject>sdvsd</subject>
-                <body>vsdvsd</body>
-                <createdBy>adminy</createdBy>
-                <dateAdded>2010-07-12T16:09:07.963+03:00</dateAdded>
-                <modifiedDate>2010-07-12T16:09:07.963+03:00</modifiedDate>
-            </message>
-        </message>
+        <subject>who cares about armin</subject>
+        <body>gareth emery is much better.. armin is so commercial now </body>
+        <createdBy>Amit</createdBy>
+        <dateAdded>2010-07-26T22:31:36.594+03:00</dateAdded>
+        <modifiedDate>2010-07-26T22:31:36.594+03:00</modifiedDate>
     </messages>
     <messages>
-        <messageId>55</messageId>
+        <messageId>3</messageId>
         <parentId>0</parentId>
-        <subject>xxx</subject>
-        <body>xxxxxxxvvvvc xc xc xc xc xc </body>
-        <createdBy>adminy</createdBy>
-        <dateAdded>2010-07-12T14:16:39.204+03:00</dateAdded>
-        <modifiedDate>2010-07-12T14:17:38.814+03:00</modifiedDate>
+        <subject>i just love aly and fila</subject>
+        <body>their latest future sound of egypt is great </body>
+        <createdBy>Arseny2</createdBy>
+        <dateAdded>2010-07-26T22:31:36.629+03:00</dateAdded>
+        <modifiedDate>2010-07-26T22:31:36.629+03:00</modifiedDate>
     </messages>
     <messages>
-        <messageId>64</messageId>
+        <messageId>4</messageId>
         <parentId>0</parentId>
-        <subject>vsdvsdvsv</subject>
-        <body>sdvsdvnmmmm</body>
-        <createdBy>adminy</createdBy>
-        <dateAdded>2010-07-12T15:48:39.561+03:00</dateAdded>
-        <modifiedDate>2010-07-12T16:03:36.398+03:00</modifiedDate>
-        <message>
-            <messageId>66</messageId>
-            <parentId>64</parentId>
-            <subject>xvxvxvx</subject>
-            <body>xcvxv</body>
-            <createdBy>aa</createdBy>
-            <dateAdded>2010-07-12T15:49:29.558+03:00</dateAdded>
-            <modifiedDate>2010-07-12T15:49:33.030+03:00</modifiedDate>
-        </message>
-        <message>
-            <messageId>68</messageId>
-            <parentId>64</parentId>
-            <subject>vvvvv</subject>
-            <body>vsdvsdvvvv</body>
-            <createdBy>aa</createdBy>
-            <dateAdded>2010-07-12T16:02:58.586+03:00</dateAdded>
-            <modifiedDate>2010-07-14T11:45:20.505+03:00</modifiedDate>
-        </message>
+        <subject>who cares about armin</subject>
+        <body>gareth emery is much better.. armin is so commercial now </body>
+        <createdBy>Amit</createdBy>
+        <dateAdded>2010-07-26T22:31:36.629+03:00</dateAdded>
+        <modifiedDate>2010-07-26T22:31:36.629+03:00</modifiedDate>
     </messages>
     <messages>
-        <messageId>65</messageId>
+        <messageId>5</messageId>
         <parentId>0</parentId>
-        <subject>asd</subject>
-        <body>asdasd</body>
-        <createdBy>aa</createdBy>
-        <dateAdded>2010-07-12T15:49:17.264+03:00</dateAdded>
-        <modifiedDate>2010-07-12T15:49:17.264+03:00</modifiedDate>
+        <subject>i just love aly and fila</subject>
+        <body>their latest future sound of egypt is great </body>
+        <createdBy>Arseny2</createdBy>
+        <dateAdded>2010-07-26T22:31:36.629+03:00</dateAdded>
+        <modifiedDate>2010-07-26T22:31:36.629+03:00</modifiedDate>
     </messages>
     <messages>
-        <messageId>72</messageId>
+        <messageId>6</messageId>
         <parentId>0</parentId>
-        <subject>ascsvxcv</subject>
-        <body>xcvxcvxcvx</body>
-        <createdBy>aa</createdBy>
-        <dateAdded>2010-07-14T11:45:09.944+03:00</dateAdded>
-        <modifiedDate>2010-07-14T11:45:09.944+03:00</modifiedDate>
-        <message>
-            <messageId>74</messageId>
-            <parentId>72</parentId>
-            <subject>cvxcv</subject>
-            <body>xcvxcvx</body>
-            <createdBy>adminy</createdBy>
-            <dateAdded>2010-07-14T14:12:07.202+03:00</dateAdded>
-            <modifiedDate>2010-07-14T14:12:07.202+03:00</modifiedDate>
-        </message>
+        <subject>i just love aly and fila</subject>
+        <body>their latest future sound of egypt is great </body>
+        <createdBy>Arseny2</createdBy>
+        <dateAdded>2010-07-26T22:31:36.629+03:00</dateAdded>
+        <modifiedDate>2010-07-26T22:31:36.629+03:00</modifiedDate>
     </messages>
     <messages>
-        <messageId>73</messageId>
+        <messageId>7</messageId>
         <parentId>0</parentId>
-        <subject>ddd</subject>
-        <body>xx</body>
-        <createdBy>adminy</createdBy>
-        <dateAdded>2010-07-14T14:11:42.132+03:00</dateAdded>
-        <modifiedDate>2010-07-14T14:11:42.132+03:00</modifiedDate>
-    </messages>
-    <messages>
-        <messageId>76</messageId>
-        <parentId>0</parentId>
-        <subject>vsdf</subject>
-        <body>qwdqwd</body>
-        <createdBy>adminy</createdBy>
-        <dateAdded>2010-07-18T20:14:48.854+03:00</dateAdded>
-        <modifiedDate>2010-07-18T20:14:48.854+03:00</modifiedDate>
+        <subject>i just love aly and fila</subject>
+        <body>their latest future sound of egypt is great </body>
+        <createdBy>Arseny2</createdBy>
+        <dateAdded>2010-07-26T22:31:36.629+03:00</dateAdded>
+        <modifiedDate>2010-07-26T22:31:36.629+03:00</modifiedDate>
     </messages>
 </forumType>

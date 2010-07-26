@@ -191,6 +191,7 @@ public class ForumCellView extends javax.swing.JPanel implements CellViewInterfa
                 btnModify.setEnabled(true);
                 txtBody.setEditable(true);
                 btnDelete.setEnabled(true);
+                txtSubject.setEditable(true);
                 break;
             case Admin:
                 btnReply.setEnabled(true);

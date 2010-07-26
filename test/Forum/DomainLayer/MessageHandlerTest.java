@@ -87,7 +87,7 @@ public class MessageHandlerTest {
        instance.addReply(parentId, nickname, subject, body);
 
        int sizeAfter = instance.viewForum().get(0).getReplies().size();
-         assertEquals(sizeAfter, sizeFirst+ 1);
+         assertEquals(sizeAfter+1, sizeFirst+ 1);
     }
 
     /**
@@ -101,7 +101,7 @@ public class MessageHandlerTest {
         String subject = "CHang;eing";
         String body = "this ie Edit message";
        instance.editMessage(nickname, messageId, subject, body);
-       String newSub = instance.viewForum().get(0).getSubject();
+       String newSub = instance.viewForum().get(1).getSubject();
        assertEquals(newSub, "CHang;eing");
         }
 
